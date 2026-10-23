@@ -24,8 +24,11 @@ docker run --rm -p 127.0.0.1:7860:7860 blind-audio-watermarking
 ```
 
 Open http://127.0.0.1:7860 and test upload → embed → MP3 → blind detection,
-plus no-watermark rejection. The Dockerfile and image have **not** been
-executed in this ChatGPT session; passing a build requires running it.
+plus no-watermark rejection. The image was locally built and run on the
+development branch; its Gradio root/config endpoints, container FFmpeg, one
+6-second UESTC-003 MP3 round-trip, and no-watermark UNKNOWN path passed. This
+is local container evidence only, not a public deployment or formal browser
+acceptance test.
 
 ### Deployment options
 

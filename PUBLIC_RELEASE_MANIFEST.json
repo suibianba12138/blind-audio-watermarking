@@ -1,0 +1,244 @@
+{
+  "manifest_version": 3,
+  "release_name": "blind-audio-watermarking",
+  "release_scope": "P3 fresh staging export; no old Git history, no raw audio, no research matrices",
+  "staging_directory": "blind-audio-watermarking-public-staging",
+  "source_branch": "course/robust-recovery-v2",
+  "source_head": "7b0dca6b94f74d98304b1cb4a64209201fb2675a",
+  "generated_utc": "2026-10-23T07:40:07.430416+00:00",
+  "file_count_excluding_manifest": 42,
+  "exported_file_count_including_manifest": 43,
+  "manifest_self_hash": "NOT_INCLUDED_TO_AVOID_RECURSIVE_HASH",
+  "audit_status": {
+    "code_ownership": "PASS_BY_OWNER_CONFIRMATION",
+    "third_party_code": "PASS_NO_COPIED_SOURCE_FOUND",
+    "mit_license": "MIT_READY",
+    "data_provenance": "PASS_METADATA_ONLY_MUSAN_SLR17_CC_BY_4",
+    "privacy_audit_current_files": "PASS",
+    "git_history_privacy": "BLOCKED_PENDING_VERIFIED_PRIVATE_EMAIL",
+    "public_release_ready": "CONDITIONAL",
+    "github_push": "NOT_PERFORMED",
+    "github_release": "NOT_PERFORMED",
+    "website_deployment": "NOT_PERFORMED"
+  },
+  "historical_results": {
+    "six_second_four_identity_no_attack": "48/48",
+    "mp3_128kbps_identity": "46/48",
+    "mp3_complete_arbitrary_32bit_recovery": "5/48",
+    "no_watermark_false_positive": "1/60",
+    "mp3_no_watermark_false_positive": "0/60",
+    "interpretation": "finite identity recognition provenance; not arbitrary 32-bit recovery or a security guarantee"
+  },
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 146,
+      "sha256": "3ec21961ae6db125ecfc36db896220fcc3bf00331cd335756017bd8b957de78a"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1071,
+      "sha256": "cd04195560d80e958122cd22aa6e02a2c981bbb16a5600b61460132f86efdbcf"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2938,
+      "sha256": "835118a794e8112307c2f426110c5d79d7311f372255c4817ae871cb1676f4ec"
+    },
+    {
+      "path": "README_ZH.md",
+      "bytes": 2556,
+      "sha256": "240f6432023884805019e858a1041f1c43ee5f1933b1e6af27860752092f11e8"
+    },
+    {
+      "path": "app/__init__.py",
+      "bytes": 73,
+      "sha256": "87298edc95def87cd83ed802015b692e8ab2ea8430e060de694242fbca76661e"
+    },
+    {
+      "path": "app/audio_io.py",
+      "bytes": 6043,
+      "sha256": "176b9b6ecfd34dc491e0115998aadd3a1cdeff5a80ab69ac0aa194b6210fa29b"
+    },
+    {
+      "path": "app/detector_worker.py",
+      "bytes": 2581,
+      "sha256": "1d00bba96d7dd7bf366d5a986f259af73a7546205a643184ee640c820703bef8"
+    },
+    {
+      "path": "app/gui.py",
+      "bytes": 7210,
+      "sha256": "7969e2b899d82a9eecd5e066e5af911e3f25ddb0e885aaa5efe7ecfe79a7e842"
+    },
+    {
+      "path": "app/mp3_codec.py",
+      "bytes": 2973,
+      "sha256": "a5c3e4f43e364f06753734c71c120d969ef2d8fa4293474fe0a61f67a519a9b6"
+    },
+    {
+      "path": "app/pipeline.py",
+      "bytes": 3878,
+      "sha256": "39fc632dbfa66df051ea0a9ee37d33326b4b44ab94ab1ea852c31e2737ed5e64"
+    },
+    {
+      "path": "app/public_config.py",
+      "bytes": 3933,
+      "sha256": "7729ab5f8488fb7dbba23171bf250d9d1fa3c017ff5607c688e8022280470716"
+    },
+    {
+      "path": "configs/public_frozen_config.json",
+      "bytes": 612,
+      "sha256": "8d247f067f94dfb4596f444ca376ef76b765c23d4362434b348dff5576b2c074"
+    },
+    {
+      "path": "configs/real_top32_stability_map.json",
+      "bytes": 307186,
+      "sha256": "3a4bc6210c59799f6b92ca28888ba3383a8066e2e2eaa2a00ef5045bad06a72f"
+    },
+    {
+      "path": "docs/DEMO_SCRIPT_ZH.md",
+      "bytes": 1220,
+      "sha256": "d87ec5eb8f2d348b25379c6371137d16c15d05217f0a9e3b141827dcc0639a8c"
+    },
+    {
+      "path": "docs/DEPLOYMENT_PLAN.md",
+      "bytes": 1637,
+      "sha256": "3aecfd9abebaa1cbc709d7143266e7d668ca3703b761ae2c09aef33894e24185"
+    },
+    {
+      "path": "docs/LIMITATIONS.md",
+      "bytes": 1341,
+      "sha256": "7eea93093bf840d33b15f0803372d8c91e3c41aebe370c0144d2cf99c0068c94"
+    },
+    {
+      "path": "docs/METHOD.md",
+      "bytes": 1976,
+      "sha256": "14c3785a8f9f38f6c83dcd185e6d1e4ad76585fb774b8f56ed2ac9f9e03f28b2"
+    },
+    {
+      "path": "docs/RELEASE_BLOCKERS_RESOLVED.md",
+      "bytes": 2036,
+      "sha256": "48b26ac2072cccb3df407b30e7aae0bcc81e6d72a072fc17a8f1712c37855dd8"
+    },
+    {
+      "path": "docs/RESULTS.md",
+      "bytes": 2249,
+      "sha256": "9f2bc20e7b0280063161341d69f02636a5028a586e4a8268071503ae6bdac8f6"
+    },
+    {
+      "path": "examples/generate_test_audio.py",
+      "bytes": 1017,
+      "sha256": "0b1f283fc77875f3b9559395da90875ff85f56757ab92e91b99db054bf63a077"
+    },
+    {
+      "path": "gradio_app.py",
+      "bytes": 243,
+      "sha256": "79cddbff8f847f9c628d85fd33767beb0067c36b71564525df491a04445753db"
+    },
+    {
+      "path": "pyproject.toml",
+      "bytes": 941,
+      "sha256": "57086f53984ebd6e0643f54c426f36d2626d7e9d74376c4cb3a72f3f042457ad"
+    },
+    {
+      "path": "requirements-dev.txt",
+      "bytes": 35,
+      "sha256": "9dfd138ab8018069b03f121bb2540ce9b16be664cbe7ffd46cafdc85660a6b14"
+    },
+    {
+      "path": "requirements.txt",
+      "bytes": 475,
+      "sha256": "fb9b174951aabcc357c66d98b93ef9e13c4cc3183a37a8b1ac9ac56f9fcba2f2"
+    },
+    {
+      "path": "scripts/demo.py",
+      "bytes": 1551,
+      "sha256": "e1bd64424d494e9aa101104c86e21cb2dabc8fe1f65fccb89f188e23536ba590"
+    },
+    {
+      "path": "scripts/detect.py",
+      "bytes": 188,
+      "sha256": "9e9820661960e248a9958d223ca40456df75de40c3b61971223977463e2bce1e"
+    },
+    {
+      "path": "src/audio_watermark/__init__.py",
+      "bytes": 118,
+      "sha256": "f09807f648055172ddedde4faa7c5fee49a784070638daa10ee076e0a7d08a6d"
+    },
+    {
+      "path": "src/audio_watermark/audio.py",
+      "bytes": 3451,
+      "sha256": "0bc2b04c39ba09447bb631b624240fc2f967b8dd400688c46837f46c0a7fd41b"
+    },
+    {
+      "path": "src/audio_watermark/b1.py",
+      "bytes": 4993,
+      "sha256": "6697e2a74dc32fe96e7569dd7857d7c4f7431a66e6d0964ff305df3edb76cdba"
+    },
+    {
+      "path": "src/audio_watermark/carrier.py",
+      "bytes": 4246,
+      "sha256": "d15c0a840f9d0fe4b55807054abbf277a9d93a4e16d65497e0e5c756e4005746"
+    },
+    {
+      "path": "src/audio_watermark/codec_selector.py",
+      "bytes": 4983,
+      "sha256": "b165c1ce751c140f497cb0576e46feb05bf74e77d3b33385e888f22a0ea07960"
+    },
+    {
+      "path": "src/audio_watermark/codec_stability.py",
+      "bytes": 11604,
+      "sha256": "074c3ab7ea29064726df89a8b2dd32e2acbcb09437125a4b86d283cebd7ee973"
+    },
+    {
+      "path": "src/audio_watermark/course_v2.py",
+      "bytes": 14905,
+      "sha256": "cd9e3693678da8819ae84a7906d5f2cbea65861f6dd8cc05d379fd500301d000"
+    },
+    {
+      "path": "src/audio_watermark/detect.py",
+      "bytes": 4463,
+      "sha256": "814d664e67947cbac244d7870ee925608fa2b11d5d189f3457af631468dbb956"
+    },
+    {
+      "path": "src/audio_watermark/embed.py",
+      "bytes": 6718,
+      "sha256": "688a451a689e1aef9545e88dfa2c77b3bb927589a71f5c5eab71a5e335583df1"
+    },
+    {
+      "path": "src/audio_watermark/framing.py",
+      "bytes": 4079,
+      "sha256": "5039eafd96ad5278b25833f888aa9472d93fb0e1e23a037d9c91d52308eb02c8"
+    },
+    {
+      "path": "src/audio_watermark/metrics.py",
+      "bytes": 1905,
+      "sha256": "d3073f10e796d045d4ae560486d1a2c219b3a9fc3231b2d32e679d1e0364b057"
+    },
+    {
+      "path": "src/audio_watermark/packet.py",
+      "bytes": 1792,
+      "sha256": "7e81178c04f866c984045a3e392f8c673357ca516f63e8f8766ba5d6a0fe56c1"
+    },
+    {
+      "path": "src/audio_watermark/transform.py",
+      "bytes": 1577,
+      "sha256": "d60d37ac72a153c54f575956f8ad76d0d6983de04507c79f9219b80e4f15931a"
+    },
+    {
+      "path": "tests/test_public_contracts.py",
+      "bytes": 1059,
+      "sha256": "47a1ce526fae80857cab61c38199781e210b3b446473325e1b4544b01cbcd2ec"
+    },
+    {
+      "path": "tests/test_public_identity.py",
+      "bytes": 2042,
+      "sha256": "45b71e96dd58e1a69bef1dd8072cf4a15dc08d174e569e068c6072de787e7e18"
+    },
+    {
+      "path": "tests/test_public_payload.py",
+      "bytes": 707,
+      "sha256": "96a7e85c1d164ef8347e758851eac421a1a696a08e0af1cccee060139a51ff0c"
+    }
+  ]
+}

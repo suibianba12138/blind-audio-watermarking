@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "blind-audio-watermarking"
+version = "0.1.0"
+description = "Standalone public demo of a frozen blind audio watermarking baseline"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy>=1.24,<3",
+  "scipy>=1.10,<2",
+]
+
+[project.optional-dependencies]
+gui = [
+  "gradio==4.44.1",
+  "gradio_client==1.3.0",
+  "fastapi==0.115.2",
+  "starlette==0.40.0",
+  "pydantic==2.10.6",
+  "pydantic-core==2.27.2",
+  "huggingface_hub==0.24.7",
+  "uvicorn==0.32.0",
+  "aiofiles==23.2.1",
+  "python-multipart==0.0.12",
+  "pydub==0.25.1",
+  "ffmpy==0.4.0",
+  "semantic-version==2.10.0",
+  "tomlkit==0.12.0",
+  "websockets==12.0",
+  "orjson==3.10.12",
+  "audioop-lts==0.2.2",
+]
+dev = ["pytest>=7.4,<9"]
+
+[tool.setuptools.packages.find]
+where = ["src", "."]
+include = ["audio_watermark*", "app*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

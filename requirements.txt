@@ -1,0 +1,22 @@
+# Core runtime; keep scientific dependencies bounded to avoid surprise upgrades.
+numpy>=1.24,<3
+scipy>=1.10,<2
+
+# GUI runtime used for the local/Spaces prototype.
+gradio==4.44.1
+gradio_client==1.3.0
+fastapi==0.115.2
+starlette==0.40.0
+pydantic==2.10.6
+pydantic-core==2.27.2
+huggingface_hub==0.24.7
+uvicorn==0.32.0
+aiofiles==23.2.1
+python-multipart==0.0.12
+pydub==0.25.1
+ffmpy==0.4.0
+semantic-version==2.10.0
+tomlkit==0.12.0
+websockets==12.0
+orjson==3.10.12
+audioop-lts==0.2.2

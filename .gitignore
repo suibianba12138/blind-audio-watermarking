@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+*.egg-info/
+.DS_Store
+*.log
+*.mp3
+*.wav
+*.flac
+*.m4a
+*.ogg
+outputs/
+demo_outputs/
+!examples/.gitkeep

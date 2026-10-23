@@ -1,0 +1,16 @@
+{
+  "stage": "PUBLIC_COURSE_V2_FROZEN_OPERATING_POINT",
+  "protocol_version": "public-course-v2-release-p1",
+  "sample_rate": 48000,
+  "block_seconds": 6,
+  "strength": 1.28,
+  "rejection_threshold": 8,
+  "payload_bits": 32,
+  "payload_seed": 7,
+  "real_top32_map_sha256": "82c213813123239daaa86619e198b8e74f0880ac1c713518acedc0d6c109e3a9",
+  "real_top32_selector_sha256": "99fa9b0a3b864401184746040353e6aacf2b7d56914d5a18a77886c3ab53199d",
+  "formal_reliability_scope": "6 seconds / 1 block",
+  "formal_perceptual_gate": "NOT_ESTABLISHED",
+  "validation_retuning": false,
+  "p4_final_heldout_accessed": false
+}

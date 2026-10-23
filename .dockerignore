@@ -1,0 +1,14 @@
+.git
+.venv
+__pycache__
+*.pyc
+.pytest_cache
+*.wav
+*.mp3
+*.flac
+*.ogg
+*.log
+course_demo
+tests
+docs
+examples

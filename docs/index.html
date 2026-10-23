@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f9fd">
+  <meta name="description" content="Blind Audio Watermarking — a real QIM identity-watermark prototype with codec-aware carrier selection, MP3 compression and blind detection.">
+  <meta property="og:title" content="Blind Audio Watermarking — Embed. Compress. Detect.">
+  <meta property="og:description" content="Explore the method, recorded results and code behind a blind audio identity watermark prototype.">
+  <meta name="demo-embed-url" content="">
+  <title>Blind Audio Watermarking — Embed. Compress. Detect.</title>
+  <link rel="stylesheet" href="./assets/site.css">
+  <script src="./assets/site.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header" id="top">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top" aria-label="Blind Audio Watermarking home"><span class="brand-mark" aria-hidden="true">A<span>W</span></span><span>Blind <strong>Audio</strong> Watermarking</span></a>
+      <nav class="nav" aria-label="Main navigation" id="navigation">
+        <a href="#overview">Overview</a><a href="#demo">Demo</a><a href="#method">Method</a><a href="#results">Results</a><a href="#scope">Limitations</a>
+      </nav>
+      <a class="nav-github" href="https://github.com/suibianba12138/blind-audio-watermarking" target="_blank" rel="noopener noreferrer">View code <span aria-hidden="true">↗</span></a>
+      <button class="menu-toggle" type="button" id="menu-toggle" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero" id="overview">
+      <div class="hero-grid-overlay" aria-hidden="true"></div>
+      <div class="wrap hero-layout">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="signal-dot"></span> DIGITAL SIGNAL PROCESSING <span class="slash">/</span> COURSE PROTOTYPE</div>
+          <h1>Give audio an identity.<br><em>Keep it through compression.</em></h1>
+          <p class="hero-desc">A blind audio watermarking system that embeds a compact identity into a sound signal, survives an MP3 round-trip in most tested cases, and recovers the identity without the original recording.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#demo">Explore the demo <span aria-hidden="true">↘</span></a>
+            <a class="button button-outline" href="#method">Understand the method <span aria-hidden="true">↓</span></a>
+          </div>
+          <div class="hero-footline"><span>QIM spectral embedding</span><b>·</b><span>REAL_TOP32 selection</span><b>·</b><span>Blind detection</span></div>
+        </div>
+        <div class="hero-art" aria-label="Conceptual waveform and digital identity illustration, not measured signal data">
+          <div class="art-orbit art-orbit-one"></div><div class="art-orbit art-orbit-two"></div>
+          <div class="art-float float-left"><span class="mini-led"></span> WATERMARK CODEWORD <strong>32 bits</strong></div>
+          <div class="signal-card">
+            <div class="card-bar"><span class="traffic"><i></i><i></i><i></i></span><b>FREQUENCY DOMAIN / CONCEPTUAL VIEW</b><span>⌁</span></div>
+            <div class="signal-surface"><div class="graph-grid"></div><svg viewBox="0 0 510 246" preserveAspectRatio="none" role="img" aria-label="Illustrative waveform">
+              <defs><linearGradient id="line-grad" x1="0" x2="1"><stop offset="0" stop-color="#34d3be"/><stop offset="1" stop-color="#3c86ed"/></linearGradient></defs>
+              <path class="guide-line" d="M0 123 H510"/>
+              <path class="wave-back" d="M0 123 C12 55 21 190 34 121 S53 48 64 125 S83 200 94 123 S115 55 128 120 S145 184 158 122 S176 35 189 124 S210 214 221 123 S240 71 252 121 S272 168 284 121 S305 37 316 122 S338 215 349 123 S369 80 380 121 S400 168 413 124 S432 72 444 125 S463 198 477 123 S496 62 510 124"/>
+              <path class="wave-front" d="M0 123 C12 84 21 163 34 121 S53 66 64 125 S83 184 94 123 S115 47 128 120 S145 175 158 122 S176 36 189 124 S210 209 221 123 S240 80 252 121 S272 182 284 121 S305 28 316 122 S338 207 349 123 S369 61 380 121 S400 191 413 124 S432 52 444 125 S463 181 477 123 S496 76 510 124"/>
+              <g class="visual-stems"><line x1="45" y1="202" x2="45" y2="177"/><line x1="90" y1="202" x2="90" y2="154"/><line x1="135" y1="202" x2="135" y2="188"/><line x1="180" y1="202" x2="180" y2="159"/><line x1="225" y1="202" x2="225" y2="177"/><line x1="270" y1="202" x2="270" y2="144"/><line x1="315" y1="202" x2="315" y2="167"/><line x1="360" y1="202" x2="360" y2="178"/><line x1="405" y1="202" x2="405" y2="156"/><line x1="450" y1="202" x2="450" y2="178"/></g>
+            </svg><span class="plot-caption left">SIGNAL / 48 kHz</span><span class="plot-caption right">IDENTITY CARRIERS ↗</span></div>
+            <div class="art-readout"><div><small>EMBED</small><strong>UESTC-003</strong></div><div class="readout-arrow">→</div><div><small>MP3 128 kbps</small><strong>COMPRESS</strong></div><div class="readout-arrow">→</div><div><small>BLIND DECODER</small><strong class="aqua">IDENTIFIED</strong></div></div>
+          </div>
+          <div class="art-float float-right"><span>✓</span><div><small>FROZEN VALIDATION</small><strong>46 / 48 identified</strong></div></div>
+          <div class="art-disclaimer">CONCEPTUAL SIGNAL ILLUSTRATION — NOT A RECORDED AUDIO TRACE</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="metrics" aria-label="Recorded evaluation highlights"><div class="wrap metric-grid">
+      <div class="metric"><strong>95.83%</strong><span>MP3 identity accuracy</span><small>46/48 · 6 s · 128 kbps</small></div>
+      <div class="metric"><strong>100%</strong><span>No-attack identity accuracy</span><small>48/48 · frozen cohort</small></div>
+      <div class="metric"><strong>0/60</strong><span>MP3 negative detections</span><small>Observed false positives</small></div>
+      <div class="metric metric-note"><span class="metric-label">SCOPE MATTERS</span><p>Four preset identities, not general 32-bit recovery. The percentages are historical validation results, not live website measurements.</p></div>
+    </div></section>
+
+    <section class="section demo-section" id="demo">
+      <div class="wrap">
+        <div class="section-heading dark-heading"><div><div class="kicker"><span>01</span><i></i> EXPLORE THE SYSTEM</div><h2>Embed. Compress.<br><em>Detect.</em></h2></div><p>The actual audio-processing pipeline is open source. Until the hosted Python backend is deployed, this page offers a local-only audio preview and installation instructions — not a simulated detector.</p></div>
+        <div class="demo-status"><div><span class="status-dot"></span><strong>BACKEND NOT DEPLOYED</strong><span class="status-separator">·</span><span>Local Gradio demo and CLI are available in the repository.</span></div><span class="tag">NO FAKE INFERENCE</span></div>
+        <div class="demo-grid">
+          <div class="demo-left">
+            <div class="pane-title"><span><i>01</i> Try an audio preview</span><b>IN YOUR BROWSER</b></div>
+            <div class="upload-box"><div class="upload-symbol" aria-hidden="true">♫</div><h3>See your signal.</h3><p>Pick a local audio file to visualize its waveform and listen back. The file stays in your browser.</p>
+              <label class="file-label" for="local-audio">Choose an audio file <span aria-hidden="true">↗</span></label><input id="local-audio" type="file" accept="audio/*,.wav,.mp3,.flac,.ogg" hidden>
+              <div class="file-message" id="file-message" role="status">No file selected · preview only</div>
+            </div>
+            <div class="wave-panel"><div class="wave-panel-top"><span>LOCAL WAVEFORM PREVIEW</span><b id="wave-duration">—</b></div><canvas id="wave-canvas" height="135" aria-label="Waveform of audio selected locally"></canvas><audio id="local-player" controls preload="none" aria-label="Local audio preview"></audio><p>Playback and waveform visualization do not embed, compress, or detect a watermark.</p></div>
+          </div>
+          <div class="demo-right">
+            <div class="pane-title"><span><i>02</i> Real processing workflow</span><b>PYTHON + FFMPEG</b></div>
+            <div class="work-step"><span class="work-step-num">01</span><div><b>Embed identity</b><p>Select one of four fixed labels. Encode its 32-bit codeword into spectral carriers.</p></div><span class="step-trail">↘</span></div>
+            <div class="work-step"><span class="work-step-num">02</span><div><b>Compress audio</b><p>Run a genuine FFmpeg MP3 128 kbps encode-and-decode round-trip.</p></div><span class="step-trail">↘</span></div>
+            <div class="work-step"><span class="work-step-num">03</span><div><b>Detect blindly</b><p>A separate process reads received audio — never the selected identity or original recording.</p></div><span class="step-trail">↘</span></div>
+            <div class="work-step"><span class="work-step-num">04</span><div><b>Identify or reject</b><p>Return an identity only when its Hamming distance meets the frozen threshold; otherwise UNKNOWN.</p></div><span class="step-trail done">✓</span></div>
+            <div id="hosted-app" class="hosted-app" hidden><a id="launch-app" class="button button-primary" href="#" target="_blank" rel="noopener noreferrer">Open hosted processor <span aria-hidden="true">↗</span></a><p>The hosted app runs the real Python backend.</p><button class="embed-toggle" id="toggle-embed" type="button">Show embedded processor ↓</button><div id="embed-shell" class="embed-shell" hidden></div></div>
+            <div id="local-app" class="local-app"><a class="button button-primary" href="https://github.com/suibianba12138/blind-audio-watermarking#quick-start" target="_blank" rel="noopener noreferrer">Run the real demo locally <span aria-hidden="true">↗</span></a><p>Hosted watermarking is not yet available. Follow the repository setup instructions for real embedding, MP3 compression and blind detection.</p></div>
+          </div>
+        </div>
+        <div class="demo-bottom"><span><b>BLIND CONTRACT</b> The decoder receives only processed audio plus a public carrier map/configuration.</span><a href="https://github.com/suibianba12138/blind-audio-watermarking/blob/main/app/detector_worker.py" target="_blank" rel="noopener noreferrer">Inspect detector ↗</a></div>
+      </div>
+    </section>
+
+    <section class="section method-section" id="method">
+      <div class="wrap">
+        <div class="section-heading"><div><div class="kicker"><span>02</span><i></i> HOW IT WORKS</div><h2>Simple signals.<br><em>Structured recovery.</em></h2></div><p>Three clear ideas form the system: embed in the spectral domain, select codec-stable carriers and identify with error-correcting codewords.</p></div>
+        <div class="pipeline">
+          <div class="pipe-card"><span>01 / EMBEDDING</span><div class="pipe-icon">⌁</div><h3>Spectral QIM</h3><p>Quantization-based modifications encode bits in selected frequency features.</p></div>
+          <span class="pipe-arrow" aria-hidden="true">→</span>
+          <div class="pipe-card"><span>02 / SELECTION</span><div class="pipe-icon">≋</div><h3>REAL_TOP32</h3><p>A frozen codec-stability map determines the carrier locations.</p></div>
+          <span class="pipe-arrow" aria-hidden="true">→</span>
+          <div class="pipe-card"><span>03 / RECOVERY</span><div class="pipe-icon">⊞</div><h3>Identity codebook</h3><p>Four codewords are separated by at least 21 bits; reject beyond distance 8.</p></div>
+        </div>
+        <div class="method-foot"><strong>What does “32-bit” mean here?</strong><p>The baseline accepts arbitrary 32-bit payloads. The enhanced identity mode maps only four preset labels (2 information bits) to 32-bit redundant codewords. Its higher identity recovery rate must not be confused with arbitrary 32-bit packet recovery.</p><a href="https://github.com/suibianba12138/blind-audio-watermarking/blob/main/docs/METHOD.md" target="_blank" rel="noopener noreferrer">Read method details ↗</a></div>
+      </div>
+    </section>
+
+    <section class="section results-section" id="results">
+      <div class="wrap">
+        <div class="section-heading"><div><div class="kicker"><span>03</span><i></i> FROZEN EVIDENCE</div><h2>What the evaluation<br><em>actually showed.</em></h2></div><p>Independent-source results from the frozen Course V2 validation record. The clean public export has passed smoke tests but has not re-run the original validation matrix.</p></div>
+        <div class="results-layout">
+          <div class="result-spotlight"><span>MP3 128 kbps / IDENTITY MODE</span><strong>46<span>/48</span></strong><b>95.83% identified</b><div class="mini-meter"><i style="width:95.83%"></i></div><p>Six-second audio. One embedding block. Two environment recordings returned UNKNOWN; none of the 48 received a wrong identity.</p></div>
+          <div class="result-table-wrap"><table class="result-table"><caption>Frozen evaluation metrics</caption><thead><tr><th scope="col">Test</th><th scope="col">Observed</th><th scope="col">Notes</th></tr></thead><tbody>
+            <tr><td>No attack / identity</td><td>48 / 48</td><td>100%</td></tr>
+            <tr><td>MP3 / identity</td><td><strong>46 / 48</strong></td><td>95.83%</td></tr>
+            <tr><td>MP3 / arbitrary 32-bit</td><td>5 / 48</td><td>10.42%</td></tr>
+            <tr><td>Unmarked negatives</td><td>1 / 60</td><td>False positive</td></tr>
+            <tr><td>MP3 unmarked negatives</td><td>0 / 60</td><td>False positives</td></tr>
+          </tbody></table><p class="table-note">Sample sizes are limited. Zero observed errors is not proof of zero error probability. All formal positive evaluations used 6 seconds and one block.</p></div>
+        </div>
+        <a class="text-link" href="https://github.com/suibianba12138/blind-audio-watermarking/blob/main/docs/RESULTS.md" target="_blank" rel="noopener noreferrer">Read full results and provenance ↗</a>
+      </div>
+    </section>
+
+    <section class="section scope-section" id="scope"><div class="wrap scope-layout">
+      <div><div class="kicker"><span>04</span><i></i> IMPORTANT BOUNDARIES</div><h2>Research prototype.<br><em>Clear limitations.</em></h2><p>Designed to be inspected and reproduced, not marketed as verified ownership authentication.</p></div>
+      <div class="scope-list">
+        <div><b>Limited identity space</b><p>Only four preset identities are evaluated as the robust classification task (2 effective information bits).</p></div>
+        <div><b>Not tamper-proof</b><p>Open codewords are not cryptographic proof of authorship; deliberate removal and forgery resilience are not established.</p></div>
+        <div><b>Perceptual quality</b><p>No new clipping was detected in the frozen objective audit, but a formal listening-quality gate was not established.</p></div>
+        <div><b>Evaluation domain</b><p>MP3 128 kbps, six-second inputs; longer 15/30-second modes passed functional smoke tests only.</p></div>
+      </div>
+    </div></section>
+
+    <section class="outro"><div class="wrap outro-content"><span>OPEN SOURCE / MIT LICENSE</span><h2>Make the watermark<br><em>inspectable.</em></h2><p>Explore the code, run the true end-to-end pipeline locally, and evaluate its documented limits.</p><div class="outro-actions"><a class="button button-light" href="https://github.com/suibianba12138/blind-audio-watermarking" target="_blank" rel="noopener noreferrer">Explore on GitHub ↗</a><a class="button button-border-light" href="#top">Back to top ↑</a></div></div></section>
+  </main>
+  <footer class="site-footer"><div class="wrap footer-inner"><span>© 2026 suibianba12138 · Blind Audio Watermarking · MIT</span><span>Course prototype · Not cryptographic authentication · <a href="https://github.com/suibianba12138/blind-audio-watermarking/blob/main/docs/LIMITATIONS.md" target="_blank" rel="noopener noreferrer">Limitations ↗</a></span></div></footer>
+</body>
+</html>

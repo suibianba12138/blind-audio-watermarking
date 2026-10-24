@@ -50,21 +50,3 @@ audioInput.addEventListener("change",async()=>{
 const menu=$("menu-toggle"),nav=$("navigation");
 menu.addEventListener("click",()=>{let opened=menu.getAttribute("aria-expanded")==="true";menu.setAttribute("aria-expanded",String(!opened));nav.classList.toggle("is-open",!opened)});
 nav.querySelectorAll("a").forEach(el=>el.addEventListener("click",()=>{menu.setAttribute("aria-expanded","false");nav.classList.remove("is-open")}));
-/* Opt-in deployment only: configure a trusted HTTPS Gradio URL in the meta tag.
-   A URL is never invented. Show an external launch link by default; iframe is optional. */
-const endpoint=document.querySelector('meta[name="demo-embed-url"]')?.content?.trim()||"";
-try{
-  if(endpoint){
-    const u=new URL(endpoint);
-    if(u.protocol==="https:"&&/^[a-z0-9.-]+$/i.test(u.hostname)){
-      const hosted=$("hosted-app");hosted.hidden=false;$("local-app").hidden=true;
-      $("launch-app").href=u.toString();
-      $("toggle-embed").addEventListener("click",()=>{
-        const shell=$("embed-shell");shell.hidden=!shell.hidden;
-        $("toggle-embed").textContent=shell.hidden?"Show embedded processor ↓":"Hide embedded processor ↑";
-        if(!shell.hidden&&!shell.firstChild){const frame=document.createElement("iframe");frame.title="Hosted Blind Audio Watermarking processor";frame.loading="lazy";frame.referrerPolicy="no-referrer";frame.allow="microphone";frame.src=u.toString();shell.append(frame)}
-      });
-      const status=document.querySelector(".demo-status strong");status.textContent="HOSTED BACKEND CONFIGURED";document.querySelector(".demo-status>div>span:last-child").textContent="Use the hosted processor for real embedding and blind detection.";
-    }
-  }
-}catch{ /* Invalid configuration keeps local-only messaging. */ }

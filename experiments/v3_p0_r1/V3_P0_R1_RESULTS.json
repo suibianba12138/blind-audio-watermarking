@@ -1,0 +1,48 @@
+{
+  "calibration": {
+    "false_positive_rate": 0.06666666666666667,
+    "negative_count": 120,
+    "positive_count": 120,
+    "positive_detection_rate": 0.9666666666666667,
+    "threshold": 0.07846780628511643
+  },
+  "candidate_config": {
+    "frames_per_bit": 16,
+    "seed": 23,
+    "strength": 0.02,
+    "threshold_source": "development_split_only"
+  },
+  "duration_seconds": 6,
+  "manifest": "/home/nsk/blind-audio-watermarking-v3-p0/configs/v3_p0_r1_real_audio_manifest.json",
+  "manifest_sha256": "2f9919e0e635f91cc9741c858f9c0bb235095215729ba5b555546d2ffb17ad62",
+  "messages": {
+    "seed_23": [
+      0,
+      1,
+      0,
+      1,
+      0,
+      0,
+      1,
+      0
+    ],
+    "seed_7": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0
+    ]
+  },
+  "provenance": "local MUSAN metadata-only source manifest; no audio copied to repository",
+  "row_counts": {
+    "negative": 240,
+    "paired": 600,
+    "qim_per_bit": 3840
+  },
+  "sample_rate_hz": 48000,
+  "source_recordings": 60
+}

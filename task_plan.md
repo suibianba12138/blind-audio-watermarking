@@ -29,6 +29,12 @@
 - [x] P0-D: single-bit/8-bit experimental prototypes on synthetic development probes only.
 - [x] P0-E: recommendation and fail-closed NO-GO for V3-P1.
 - [x] P0-F: final verification, local commit, and report of all failures/skips.
+- [x] R1-A: freeze 60-source MUSAN metadata manifest with 10 dev/10 test per category.
+- [x] R1-B: run real-source frozen B1 QIM per-physical-bit and FFmpeg MP3 audit.
+- [x] R1-C: run paired 8-bit candidate versus B1 wrapper on the fixed 6-second protocol.
+- [x] R1-D: calibrate and freeze a development-only blind presence threshold; evaluate test rejection.
+- [x] R1-E: audit WavMark CPU prerequisites; local inference remains blocked.
+- [x] R1-F: issue a fail-closed V3-P1 decision and preserve all tabular evidence.
 
 ## Planned Files
 
@@ -52,8 +58,18 @@ git status --short --branch
 
 The final gate also requires explicit evidence for FFmpeg MP3, source-disjoint data provenance, and each requested algorithm's `PASS`, `PARTIAL`, `SKIPPED`, or `BLOCKED` state.
 
+## R1 Execution Contract
+
+- Source files remain outside the repository; only hashes, metadata, CSV, and JSON results are stored.
+- Candidate strength remains the pre-registered P0 development point `0.02`; no test-set tuning was performed.
+- Two messages per source are paired observations, not independent recordings.
+- The B1 comparison is an 8-bit logical wrapper over frozen 32-bit physical positions.
+- The rejector uses only received audio and public/keyed configuration; the expected payload is used only after detection for scoring.
+- Any missing WavMark dependency or weight remains `BLOCKED`, not a synthetic PASS.
+
 ## Errors Encountered
 
 | Error | Attempt | Resolution |
 |---|---:|---|
-| None recorded yet | 0 | Continue with baseline and bounded audits. |
+| Public `prepare_for_demo()` rejects local sources longer than 30 s | R1 experiment | Applied the same resample rule, then took the pre-registered first 6 s directly in the R1 script; public demo code was unchanged. |
+| Heterogeneous B1/candidate CSV columns | R1 result write | Updated the additive CSV writer to use the union of row fields; experiment was rerun with the same protocol. |

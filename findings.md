@@ -22,3 +22,15 @@ This file records evidence as `CONFIRMED`, `INFERRED`, `UNAVAILABLE`, or `NOT_ES
 - `CONFIRMED`: upstream audit found audiowmark GPLv3-or-later; WavMark and SilentCipher MIT repository licenses; AudioSeal official README states MIT code/weights; CRAW license chain remains REVIEW_REQUIRED; OmniSealBench common code MIT but model licenses vary.
 - `UNAVAILABLE`: GitHub `git ls-remote` and local third-party source fetches were blocked by the current proxy, so no external repository was copied or run.
 - `NOT_ESTABLISHED`: licensed real-source manifest, source-disjoint dev/test comparison, false-acceptance rates, and formal perceptual gate.
+
+## R1 Real-Source Evidence
+
+- `CONFIRMED`: frozen manifest contains 60 unique local MUSAN source recordings, 20 each for Speech/Music/Environment, with 10 dev and 10 test per category; all are 16 kHz mono WAV and have SHA256 metadata.
+- `CONFIRMED`: raw audio was not copied into the repository; the manifest records source paths, license detail, duration, encoding, and audited Course V2 manifest exclusion status.
+- `CONFIRMED`: real FFmpeg 128 kbps paired evaluation ran on 6-second prefixes, with two fixed 8-bit messages per source and a frozen candidate strength of 0.02.
+- `CONFIRMED`: test MP3 exact recovery was 49/60 for frozen B1 8-bit wrapper versus 39/60 for the candidate; test logical BER was 0.033333 versus 0.054167.
+- `CONFIRMED`: B1 marked-to-MP3 sign flip and boundary-distance behavior remained content-dependent on the real source manifest, with Environment showing the highest test flip rate (0.1297).
+- `CONFIRMED`: development-only candidate threshold was 0.07846780628511643; test clean FPR was 3/30 source recordings and wrong-key acceptance was 4/60 conditions.
+- `CONFIRMED`: candidate fidelity was not matched to B1: test embedding SNR was 46.299 dB versus 57.144 dB for B1; formal perceptual testing remains not established.
+- `BLOCKED`: WavMark CPU inference was not locally reproduced because the isolated environment has no torch, torchaudio, wavmark package, or local WavMark weight; no paper metric is reported as local evidence.
+- `NO_GO`: R1 does not support entry into V3-P1; the candidate is retained as research code only.

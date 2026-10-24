@@ -6,7 +6,6 @@ import json
 import os
 import subprocess
 import sys
-import tempfile
 from pathlib import Path
 
 from audio_watermark.course_v2 import embed_identity_multiblock
@@ -15,6 +14,9 @@ from .audio_io import decode_audio_file, prepare_for_demo, write_wav
 from .mp3_codec import encode_decode_mp3
 from .pipeline import _detect_in_subprocess
 from .public_config import BLOCK_SECONDS, REJECTION_THRESHOLD, build_embedding_config, load_public_selector
+from .session_store import SessionStore
+
+_SESSIONS = SessionStore()
 
 
 IDENTITY_CHOICES = ["NO WATERMARK", "UESTC-001", "UESTC-002", "UESTC-003", "UESTC-004"]
@@ -49,61 +51,55 @@ def _format_detection(result: dict[str, object]) -> str:
 
 def _embed_action(input_path: str | None, identity: str, duration_label: str):
     if not input_path:
-        return None, None, None, None, "请选择本地 WAV/音频文件。"
+        return None, None, None, None, "请选择本地音频文件。"
+    token = None
     try:
         duration = _duration_value(duration_label)
-        session = Path(tempfile.mkdtemp(prefix="public_watermark_gui_"))
         source = prepare_for_demo(decode_audio_file(input_path), duration_seconds=duration)
-        original_path = write_wav(session / "original_prepared.wav", source)
-        if identity == "NO WATERMARK":
-            marked = source.samples.copy()
-            blocks = 0
-        else:
-            result = embed_identity_multiblock(
-                source.samples,
-                identity,
-                build_embedding_config(),
-                load_public_selector(),
-                block_seconds=BLOCK_SECONDS,
-            )
-            marked = result.audio
-            blocks = len(result.blocks)
-        marked_path = write_wav(session / "watermarked.wav", marked, source.sample_rate)
-        state = json.dumps({"marked_path": str(marked_path), "session": str(session)})
-        info = (
-            f"已生成 {identity}。准备时长 {source.samples.size / source.sample_rate:.1f} s；"
-            f"实际嵌入时间块 {blocks}。检测器尚未读取 expected identity。"
-        )
-        return str(original_path), str(marked_path), state, None, info
-    except Exception as error:
-        return None, None, None, None, f"嵌入失败：{error}"
+        token = _SESSIONS.create()
+        with _SESSIONS.use(token) as session:
+            original_path = write_wav(session.directory / "original_prepared.wav", source)
+            if identity == "NO WATERMARK":
+                marked = source.samples.copy()
+                blocks = 0
+            else:
+                result = embed_identity_multiblock(
+                    source.samples, identity, build_embedding_config(),
+                    load_public_selector(), block_seconds=BLOCK_SECONDS,
+                )
+                marked = result.audio
+                blocks = len(result.blocks)
+            marked_path = write_wav(session.marked, marked, source.sample_rate)
+            info = f"已生成 {identity}。时长 {source.samples.size / source.sample_rate:.1f} s；嵌入块数 {blocks}。"
+            return str(original_path), str(marked_path), token, None, info
+    except Exception:
+        _SESSIONS.discard(token)
+        return None, None, None, None, "无法处理音频；请确认格式、大小与时长，或稍后重试。"
 
 
-def _compress_action(state: str | None):
-    if not state:
+def _compress_action(token: str | None):
+    if not token:
         return None, None, None, "请先完成嵌入。"
     try:
-        payload = json.loads(state)
-        marked_path = Path(payload["marked_path"])
-        session = Path(payload["session"])
-        marked = decode_audio_file(marked_path)
-        mp3_path, decoded_path, _ = encode_decode_mp3(marked, session)
-        next_state = json.dumps({"received_path": str(decoded_path), "session": str(session)})
-        return str(mp3_path), str(decoded_path), next_state, "已完成真实 FFmpeg MP3 128 kbps 编码并解码。"
-    except Exception as error:
-        return None, None, None, f"MP3 失败：{error}"
+        with _SESSIONS.use(token) as session:
+            marked = decode_audio_file(session.marked)
+            mp3_path, decoded_path, _ = encode_decode_mp3(marked, session.directory)
+            return str(mp3_path), str(decoded_path), token, "已完成真实 FFmpeg MP3 128 kbps 编码并解码。"
+    except Exception:
+        return None, None, None, "会话过期或压缩失败。请重新嵌入音频。"
 
 
-def _detect_action(state: str | None):
-    if not state:
+def _detect_action(token: str | None):
+    if not token:
         return "UNKNOWN / NO VALID WATERMARK\n请先完成嵌入或 MP3 压缩。"
     try:
-        payload = json.loads(state)
-        received_path = Path(payload["received_path"])
-        result = _detect_in_subprocess(received_path)
-        return _format_detection(result)
-    except Exception as error:
-        return f"DETECTOR ERROR: {error}"
+        with _SESSIONS.use(token) as session:
+            if not session.received.is_file():
+                return "请先执行 MP3 压缩，然后进行盲检测。"
+            result = _detect_in_subprocess(session.received)
+            return _format_detection(result)
+    except Exception:
+        return "会话过期或盲检测失败。请重新执行演示。"
 
 
 def build_demo():
@@ -114,7 +110,7 @@ def build_demo():
     except ModuleNotFoundError as error:
         raise RuntimeError("GUI dependencies are missing; install requirements.txt") from error
 
-    with gr.Blocks(title="Blind Audio Watermark Demo") as demo:
+    with gr.Blocks(title="Blind Audio Watermark Demo", delete_cache=(60, 1200)) as demo:
         gr.Markdown(
             "# Blind Audio Watermark Demo\n"
             "Course V2 public prototype · REAL_TOP32 · detector is blind and may reject as UNKNOWN"
@@ -167,6 +163,7 @@ def build_demo():
 def main() -> None:
     os.environ.setdefault("GRADIO_ANALYTICS_ENABLED", "False")
     demo = build_demo()
+    demo.queue(default_concurrency_limit=1, max_size=4)
     demo.launch(
         server_name="127.0.0.1",
         server_port=int(os.environ.get("GRADIO_SERVER_PORT", "7860")),

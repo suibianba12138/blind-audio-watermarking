@@ -21,7 +21,7 @@ from scipy.signal import resample_poly
 TARGET_SAMPLE_RATE = 48_000
 MIN_DEMO_SECONDS = 6
 MAX_DEMO_SECONDS = 30
-MAX_INPUT_BYTES = 64 * 1024 * 1024
+MAX_INPUT_BYTES = 16 * 1024 * 1024
 FFMPEG_TIMEOUT_SECONDS = 120
 
 
@@ -44,7 +44,7 @@ def _check_input(path: str | Path) -> Path:
     if not candidate.is_file():
         raise FileNotFoundError(f"audio file not found: {candidate}")
     if candidate.stat().st_size > MAX_INPUT_BYTES:
-        raise ValueError("audio file exceeds the 64 MiB public-demo limit")
+        raise ValueError("audio file exceeds the 16 MiB public-demo limit")
     return candidate
 
 
@@ -80,6 +80,10 @@ def _decode_with_ffmpeg(path: Path) -> AudioData:
             "-i",
             str(path),
             "-vn",
+            "-t",
+            str(MAX_DEMO_SECONDS),
+            "-threads",
+            "1",
             "-ac",
             "1",
             "-ar",
@@ -113,7 +117,10 @@ def decode_audio_file(path: str | Path) -> AudioData:
 
     candidate = _check_input(path)
     if candidate.suffix.lower() == ".wav":
-        rate, samples = wavfile.read(candidate)
+        rate, samples = wavfile.read(candidate, mmap=True)
+        if len(samples) > MAX_DEMO_SECONDS * int(rate):
+            raise ValueError("WAV audio exceeds the 30-second input limit")
+        samples = np.asarray(samples)
         return AudioData(_to_float(samples), int(rate))
     return _decode_with_ffmpeg(candidate)
 

@@ -1,0 +1,24 @@
+# Render Blueprint for the optional self-hosted course demo.
+# No paid plan or persistent services are provisioned by this file.
+services:
+  - type: web
+    name: blind-audio-watermarking-demo
+    runtime: docker
+    plan: free
+    region: singapore
+    branch: main
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /
+    autoDeployTrigger: off
+    envVars:
+      - key: GRADIO_ANALYTICS_ENABLED
+        value: "False"
+      - key: OMP_NUM_THREADS
+        value: "1"
+      - key: OPENBLAS_NUM_THREADS
+        value: "1"
+      - key: MKL_NUM_THREADS
+        value: "1"
+      - key: MALLOC_ARENA_MAX
+        value: "2"

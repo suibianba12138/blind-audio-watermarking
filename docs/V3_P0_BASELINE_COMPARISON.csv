@@ -1,0 +1,10 @@
+method,fixture,split,payload_bits,frames_per_bit,strength,clean_ber,mp3_ber,complete_message_recovery,false_positive_rate,error_acceptance_rate,snr_db,spectral_distortion_rms_db,source_status,notes
+frozen_REAL_TOP32_B1,environment_like,synthetic_development_probe,32,4,1.28,0.0,0.40625,0,NOT_ESTABLISHED,NOT_ESTABLISHED,50.440650,0.039347,DIAGNOSTIC_ONLY,FFmpeg libmp3lame 128k; frozen selector; no licensed source recording
+frozen_REAL_TOP32_B1,music_like,synthetic_development_probe,32,4,1.28,0.0,0.0,1,NOT_ESTABLISHED,NOT_ESTABLISHED,70.134623,0.038424,DIAGNOSTIC_ONLY,FFmpeg libmp3lame 128k; frozen selector; no licensed source recording
+frozen_REAL_TOP32_B1,speech_like,synthetic_development_probe,32,4,1.28,0.0,0.375,0,NOT_ESTABLISHED,NOT_ESTABLISHED,71.166233,0.037968,DIAGNOSTIC_ONLY,FFmpeg libmp3lame 128k; frozen selector; no licensed source recording
+keyed_spread_spectrum_local_norm,speech_like,synthetic_development_probe,1,32,0.02,0.0,0.0,1,NOT_ESTABLISHED,NOT_ESTABLISHED,67.081562,0.060513,DIAGNOSTIC_ONLY,Bounded prototype; no rejector; not a V3 baseline
+keyed_spread_spectrum_local_norm,music_like,synthetic_development_probe,1,32,0.02,0.0,0.0,1,NOT_ESTABLISHED,NOT_ESTABLISHED,62.165391,0.064797,DIAGNOSTIC_ONLY,Bounded prototype; no rejector; not a V3 baseline
+keyed_spread_spectrum_local_norm,environment_like,synthetic_development_probe,1,32,0.02,0.0,0.0,1,NOT_ESTABLISHED,NOT_ESTABLISHED,44.935055,0.057589,DIAGNOSTIC_ONLY,Bounded prototype; no rejector; not a V3 baseline
+keyed_spread_spectrum_local_norm,speech_like,synthetic_development_probe,8,16,0.02,0.0,0.0,1,NOT_ESTABLISHED,NOT_ESTABLISHED,60.886968,0.121386,DIAGNOSTIC_ONLY,Bounded prototype; no rejector; not a V3 baseline
+keyed_spread_spectrum_local_norm,music_like,synthetic_development_probe,8,16,0.02,0.0,0.0,1,NOT_ESTABLISHED,NOT_ESTABLISHED,55.882137,0.129682,DIAGNOSTIC_ONLY,Bounded prototype; no rejector; not a V3 baseline
+keyed_spread_spectrum_local_norm,environment_like,synthetic_development_probe,8,16,0.02,0.0,0.0,1,NOT_ESTABLISHED,NOT_ESTABLISHED,39.235053,0.115424,DIAGNOSTIC_ONLY,Bounded prototype; no rejector; not a V3 baseline

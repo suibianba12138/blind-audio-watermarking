@@ -1,10 +1,10 @@
-# Blind Audio Watermarking V3 P0/P1 Implementation Plan
+# Blind Audio Watermarking V3 P0/P1/P2 Implementation Plan
 
-> **For agentic workers:** This plan is the execution contract for the isolated `research/v3-p1` worktree. Keep frozen Course V2 source, R1/Pilot evidence, and historical results read-only.
+> **For agentic workers:** This plan is the execution contract for the isolated `research/v3-p2` worktree. Keep frozen Course V2 source, R1/Pilot/P1 evidence, and historical results read-only.
 
-**Goal:** Preserve the completed V3-P0 evidence and complete a source-disjoint V3-P1 validation of the frozen B1 Repeat-4, Hard-Code, and Soft-Code methods.
+**Goal:** Preserve completed V3-P0/P1 evidence and run a bounded, development-only V3-P2 capacity design pilot without changing the frozen B1 physical channel.
 
-**Architecture:** The current branch is `research/v3-p1`, based on local `research/v3-p0@34411a9`. Frozen Course V2/B1 modules and P0/R1/Pilot evidence remain unchanged. P1 adds only a new manifest, hard-decision control, fixed-threshold evaluator, statistical analysis, and reports.
+**Architecture:** The current branch is `research/v3-p2`, based on `research/v3-p1@82f8013`. Frozen Course V2/B1/P1 modules and P0/R1/Pilot/P1 evidence remain unchanged. P2 adds only a baseline freeze record, development-only channel diagnostics, deterministic 12/16-bit evaluation-code adapters, a paired pilot, and reports.
 
 **Tech Stack:** Python 3.11-compatible public runtime, NumPy/SciPy, FFmpeg 128 kbps MP3, pytest, isolated third-party environments, and read-only GitHub/source audits.
 
@@ -19,6 +19,10 @@
 - Do not report paper metrics as local reproduction results.
 - First-round autonomous experiments are limited to single-bit and 8-bit messages.
 - Enter V3-P1 only if an independent, matched-fidelity test shows lower BER and better complete-message recovery without materially worse false acceptance or audio quality.
+- P2 uses only the pre-existing P1 development split for design diagnostics and pilot; no P1 formal test source is used to select an encoder or threshold.
+- The 8-bit Soft-Code strength, thresholds, selector seed, QIM implementation, and P1 evidence remain immutable.
+- P2 thresholds for 12/16-bit candidates are selected from a deterministic calibration subset of P1 development sources and evaluated on a held-out development pilot subset; this is not independent validation.
+- No push, merge, public-site change, Render change, neural training, or large-scale experiment is permitted.
 
 ## Phase Gates
 
@@ -44,6 +48,13 @@
 - [x] P1-C: run the three-method paired no-attack/MP3 evaluation.
 - [x] P1-D: run fixed-threshold negative controls and source-level paired statistics.
 - [x] P1-E: document limited perceptual review, final decision, and fresh verification.
+- [x] P2-D0: freeze the 8-bit baseline source/configuration hashes and operating point.
+- [x] P2-D1: run development-only 32-position channel diagnostics and model checks.
+- [x] P2-D2: add tested deterministic 12-bit and 16-bit evaluation codes without QIM changes.
+- [x] P2-D3: run the finite paired capacity pilot on calibration/pilot development subsets.
+- [x] P2-D4: evaluate capacity-specific rejection and wrong-key/negative controls.
+- [x] P2-D5: issue a bounded decision and preserve all raw results without independent-validation claims.
+- [ ] P2-D6: run full verification, commit locally, and report no-push status.
 
 ## Planned Files
 
@@ -96,6 +107,15 @@ The final gate also requires explicit evidence for FFmpeg MP3, source-disjoint d
 - Controls are Repeat-4, Hard-Code using hard minimum-Hamming decode of the same `[32,8,8]` code, and Soft-Code using the frozen continuous correlation decoder.
 - Threshold is not re-fit on P1; P1 negative counts are evidence with confidence intervals, not a claim of a population FPR bound.
 - Primary independent unit is source recording; two messages per source are paired trials.
+
+## V3-P2 Capacity Design Contract
+
+- Branch is `research/v3-p2`, based on `research/v3-p1@82f80138654b283e05da4d41bea71144a20f1120`.
+- Frozen 8-bit baseline is the P1 Soft-Code `[32,8,8]` code, strength `1.60`, soft threshold `0.7855073980199624`, physical threshold `0.47678591988959035`, selector seed `7`, and message seeds `101/202`.
+- Development sources are the P1 manifest records with `split=dev`; an immutable category-balanced first-five/last-five subdivision supplies calibration and pilot roles. P1 `split=test` records are diagnostic-only and cannot select code or thresholds.
+- New candidates are deterministic degree-2 Boolean evaluation codes over 5-bit position labels: 12-bit and 16-bit message dimensions, both 32 physical bits and minimum Hamming distance 8. At most these two new candidates are evaluated.
+- Candidate embedding uses the existing B1 QIM embed path and public detector contract. The detector receives only received audio, selector/configuration, and the candidate codebook; expected messages and clean audio are not detector inputs.
+- Thresholds for 12/16-bit presence are calibrated only from the P2 calibration subset, then frozen for the held-out development pilot subset. P2 results are feasibility evidence, not independent validation.
 
 ## Errors Encountered
 

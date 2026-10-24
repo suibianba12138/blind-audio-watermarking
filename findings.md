@@ -1,4 +1,4 @@
-# V3 P0 Findings
+# V3 P0/P1/P2 Findings
 
 This file records evidence as `CONFIRMED`, `INFERRED`, `UNAVAILABLE`, or `NOT_ESTABLISHED`. It is not a results claim until the source, command, and dataset provenance are recorded.
 
@@ -99,3 +99,14 @@ This file records evidence as `CONFIRMED`, `INFERRED`, `UNAVAILABLE`, or `NOT_ES
   and the perceptual gate remains not established.
 - `CONDITIONAL_GO`: P1 supports a narrow V3-P2 design review, not immediate deployment or
   claims about arbitrary messages/codecs.
+
+## V3-P2 Design Evidence
+
+- `CONFIRMED`: the isolated worktree was clean at `research/v3-p1@82f80138654b283e05da4d41bea71144a20f1120`; P2 work is being performed on a new local `research/v3-p2` branch.
+- `IN_PROGRESS`: P2-D0 baseline freeze and development-only channel diagnostics. No P2 candidate result is a validated independent result until a future source-disjoint validation.
+- `CONFIRMED`: `experiments/v3_p2/CONFIG_FREEZE.json` records the P1 Soft-Code strength `1.60`, frozen soft threshold `0.7855073980199624`, physical threshold `0.47678591988959035`, selector seed `7`, message seeds `101/202`, 48 kHz/6 s, FFmpeg libmp3lame 128k, and source/configuration hashes.
+- `CONFIRMED`: P2 D0 declares the detector blind-input contract and explicitly marks P1 formal test data as unavailable for code/threshold selection; future independent validation is `NOT_ESTABLISHED`.
+- `CONFIRMED`: P2 channel analysis used 30 P1 development sources, 60 paired messages, and 1,920 MP3 physical observations. Marked/no-attack BER was 0; MP3 physical BER was 0.0546875. Error-count dispersion was 2.1081 times IID expectation, with mean off-diagonal error correlation 0.03683 and maximum contiguous error run 2.
+- `CONFIRMED`: Full deterministic Boolean evaluation codebooks have 32 positions and minimum Hamming distance 8 for 8, 12, and 16 message bits. The 12-bit and 16-bit adapters are additive and leave the physical QIM path unchanged.
+- `CONFIRMED`: Held-out development pilot results were 30 paired MP3 message trials from 15 unique source recordings per method. Soft8 raw/accepted-exact was 30/30 and 28/30, with 14/15 sources accepting both messages; 12-bit was 30/30 and 27/30, with 13/15 sources accepting both; 16-bit was 28/30 and 26/30, with 12/15 sources accepting both. Clean FPR, clean-MP3 FPR, wrong-key acceptance, and wrong-message acceptance were zero at the source level (0/15 each; 30 paired rows).
+- `CONDITIONAL_GO`: P2 supports only a new independent validation of the frozen 12-bit candidate. The 16-bit branch is stopped; no capacity tuning or independent-validation claim is authorized.

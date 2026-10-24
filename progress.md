@@ -47,3 +47,8 @@
   embedding-introduced clipping; P1 introduced clipping was `0/60`.
 - Added the independent validation report, detection report, decision, A/B listening protocol,
   artifact tests, and P1 analysis JSON. Current decision is `V3_P2_READINESS = CONDITIONAL_GO`.
+- Confirmed clean `research/v3-p1@82f8013` and created the isolated local branch `research/v3-p2`; no push or merge performed.
+- Started P2-D0/P2-D1 planning. The P2 scope is a development-only capacity design pilot over the pre-existing P1 development split; P1 formal test records remain unavailable for encoder or threshold selection.
+- Added and executed the P2 baseline freeze script. The focused P2 artifact tests first failed because the freeze artifact was absent, then passed after writing `experiments/v3_p2/CONFIG_FREEZE.json`.
+- Added and tested deterministic 12/16-bit Boolean evaluation-code adapters, preserving exact equivalence with the frozen 8-bit codebook. Added development-only physical channel diagnostics and real MP3 paired rows; reran once to remove a zero-variance correlation warning without changing values.
+- Ran the finite capacity pilot with calibration-only candidate thresholds and protocol-identical reruns after adding physical/logical BER and source-level aggregation. Generated `V3_P2_CAPACITY_DESIGN.md`, `V3_P2_CAPACITY_PILOT.csv`, `V3_P2_CHANNEL_ERROR_ANALYSIS.md`, and `V3_P2_DECISION.md`; current bounded decision is `CONDITIONAL_GO_12BIT_ONLY`.

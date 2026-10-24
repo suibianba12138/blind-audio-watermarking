@@ -1,0 +1,106 @@
+{
+  "base": "research/v3-p2@63d3166b1eeb2f0f7e99c8a9ad181934b824370e",
+  "branch": "research/v3-p2-validation",
+  "codebook_sha256": {
+    "soft12_frozen": "ee54957309d21792a5a6573069bf1dcad42cfdcc86078c797f6503f4ea6d9a2a",
+    "soft8_frozen": "da3bc98971406a63c5f1f7539a04ac8c1139ef61b624326636c4389c3cfdfcc8"
+  },
+  "detector_contract": {
+    "blind_inputs": [
+      "received_audio",
+      "public_config",
+      "pre_shared_selector_seed"
+    ],
+    "expected_payload_role": "post_detection_scoring_only",
+    "forbidden_inputs": [
+      "expected_payload",
+      "clean_audio",
+      "ground_truth",
+      "filename_labels"
+    ]
+  },
+  "head_before_validation": "63d3166b1eeb2f0f7e99c8a9ad181934b824370e",
+  "manifest": {
+    "category_counts": {
+      "environment": 20,
+      "music": 20,
+      "speech": 20
+    },
+    "path": "/home/nsk/blind-audio-watermarking-v3-p0/configs/v3_p2_v_independent_manifest.json",
+    "sha256": "f5c0e6bd5ddf1e810358bcdfaa930e338203b2f66330540302186e6479679926",
+    "source_count": 60
+  },
+  "messages": {
+    "expected_payloads_scoring_only": true,
+    "generator": "src/audio_watermark/v3_p2.py:message_for_seed",
+    "messages_per_source": 2,
+    "seeds": [
+      101,
+      202
+    ]
+  },
+  "mp3": {
+    "bitrate": "128k",
+    "codec": "libmp3lame",
+    "tool": "ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers"
+  },
+  "negative_controls": [
+    "clean_no_watermark",
+    "clean_mp3_no_watermark",
+    "wrong_key_mp3_positive",
+    "wrong_message_acceptance_scored_after_detection"
+  ],
+  "no_audio_copied_to_repository": true,
+  "no_parameter_selection_on_validation": true,
+  "selector": {
+    "map_file": "real_top32_stability_map.json",
+    "map_sha256": "82c213813123239daaa86619e198b8e74f0880ac1c713518acedc0d6c109e3a9",
+    "rejection_threshold": 8,
+    "selected_group_ids_sha256": "99fa9b0a3b864401184746040353e6aacf2b7d56914d5a18a77886c3ab53199d",
+    "selector": "REAL_TOP32",
+    "selector_sha256": "99fa9b0a3b864401184746040353e6aacf2b7d56914d5a18a77886c3ab53199d",
+    "strength": 1.28,
+    "top_k": 32,
+    "watermark_seed": 7
+  },
+  "signal_protocol": {
+    "carrier_map": "REAL_TOP32",
+    "duration_seconds": 6.0,
+    "frames_per_bit": 4,
+    "hop_length": 2048,
+    "methods": {
+      "soft12_frozen": 12,
+      "soft8_frozen": 8
+    },
+    "n_fft": 2048,
+    "physical_payload_bits": 32,
+    "sample_rate_hz": 48000,
+    "watermark_seed": 7
+  },
+  "source_sha256": {
+    "app/public_config.py": "7729ab5f8488fb7dbba23171bf250d9d1fa3c017ff5607c688e8022280470716",
+    "configs/real_top32_stability_map.json": "3a4bc6210c59799f6b92ca28888ba3383a8066e2e2eaa2a00ef5045bad06a72f",
+    "configs/v3_p1_independent_manifest.json": "6c5f4d63c9659f4332dd3242360806091d1672fdbe696f3bae06516b7f32a0e6",
+    "experiments/v3_p1/CONFIG_FREEZE.json": "7b3b852f01941995bfeb8292b1dbee5ec7966959d9deb39186265c1bfc63e75e",
+    "experiments/v3_p2/CONFIG_FREEZE.json": "8a4dc28a469e8d7226d699ecd7542330a120dfee2d97cb7164e5d49982c0d084",
+    "scripts/v3_p2_v_freeze_manifest.py": "4a8e67303a235f8469a4928003be95384644bcb9d66d84a4000393dfc6a55193",
+    "src/audio_watermark/b1.py": "6697e2a74dc32fe96e7569dd7857d7c4f7431a66e6d0964ff305df3edb76cdba",
+    "src/audio_watermark/b1_soft.py": "80b4af7853e0f36e5e7b24cf827b8cd8903070e4ffcd87923f4a647b1cc6fc68",
+    "src/audio_watermark/b2_capacity.py": "3514d253f2e966e7112c8f2e5fafd56280d9cb7796c277b0195b6e3305bf5735",
+    "src/audio_watermark/course_v2.py": "cd9e3693678da8819ae84a7906d5f2cbea65861f6dd8cc05d379fd500301d000",
+    "src/audio_watermark/detect.py": "814d664e67947cbac244d7870ee925608fa2b11d5d189f3457af631468dbb956",
+    "src/audio_watermark/embed.py": "688a451a689e1aef9545e88dfa2c77b3bb927589a71f5c5eab71a5e335583df1",
+    "src/audio_watermark/v3_p2.py": "c922107b8106a457e3595b8e6a4966fcf1839e054fcb3b98170dc56d31e0ea5a"
+  },
+  "stage": "V3_P2_V_INDEPENDENT_VALIDATION",
+  "strength": 1.6,
+  "threshold_provenance": {
+    "soft12_frozen": "V3-P2 development calibration; no V3-P2-V refit",
+    "soft8_frozen": "V3-P1 CONFIG_FREEZE.json; no V3-P2-V refit"
+  },
+  "thresholds": {
+    "soft12_frozen": 0.903827529676706,
+    "soft8_frozen": 0.7855073980199624
+  },
+  "validation_status": "FROZEN_BEFORE_RESULTS"
+}

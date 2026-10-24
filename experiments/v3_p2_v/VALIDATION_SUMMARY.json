@@ -1,0 +1,927 @@
+{
+  "detector_contract_verified": true,
+  "freeze_record_sha256": "3d255be802e57fb0ec90ec01f387c663ead24c1420041f508f4970aadfb57e82",
+  "manifest_sha256": "f5c0e6bd5ddf1e810358bcdfaa930e338203b2f66330540302186e6479679926",
+  "matched_fidelity": {
+    "marked_no_attack": {
+      "snr_difference_12_minus_8_db": 0.07921008904099835,
+      "spectral_distortion_difference_12_minus_8_db": 6.6154035493763e-05
+    },
+    "mp3_128k": {
+      "snr_difference_12_minus_8_db": 0.07921008904099835,
+      "spectral_distortion_difference_12_minus_8_db": 6.6154035493763e-05
+    }
+  },
+  "message_seeds": [
+    101,
+    202
+  ],
+  "methods": {
+    "soft12_frozen": {
+      "marked_no_attack": {
+        "by_category": {
+          "environment": {
+            "source_both_accepted_exact": {
+              "rate": 1.0,
+              "successes": 20,
+              "trials": 20,
+              "wilson95": [
+                0.8388748419471806,
+                1.0
+              ]
+            },
+            "source_both_raw_exact": {
+              "rate": 1.0,
+              "successes": 20,
+              "trials": 20,
+              "wilson95": [
+                0.8388748419471806,
+                1.0
+              ]
+            },
+            "trial_accepted_exact": {
+              "rate": 1.0,
+              "successes": 40,
+              "trials": 40,
+              "wilson95": [
+                0.9123783988027135,
+                1.0
+              ]
+            },
+            "trial_raw_exact": {
+              "rate": 1.0,
+              "successes": 40,
+              "trials": 40,
+              "wilson95": [
+                0.9123783988027135,
+                1.0
+              ]
+            }
+          },
+          "music": {
+            "source_both_accepted_exact": {
+              "rate": 1.0,
+              "successes": 20,
+              "trials": 20,
+              "wilson95": [
+                0.8388748419471806,
+                1.0
+              ]
+            },
+            "source_both_raw_exact": {
+              "rate": 1.0,
+              "successes": 20,
+              "trials": 20,
+              "wilson95": [
+                0.8388748419471806,
+                1.0
+              ]
+            },
+            "trial_accepted_exact": {
+              "rate": 1.0,
+              "successes": 40,
+              "trials": 40,
+              "wilson95": [
+                0.9123783988027135,
+                1.0
+              ]
+            },
+            "trial_raw_exact": {
+              "rate": 1.0,
+              "successes": 40,
+              "trials": 40,
+              "wilson95": [
+                0.9123783988027135,
+                1.0
+              ]
+            }
+          },
+          "speech": {
+            "source_both_accepted_exact": {
+              "rate": 1.0,
+              "successes": 20,
+              "trials": 20,
+              "wilson95": [
+                0.8388748419471806,
+                1.0
+              ]
+            },
+            "source_both_raw_exact": {
+              "rate": 1.0,
+              "successes": 20,
+              "trials": 20,
+              "wilson95": [
+                0.8388748419471806,
+                1.0
+              ]
+            },
+            "trial_accepted_exact": {
+              "rate": 1.0,
+              "successes": 40,
+              "trials": 40,
+              "wilson95": [
+                0.9123783988027135,
+                1.0
+              ]
+            },
+            "trial_raw_exact": {
+              "rate": 1.0,
+              "successes": 40,
+              "trials": 40,
+              "wilson95": [
+                0.9123783988027135,
+                1.0
+              ]
+            }
+          }
+        },
+        "condition": "marked_no_attack",
+        "logical_ber_mean": 0.0,
+        "mp3_fidelity_snr_mean_db": null,
+        "physical_ber_mean": 0.0,
+        "snr_mean_db": 54.98999430588556,
+        "source_both_accepted_exact": {
+          "rate": 1.0,
+          "successes": 60,
+          "trials": 60,
+          "wilson95": [
+            0.93982814785791,
+            0.9999999999999998
+          ]
+        },
+        "source_both_raw_exact": {
+          "rate": 1.0,
+          "successes": 60,
+          "trials": 60,
+          "wilson95": [
+            0.93982814785791,
+            0.9999999999999998
+          ]
+        },
+        "spectral_distortion_mean_db": 0.029921355308255147,
+        "trial_acceptance": {
+          "rate": 1.0,
+          "successes": 120,
+          "trials": 120,
+          "wilson95": [
+            0.9689808335812966,
+            1.0
+          ]
+        },
+        "trial_accepted_exact": {
+          "rate": 1.0,
+          "successes": 120,
+          "trials": 120,
+          "wilson95": [
+            0.9689808335812966,
+            1.0
+          ]
+        },
+        "trial_raw_exact": {
+          "rate": 1.0,
+          "successes": 120,
+          "trials": 120,
+          "wilson95": [
+            0.9689808335812966,
+            1.0
+          ]
+        },
+        "unknown_rate": {
+          "rate": 0.0,
+          "successes": 0,
+          "trials": 120,
+          "wilson95": [
+            0.0,
+            0.031019166418703486
+          ]
+        },
+        "wrong_message_acceptance": {
+          "rate": 0.0,
+          "successes": 0,
+          "trials": 120,
+          "wilson95": [
+            0.0,
+            0.031019166418703486
+          ]
+        }
+      },
+      "mp3_128k": {
+        "by_category": {
+          "environment": {
+            "source_both_accepted_exact": {
+              "rate": 0.6,
+              "successes": 12,
+              "trials": 20,
+              "wilson95": [
+                0.38658150076225317,
+                0.7811934676271829
+              ]
+            },
+            "source_both_raw_exact": {
+              "rate": 0.9,
+              "successes": 18,
+              "trials": 20,
+              "wilson95": [
+                0.6989663547715128,
+                0.9721335187862319
+              ]
+            },
+            "trial_accepted_exact": {
+              "rate": 0.7,
+              "successes": 28,
+              "trials": 40,
+              "wilson95": [
+                0.5456998118185507,
+                0.8192515477025347
+              ]
+            },
+            "trial_raw_exact": {
+              "rate": 0.925,
+              "successes": 37,
+              "trials": 40,
+              "wilson95": [
+                0.8013576647568946,
+                0.9741639742254119
+              ]
+            }
+          },
+          "music": {
+            "source_both_accepted_exact": {
+              "rate": 0.9,
+              "successes": 18,
+              "trials": 20,
+              "wilson95": [
+                0.6989663547715128,
+                0.9721335187862319
+              ]
+            },
+            "source_both_raw_exact": {
+              "rate": 1.0,
+              "successes": 20,
+              "trials": 20,
+              "wilson95": [
+                0.8388748419471806,
+                1.0
+              ]
+            },
+            "trial_accepted_exact": {
+              "rate": 0.925,
+              "successes": 37,
+              "trials": 40,
+              "wilson95": [
+                0.8013576647568946,
+                0.9741639742254119
+              ]
+            },
+            "trial_raw_exact": {
+              "rate": 1.0,
+              "successes": 40,
+              "trials": 40,
+              "wilson95": [
+                0.9123783988027135,
+                1.0
+              ]
+            }
+          },
+          "speech": {
+            "source_both_accepted_exact": {
+              "rate": 0.75,
+              "successes": 15,
+              "trials": 20,
+              "wilson95": [
+                0.531299122381256,
+                0.8881382985923343
+              ]
+            },
+            "source_both_raw_exact": {
+              "rate": 0.95,
+              "successes": 19,
+              "trials": 20,
+              "wilson95": [
+                0.763868806553258,
+                0.9911185511992047
+              ]
+            },
+            "trial_accepted_exact": {
+              "rate": 0.8,
+              "successes": 32,
+              "trials": 40,
+              "wilson95": [
+                0.652426936536005,
+                0.895000102745623
+              ]
+            },
+            "trial_raw_exact": {
+              "rate": 0.975,
+              "successes": 39,
+              "trials": 40,
+              "wilson95": [
+                0.8711863103652591,
+                0.9955731684973186
+              ]
+            }
+          }
+        },
+        "condition": "mp3_128k",
+        "logical_ber_mean": 0.00972222222222222,
+        "mp3_fidelity_snr_mean_db": 25.957785232433203,
+        "physical_ber_mean": 0.06067708333333333,
+        "snr_mean_db": 54.98999430588556,
+        "source_both_accepted_exact": {
+          "rate": 0.75,
+          "successes": 45,
+          "trials": 60,
+          "wilson95": [
+            0.6276792992295218,
+            0.8422347746994333
+          ]
+        },
+        "source_both_raw_exact": {
+          "rate": 0.95,
+          "successes": 57,
+          "trials": 60,
+          "wilson95": [
+            0.8629948352365147,
+            0.9828504978356043
+          ]
+        },
+        "spectral_distortion_mean_db": 0.029921355308255147,
+        "trial_acceptance": {
+          "rate": 0.8083333333333333,
+          "successes": 97,
+          "trials": 120,
+          "wilson95": [
+            0.7287884399579755,
+            0.8687497407504908
+          ]
+        },
+        "trial_accepted_exact": {
+          "rate": 0.8083333333333333,
+          "successes": 97,
+          "trials": 120,
+          "wilson95": [
+            0.7287884399579755,
+            0.8687497407504908
+          ]
+        },
+        "trial_raw_exact": {
+          "rate": 0.9666666666666667,
+          "successes": 116,
+          "trials": 120,
+          "wilson95": [
+            0.917419662440894,
+            0.9869624489016494
+          ]
+        },
+        "unknown_rate": {
+          "rate": 0.19166666666666668,
+          "successes": 23,
+          "trials": 120,
+          "wilson95": [
+            0.13125025924950934,
+            0.27121156004202457
+          ]
+        },
+        "wrong_message_acceptance": {
+          "rate": 0.0,
+          "successes": 0,
+          "trials": 120,
+          "wilson95": [
+            0.0,
+            0.031019166418703486
+          ]
+        }
+      },
+      "negative_clean": {
+        "rows": 60,
+        "source_fpr": {
+          "rate": 0.0,
+          "successes": 0,
+          "trials": 60,
+          "wilson95": [
+            0.0,
+            0.06017185214208986
+          ]
+        },
+        "sources": 60,
+        "trial_fpr": {
+          "rate": 0.0,
+          "successes": 0,
+          "trials": 60,
+          "wilson95": [
+            0.0,
+            0.06017185214208986
+          ]
+        }
+      },
+      "negative_clean_mp3": {
+        "rows": 60,
+        "source_fpr": {
+          "rate": 0.0,
+          "successes": 0,
+          "trials": 60,
+          "wilson95": [
+            0.0,
+            0.06017185214208986
+          ]
+        },
+        "sources": 60,
+        "trial_fpr": {
+          "rate": 0.0,
+          "successes": 0,
+          "trials": 60,
+          "wilson95": [
+            0.0,
+            0.06017185214208986
+          ]
+        }
+      },
+      "wrong_key_mp3": {
+        "rows": 120,
+        "source_fpr": {
+          "rate": 0.0,
+          "successes": 0,
+          "trials": 60,
+          "wilson95": [
+            0.0,
+            0.06017185214208986
+          ]
+        },
+        "sources": 60,
+        "trial_fpr": {
+          "rate": 0.0,
+          "successes": 0,
+          "trials": 120,
+          "wilson95": [
+            0.0,
+            0.031019166418703486
+          ]
+        }
+      }
+    },
+    "soft8_frozen": {
+      "marked_no_attack": {
+        "by_category": {
+          "environment": {
+            "source_both_accepted_exact": {
+              "rate": 1.0,
+              "successes": 20,
+              "trials": 20,
+              "wilson95": [
+                0.8388748419471806,
+                1.0
+              ]
+            },
+            "source_both_raw_exact": {
+              "rate": 1.0,
+              "successes": 20,
+              "trials": 20,
+              "wilson95": [
+                0.8388748419471806,
+                1.0
+              ]
+            },
+            "trial_accepted_exact": {
+              "rate": 1.0,
+              "successes": 40,
+              "trials": 40,
+              "wilson95": [
+                0.9123783988027135,
+                1.0
+              ]
+            },
+            "trial_raw_exact": {
+              "rate": 1.0,
+              "successes": 40,
+              "trials": 40,
+              "wilson95": [
+                0.9123783988027135,
+                1.0
+              ]
+            }
+          },
+          "music": {
+            "source_both_accepted_exact": {
+              "rate": 1.0,
+              "successes": 20,
+              "trials": 20,
+              "wilson95": [
+                0.8388748419471806,
+                1.0
+              ]
+            },
+            "source_both_raw_exact": {
+              "rate": 1.0,
+              "successes": 20,
+              "trials": 20,
+              "wilson95": [
+                0.8388748419471806,
+                1.0
+              ]
+            },
+            "trial_accepted_exact": {
+              "rate": 1.0,
+              "successes": 40,
+              "trials": 40,
+              "wilson95": [
+                0.9123783988027135,
+                1.0
+              ]
+            },
+            "trial_raw_exact": {
+              "rate": 1.0,
+              "successes": 40,
+              "trials": 40,
+              "wilson95": [
+                0.9123783988027135,
+                1.0
+              ]
+            }
+          },
+          "speech": {
+            "source_both_accepted_exact": {
+              "rate": 1.0,
+              "successes": 20,
+              "trials": 20,
+              "wilson95": [
+                0.8388748419471806,
+                1.0
+              ]
+            },
+            "source_both_raw_exact": {
+              "rate": 1.0,
+              "successes": 20,
+              "trials": 20,
+              "wilson95": [
+                0.8388748419471806,
+                1.0
+              ]
+            },
+            "trial_accepted_exact": {
+              "rate": 1.0,
+              "successes": 40,
+              "trials": 40,
+              "wilson95": [
+                0.9123783988027135,
+                1.0
+              ]
+            },
+            "trial_raw_exact": {
+              "rate": 1.0,
+              "successes": 40,
+              "trials": 40,
+              "wilson95": [
+                0.9123783988027135,
+                1.0
+              ]
+            }
+          }
+        },
+        "condition": "marked_no_attack",
+        "logical_ber_mean": 0.0,
+        "mp3_fidelity_snr_mean_db": null,
+        "physical_ber_mean": 0.0,
+        "snr_mean_db": 54.91078421684456,
+        "source_both_accepted_exact": {
+          "rate": 1.0,
+          "successes": 60,
+          "trials": 60,
+          "wilson95": [
+            0.93982814785791,
+            0.9999999999999998
+          ]
+        },
+        "source_both_raw_exact": {
+          "rate": 1.0,
+          "successes": 60,
+          "trials": 60,
+          "wilson95": [
+            0.93982814785791,
+            0.9999999999999998
+          ]
+        },
+        "spectral_distortion_mean_db": 0.029855201272761384,
+        "trial_acceptance": {
+          "rate": 1.0,
+          "successes": 120,
+          "trials": 120,
+          "wilson95": [
+            0.9689808335812966,
+            1.0
+          ]
+        },
+        "trial_accepted_exact": {
+          "rate": 1.0,
+          "successes": 120,
+          "trials": 120,
+          "wilson95": [
+            0.9689808335812966,
+            1.0
+          ]
+        },
+        "trial_raw_exact": {
+          "rate": 1.0,
+          "successes": 120,
+          "trials": 120,
+          "wilson95": [
+            0.9689808335812966,
+            1.0
+          ]
+        },
+        "unknown_rate": {
+          "rate": 0.0,
+          "successes": 0,
+          "trials": 120,
+          "wilson95": [
+            0.0,
+            0.031019166418703486
+          ]
+        },
+        "wrong_message_acceptance": {
+          "rate": 0.0,
+          "successes": 0,
+          "trials": 120,
+          "wilson95": [
+            0.0,
+            0.031019166418703486
+          ]
+        }
+      },
+      "mp3_128k": {
+        "by_category": {
+          "environment": {
+            "source_both_accepted_exact": {
+              "rate": 0.95,
+              "successes": 19,
+              "trials": 20,
+              "wilson95": [
+                0.763868806553258,
+                0.9911185511992047
+              ]
+            },
+            "source_both_raw_exact": {
+              "rate": 0.95,
+              "successes": 19,
+              "trials": 20,
+              "wilson95": [
+                0.763868806553258,
+                0.9911185511992047
+              ]
+            },
+            "trial_accepted_exact": {
+              "rate": 0.95,
+              "successes": 38,
+              "trials": 40,
+              "wilson95": [
+                0.8349612263085903,
+                0.9861793326138516
+              ]
+            },
+            "trial_raw_exact": {
+              "rate": 0.975,
+              "successes": 39,
+              "trials": 40,
+              "wilson95": [
+                0.8711863103652591,
+                0.9955731684973186
+              ]
+            }
+          },
+          "music": {
+            "source_both_accepted_exact": {
+              "rate": 1.0,
+              "successes": 20,
+              "trials": 20,
+              "wilson95": [
+                0.8388748419471806,
+                1.0
+              ]
+            },
+            "source_both_raw_exact": {
+              "rate": 1.0,
+              "successes": 20,
+              "trials": 20,
+              "wilson95": [
+                0.8388748419471806,
+                1.0
+              ]
+            },
+            "trial_accepted_exact": {
+              "rate": 1.0,
+              "successes": 40,
+              "trials": 40,
+              "wilson95": [
+                0.9123783988027135,
+                1.0
+              ]
+            },
+            "trial_raw_exact": {
+              "rate": 1.0,
+              "successes": 40,
+              "trials": 40,
+              "wilson95": [
+                0.9123783988027135,
+                1.0
+              ]
+            }
+          },
+          "speech": {
+            "source_both_accepted_exact": {
+              "rate": 0.95,
+              "successes": 19,
+              "trials": 20,
+              "wilson95": [
+                0.763868806553258,
+                0.9911185511992047
+              ]
+            },
+            "source_both_raw_exact": {
+              "rate": 1.0,
+              "successes": 20,
+              "trials": 20,
+              "wilson95": [
+                0.8388748419471806,
+                1.0
+              ]
+            },
+            "trial_accepted_exact": {
+              "rate": 0.975,
+              "successes": 39,
+              "trials": 40,
+              "wilson95": [
+                0.8711863103652591,
+                0.9955731684973186
+              ]
+            },
+            "trial_raw_exact": {
+              "rate": 1.0,
+              "successes": 40,
+              "trials": 40,
+              "wilson95": [
+                0.9123783988027135,
+                1.0
+              ]
+            }
+          }
+        },
+        "condition": "mp3_128k",
+        "logical_ber_mean": 0.005208333333333333,
+        "mp3_fidelity_snr_mean_db": 25.95873758866911,
+        "physical_ber_mean": 0.06302083333333333,
+        "snr_mean_db": 54.91078421684456,
+        "source_both_accepted_exact": {
+          "rate": 0.9666666666666667,
+          "successes": 58,
+          "trials": 60,
+          "wilson95": [
+            0.886362257256914,
+            0.9908106807438021
+          ]
+        },
+        "source_both_raw_exact": {
+          "rate": 0.9833333333333333,
+          "successes": 59,
+          "trials": 60,
+          "wilson95": [
+            0.9114487027240993,
+            0.9970518402052136
+          ]
+        },
+        "spectral_distortion_mean_db": 0.029855201272761384,
+        "trial_acceptance": {
+          "rate": 0.975,
+          "successes": 117,
+          "trials": 120,
+          "wilson95": [
+            0.9290699666721339,
+            0.9914618252300978
+          ]
+        },
+        "trial_accepted_exact": {
+          "rate": 0.975,
+          "successes": 117,
+          "trials": 120,
+          "wilson95": [
+            0.9290699666721339,
+            0.9914618252300978
+          ]
+        },
+        "trial_raw_exact": {
+          "rate": 0.9916666666666667,
+          "successes": 119,
+          "trials": 120,
+          "wilson95": [
+            0.9543037087549505,
+            0.998527444266658
+          ]
+        },
+        "unknown_rate": {
+          "rate": 0.025,
+          "successes": 3,
+          "trials": 120,
+          "wilson95": [
+            0.008538174769902228,
+            0.0709300333278661
+          ]
+        },
+        "wrong_message_acceptance": {
+          "rate": 0.0,
+          "successes": 0,
+          "trials": 120,
+          "wilson95": [
+            0.0,
+            0.031019166418703486
+          ]
+        }
+      },
+      "negative_clean": {
+        "rows": 60,
+        "source_fpr": {
+          "rate": 0.0,
+          "successes": 0,
+          "trials": 60,
+          "wilson95": [
+            0.0,
+            0.06017185214208986
+          ]
+        },
+        "sources": 60,
+        "trial_fpr": {
+          "rate": 0.0,
+          "successes": 0,
+          "trials": 60,
+          "wilson95": [
+            0.0,
+            0.06017185214208986
+          ]
+        }
+      },
+      "negative_clean_mp3": {
+        "rows": 60,
+        "source_fpr": {
+          "rate": 0.016666666666666666,
+          "successes": 1,
+          "trials": 60,
+          "wilson95": [
+            0.0029481597947862495,
+            0.08855129727590061
+          ]
+        },
+        "sources": 60,
+        "trial_fpr": {
+          "rate": 0.016666666666666666,
+          "successes": 1,
+          "trials": 60,
+          "wilson95": [
+            0.0029481597947862495,
+            0.08855129727590061
+          ]
+        }
+      },
+      "wrong_key_mp3": {
+        "rows": 120,
+        "source_fpr": {
+          "rate": 0.0,
+          "successes": 0,
+          "trials": 60,
+          "wilson95": [
+            0.0,
+            0.06017185214208986
+          ]
+        },
+        "sources": 60,
+        "trial_fpr": {
+          "rate": 0.0,
+          "successes": 0,
+          "trials": 120,
+          "wilson95": [
+            0.0,
+            0.031019166418703486
+          ]
+        }
+      }
+    }
+  },
+  "negative_sample_limitations": "60 matched source negatives; zero observed rates do not establish population FPR below 1%; Wilson upper bounds are reported",
+  "paired_source_acceptance": {
+    "marked_no_attack": {
+      "both": 60,
+      "condition": "marked_no_attack",
+      "mcnemar_p_two_sided": 1.0,
+      "neither": 0,
+      "soft12_only": 0,
+      "soft8_only": 0,
+      "sources": 60
+    },
+    "mp3_128k": {
+      "both": 45,
+      "condition": "mp3_128k",
+      "mcnemar_p_two_sided": 0.000244140625,
+      "neither": 2,
+      "soft12_only": 0,
+      "soft8_only": 13,
+      "sources": 60
+    }
+  },
+  "source_count": 60
+}

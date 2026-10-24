@@ -7,10 +7,11 @@
   <meta name="description" content="Blind Audio Watermarking — a real QIM identity-watermark prototype with codec-aware carrier selection, MP3 compression and blind detection.">
   <meta property="og:title" content="Blind Audio Watermarking — Embed. Compress. Detect.">
   <meta property="og:description" content="Explore the method, recorded results and code behind a blind audio identity watermark prototype.">
-  <meta name="demo-embed-url" content="">
+  <meta name="demo-embed-url" content="https://blind-audio-watermarking-demo.onrender.com/">
   <title>Blind Audio Watermarking — Embed. Compress. Detect.</title>
   <link rel="stylesheet" href="./assets/site.css">
   <link rel="stylesheet" href="./assets/audio-studio.css">
+  <link rel="stylesheet" href="./assets/live-demo.css">
   <script src="./assets/site.js" defer></script>
 </head>
 <body>
@@ -35,7 +36,7 @@
             <div class="hero-aside">
               <span class="micro-label">AUDIO / IDENTITY / RECOVERY</span>
               <p class="hero-desc">A small signature inside the spectrum. Embedded with QIM, passed through real MP3 compression, and recovered without the original sound.</p>
-              <div class="hero-actions"><a class="button button-primary" href="#demo">Explore the signal <span aria-hidden="true">↗</span></a><a class="button button-outline" href="#results">See the evidence <span aria-hidden="true">↓</span></a></div>
+              <div class="hero-actions"><a class="button button-primary" href="#live-demo">Try the live demo <span aria-hidden="true">↗</span></a><a class="button button-outline" href="#results">See the evidence <span aria-hidden="true">↓</span></a></div>
             </div>
           </div>
         </div>
@@ -60,8 +61,8 @@
 
     <section class="section demo-section" id="demo">
       <div class="wrap">
-        <div class="section-heading dark-heading"><div><div class="kicker"><span>01</span><i></i> EXPLORE THE SYSTEM</div><h2>Embed. Compress.<br><em>Detect.</em></h2></div><p>The actual audio-processing pipeline is open source. Until the hosted Python backend is deployed, this page offers a local-only audio preview and installation instructions — not a simulated detector.</p></div>
-        <div class="demo-status"><div><span class="status-dot"></span><strong>BACKEND NOT DEPLOYED</strong><span class="status-separator">·</span><span>Local Gradio demo and CLI are available in the repository.</span></div><span class="tag">NO FAKE INFERENCE</span></div>
+        <div class="section-heading dark-heading"><div><div class="kicker"><span>01</span><i></i> EXPLORE THE SYSTEM</div><h2>Embed. Compress.<br><em>Detect.</em></h2></div><p>Explore the signal locally, then open the real hosted Gradio processor to embed an identity, compress with FFmpeg MP3 and detect blindly. The hosted service runs on a free tier and may take time to wake.</p></div>
+        <div class="demo-status"><div><span class="status-dot"></span><strong>HOSTED DEMO CONNECTED</strong><span class="status-separator">·</span><span>Live endpoint supplied by project owner; full browser workflow still awaiting verification.</span></div><span class="tag">RENDER FREE · MAY SLEEP</span></div>
         <div class="demo-grid">
           <div class="demo-left">
             <div class="pane-title"><span><i>01</i> Try an audio preview</span><b>IN YOUR BROWSER</b></div>
@@ -77,10 +78,32 @@
             <div class="work-step"><span class="work-step-num">02</span><div><b>Compress audio</b><p>Run a genuine FFmpeg MP3 128 kbps encode-and-decode round-trip.</p></div><span class="step-trail">↘</span></div>
             <div class="work-step"><span class="work-step-num">03</span><div><b>Detect blindly</b><p>A separate process reads received audio — never the selected identity or original recording.</p></div><span class="step-trail">↘</span></div>
             <div class="work-step"><span class="work-step-num">04</span><div><b>Identify or reject</b><p>Return an identity only when its Hamming distance meets the frozen threshold; otherwise UNKNOWN.</p></div><span class="step-trail done">✓</span></div>
-            <div id="hosted-app" class="hosted-app" hidden><a id="launch-app" class="button button-primary" href="#" target="_blank" rel="noopener noreferrer">Open hosted processor <span aria-hidden="true">↗</span></a><p>The hosted app runs the real Python backend.</p><button class="embed-toggle" id="toggle-embed" type="button">Show embedded processor ↓</button><div id="embed-shell" class="embed-shell" hidden></div></div>
-            <div id="local-app" class="local-app"><a class="button button-primary" href="https://github.com/suibianba12138/blind-audio-watermarking#quick-start" target="_blank" rel="noopener noreferrer">Run the real demo locally <span aria-hidden="true">↗</span></a><p>Hosted watermarking is not yet available. Follow the repository setup instructions for real embedding, MP3 compression and blind detection.</p></div>
+            <div id="hosted-app" class="hosted-app"><a id="launch-app" class="button button-primary" href="https://blind-audio-watermarking-demo.onrender.com/" target="_blank" rel="noopener noreferrer">Open real processor <span aria-hidden="true">↗</span></a><p>Python + FFmpeg runs on Render. Uploaded audio is sent to that service, not processed by GitHub Pages. See the full-width embedded demo below.</p></div>
+            <div id="local-app" class="local-app" hidden><a class="button button-primary" href="https://github.com/suibianba12138/blind-audio-watermarking#quick-start" target="_blank" rel="noopener noreferrer">Run the real demo locally <span aria-hidden="true">↗</span></a><p>Hosted watermarking is not yet available. Follow the repository setup instructions for real embedding, MP3 compression and blind detection.</p></div>
           </div>
         </div>
+        <section class="live-processor" id="live-demo" aria-labelledby="live-demo-heading">
+          <div class="live-processor-intro">
+            <div class="live-processor-head">
+              <span class="live-kicker"><span class="live-indicator" aria-hidden="true"></span> WEB DEMO / REAL PROCESSING</span>
+              <h3 id="live-demo-heading">Open the <em>audio workbench.</em></h3>
+              <p>Embed a preset identity, run genuine MP3 128 kbps compression, and inspect the blind decoder's result using the Gradio backend hosted on Render.</p>
+              <div class="live-processor-actions">
+                <button id="load-live-demo" class="button live-load-button" type="button" aria-controls="live-frame" aria-expanded="false">Load demo inside this page <span aria-hidden="true">↓</span></button>
+                <a id="live-external-link" class="button live-external-button" href="https://blind-audio-watermarking-demo.onrender.com/" target="_blank" rel="noopener noreferrer">Open full-screen demo <span aria-hidden="true">↗</span></a>
+              </div>
+              <p class="live-warning"><strong>Free service:</strong> the first launch may take around a minute after sleeping. If the embedded frame is blank or blocked, use “Open full-screen demo”. Online browser end-to-end validation is still pending.</p>
+            </div>
+            <div class="live-workflow" aria-label="Live demo workflow">
+              <span><b>01</b> Upload</span><span class="live-chevron">/</span><span><b>02</b> Embed</span><span class="live-chevron">/</span><span><b>03</b> MP3</span><span class="live-chevron">/</span><span><b>04</b> Detect</span>
+            </div>
+          </div>
+          <div id="live-frame" class="live-frame" hidden>
+            <div class="live-frame-toolbar"><span><i aria-hidden="true"></i> GRADIO PROCESSOR / REMOTE SERVICE</span><span id="live-frame-status" role="status">Loading only after you click above.</span><a href="https://blind-audio-watermarking-demo.onrender.com/" target="_blank" rel="noopener noreferrer">OPEN EXTERNALLY ↗</a></div>
+            <div id="live-iframe-container" class="live-iframe-container"></div>
+            <p class="live-frame-disclaimer">Files uploaded inside this panel are sent directly to Render for processing. If the free instance is asleep, leave the panel open while it starts. Local waveform previews above remain browser-only.</p>
+          </div>
+        </section>
         <div class="demo-bottom"><span><b>BLIND CONTRACT</b> The decoder receives only processed audio plus a public carrier map/configuration.</span><a href="https://github.com/suibianba12138/blind-audio-watermarking/blob/main/app/detector_worker.py" target="_blank" rel="noopener noreferrer">Inspect detector ↗</a></div>
       </div>
     </section>

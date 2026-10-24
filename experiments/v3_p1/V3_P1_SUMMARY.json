@@ -1,0 +1,41 @@
+{
+  "manifest": "configs/v3_p1_independent_manifest.json",
+  "manifest_sha256": "6c5f4d63c9659f4332dd3242360806091d1672fdbe696f3bae06516b7f32a0e6",
+  "message_seeds": [
+    101,
+    202
+  ],
+  "messages": {
+    "seed_101": [
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      0,
+      1
+    ],
+    "seed_202": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1
+    ]
+  },
+  "negative_row_count": 720,
+  "peak_rss_mb": 5032.11328125,
+  "positive_row_count": 720,
+  "provenance": "new source-disjoint metadata-only manifest; raw audio remains outside repository",
+  "records": 60,
+  "strength": 1.6,
+  "thresholds": {
+    "hard_code": 0.47678591988959035,
+    "repeat4": 0.47678591988959035,
+    "soft_code": 0.7855073980199624
+  }
+}

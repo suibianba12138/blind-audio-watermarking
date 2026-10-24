@@ -57,3 +57,45 @@ This file records evidence as `CONFIRMED`, `INFERRED`, `UNAVAILABLE`, or `NOT_ES
 - `CONDITIONAL_GO`: the finite pilot supports only a narrow, separately authorized V3-P1
   review; it does not authorize production integration, broad parameter search, or a claim
   about arbitrary 32-bit messages.
+
+## V3-P1 Freeze Evidence
+
+- `CONFIRMED`: branch `research/v3-p1` was created from clean `research/v3-p0@34411a9`.
+- `CONFIRMED`: the new P1 manifest has 60 source records, 20 per category, 10 dev/10 test,
+  minimum duration 7.5 seconds, and unique source group/path/SHA values.
+- `CONFIRMED`: P1 manifest path and SHA overlap with both R1 and Soft-Code Pilot manifests is
+  zero; the two audited Course V2 manifests were also supplied as exclusions.
+- `CONFIRMED`: Pilot operating point is frozen at strength `1.60`, soft threshold
+  `0.7855073980199624`, repeat/hard physical-evidence threshold `0.47678591988959035`,
+  selector seed `7`, message seeds `101/202`, 48 kHz, and 6 seconds.
+- `CONFIRMED`: hard-code control reuses the fixed `[32,8,8]` codeword but decodes only hard
+  physical bits by minimum Hamming distance; all four TDD contract tests pass.
+- `CONFIRMED`: `CONFIG_FREEZE.json` records source SHA256, manifest SHA256, codebook SHA256,
+  FFmpeg version, selector/map provenance, and the blind detector contract.
+
+## V3-P1 Independent Validation Evidence
+
+- `CONFIRMED`: the final P1 rerun generated 720 positive rows and 720 negative rows for 60
+  source recordings, two fixed messages, three methods, and clean/no-attack plus MP3 conditions.
+- `CONFIRMED`: on the 30-source formal test split, Repeat-4 exact recovery was `46/60` trials
+  and `20/30` sources with both messages exact; Hard-Code was `58/60` and `28/30`.
+- `CONFIRMED`: Soft-Code decoded exact recovery was `60/60` trials and `30/30` sources with
+  both messages exact; the frozen threshold accepted `59/60` MP3 positives because one exact
+  decode was below threshold.
+- `CONFIRMED`: Soft-Code physical BER was `0.06458`, essentially the same channel-level range
+  as Repeat-4 `0.06302`; logical BER was `0` versus `0.03333`, so the improvement is decoded
+  code performance rather than a physical-BER claim.
+- `CONFIRMED`: source-level McNemar exact p-values were `0.001953125` for Soft-Code versus
+  Repeat-4 and `0.0078125` for Hard-Code versus Repeat-4; discordant pairs favored the new controls.
+- `CONFIRMED`: Soft-Code clean and clean-MP3 FPR were `0/30` each, wrong-key acceptance was
+  `0/60`, and positive wrong-message acceptance was `0/60`. Wilson upper bounds remain 6.02%
+  for the 60-trial negative denominators; no `<1%` population claim is made.
+- `CONFIRMED`: mean embedding SNR was `57.657 dB` for Soft/Hard versus `57.788 dB` for
+  Repeat-4; mean LSD difference was `0.00053 dB`, but the maximum paired SNR difference was
+  `6.413 dB`, so fidelity is partial rather than exact per-source matching.
+- `CONFIRMED`: four test Environment sources had pre-existing peak values above 1.0, giving
+  eight message rows with clipping flags; introduced clipping was `0/60` for all methods.
+- `NOT_ESTABLISHED`: no formal human listening study was completed; the protocol is documented
+  and the perceptual gate remains not established.
+- `CONDITIONAL_GO`: P1 supports a narrow V3-P2 design review, not immediate deployment or
+  claims about arbitrary messages/codecs.

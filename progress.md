@@ -30,3 +30,20 @@
 - Added the pilot report, CSV/JSON evidence, frozen-manifest regression, and no-download
   WavMark CPU feasibility audit. Decision is `CONDITIONAL_GO_NARROW_V3_P1_ONLY`; no V3-P1
   implementation or public integration was started.
+- Created branch `research/v3-p1` from clean `34411a9` and wrote the P1 implementation plan.
+- Froze `configs/v3_p1_independent_manifest.json`: 60 new source recordings, three categories,
+  10 dev/10 test per category, no path/SHA overlap with R1 or the Soft-Code Pilot.
+- Added and TDD-tested the hard-code control. The focused hard-code and freeze-contract tests
+  pass (`6 passed`); no frozen B1/Course V2 file was modified.
+- Wrote `experiments/v3_p1/CONFIG_FREEZE.json` with the Pilot threshold/strength, source and
+  code hashes, selector provenance, and FFmpeg 128 kbps version.
+- Added and ran the fixed P1 evaluator on all 60 sources. After one field-name fix and one
+  report-layer applicability fix, the final rerun was written to a new `/tmp` directory and
+  copied as the P1 evidence artifacts.
+- Added fixed-threshold negative analysis, Wilson intervals, source-level aggregation, and exact
+  McNemar comparisons. Soft-Code vs Repeat-4 was `10/0` discordant sources with exact p-value
+  `0.001953125`.
+- Added clipping provenance fields that distinguish pre-existing input over-amplitude from
+  embedding-introduced clipping; P1 introduced clipping was `0/60`.
+- Added the independent validation report, detection report, decision, A/B listening protocol,
+  artifact tests, and P1 analysis JSON. Current decision is `V3_P2_READINESS = CONDITIONAL_GO`.

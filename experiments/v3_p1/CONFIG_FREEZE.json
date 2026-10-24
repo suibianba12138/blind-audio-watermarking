@@ -1,0 +1,48 @@
+{
+  "branch_base": "research/v3-p0@34411a9660c1b8b0bfaf3f6e72b62e18984d8145",
+  "detector_contract": "received audio + public/keyed config only; expected payload post-hoc scoring only",
+  "duration_seconds": 6.0,
+  "effective_payload_bits": 8,
+  "hard_code_threshold": 0.47678591988959035,
+  "manifest": "configs/v3_p1_independent_manifest.json",
+  "manifest_sha256": "6c5f4d63c9659f4332dd3242360806091d1672fdbe696f3bae06516b7f32a0e6",
+  "message_seeds": [
+    101,
+    202
+  ],
+  "mp3": {
+    "bitrate": "128k",
+    "codec": "libmp3lame",
+    "tool": "ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers"
+  },
+  "numpy_version": "2.1.3",
+  "physical_payload_bits": 32,
+  "python": "3.13.5 | packaged by Anaconda, Inc. | (main, Jun 12 2025, 16:09:02) [GCC 11.2.0]",
+  "repeat4_threshold": 0.47678591988959035,
+  "sample_rate_hz": 48000,
+  "selector": {
+    "map_file": "real_top32_stability_map.json",
+    "map_sha256": "82c213813123239daaa86619e198b8e74f0880ac1c713518acedc0d6c109e3a9",
+    "rejection_threshold": 8,
+    "selected_group_ids_sha256": "99fa9b0a3b864401184746040353e6aacf2b7d56914d5a18a77886c3ab53199d",
+    "selector": "REAL_TOP32",
+    "selector_sha256": "99fa9b0a3b864401184746040353e6aacf2b7d56914d5a18a77886c3ab53199d",
+    "strength": 1.28,
+    "top_k": 32,
+    "watermark_seed": 7
+  },
+  "soft_code_threshold": 0.7855073980199624,
+  "soft_codebook_sha256": "da3bc98971406a63c5f1f7539a04ac8c1139ef61b624326636c4389c3cfdfcc8",
+  "source_sha256": {
+    "configs/real_top32_stability_map.json": "3a4bc6210c59799f6b92ca28888ba3383a8066e2e2eaa2a00ef5045bad06a72f",
+    "src/audio_watermark/b1.py": "6697e2a74dc32fe96e7569dd7857d7c4f7431a66e6d0964ff305df3edb76cdba",
+    "src/audio_watermark/b1_hard_code.py": "237375a08914812d781bce7642d8e31f111fd4e3c0ed839431fff8a34bf807b4",
+    "src/audio_watermark/b1_soft.py": "80b4af7853e0f36e5e7b24cf827b8cd8903070e4ffcd87923f4a647b1cc6fc68",
+    "src/audio_watermark/course_v2.py": "cd9e3693678da8819ae84a7906d5f2cbea65861f6dd8cc05d379fd500301d000",
+    "src/audio_watermark/detect.py": "814d664e67947cbac244d7870ee925608fa2b11d5d189f3457af631468dbb956",
+    "src/audio_watermark/embed.py": "688a451a689e1aef9545e88dfa2c77b3bb927589a71f5c5eab71a5e335583df1"
+  },
+  "stage": "V3_P1_INDEPENDENT_VALIDATION",
+  "strength": 1.6,
+  "threshold_provenance": "frozen from V3_B1_SOFT_CODE_PILOT_SUMMARY.json; no P1 refit"
+}

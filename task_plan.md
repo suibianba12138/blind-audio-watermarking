@@ -1,10 +1,10 @@
-# Blind Audio Watermarking V3 P0 Implementation Plan
+# Blind Audio Watermarking V3 P0/P1 Implementation Plan
 
-> **For agentic workers:** This plan is the execution contract for the isolated `research/v3-p0` worktree. Keep frozen Course V2 source and historical results read-only.
+> **For agentic workers:** This plan is the execution contract for the isolated `research/v3-p1` worktree. Keep frozen Course V2 source, R1/Pilot evidence, and historical results read-only.
 
-**Goal:** Diagnose the current QIM/MP3 channel, audit and reproduce feasible open-source baselines, and run bounded single-bit/8-bit exploratory prototypes without claiming V3 superiority.
+**Goal:** Preserve the completed V3-P0 evidence and complete a source-disjoint V3-P1 validation of the frozen B1 Repeat-4, Hard-Code, and Soft-Code methods.
 
-**Architecture:** The worktree is branched from `main` at `a89b493`. Frozen Course V2 modules remain unchanged. New audit scripts, experimental modules, tests, and P0 reports are additive and use separate result directories; calibration and test data are source-disjoint.
+**Architecture:** The current branch is `research/v3-p1`, based on local `research/v3-p0@34411a9`. Frozen Course V2/B1 modules and P0/R1/Pilot evidence remain unchanged. P1 adds only a new manifest, hard-decision control, fixed-threshold evaluator, statistical analysis, and reports.
 
 **Tech Stack:** Python 3.11-compatible public runtime, NumPy/SciPy, FFmpeg 128 kbps MP3, pytest, isolated third-party environments, and read-only GitHub/source audits.
 
@@ -39,6 +39,11 @@
 - [x] B1-SC-2: add tested continuous B1 soft-decoder and fixed [32,8,8] code.
 - [x] B1-SC-3: run finite strength/SNR curve and paired clean/MP3 evaluation.
 - [x] B1-SC-4: calibrate dev-only rejection, audit WavMark CPU feasibility, and decide stop/go.
+- [x] P1-A: freeze Pilot configuration, code/source hashes, and the new independent manifest.
+- [x] P1-B: add and test the hard-code control without changing frozen B1/Soft-Code code.
+- [x] P1-C: run the three-method paired no-attack/MP3 evaluation.
+- [x] P1-D: run fixed-threshold negative controls and source-level paired statistics.
+- [x] P1-E: document limited perceptual review, final decision, and fresh verification.
 
 ## Planned Files
 
@@ -83,9 +88,20 @@ The final gate also requires explicit evidence for FFmpeg MP3, source-disjoint d
 - The code is a deterministic evaluation-code `[32, 8, 8]` with 256 codewords; only the 8-bit logical payload is scored as the effective message.
 - Soft detection uses only received audio, frozen B1 config/selector, and the codebook. Expected payload is used only after detection for scoring.
 
+## V3-P1 Independent Validation Contract
+
+- Branch is `research/v3-p1`, based on local commit `34411a9660c1b8b0bfaf3f6e72b62e18984d8145`.
+- Frozen Pilot operating point is strength `1.60`, threshold `0.7855073980199624`, selector seed `7`, message seeds `101/202`, and 6-second 48 kHz audio.
+- P1 manifest excludes all audited Course V2, R1, and B1 Soft-Code Pilot records by path and SHA256 before evaluation.
+- Controls are Repeat-4, Hard-Code using hard minimum-Hamming decode of the same `[32,8,8]` code, and Soft-Code using the frozen continuous correlation decoder.
+- Threshold is not re-fit on P1; P1 negative counts are evidence with confidence intervals, not a claim of a population FPR bound.
+- Primary independent unit is source recording; two messages per source are paired trials.
+
 ## Errors Encountered
 
 | Error | Attempt | Resolution |
 |---|---:|---|
 | Public `prepare_for_demo()` rejects local sources longer than 30 s | R1 experiment | Applied the same resample rule, then took the pre-registered first 6 s directly in the R1 script; public demo code was unchanged. |
 | Heterogeneous B1/candidate CSV columns | R1 result write | Updated the additive CSV writer to use the union of row fields; experiment was rerun with the same protocol. |
+| `DetectionResult` field is `payload_bits`, not `payload` | First P1 evaluator run | Added a focused regression helper, changed only the evaluator field access, and reran the full P1 evaluation from a fresh output directory. |
+| No-attack rows store MP3 fidelity as `NOT_APPLICABLE` | First P1 analysis run | Analysis now excludes non-applicable values instead of coercing them; raw results were unchanged. |

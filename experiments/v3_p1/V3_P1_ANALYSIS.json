@@ -1,0 +1,1216 @@
+{
+  "category_mp3": {
+    "hard_code": {
+      "environment": {
+        "clean_clipping_flags": 8,
+        "clipping_flags": 8,
+        "detect_runtime_seconds_mean": 0.005107946950010956,
+        "embed_runtime_seconds_mean": 0.030171060154680164,
+        "exact_trial_recovery": {
+          "rate": 1.0,
+          "successes": 20,
+          "total": 20,
+          "wilson_95_ci": [
+            0.8388748419471806,
+            1.0
+          ]
+        },
+        "introduced_clipping_flags": 0,
+        "logical_ber_mean": 0.0,
+        "mp3_fidelity_snr_db_mean": 25.982482779010184,
+        "peak_rss_mb_max": 3224.8828125,
+        "physical_ber_mean": 0.0734375,
+        "presence_acceptance": {
+          "rate": 1.0,
+          "successes": 20,
+          "total": 20,
+          "wilson_95_ci": [
+            0.8388748419471806,
+            1.0
+          ]
+        },
+        "snr_db_mean": 59.98537174041758,
+        "source_all_two_messages_exact": {
+          "rate": 1.0,
+          "successes": 10,
+          "total": 10,
+          "wilson_95_ci": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        },
+        "source_any_message_exact": {
+          "rate": 1.0,
+          "successes": 10,
+          "total": 10,
+          "wilson_95_ci": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        },
+        "spectral_distortion_rms_db_mean": 0.02971408614328665,
+        "trial_count": 20,
+        "wrong_message_acceptance": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 20,
+          "wilson_95_ci": [
+            0.0,
+            0.16112515805281938
+          ]
+        }
+      },
+      "music": {
+        "clean_clipping_flags": 0,
+        "clipping_flags": 0,
+        "detect_runtime_seconds_mean": 0.005711931953555904,
+        "embed_runtime_seconds_mean": 0.03549419615010265,
+        "exact_trial_recovery": {
+          "rate": 0.9,
+          "successes": 18,
+          "total": 20,
+          "wilson_95_ci": [
+            0.6989663547715128,
+            0.9721335187862319
+          ]
+        },
+        "introduced_clipping_flags": 0,
+        "logical_ber_mean": 0.025,
+        "mp3_fidelity_snr_db_mean": 25.963210297508958,
+        "peak_rss_mb_max": 5032.11328125,
+        "physical_ber_mean": 0.0671875,
+        "presence_acceptance": {
+          "rate": 1.0,
+          "successes": 20,
+          "total": 20,
+          "wilson_95_ci": [
+            0.8388748419471806,
+            1.0
+          ]
+        },
+        "snr_db_mean": 57.869626571421975,
+        "source_all_two_messages_exact": {
+          "rate": 0.8,
+          "successes": 8,
+          "total": 10,
+          "wilson_95_ci": [
+            0.49016247153664183,
+            0.9433178485456247
+          ]
+        },
+        "source_any_message_exact": {
+          "rate": 1.0,
+          "successes": 10,
+          "total": 10,
+          "wilson_95_ci": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        },
+        "spectral_distortion_rms_db_mean": 0.030209739873026907,
+        "trial_count": 20,
+        "wrong_message_acceptance": {
+          "rate": 0.1,
+          "successes": 2,
+          "total": 20,
+          "wilson_95_ci": [
+            0.027866481213768224,
+            0.3010336452284873
+          ]
+        }
+      },
+      "speech": {
+        "clean_clipping_flags": 0,
+        "clipping_flags": 0,
+        "detect_runtime_seconds_mean": 0.005520256259478629,
+        "embed_runtime_seconds_mean": 0.030182235647225754,
+        "exact_trial_recovery": {
+          "rate": 1.0,
+          "successes": 20,
+          "total": 20,
+          "wilson_95_ci": [
+            0.8388748419471806,
+            1.0
+          ]
+        },
+        "introduced_clipping_flags": 0,
+        "logical_ber_mean": 0.0,
+        "mp3_fidelity_snr_db_mean": 25.98141936083196,
+        "peak_rss_mb_max": 2939.48046875,
+        "physical_ber_mean": 0.053125,
+        "presence_acceptance": {
+          "rate": 1.0,
+          "successes": 20,
+          "total": 20,
+          "wilson_95_ci": [
+            0.8388748419471806,
+            1.0
+          ]
+        },
+        "snr_db_mean": 55.11619645120224,
+        "source_all_two_messages_exact": {
+          "rate": 1.0,
+          "successes": 10,
+          "total": 10,
+          "wilson_95_ci": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        },
+        "source_any_message_exact": {
+          "rate": 1.0,
+          "successes": 10,
+          "total": 10,
+          "wilson_95_ci": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        },
+        "spectral_distortion_rms_db_mean": 0.029837062227027023,
+        "trial_count": 20,
+        "wrong_message_acceptance": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 20,
+          "wilson_95_ci": [
+            0.0,
+            0.16112515805281938
+          ]
+        }
+      }
+    },
+    "repeat4": {
+      "environment": {
+        "clean_clipping_flags": 8,
+        "clipping_flags": 8,
+        "detect_runtime_seconds_mean": 0.009018815503804945,
+        "embed_runtime_seconds_mean": 0.029114264695090243,
+        "exact_trial_recovery": {
+          "rate": 0.9,
+          "successes": 18,
+          "total": 20,
+          "wilson_95_ci": [
+            0.6989663547715128,
+            0.9721335187862319
+          ]
+        },
+        "introduced_clipping_flags": 0,
+        "logical_ber_mean": 0.025,
+        "mp3_fidelity_snr_db_mean": 25.980816901629915,
+        "peak_rss_mb_max": 3224.8828125,
+        "physical_ber_mean": 0.0703125,
+        "presence_acceptance": {
+          "rate": 1.0,
+          "successes": 20,
+          "total": 20,
+          "wilson_95_ci": [
+            0.8388748419471806,
+            1.0
+          ]
+        },
+        "snr_db_mean": 60.06010409380256,
+        "source_all_two_messages_exact": {
+          "rate": 0.9,
+          "successes": 9,
+          "total": 10,
+          "wilson_95_ci": [
+            0.5958499732047615,
+            0.9821237869049271
+          ]
+        },
+        "source_any_message_exact": {
+          "rate": 0.9,
+          "successes": 9,
+          "total": 10,
+          "wilson_95_ci": [
+            0.5958499732047615,
+            0.9821237869049271
+          ]
+        },
+        "spectral_distortion_rms_db_mean": 0.029801292422095123,
+        "trial_count": 20,
+        "wrong_message_acceptance": {
+          "rate": 0.1,
+          "successes": 2,
+          "total": 20,
+          "wilson_95_ci": [
+            0.027866481213768224,
+            0.3010336452284873
+          ]
+        }
+      },
+      "music": {
+        "clean_clipping_flags": 0,
+        "clipping_flags": 0,
+        "detect_runtime_seconds_mean": 0.010083805248723366,
+        "embed_runtime_seconds_mean": 0.03229699824587442,
+        "exact_trial_recovery": {
+          "rate": 0.75,
+          "successes": 15,
+          "total": 20,
+          "wilson_95_ci": [
+            0.531299122381256,
+            0.8881382985923343
+          ]
+        },
+        "introduced_clipping_flags": 0,
+        "logical_ber_mean": 0.03125,
+        "mp3_fidelity_snr_db_mean": 25.96290967526209,
+        "peak_rss_mb_max": 5032.11328125,
+        "physical_ber_mean": 0.05,
+        "presence_acceptance": {
+          "rate": 1.0,
+          "successes": 20,
+          "total": 20,
+          "wilson_95_ci": [
+            0.8388748419471806,
+            1.0
+          ]
+        },
+        "snr_db_mean": 58.37877127891615,
+        "source_all_two_messages_exact": {
+          "rate": 0.6,
+          "successes": 6,
+          "total": 10,
+          "wilson_95_ci": [
+            0.31267376973365824,
+            0.8318196702937638
+          ]
+        },
+        "source_any_message_exact": {
+          "rate": 0.9,
+          "successes": 9,
+          "total": 10,
+          "wilson_95_ci": [
+            0.5958499732047615,
+            0.9821237869049271
+          ]
+        },
+        "spectral_distortion_rms_db_mean": 0.02897618412914535,
+        "trial_count": 20,
+        "wrong_message_acceptance": {
+          "rate": 0.25,
+          "successes": 5,
+          "total": 20,
+          "wilson_95_ci": [
+            0.11186170140766569,
+            0.468700877618744
+          ]
+        }
+      },
+      "speech": {
+        "clean_clipping_flags": 0,
+        "clipping_flags": 0,
+        "detect_runtime_seconds_mean": 0.009180455410387367,
+        "embed_runtime_seconds_mean": 0.03028993981133681,
+        "exact_trial_recovery": {
+          "rate": 0.65,
+          "successes": 13,
+          "total": 20,
+          "wilson_95_ci": [
+            0.43285427668523624,
+            0.818808175898918
+          ]
+        },
+        "introduced_clipping_flags": 0,
+        "logical_ber_mean": 0.04375,
+        "mp3_fidelity_snr_db_mean": 25.980293957811273,
+        "peak_rss_mb_max": 2939.48046875,
+        "physical_ber_mean": 0.06875,
+        "presence_acceptance": {
+          "rate": 1.0,
+          "successes": 20,
+          "total": 20,
+          "wilson_95_ci": [
+            0.8388748419471806,
+            1.0
+          ]
+        },
+        "snr_db_mean": 54.924768080533646,
+        "source_all_two_messages_exact": {
+          "rate": 0.5,
+          "successes": 5,
+          "total": 10,
+          "wilson_95_ci": [
+            0.236593090512564,
+            0.7634069094874361
+          ]
+        },
+        "source_any_message_exact": {
+          "rate": 0.8,
+          "successes": 8,
+          "total": 10,
+          "wilson_95_ci": [
+            0.49016247153664183,
+            0.9433178485456247
+          ]
+        },
+        "spectral_distortion_rms_db_mean": 0.02940269796815629,
+        "trial_count": 20,
+        "wrong_message_acceptance": {
+          "rate": 0.35,
+          "successes": 7,
+          "total": 20,
+          "wilson_95_ci": [
+            0.18119182410108206,
+            0.5671457233147638
+          ]
+        }
+      }
+    },
+    "soft_code": {
+      "environment": {
+        "clean_clipping_flags": 8,
+        "clipping_flags": 8,
+        "detect_runtime_seconds_mean": 0.005952618544688449,
+        "embed_runtime_seconds_mean": 0.030171060154680164,
+        "exact_trial_recovery": {
+          "rate": 1.0,
+          "successes": 20,
+          "total": 20,
+          "wilson_95_ci": [
+            0.8388748419471806,
+            1.0
+          ]
+        },
+        "introduced_clipping_flags": 0,
+        "logical_ber_mean": 0.0,
+        "mp3_fidelity_snr_db_mean": 25.982482779010184,
+        "peak_rss_mb_max": 3224.8828125,
+        "physical_ber_mean": 0.0734375,
+        "presence_acceptance": {
+          "rate": 0.95,
+          "successes": 19,
+          "total": 20,
+          "wilson_95_ci": [
+            0.763868806553258,
+            0.9911185511992047
+          ]
+        },
+        "snr_db_mean": 59.98537174041758,
+        "source_all_two_messages_exact": {
+          "rate": 1.0,
+          "successes": 10,
+          "total": 10,
+          "wilson_95_ci": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        },
+        "source_any_message_exact": {
+          "rate": 1.0,
+          "successes": 10,
+          "total": 10,
+          "wilson_95_ci": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        },
+        "spectral_distortion_rms_db_mean": 0.02971408614328665,
+        "trial_count": 20,
+        "wrong_message_acceptance": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 20,
+          "wilson_95_ci": [
+            0.0,
+            0.16112515805281938
+          ]
+        }
+      },
+      "music": {
+        "clean_clipping_flags": 0,
+        "clipping_flags": 0,
+        "detect_runtime_seconds_mean": 0.006554665949079208,
+        "embed_runtime_seconds_mean": 0.03549419615010265,
+        "exact_trial_recovery": {
+          "rate": 1.0,
+          "successes": 20,
+          "total": 20,
+          "wilson_95_ci": [
+            0.8388748419471806,
+            1.0
+          ]
+        },
+        "introduced_clipping_flags": 0,
+        "logical_ber_mean": 0.0,
+        "mp3_fidelity_snr_db_mean": 25.963210297508958,
+        "peak_rss_mb_max": 5032.11328125,
+        "physical_ber_mean": 0.0671875,
+        "presence_acceptance": {
+          "rate": 1.0,
+          "successes": 20,
+          "total": 20,
+          "wilson_95_ci": [
+            0.8388748419471806,
+            1.0
+          ]
+        },
+        "snr_db_mean": 57.869626571421975,
+        "source_all_two_messages_exact": {
+          "rate": 1.0,
+          "successes": 10,
+          "total": 10,
+          "wilson_95_ci": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        },
+        "source_any_message_exact": {
+          "rate": 1.0,
+          "successes": 10,
+          "total": 10,
+          "wilson_95_ci": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        },
+        "spectral_distortion_rms_db_mean": 0.030209739873026907,
+        "trial_count": 20,
+        "wrong_message_acceptance": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 20,
+          "wilson_95_ci": [
+            0.0,
+            0.16112515805281938
+          ]
+        }
+      },
+      "speech": {
+        "clean_clipping_flags": 0,
+        "clipping_flags": 0,
+        "detect_runtime_seconds_mean": 0.006438570699538104,
+        "embed_runtime_seconds_mean": 0.030182235647225754,
+        "exact_trial_recovery": {
+          "rate": 1.0,
+          "successes": 20,
+          "total": 20,
+          "wilson_95_ci": [
+            0.8388748419471806,
+            1.0
+          ]
+        },
+        "introduced_clipping_flags": 0,
+        "logical_ber_mean": 0.0,
+        "mp3_fidelity_snr_db_mean": 25.98141936083196,
+        "peak_rss_mb_max": 2939.48046875,
+        "physical_ber_mean": 0.053125,
+        "presence_acceptance": {
+          "rate": 1.0,
+          "successes": 20,
+          "total": 20,
+          "wilson_95_ci": [
+            0.8388748419471806,
+            1.0
+          ]
+        },
+        "snr_db_mean": 55.11619645120224,
+        "source_all_two_messages_exact": {
+          "rate": 1.0,
+          "successes": 10,
+          "total": 10,
+          "wilson_95_ci": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        },
+        "source_any_message_exact": {
+          "rate": 1.0,
+          "successes": 10,
+          "total": 10,
+          "wilson_95_ci": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        },
+        "spectral_distortion_rms_db_mean": 0.029837062227027023,
+        "trial_count": 20,
+        "wrong_message_acceptance": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 20,
+          "wilson_95_ci": [
+            0.0,
+            0.16112515805281938
+          ]
+        }
+      }
+    }
+  },
+  "input_rows": {
+    "negative": 720,
+    "positive": 720
+  },
+  "matched_fidelity": {
+    "hard_code": {
+      "snr_difference_max_abs_db": 6.412550042849347,
+      "snr_difference_mean_db": -0.13081623007018023,
+      "spectral_distortion_difference_mean_db": 0.0005269045746479404
+    },
+    "soft_code": {
+      "snr_difference_max_abs_db": 6.412550042849347,
+      "snr_difference_mean_db": -0.13081623007018023,
+      "spectral_distortion_difference_mean_db": 0.0005269045746479404
+    }
+  },
+  "negative": {
+    "hard_code": {
+      "clean": {
+        "max_presence_score": 0.46048800986113103,
+        "mean_presence_score": 0.3899985950095773,
+        "source_any_acceptance": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 30,
+          "wilson_95_ci": [
+            0.0,
+            0.11351339317396876
+          ]
+        },
+        "trial_acceptance": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 30,
+          "wilson_95_ci": [
+            0.0,
+            0.11351339317396876
+          ]
+        }
+      },
+      "clean_combined_trials": {
+        "max_presence_score": 0.479125534773967,
+        "mean_presence_score": 0.38546240964463785,
+        "source_any_acceptance": {
+          "rate": 0.03333333333333333,
+          "successes": 1,
+          "total": 30,
+          "wilson_95_ci": [
+            0.005908590381612455,
+            0.16670390991409173
+          ]
+        },
+        "trial_acceptance": {
+          "rate": 0.016666666666666666,
+          "successes": 1,
+          "total": 60,
+          "wilson_95_ci": [
+            0.0029481597947862495,
+            0.08855129727590061
+          ]
+        }
+      },
+      "clean_mp3": {
+        "max_presence_score": 0.479125534773967,
+        "mean_presence_score": 0.3809262242796984,
+        "source_any_acceptance": {
+          "rate": 0.03333333333333333,
+          "successes": 1,
+          "total": 30,
+          "wilson_95_ci": [
+            0.005908590381612455,
+            0.16670390991409173
+          ]
+        },
+        "trial_acceptance": {
+          "rate": 0.03333333333333333,
+          "successes": 1,
+          "total": 30,
+          "wilson_95_ci": [
+            0.005908590381612455,
+            0.16670390991409173
+          ]
+        }
+      },
+      "wrong_key_mp3": {
+        "max_presence_score": 0.5191469289888664,
+        "mean_presence_score": 0.3735579162858652,
+        "source_any_acceptance": {
+          "rate": 0.03333333333333333,
+          "successes": 1,
+          "total": 30,
+          "wilson_95_ci": [
+            0.005908590381612455,
+            0.16670390991409173
+          ]
+        },
+        "trial_acceptance": {
+          "rate": 0.03333333333333333,
+          "successes": 2,
+          "total": 60,
+          "wilson_95_ci": [
+            0.009189319256197877,
+            0.113637742743086
+          ]
+        }
+      }
+    },
+    "repeat4": {
+      "clean": {
+        "max_presence_score": 0.46048800986113103,
+        "mean_presence_score": 0.3899985950095773,
+        "source_any_acceptance": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 30,
+          "wilson_95_ci": [
+            0.0,
+            0.11351339317396876
+          ]
+        },
+        "trial_acceptance": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 30,
+          "wilson_95_ci": [
+            0.0,
+            0.11351339317396876
+          ]
+        }
+      },
+      "clean_combined_trials": {
+        "max_presence_score": 0.479125534773967,
+        "mean_presence_score": 0.38546240964463785,
+        "source_any_acceptance": {
+          "rate": 0.03333333333333333,
+          "successes": 1,
+          "total": 30,
+          "wilson_95_ci": [
+            0.005908590381612455,
+            0.16670390991409173
+          ]
+        },
+        "trial_acceptance": {
+          "rate": 0.016666666666666666,
+          "successes": 1,
+          "total": 60,
+          "wilson_95_ci": [
+            0.0029481597947862495,
+            0.08855129727590061
+          ]
+        }
+      },
+      "clean_mp3": {
+        "max_presence_score": 0.479125534773967,
+        "mean_presence_score": 0.3809262242796984,
+        "source_any_acceptance": {
+          "rate": 0.03333333333333333,
+          "successes": 1,
+          "total": 30,
+          "wilson_95_ci": [
+            0.005908590381612455,
+            0.16670390991409173
+          ]
+        },
+        "trial_acceptance": {
+          "rate": 0.03333333333333333,
+          "successes": 1,
+          "total": 30,
+          "wilson_95_ci": [
+            0.005908590381612455,
+            0.16670390991409173
+          ]
+        }
+      },
+      "wrong_key_mp3": {
+        "max_presence_score": 0.504958847313109,
+        "mean_presence_score": 0.37488715324910465,
+        "source_any_acceptance": {
+          "rate": 0.06666666666666667,
+          "successes": 2,
+          "total": 30,
+          "wilson_95_ci": [
+            0.018477023791270378,
+            0.2132345836261692
+          ]
+        },
+        "trial_acceptance": {
+          "rate": 0.03333333333333333,
+          "successes": 2,
+          "total": 60,
+          "wilson_95_ci": [
+            0.009189319256197877,
+            0.113637742743086
+          ]
+        }
+      }
+    },
+    "soft_code": {
+      "clean": {
+        "max_presence_score": 0.7021768235641116,
+        "mean_presence_score": 0.5730752936054863,
+        "source_any_acceptance": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 30,
+          "wilson_95_ci": [
+            0.0,
+            0.11351339317396876
+          ]
+        },
+        "trial_acceptance": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 30,
+          "wilson_95_ci": [
+            0.0,
+            0.11351339317396876
+          ]
+        }
+      },
+      "clean_combined_trials": {
+        "max_presence_score": 0.7021768235641116,
+        "mean_presence_score": 0.5811292630214199,
+        "source_any_acceptance": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 30,
+          "wilson_95_ci": [
+            0.0,
+            0.11351339317396876
+          ]
+        },
+        "trial_acceptance": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 60,
+          "wilson_95_ci": [
+            0.0,
+            0.06017185214208986
+          ]
+        }
+      },
+      "clean_mp3": {
+        "max_presence_score": 0.6866856776454826,
+        "mean_presence_score": 0.5891832324373535,
+        "source_any_acceptance": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 30,
+          "wilson_95_ci": [
+            0.0,
+            0.11351339317396876
+          ]
+        },
+        "trial_acceptance": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 30,
+          "wilson_95_ci": [
+            0.0,
+            0.11351339317396876
+          ]
+        }
+      },
+      "wrong_key_mp3": {
+        "max_presence_score": 0.7245860820864594,
+        "mean_presence_score": 0.5858108502774861,
+        "source_any_acceptance": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 30,
+          "wilson_95_ci": [
+            0.0,
+            0.11351339317396876
+          ]
+        },
+        "trial_acceptance": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 60,
+          "wilson_95_ci": [
+            0.0,
+            0.06017185214208986
+          ]
+        }
+      }
+    }
+  },
+  "positive": {
+    "hard_code": {
+      "mp3_128k": {
+        "clean_clipping_flags": 8,
+        "clipping_flags": 8,
+        "detect_runtime_seconds_mean": 0.005446711721015162,
+        "embed_runtime_seconds_mean": 0.031949163984002854,
+        "exact_trial_recovery": {
+          "rate": 0.9666666666666667,
+          "successes": 58,
+          "total": 60,
+          "wilson_95_ci": [
+            0.886362257256914,
+            0.9908106807438021
+          ]
+        },
+        "introduced_clipping_flags": 0,
+        "logical_ber_mean": 0.008333333333333333,
+        "mp3_fidelity_snr_db_mean": 25.975704145783702,
+        "peak_rss_mb_max": 5032.11328125,
+        "physical_ber_mean": 0.06458333333333334,
+        "presence_acceptance": {
+          "rate": 1.0,
+          "successes": 60,
+          "total": 60,
+          "wilson_95_ci": [
+            0.93982814785791,
+            0.9999999999999998
+          ]
+        },
+        "snr_db_mean": 57.657064921013934,
+        "source_all_two_messages_exact": {
+          "rate": 0.9333333333333333,
+          "successes": 28,
+          "total": 30,
+          "wilson_95_ci": [
+            0.7867654163738308,
+            0.9815229762087295
+          ]
+        },
+        "source_any_message_exact": {
+          "rate": 1.0,
+          "successes": 30,
+          "total": 30,
+          "wilson_95_ci": [
+            0.8864866068260312,
+            0.9999999999999999
+          ]
+        },
+        "spectral_distortion_rms_db_mean": 0.029920296081113528,
+        "trial_count": 60,
+        "wrong_message_acceptance": {
+          "rate": 0.03333333333333333,
+          "successes": 2,
+          "total": 60,
+          "wilson_95_ci": [
+            0.009189319256197877,
+            0.113637742743086
+          ]
+        }
+      },
+      "no_attack": {
+        "clean_clipping_flags": 8,
+        "clipping_flags": 8,
+        "detect_runtime_seconds_mean": 0.005706226753924663,
+        "embed_runtime_seconds_mean": 0.031949163984002854,
+        "exact_trial_recovery": {
+          "rate": 1.0,
+          "successes": 60,
+          "total": 60,
+          "wilson_95_ci": [
+            0.93982814785791,
+            0.9999999999999998
+          ]
+        },
+        "introduced_clipping_flags": 0,
+        "logical_ber_mean": 0.0,
+        "mp3_fidelity_snr_db_mean": null,
+        "peak_rss_mb_max": 5032.11328125,
+        "physical_ber_mean": 0.0,
+        "presence_acceptance": {
+          "rate": 1.0,
+          "successes": 60,
+          "total": 60,
+          "wilson_95_ci": [
+            0.93982814785791,
+            0.9999999999999998
+          ]
+        },
+        "snr_db_mean": 57.657064921013934,
+        "source_all_two_messages_exact": {
+          "rate": 1.0,
+          "successes": 30,
+          "total": 30,
+          "wilson_95_ci": [
+            0.8864866068260312,
+            0.9999999999999999
+          ]
+        },
+        "source_any_message_exact": {
+          "rate": 1.0,
+          "successes": 30,
+          "total": 30,
+          "wilson_95_ci": [
+            0.8864866068260312,
+            0.9999999999999999
+          ]
+        },
+        "spectral_distortion_rms_db_mean": 0.029920296081113528,
+        "trial_count": 60,
+        "wrong_message_acceptance": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 60,
+          "wilson_95_ci": [
+            0.0,
+            0.06017185214208986
+          ]
+        }
+      }
+    },
+    "repeat4": {
+      "mp3_128k": {
+        "clean_clipping_flags": 8,
+        "clipping_flags": 8,
+        "detect_runtime_seconds_mean": 0.009427692054305225,
+        "embed_runtime_seconds_mean": 0.03056706758410049,
+        "exact_trial_recovery": {
+          "rate": 0.7666666666666667,
+          "successes": 46,
+          "total": 60,
+          "wilson_95_ci": [
+            0.6456372962239805,
+            0.8556043826335717
+          ]
+        },
+        "introduced_clipping_flags": 0,
+        "logical_ber_mean": 0.03333333333333333,
+        "mp3_fidelity_snr_db_mean": 25.974673511567758,
+        "peak_rss_mb_max": 5032.11328125,
+        "physical_ber_mean": 0.06302083333333333,
+        "presence_acceptance": {
+          "rate": 1.0,
+          "successes": 60,
+          "total": 60,
+          "wilson_95_ci": [
+            0.93982814785791,
+            0.9999999999999998
+          ]
+        },
+        "snr_db_mean": 57.787881151084115,
+        "source_all_two_messages_exact": {
+          "rate": 0.6666666666666666,
+          "successes": 20,
+          "total": 30,
+          "wilson_95_ci": [
+            0.4878005164454384,
+            0.8076950191632386
+          ]
+        },
+        "source_any_message_exact": {
+          "rate": 0.8666666666666667,
+          "successes": 26,
+          "total": 30,
+          "wilson_95_ci": [
+            0.703186733179637,
+            0.9469034451594526
+          ]
+        },
+        "spectral_distortion_rms_db_mean": 0.029393391506465586,
+        "trial_count": 60,
+        "wrong_message_acceptance": {
+          "rate": 0.23333333333333334,
+          "successes": 14,
+          "total": 60,
+          "wilson_95_ci": [
+            0.1443956173664283,
+            0.35436270377601964
+          ]
+        }
+      },
+      "no_attack": {
+        "clean_clipping_flags": 8,
+        "clipping_flags": 8,
+        "detect_runtime_seconds_mean": 0.009837300579723282,
+        "embed_runtime_seconds_mean": 0.03056706758410049,
+        "exact_trial_recovery": {
+          "rate": 1.0,
+          "successes": 60,
+          "total": 60,
+          "wilson_95_ci": [
+            0.93982814785791,
+            0.9999999999999998
+          ]
+        },
+        "introduced_clipping_flags": 0,
+        "logical_ber_mean": 0.0,
+        "mp3_fidelity_snr_db_mean": null,
+        "peak_rss_mb_max": 5032.11328125,
+        "physical_ber_mean": 0.0,
+        "presence_acceptance": {
+          "rate": 1.0,
+          "successes": 60,
+          "total": 60,
+          "wilson_95_ci": [
+            0.93982814785791,
+            0.9999999999999998
+          ]
+        },
+        "snr_db_mean": 57.787881151084115,
+        "source_all_two_messages_exact": {
+          "rate": 1.0,
+          "successes": 30,
+          "total": 30,
+          "wilson_95_ci": [
+            0.8864866068260312,
+            0.9999999999999999
+          ]
+        },
+        "source_any_message_exact": {
+          "rate": 1.0,
+          "successes": 30,
+          "total": 30,
+          "wilson_95_ci": [
+            0.8864866068260312,
+            0.9999999999999999
+          ]
+        },
+        "spectral_distortion_rms_db_mean": 0.029393391506465586,
+        "trial_count": 60,
+        "wrong_message_acceptance": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 60,
+          "wilson_95_ci": [
+            0.0,
+            0.06017185214208986
+          ]
+        }
+      }
+    },
+    "soft_code": {
+      "mp3_128k": {
+        "clean_clipping_flags": 8,
+        "clipping_flags": 8,
+        "detect_runtime_seconds_mean": 0.0063152850644352535,
+        "embed_runtime_seconds_mean": 0.031949163984002854,
+        "exact_trial_recovery": {
+          "rate": 1.0,
+          "successes": 60,
+          "total": 60,
+          "wilson_95_ci": [
+            0.93982814785791,
+            0.9999999999999998
+          ]
+        },
+        "introduced_clipping_flags": 0,
+        "logical_ber_mean": 0.0,
+        "mp3_fidelity_snr_db_mean": 25.975704145783702,
+        "peak_rss_mb_max": 5032.11328125,
+        "physical_ber_mean": 0.06458333333333334,
+        "presence_acceptance": {
+          "rate": 0.9833333333333333,
+          "successes": 59,
+          "total": 60,
+          "wilson_95_ci": [
+            0.9114487027240993,
+            0.9970518402052136
+          ]
+        },
+        "snr_db_mean": 57.657064921013934,
+        "source_all_two_messages_exact": {
+          "rate": 1.0,
+          "successes": 30,
+          "total": 30,
+          "wilson_95_ci": [
+            0.8864866068260312,
+            0.9999999999999999
+          ]
+        },
+        "source_any_message_exact": {
+          "rate": 1.0,
+          "successes": 30,
+          "total": 30,
+          "wilson_95_ci": [
+            0.8864866068260312,
+            0.9999999999999999
+          ]
+        },
+        "spectral_distortion_rms_db_mean": 0.029920296081113528,
+        "trial_count": 60,
+        "wrong_message_acceptance": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 60,
+          "wilson_95_ci": [
+            0.0,
+            0.06017185214208986
+          ]
+        }
+      },
+      "no_attack": {
+        "clean_clipping_flags": 8,
+        "clipping_flags": 8,
+        "detect_runtime_seconds_mean": 0.0062092533810452245,
+        "embed_runtime_seconds_mean": 0.031949163984002854,
+        "exact_trial_recovery": {
+          "rate": 1.0,
+          "successes": 60,
+          "total": 60,
+          "wilson_95_ci": [
+            0.93982814785791,
+            0.9999999999999998
+          ]
+        },
+        "introduced_clipping_flags": 0,
+        "logical_ber_mean": 0.0,
+        "mp3_fidelity_snr_db_mean": null,
+        "peak_rss_mb_max": 5032.11328125,
+        "physical_ber_mean": 0.0,
+        "presence_acceptance": {
+          "rate": 1.0,
+          "successes": 60,
+          "total": 60,
+          "wilson_95_ci": [
+            0.93982814785791,
+            0.9999999999999998
+          ]
+        },
+        "snr_db_mean": 57.657064921013934,
+        "source_all_two_messages_exact": {
+          "rate": 1.0,
+          "successes": 30,
+          "total": 30,
+          "wilson_95_ci": [
+            0.8864866068260312,
+            0.9999999999999999
+          ]
+        },
+        "source_any_message_exact": {
+          "rate": 1.0,
+          "successes": 30,
+          "total": 30,
+          "wilson_95_ci": [
+            0.8864866068260312,
+            0.9999999999999999
+          ]
+        },
+        "spectral_distortion_rms_db_mean": 0.029920296081113528,
+        "trial_count": 60,
+        "wrong_message_acceptance": {
+          "rate": 0.0,
+          "successes": 0,
+          "total": 60,
+          "wilson_95_ci": [
+            0.0,
+            0.06017185214208986
+          ]
+        }
+      }
+    }
+  },
+  "protocol": {
+    "formal_split": "test",
+    "messages_per_source": 2,
+    "methods": [
+      "repeat4",
+      "hard_code",
+      "soft_code"
+    ],
+    "source_count": 30,
+    "thresholds_not_refit": true
+  },
+  "source_level_mcnemar": {
+    "hard_vs_repeat4": {
+      "exact_two_sided_p": 0.0078125,
+      "left_failure_right_success": 0,
+      "left_success_right_failure": 8,
+      "paired_units": 30
+    },
+    "soft_vs_repeat4": {
+      "exact_two_sided_p": 0.001953125,
+      "left_failure_right_success": 0,
+      "left_success_right_failure": 10,
+      "paired_units": 30
+    }
+  }
+}

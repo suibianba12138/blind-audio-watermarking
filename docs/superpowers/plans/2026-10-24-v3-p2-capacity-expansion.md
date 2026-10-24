@@ -96,12 +96,12 @@
 **Files:**
 - Modify: `task_plan.md`, `findings.md`, `progress.md`
 
-- [ ] **Step 1: Re-read this plan and verify each P2 requirement against generated artifacts.
-- [ ] **Step 2: Run `PYTHONPYCACHEPREFIX=/tmp/v3-p2-pyc PYTHONPATH=src:. python -m compileall src app scripts tests`.
-- [ ] **Step 3: Run `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:. pytest -q -p no:cacheprovider`.
-- [ ] **Step 4: Run `git diff --check`, frozen-core diff checks, and `git status --short --branch`.
-- [ ] **Step 5: Commit locally with `research: evaluate V3-P2 capacity expansion`; do not push or merge.
-- [ ] **Step 6: Rerun status and report exact HEAD, commit, metrics, limitations, and `INDEPENDENT_VALIDATION_READINESS`.
+- [x] **Step 1: Re-read this plan and verify each P2 requirement against generated artifacts.**
+- [x] **Step 2: Run `PYTHONPYCACHEPREFIX=/tmp/v3-p2-pyc PYTHONPATH=src:. python -m compileall src app scripts tests`.**
+- [x] **Step 3: Run `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:. pytest -q -p no:cacheprovider`.**
+- [x] **Step 4: Run `git diff --check`, frozen-core diff checks, and `git status --short --branch`.**
+- [x] **Step 5: Commit locally with `research: evaluate V3-P2 capacity expansion`; do not push or merge.**
+- [x] **Step 6: Rerun status and report exact HEAD, commit, metrics, limitations, and `INDEPENDENT_VALIDATION_READINESS`.**
 
 ## Errors Encountered
 

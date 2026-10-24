@@ -8,12 +8,12 @@
 
 A digital signal processing course project that embeds a limited identity into audio and recovers it **without the original recording**, including real MP3 compression.
 
-[**🌐 Project Site (source)**](docs/index.html) · [**🎛️ Run Demo**](#-quick-start) · [**📐 Method**](docs/METHOD.md) · [**📊 Results**](docs/RESULTS.md)
+[**🌐 Project Website**](https://suibianba12138.github.io/blind-audio-watermarking/) · [**🎛️ Online Demo**](https://blind-audio-watermarking-demo.onrender.com/) · [**📐 Method**](docs/METHOD.md) · [**📊 Results**](docs/RESULTS.md)
 
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-2B8C8A)
 ![MP3](https://img.shields.io/badge/Recorded_MP3_Identity-46%2F48-188A69)
-![Demo](https://img.shields.io/badge/Hosted_Backend-Not_Live-D97706)
+![Demo](https://img.shields.io/badge/Hosted_Backend-Render_Free-7959DC)
 
 </div>
 
@@ -28,7 +28,7 @@ Upload a short audio file, choose one of **four preset identities**, embed a red
 | REAL_TOP32 spectral QIM | FFmpeg MP3 128 kbps | Independent blind decoding |
 | Four-label identity codebook | Actual audio processing | Identity or UNKNOWN |
 
-The interactive Python demo runs locally using Gradio. The [responsive project website](docs/index.html) offers an informational showcase and a **browser-local waveform/player preview** only. It **does not** pretend to embed or detect watermarks before a hosted Python service is deployed.
+The [responsive project website](https://suibianba12138.github.io/blind-audio-watermarking/) includes a browser-local waveform/player preview and an on-demand iframe linking to the [Render-hosted Gradio processor](https://blind-audio-watermarking-demo.onrender.com/). Gradio runs Python + FFmpeg server-side; the local waveform preview does not embed watermarks. **Owner reports the hosted UI loads; the live browser end-to-end flow has not been independently verified.** Render Free may need about a minute to wake up.
 
 ## ✨ Highlights
 
@@ -95,7 +95,7 @@ docs/                  Architecture, results, limits and site
 
 ## 🌐 Website & Deployment
 
-The site source is at [docs/index.html](docs/index.html) with styles and scripts in **docs/assets/**. It follows the information hierarchy of [RecallVision-Course](https://github.com/suibianba12138/RecallVision-Course), adapted to DSP audio. GitHub Pages can host the site after deployment is configured; it cannot run the Python processing service. The hosted backend will be integrated only when actually deployed and validated.
+The site source is at [docs/index.html](docs/index.html) with styles and scripts in **docs/assets/**. It follows the information hierarchy of [RecallVision-Course](https://github.com/suibianba12138/RecallVision-Course), adapted to DSP audio. GitHub Pages hosts the informational site; the [Render-hosted backend](https://blind-audio-watermarking-demo.onrender.com/) runs the real Python processing service. The embedded Gradio interface loads only after a visitor chooses to open it and has an external full-screen fallback. Live browser end-to-end acceptance remains pending.
 
 ## ⚠️ Scope & Limitations
 

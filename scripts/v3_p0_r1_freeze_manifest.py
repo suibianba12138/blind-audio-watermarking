@@ -132,6 +132,7 @@ def _record(
 def build_manifest(
     dataset_root: Path,
     historical_manifests: tuple[Path, ...],
+    manifest_version: str = "V3_P0_R1_REAL_AUDIO_V1",
 ) -> dict[str, object]:
     if not dataset_root.is_dir():
         raise FileNotFoundError(f"MUSAN root not found: {dataset_root}")
@@ -190,7 +191,7 @@ def build_manifest(
             )
         )
     return {
-        "manifest_version": "V3_P0_R1_REAL_AUDIO_V1",
+        "manifest_version": manifest_version,
         "status": "FROZEN",
         "dataset": "MUSAN",
         "dataset_id": "OpenSLR SLR17",
@@ -216,8 +217,13 @@ def main() -> None:
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--dataset-root", type=Path, required=True)
     parser.add_argument("--historical-manifest", type=Path, action="append", required=True)
+    parser.add_argument("--manifest-version", default="V3_P0_R1_REAL_AUDIO_V1")
     args = parser.parse_args()
-    manifest = build_manifest(args.dataset_root, tuple(args.historical_manifest))
+    manifest = build_manifest(
+        args.dataset_root,
+        tuple(args.historical_manifest),
+        manifest_version=args.manifest_version,
+    )
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(manifest, indent=2, sort_keys=True), encoding="utf-8")
     print(json.dumps({"status": manifest["status"], "records": len(manifest["records"]), "output": str(args.output)}, indent=2))

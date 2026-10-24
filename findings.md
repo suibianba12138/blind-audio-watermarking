@@ -34,3 +34,26 @@ This file records evidence as `CONFIRMED`, `INFERRED`, `UNAVAILABLE`, or `NOT_ES
 - `CONFIRMED`: candidate fidelity was not matched to B1: test embedding SNR was 46.299 dB versus 57.144 dB for B1; formal perceptual testing remains not established.
 - `BLOCKED`: WavMark CPU inference was not locally reproduced because the isolated environment has no torch, torchaudio, wavmark package, or local WavMark weight; no paper metric is reported as local evidence.
 - `NO_GO`: R1 does not support entry into V3-P1; the candidate is retained as research code only.
+
+## B1 Soft-Code Pilot Evidence
+
+- `CONFIRMED`: a second frozen manifest contains 60 source-disjoint records (20 per category,
+  10 dev/10 test); it has zero path/SHA overlap with the R1 manifest.
+- `CONFIRMED`: the additive soft detector returns continuous frozen-QIM margins and uses a
+  fixed deterministic `[32,8,8]` codebook; expected payload and clean audio are not detector inputs.
+- `CONFIRMED`: the corrected fixed pilot produced 2,880 rows with one clean and one clean-MP3
+  negative row per source/method/strength/condition, avoiding the earlier duplicate-negative bug.
+- `CONFIRMED`: on 30 source-disjoint test recordings with two paired messages, soft-code at
+  strength 1.60 achieved MP3 logical BER `0.004167`, exact recovery `59/60`, and two-message
+  source recovery `29/30`; the repeat-4 wrapper at the same strength achieved BER `0.029167`,
+  exact `48/60`, and `23/30` sources.
+- `CONFIRMED`: at soft-code strength 1.60, clean and clean-MP3 test FPR were both `0/30`,
+  positive MP3 wrong-message acceptance was `0/60`, and wrong-key MP3 acceptance was `2/60`
+  trials from one source.
+- `CONFIRMED`: at strength 1.60 the paired embedding SNR was `53.698 dB` for soft-code and
+  `53.692 dB` for repeat-4; this is a paired numerical fidelity check, not a perceptual study.
+- `BLOCKED`: WavMark CPU inference was not attempted because local Python 3.13.5 has no torch,
+  torchaudio, wavmark package, or local weight; no dependency or model was downloaded.
+- `CONDITIONAL_GO`: the finite pilot supports only a narrow, separately authorized V3-P1
+  review; it does not authorize production integration, broad parameter search, or a claim
+  about arbitrary 32-bit messages.

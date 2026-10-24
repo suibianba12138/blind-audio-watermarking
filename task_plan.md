@@ -35,6 +35,10 @@
 - [x] R1-D: calibrate and freeze a development-only blind presence threshold; evaluate test rejection.
 - [x] R1-E: audit WavMark CPU prerequisites; local inference remains blocked.
 - [x] R1-F: issue a fail-closed V3-P1 decision and preserve all tabular evidence.
+- [x] B1-SC-1: freeze a second source-disjoint 60-source pilot manifest.
+- [x] B1-SC-2: add tested continuous B1 soft-decoder and fixed [32,8,8] code.
+- [x] B1-SC-3: run finite strength/SNR curve and paired clean/MP3 evaluation.
+- [x] B1-SC-4: calibrate dev-only rejection, audit WavMark CPU feasibility, and decide stop/go.
 
 ## Planned Files
 
@@ -45,6 +49,10 @@
 - Create `docs/V3_P0_OPEN_SOURCE_AND_CHANNEL_AUDIT.md`.
 - Create `docs/V3_P0_BASELINE_COMPARISON.csv`.
 - Create `docs/V3_P0_RECOMMENDATION.md`.
+- Create `src/audio_watermark/b1_soft.py`, `scripts/v3_b1_soft_pilot.py`, and
+  `scripts/v3_b1_wavmark_audit.py` as additive pilot-only artifacts.
+- Create `configs/v3_b1_soft_pilot_manifest.json` and keep raw source audio outside the repository.
+- Create `experiments/v3_b1_soft_pilot/` results and `V3_B1_SOFT_CODE_PILOT.md`.
 - Keep generated audio, model caches, and large results under `/tmp` or ignored local directories.
 
 ## Exact Verification Commands
@@ -66,6 +74,14 @@ The final gate also requires explicit evidence for FFmpeg MP3, source-disjoint d
 - The B1 comparison is an 8-bit logical wrapper over frozen 32-bit physical positions.
 - The rejector uses only received audio and public/keyed configuration; the expected payload is used only after detection for scoring.
 - Any missing WavMark dependency or weight remains `BLOCKED`, not a synthetic PASS.
+
+## B1 Soft-Code Pilot Contract
+
+- The pilot is finite and local; it is not a new long-term V3 branch.
+- The fixed strength curve is `(0.96, 1.28, 1.60)` and is not expanded after seeing test results.
+- The new manifest excludes both audited Course V2 manifests and the full R1 manifest; R1 test sources are diagnostic only for this pilot.
+- The code is a deterministic evaluation-code `[32, 8, 8]` with 256 codewords; only the 8-bit logical payload is scored as the effective message.
+- Soft detection uses only received audio, frozen B1 config/selector, and the codebook. Expected payload is used only after detection for scoring.
 
 ## Errors Encountered
 

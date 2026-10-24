@@ -1,0 +1,24 @@
+{
+  "status": "BLOCKED",
+  "python": "3.13.5 | packaged by Anaconda, Inc. | (main, Jun 12 2025, 16:09:02) [GCC 11.2.0]",
+  "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+  "disk_free_bytes": 100989796352,
+  "disk_free_gib": 94.05,
+  "torch": "NOT_INSTALLED",
+  "torchaudio": "NOT_INSTALLED",
+  "wavmark": "NOT_INSTALLED",
+  "ffmpeg": "AVAILABLE",
+  "local_weight_status": "NOT_FOUND",
+  "download_performed": false,
+  "inference_performed": false,
+  "message_mode_target": "16-bit public WavMark mode",
+  "notes": [
+    "This is an environment feasibility audit only; no package or weight was downloaded.",
+    "No PyTorch dependency was added to the Render/Course demo environment.",
+    "Paper and upstream README claims are not local reproduction results."
+  ],
+  "official_references": [
+    "https://github.com/wavmark/wavmark",
+    "https://huggingface.co/M4869/WavMark"
+  ]
+}

@@ -107,7 +107,7 @@ URL。没有授权的容器或生产资源测试时，验收报告应记录：
 
 未来部署必须另行完成资源、隐私、浏览器、临时文件和多用户安全审查。
 
-## Task 7 最终本地核验（2026-10-25）
+## Task 7 初次本地核验（系统默认环境，2026-10-25）
 
 本节只记录最终核验，不改变冻结配置、算法源码或历史实验结果。
 
@@ -123,15 +123,15 @@ URL。没有授权的容器或生产资源测试时，验收报告应记录：
   均通过。最终复核峰值 RSS 约 `133.059 MB`。
 - 独立 CLI smoke：PASS。消息 `173` 经 MP3 编解码后由 blind detector 返回
   `IDENTIFIED`；单独上传 clean WAV 返回 `UNKNOWN`。
-- GUI/browser：BLOCKED。执行
+- GUI/browser：在系统默认环境中 BLOCKED。执行
   `GRADIO_ANALYTICS_ENABLED=False PYTHONPATH=src:scripts:. python gradio_v3_app.py`
   时因 `ModuleNotFoundError: No module named 'gradio'` 退出，因此没有声称 Blocks
   构造、localhost HTTP 或浏览器交互通过。未安装依赖；CLI fallback 保留可用。
 - `FORMAL_PERCEPTUAL_GATE = NOT_ESTABLISHED`；`RENDER_FEASIBILITY = LOCAL_PROXY_ONLY`。
 
-因此本地 API、MP3、盲检测、拒绝和 CLI 集成门禁通过，但 GUI/browser 门禁受环境
-依赖阻塞。最终状态为 `V3_P3_STATUS = PARTIAL`，`PUBLIC_INTEGRATION_READINESS =
-CONDITIONAL`，不得将本记录表述为已完成线上部署或正式感知质量验证。
+因此该次系统默认环境核验中，本地 API、MP3、盲检测、拒绝和 CLI 集成门禁通过，
+但 GUI/browser 门禁受环境依赖阻塞。后续隔离运行时复核见下节；本记录不得表述为
+已完成线上部署或正式感知质量验证。
 
 ## b99846d 后的 Gradio 隔离运行时复核
 

@@ -155,7 +155,7 @@ def _validate_upload_source(input_path: str | Path) -> Path:
     if not source.is_file():
         raise FileNotFoundError(f"audio file not found: {source}")
     if source.stat().st_size > MAX_INPUT_BYTES:
-        raise ValueError("audio file exceeds the 64 MiB public-demo limit")
+        raise ValueError("audio file exceeds the 16 MiB public-demo limit")
     return source
 
 

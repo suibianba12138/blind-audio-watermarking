@@ -146,12 +146,66 @@ def test_v3_mp3_callback_cleans_session_after_encoding_failure(
     assert not session.root.exists()
 
 
+def test_legacy_compress_rejects_client_supplied_absolute_paths(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    import app.gui as gui
+    from app.session_store import SessionStore
+
+    store = SessionStore(tmp_path / "legacy-store")
+    monkeypatch.setattr(gui, "_LEGACY_SESSION_STORE", store, raising=False)
+    outside = tmp_path / "outside.wav"
+    outside.write_bytes(b"must not be read")
+
+    def fail_if_decoded(_path: Path) -> object:
+        pytest.fail("legacy callback read a client-supplied absolute path")
+
+    monkeypatch.setattr(gui, "decode_audio_file", fail_if_decoded)
+    outputs = gui._compress_action(
+        json.dumps({"marked_path": str(outside), "session": str(tmp_path)})
+    )
+
+    assert outputs[:3] == (None, None, None)
+    assert "失败" in outputs[3]
+
+
+def test_legacy_compress_passes_session_root_to_mp3_encoder(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    import app.gui as gui
+    from app.session_store import SessionStore
+
+    store = SessionStore(tmp_path / "legacy-store")
+    session = store.create()
+    session.path("watermarked.wav").write_bytes(b"marked")
+    monkeypatch.setattr(gui, "_LEGACY_SESSION_STORE", store)
+    monkeypatch.setattr(gui, "decode_audio_file", lambda _path: object())
+
+    def fake_encode_decode(_marked, output_dir):
+        assert output_dir == session.root
+        mp3 = session.path("compressed_128k.mp3")
+        decoded = session.path("compressed_128k_decoded.wav")
+        mp3.write_bytes(b"mp3")
+        decoded.write_bytes(b"decoded")
+        return mp3, decoded, object()
+
+    monkeypatch.setattr(gui, "encode_decode_mp3", fake_encode_decode)
+    outputs = gui._compress_action(json.dumps({"session_id": session.root.name}))
+
+    assert outputs[0] == str(session.path("compressed_128k.mp3"))
+    assert outputs[1] == str(session.path("compressed_128k_decoded.wav"))
+    assert json.loads(outputs[2]) == {"session_id": session.root.name}
+
+
 def test_local_launcher_is_import_safe_and_uses_localhost(monkeypatch) -> None:
     import gradio_v3_app
 
     calls: dict[str, object] = {}
 
     class FakeDemo:
+        def queue(self, **kwargs):
+            calls["queue"] = kwargs
+
         def launch(self, **kwargs):
             calls.update(kwargs)
 
@@ -161,9 +215,21 @@ def test_local_launcher_is_import_safe_and_uses_localhost(monkeypatch) -> None:
     gradio_v3_app.main()
 
     assert calls == {
+        "queue": {"default_concurrency_limit": 1, "max_size": 4},
         "server_name": "127.0.0.1",
         "server_port": 8799,
         "share": False,
         "inbrowser": False,
+        "max_file_size": "16mb",
         "show_error": True,
     }
+
+
+def test_local_launcher_declares_upload_and_queue_limits() -> None:
+    import inspect
+    import gradio_v3_app
+
+    source = inspect.getsource(gradio_v3_app.main)
+    assert "default_concurrency_limit=1" in source
+    assert "max_size=4" in source
+    assert 'max_file_size="16mb"' in source

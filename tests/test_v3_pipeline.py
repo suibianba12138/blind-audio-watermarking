@@ -14,6 +14,10 @@ from scipy.io import wavfile
 from app.audio_io import MAX_INPUT_BYTES
 
 
+def test_public_upload_limit_is_16_mib() -> None:
+    assert MAX_INPUT_BYTES == 16 * 1024 * 1024
+
+
 def make_wav(path: Path, *, seconds: float = 6.0) -> Path:
     sample_rate = 48_000
     count = int(seconds * sample_rate)
@@ -144,7 +148,7 @@ def test_uploaded_detector_rejects_oversized_input_before_session_creation(
         pytest.fail("oversized input allocated a temporary detection session")
 
     monkeypatch.setattr(pipeline, "_new_session", session_must_not_be_created)
-    with pytest.raises(ValueError, match="64 MiB"):
+    with pytest.raises(ValueError, match="16 MiB"):
         pipeline.detect_uploaded_file(oversized)
 
 

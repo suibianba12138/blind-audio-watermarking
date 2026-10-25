@@ -111,3 +111,25 @@ This file records evidence as `CONFIRMED`, `INFERRED`, `UNAVAILABLE`, or `NOT_ES
 - `CONFIRMED`: Held-out development pilot results were 30 paired MP3 message trials from 15 unique source recordings per method. Soft8 raw/accepted-exact was 30/30 and 28/30, with 14/15 sources accepting both messages; 12-bit was 30/30 and 27/30, with 13/15 sources accepting both; 16-bit was 28/30 and 26/30, with 12/15 sources accepting both. Clean FPR, clean-MP3 FPR, wrong-key acceptance, and wrong-message acceptance were zero at the source level (0/15 each; 30 paired rows).
 - `CONDITIONAL_GO`: P2 supports only a new independent validation of the frozen 12-bit candidate. The 16-bit branch is stopped; no capacity tuning or independent-validation claim is authorized.
 - `CONFIRMED`: final compileall and full pytest passed after all P2 changes; frozen-core comparison and diff checks passed. Local commit `72a781d` contains the P2 design, code, tests, and raw/statistical artifacts; nothing was pushed.
+
+## V3-RC1 Initial Audit
+
+- `CONFIRMED`: actual branch is `feat/v3-8bit-integration` and actual HEAD is `abd3795c574d7ed28fefe4d36168f9a701537735`, matching the user-supplied short SHA `abd3795`.
+- `CONFIRMED`: the worktree was clean before RC1 work began; the prior P3 acceptance record is `docs/V3_P3_ACCEPTANCE_ZH.md`.
+- `CONSTRAINT`: this RC1 run is validation/documentation only; frozen V3 algorithm files and historical experiment artifacts must remain unchanged.
+- `CONFIRMED`: both entry points bind Gradio to `127.0.0.1` with `share=False`; V3 and Legacy are exposed through `gradio_v3_app.py` and `gradio_app.py`.
+- `CONFIRMED`: V3 GUI detector callback accepts only the independently uploaded received file; embed state/message are not callback inputs. The V3 transport separates MP3 bytes (`gr.File`) from decoded playback WAV.
+- `CONFIRMED`: session storage has per-session roots, traversal/symlink checks, TTL-based open rejection, and cleanup-on-success/failure paths. GUI TTL is 3600 seconds.
+- `BLOCKER`: repository has no Dockerfile, compose file, or Render blueprint in the current integration branch; Docker/Render acceptance cannot be claimed from source inspection alone.
+- `MISMATCH_REQUIRES_REVIEW`: code enforces a 64 MiB input limit while the RC1 acceptance request names a 16 MB upload limit. This is a deployment/security configuration discrepancy, not an algorithm issue.
+- `FIXED_RC1_SECURITY`: the public input gate is now `16 * 1024 * 1024` bytes; V3 upload/decode errors and regression tests use the 16 MiB wording. No frozen algorithm source was modified.
+- `CONFIRMED`: focused red/green TDD cycle passed for the new 16 MiB limit and pre-session rejection behavior.
+- `SECURITY_FIX`: Legacy GUI callbacks now store only an opaque `session_id`, resolve artifacts through `SessionStore`, enforce the same 3600-second TTL/path boundary, and clean the session on embedding or MP3 failure. A regression test caught the former client-supplied absolute-path read before the fix.
+- `CONFIRMED`: direct Legacy callback flow with real FFmpeg MP3 128 kbps succeeded for UESTC-003 at 6 s (1 block), 15 s (2 blocks), and 30 s (5 blocks); each detection returned UESTC-003 and the session was manually cleaned afterward.
+- `CONFIRMED`: Legacy no-watermark 6 s MP3 control returned `UNKNOWN / NO VALID WATERMARK` with distance 11 and threshold 8.
+- `CONFIRMED`: isolated Gradio 4.44.1 runtime served HTTP 200/config 200 on localhost; config reported `max_file_size=16777216`, queue enabled, and the client exercised V3/Legacy callbacks successfully after using the correct `FileData` representation.
+- `CONFIRMED`: Gradio client V3 flow preserved the MP3 output as `.mp3`; re-uploaded MP3 detection returned `DETECTED: 173`, clean input returned `UNKNOWN`, and Legacy mode switching/Uestc-003 detection returned the expected result.
+- `NOT_ESTABLISHED`: the in-app browser backend was unavailable (`agent.browsers.list() = []`), so no real browser click/upload/refresh/two-browser evidence exists. HTTP/client smoke is not browser acceptance.
+- `AUDIT_NOTE`: the isolated Gradio runtime emitted two playback conversion warnings for automatic int32-to-16-bit audio conversion. The V3 detector upload uses a separate `gr.File` MP3 transport, so this warning was not used as detection input; formal perceptual quality remains unestablished.
+- `CONFIRMED_LIMITED`: the existing public-staging Legacy Dockerfile built and ran locally. It is not a V3 container: it launches `app.hosted`, does not copy V3 integration files, and therefore cannot establish V3 Docker readiness.
+- `CONFIRMED`: final repository regression after all RC1 security/launcher changes is `110 passed, 1 skipped`; compileall and `git diff --check` pass.

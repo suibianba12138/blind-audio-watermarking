@@ -119,12 +119,12 @@ def test_session_ttl_requires_a_positive_integer(tmp_path: Path) -> None:
         SessionStore(tmp_path, ttl_seconds=True)
 
 
-def test_audio_file_over_64_mib_is_rejected_before_decode(tmp_path: Path) -> None:
+def test_audio_file_over_16_mib_is_rejected_before_decode(tmp_path: Path) -> None:
     oversized = tmp_path / "oversized.wav"
     with oversized.open("wb") as stream:
         stream.truncate(MAX_INPUT_BYTES + 1)
 
-    with pytest.raises(ValueError, match="64 MiB"):
+    with pytest.raises(ValueError, match="16 MiB"):
         decode_audio_file(oversized)
 
 
@@ -162,6 +162,6 @@ def test_unsupported_ffmpeg_input_has_readable_error_and_no_detector_result(
 
 
 def test_audio_io_limits_remain_frozen() -> None:
-    assert MAX_INPUT_BYTES == 64 * 1024 * 1024
+    assert MAX_INPUT_BYTES == 16 * 1024 * 1024
     assert MAX_DEMO_SECONDS == 30
     assert FFMPEG_TIMEOUT_SECONDS == 120

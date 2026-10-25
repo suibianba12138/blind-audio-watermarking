@@ -53,3 +53,16 @@
 - Added and tested deterministic 12/16-bit Boolean evaluation-code adapters, preserving exact equivalence with the frozen 8-bit codebook. Added development-only physical channel diagnostics and real MP3 paired rows; reran once to remove a zero-variance correlation warning without changing values.
 - Ran the finite capacity pilot with calibration-only candidate thresholds and protocol-identical reruns after adding physical/logical BER and source-level aggregation. Generated `V3_P2_CAPACITY_DESIGN.md`, `V3_P2_CAPACITY_PILOT.csv`, `V3_P2_CHANNEL_ERROR_ANALYSIS.md`, and `V3_P2_DECISION.md`; current bounded decision is `CONDITIONAL_GO_12BIT_ONLY`.
 - Created local commit `72a781d` (`research: evaluate V3-P2 capacity expansion`) after the final compileall, 47-test suite, diff check, and frozen-core check. No push or merge was performed.
+
+## 2026-10-25 — V3-RC1
+
+- Reconfirmed the integration branch, actual HEAD, and clean starting worktree.
+- Read the persistent planning and browser-control procedures; added an RC1-specific execution addendum without changing frozen algorithm scope.
+- Next: audit launch/deployment configuration, perform isolated runtime and browser availability checks, then write RC1 evidence reports.
+- Audited entry points, GUI callbacks, audio limits, and session store. Found and corrected the RC1 deployment/security mismatch from 64 MiB to 16 MiB with a red/green regression test; frozen algorithm files were not touched.
+- Docker client exists (`29.5.0`) but the daemon socket is inaccessible in this environment; the V3 branch also contains no Dockerfile/compose/Render blueprint. The public staging Dockerfile is Legacy-only and was retained as an audit reference.
+- Full regression passed: `106 passed, 1 skipped`; compileall and diff check passed after the security-layer change.
+- Added Legacy opaque-session hardening and TDD regressions. After correcting the path argument at the encoder boundary, real callback flows passed for UESTC-003 at 6/15/30 seconds and no-watermark returned UNKNOWN.
+- Added Gradio launcher queue/upload limits (`default_concurrency_limit=1`, `max_size=4`, `max_file_size=16mb`) with regression coverage. The pinned isolated runtime then passed HTTP/config and final V3/Legacy client smoke.
+- Browser connection was attempted using the required browser surface; no browser backend was available, so browser acceptance remains NOT_ESTABLISHED. Existing Legacy Docker built/ran as a limited reference; V3 Docker remains BLOCKED by missing descriptors.
+- Wrote the four RC1 reports. Final verification is `110 passed, 1 skipped`, compileall PASS, diff-check PASS; status remains CONDITIONAL because browser, V3 Docker, Render, and formal perceptual gates are not established.

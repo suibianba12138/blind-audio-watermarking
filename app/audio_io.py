@@ -21,7 +21,7 @@ from scipy.signal import resample_poly
 TARGET_SAMPLE_RATE = 48_000
 MIN_DEMO_SECONDS = 6
 MAX_DEMO_SECONDS = 30
-MAX_INPUT_BYTES = 64 * 1024 * 1024
+MAX_INPUT_BYTES = 16 * 1024 * 1024
 FFMPEG_TIMEOUT_SECONDS = 120
 
 
@@ -44,7 +44,7 @@ def _check_input(path: str | Path) -> Path:
     if not candidate.is_file():
         raise FileNotFoundError(f"audio file not found: {candidate}")
     if candidate.stat().st_size > MAX_INPUT_BYTES:
-        raise ValueError("audio file exceeds the 64 MiB public-demo limit")
+        raise ValueError("audio file exceeds the 16 MiB public-demo limit")
     return candidate
 
 

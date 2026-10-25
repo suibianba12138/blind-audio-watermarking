@@ -125,3 +125,32 @@ The final gate also requires explicit evidence for FFmpeg MP3, source-disjoint d
 | Heterogeneous B1/candidate CSV columns | R1 result write | Updated the additive CSV writer to use the union of row fields; experiment was rerun with the same protocol. |
 | `DetectionResult` field is `payload_bits`, not `payload` | First P1 evaluator run | Added a focused regression helper, changed only the evaluator field access, and reran the full P1 evaluation from a fresh output directory. |
 | No-attack rows store MP3 fidelity as `NOT_APPLICABLE` | First P1 analysis run | Analysis now excludes non-applicable values instead of coercing them; raw results were unchanged. |
+| Focused pytest initially could not import `app` and attempted to write `.pytest_cache` | RC1 TDD red test | Re-ran with the repository contract `PYTHONPATH=src:.` and `-p no:cacheprovider`; the new 16 MiB assertion then failed for the expected 64 MiB implementation reason. |
+| Docker client could not access `/var/run/docker.sock` | RC1 Docker audit | Kept the Docker build gate BLOCKED; audited the separate public-staging Legacy Dockerfile as a reference and did not claim V3 container evidence. |
+| Legacy session-store refactor initially passed `SessionHandle` where the MP3 helper requires a filesystem path | RC1 Legacy mode smoke | Added a focused regression asserting `session.root`; changed only the callback storage boundary, then reran 6/15/30-second flows successfully. |
+| Gradio could not bind the requested port 7863 | RC1 isolated GUI startup | Port 7863 was occupied; changed only the local test port to 7865 for the same localhost runtime. |
+| Gradio client could not connect from the restricted sandbox | RC1 client smoke | The server was reachable with escalated localhost HTTP; rerun the client smoke with the same isolated external permission, without changing application code. |
+| Gradio client passed a raw string to a FileData input | RC1 client smoke | Changed the client harness to use the pinned `gradio_client.handle_file()` representation; this was a test-harness input-shape issue, not an application callback failure. |
+| Independent reviewer could not be spawned | RC1 final review | Agent thread limit was already reached; performed the required local diff/frozen-file/test audit instead and recorded the limitation. |
+| Formatting-only EOF cleanup was blocked in the restricted worktree | RC1 final docs | Re-ran the exact four-file whitespace cleanup with the required local escalation; `git diff --check` then passed. |
+
+## V3-RC1 Addendum (2026-10-25)
+
+**Goal:** Validate the frozen V3-8bit integration for release-candidate readiness without changing the algorithm, frozen parameters, historical evidence, public site, Render, or remote Git state.
+
+### RC1 phases
+
+- [x] RC1-A: audit current branch, prior acceptance evidence, V3/Legacy launch paths, and clean state.
+- [ ] RC1-B: attempt real browser interaction; keep browser evidence fail-closed if no controllable browser is available. **PARTIAL: backend unavailable.**
+- [x] RC1-C: verify WAV/MP3 download, re-upload, decoded PCM, file hashes, and session isolation.
+- [ ] RC1-D: audit/build/run Docker locally where the daemon permits; record resource and Render limitations. **PARTIAL: Legacy reference only; V3 descriptor missing.**
+- [x] RC1-E: perform regression, input-limit, cleanup, and finite audio-quality screening checks. **Audio formal gate remains NOT_ESTABLISHED.**
+- [x] RC1-F: write RC1 acceptance, browser checklist, Docker report, deployment plan; commit locally only if all evidence is recorded.
+
+### RC1 constraints
+
+- No algorithm, QIM, Soft-Code, capacity, strength, threshold, selector, or fusion changes.
+- No push, fetch, merge, production deployment, or public-service mutation.
+- Browser PASS requires actual browser interaction; HTTP/client smoke is separate evidence.
+- Formal perceptual quality remains unestablished unless an actual documented listening session occurs.
+- Render readiness is not inferred from local Docker alone.

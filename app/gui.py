@@ -6,7 +6,6 @@ import json
 import os
 import subprocess
 import sys
-import tempfile
 from pathlib import Path
 
 from audio_watermark.course_v2 import embed_identity_multiblock
@@ -15,9 +14,12 @@ from .audio_io import decode_audio_file, prepare_for_demo, write_wav
 from .mp3_codec import encode_decode_mp3
 from .pipeline import _detect_in_subprocess
 from .public_config import BLOCK_SECONDS, REJECTION_THRESHOLD, build_embedding_config, load_public_selector
+from .session_store import SessionHandle, SessionStore
 
 
 IDENTITY_CHOICES = ["NO WATERMARK", "UESTC-001", "UESTC-002", "UESTC-003", "UESTC-004"]
+_LEGACY_SESSION_TTL_SECONDS = 3600
+_LEGACY_SESSION_STORE = SessionStore(ttl_seconds=_LEGACY_SESSION_TTL_SECONDS)
 
 
 def _duration_value(label: str) -> int:
@@ -47,14 +49,32 @@ def _format_detection(result: dict[str, object]) -> str:
     )
 
 
+def _legacy_state_payload(state: str | None) -> SessionHandle:
+    """Open a live Legacy session from opaque state only."""
+
+    if not state:
+        raise ValueError("请先完成嵌入。")
+    try:
+        payload = json.loads(state)
+    except (TypeError, json.JSONDecodeError) as error:
+        raise ValueError("Legacy 会话状态无效，请重新嵌入。") from error
+    if not isinstance(payload, dict) or not isinstance(payload.get("session_id"), str):
+        raise ValueError("Legacy 会话状态无效，请重新嵌入。")
+    try:
+        return _LEGACY_SESSION_STORE.open(payload["session_id"])
+    except (FileNotFoundError, RuntimeError, ValueError) as error:
+        raise ValueError("Legacy 会话已失效，请重新嵌入。") from error
+
+
 def _embed_action(input_path: str | None, identity: str, duration_label: str):
     if not input_path:
         return None, None, None, None, "请选择本地 WAV/音频文件。"
+    session: SessionHandle | None = None
     try:
         duration = _duration_value(duration_label)
-        session = Path(tempfile.mkdtemp(prefix="public_watermark_gui_"))
         source = prepare_for_demo(decode_audio_file(input_path), duration_seconds=duration)
-        original_path = write_wav(session / "original_prepared.wav", source)
+        session = _LEGACY_SESSION_STORE.create()
+        original_path = write_wav(session.path("original_prepared.wav"), source)
         if identity == "NO WATERMARK":
             marked = source.samples.copy()
             blocks = 0
@@ -68,38 +88,51 @@ def _embed_action(input_path: str | None, identity: str, duration_label: str):
             )
             marked = result.audio
             blocks = len(result.blocks)
-        marked_path = write_wav(session / "watermarked.wav", marked, source.sample_rate)
-        state = json.dumps({"marked_path": str(marked_path), "session": str(session)})
+        marked_path = write_wav(session.path("watermarked.wav"), marked, source.sample_rate)
+        state = json.dumps({"session_id": session.root.name}, ensure_ascii=False)
         info = (
             f"已生成 {identity}。准备时长 {source.samples.size / source.sample_rate:.1f} s；"
             f"实际嵌入时间块 {blocks}。检测器尚未读取 expected identity。"
         )
         return str(original_path), str(marked_path), state, None, info
     except Exception as error:
+        if session is not None:
+            session.cleanup()
         return None, None, None, None, f"嵌入失败：{error}"
 
 
 def _compress_action(state: str | None):
-    if not state:
-        return None, None, None, "请先完成嵌入。"
+    session: SessionHandle | None = None
     try:
-        payload = json.loads(state)
-        marked_path = Path(payload["marked_path"])
-        session = Path(payload["session"])
+        session = _legacy_state_payload(state)
+        marked_path = session.path("watermarked.wav")
+        if not marked_path.is_file():
+            raise FileNotFoundError("Legacy 嵌入产物已失效，请重新嵌入。")
         marked = decode_audio_file(marked_path)
-        mp3_path, decoded_path, _ = encode_decode_mp3(marked, session)
-        next_state = json.dumps({"received_path": str(decoded_path), "session": str(session)})
+        mp3_path, decoded_path, _ = encode_decode_mp3(marked, session.root)
+        expected_mp3 = session.path("compressed_128k.mp3")
+        expected_decoded = session.path("compressed_128k_decoded.wav")
+        if (
+            Path(mp3_path).resolve(strict=False) != expected_mp3
+            or Path(decoded_path).resolve(strict=False) != expected_decoded
+            or not expected_mp3.is_file()
+            or not expected_decoded.is_file()
+        ):
+            raise RuntimeError("Legacy MP3 产物路径未通过会话范围校验。")
+        next_state = json.dumps({"session_id": session.root.name}, ensure_ascii=False)
         return str(mp3_path), str(decoded_path), next_state, "已完成真实 FFmpeg MP3 128 kbps 编码并解码。"
     except Exception as error:
+        if session is not None:
+            session.cleanup()
         return None, None, None, f"MP3 失败：{error}"
 
 
 def _detect_action(state: str | None):
-    if not state:
-        return "UNKNOWN / NO VALID WATERMARK\n请先完成嵌入或 MP3 压缩。"
     try:
-        payload = json.loads(state)
-        received_path = Path(payload["received_path"])
+        session = _legacy_state_payload(state)
+        received_path = session.path("compressed_128k_decoded.wav")
+        if not received_path.is_file():
+            raise FileNotFoundError("Legacy MP3 产物已失效，请重新压缩。")
         result = _detect_in_subprocess(received_path)
         return _format_detection(result)
     except Exception as error:

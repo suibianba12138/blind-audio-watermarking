@@ -28,6 +28,9 @@
   behavior, guards, session cleanup, CLI fallback, and one local FFmpeg MP3
   round trip. It reports `RENDER_FEASIBILITY = LOCAL_PROXY_ONLY` unless an
   authorized container test exists.
+- Real FFmpeg is a hard acceptance prerequisite: unavailable FFmpeg produces
+  `status = BLOCKED`, never an overall PASS. The wrong-key gate passes only for
+  `UNKNOWN` with no decoded message, and the CLI fallback has a bounded timeout.
 - V3 `FORMAL_PERCEPTUAL_GATE = NOT_ESTABLISHED`; the listening pack is
   preliminary screening only. Do not claim imperceptibility or production
   deployment readiness from it.

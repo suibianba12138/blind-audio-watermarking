@@ -68,6 +68,13 @@ directory. Generated audio for the smoke is temporary. The listening command
 intentionally writes an explicit A/B pack to the requested path; keep that path
 outside Git and delete it when no longer needed.
 
+Real FFmpeg is a hard acceptance prerequisite: when it is unavailable, the
+report records `mp3_roundtrip = BLOCKED`, `status = BLOCKED`, and the blocker
+`FFMPEG_UNAVAILABLE`; it must never report overall PASS. The wrong-key gate is
+also strict: it passes only when the detector returns `UNKNOWN` with
+`message = None`. The CLI fallback has a bounded 120-second timeout, and
+unexpected acceptance exceptions are retained in the JSON report.
+
 The local GUI entry point is:
 
 ```bash

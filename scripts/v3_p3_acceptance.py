@@ -9,6 +9,7 @@ results, so an acceptance run cannot accidentally add media to the repository.
 from __future__ import annotations
 
 import argparse
+from contextlib import contextmanager
 import json
 import os
 import resource
@@ -27,6 +28,7 @@ from scipy.io import wavfile
 ROOT = Path(__file__).resolve().parents[1]
 REPORT_NAME = "v3_p3_acceptance.json"
 MESSAGES = (0, 1, 173, 255)
+CLI_TIMEOUT_SECONDS = 120
 
 
 def _peak_rss_mb() -> float | None:
@@ -79,23 +81,27 @@ def _run_cli(input_path: Path, output_dir: Path) -> tuple[bool, str]:
     environment["PYTHONPATH"] = os.pathsep.join(
         (str(ROOT / "src"), str(ROOT))
     )
-    completed = subprocess.run(
-        [
-            sys.executable,
-            "scripts/v3_demo.py",
-            "--input",
-            str(input_path),
-            "--message",
-            "173",
-            "--output-dir",
-            str(output_dir),
-        ],
-        cwd=ROOT,
-        env=environment,
-        capture_output=True,
-        text=True,
-        check=False,
-    )
+    try:
+        completed = subprocess.run(
+            [
+                sys.executable,
+                "scripts/v3_demo.py",
+                "--input",
+                str(input_path),
+                "--message",
+                "173",
+                "--output-dir",
+                str(output_dir),
+            ],
+            cwd=ROOT,
+            env=environment,
+            capture_output=True,
+            text=True,
+            check=False,
+            timeout=CLI_TIMEOUT_SECONDS,
+        )
+    except subprocess.TimeoutExpired:
+        return False, f"CLI timed out after {CLI_TIMEOUT_SECONDS} seconds"
     if completed.returncode != 0:
         return False, (completed.stderr or completed.stdout).strip()[-500:]
     try:
@@ -113,7 +119,7 @@ def _run_cli(input_path: Path, output_dir: Path) -> tuple[bool, str]:
 def _wrong_key_probe(clean_audio: Any, message: int) -> dict[str, object]:
     """Embed with a deterministic alternate frame seed, then detect publicly."""
 
-    from app.audio_io import prepare_for_demo, write_wav
+    from app.audio_io import prepare_for_demo
     from app.public_config import build_embedding_config, load_public_selector
     from app.v3_api import _message_bits, detect_message, V3_STRENGTH
     from audio_watermark.b1 import embed_watermark_b1
@@ -132,10 +138,49 @@ def _wrong_key_probe(clean_audio: Any, message: int) -> dict[str, object]:
     return {
         "status": result.status,
         "message": result.message,
-        "accepted_as_expected_message": bool(
-            result.status == "IDENTIFIED" and result.message == message
-        ),
+        "passed": _wrong_key_result_passed(result.status, result.message),
     }
+
+
+def _wrong_key_result_passed(status: str, message: int | None) -> bool:
+    """Require a wrong-key input to be rejected without a decoded message."""
+
+    return status == "UNKNOWN" and message is None
+
+
+def _overall_status(report: dict[str, object]) -> str:
+    """Compute the gate status, treating missing FFmpeg as a hard block."""
+
+    required_pass = all(
+        report.get(key) == "PASS"
+        for key in (
+            "blind_detection",
+            "negative_unknown",
+            "wrong_key",
+            "invalid_input",
+            "size_duration_guards",
+            "session_cleanup",
+            "cli_fallback",
+        )
+    )
+    if not required_pass:
+        return "FAIL"
+    if not report.get("ffmpeg_available") or report.get("mp3_roundtrip") == "BLOCKED":
+        return "BLOCKED"
+    return "PASS" if report.get("mp3_roundtrip") == "PASS" else "FAIL"
+
+
+@contextmanager
+def _capture_unexpected_exception(report: dict[str, object]):
+    """Turn an unexpected check exception into a structured report entry."""
+
+    try:
+        yield
+    except Exception as error:  # Acceptance must report failures, not hide them.
+        report["unexpected_exception"] = {
+            "type": type(error).__name__,
+            "message": str(error),
+        }
 
 
 def _session_cleanup_probe(root: Path) -> bool:
@@ -168,9 +213,12 @@ def run_acceptance(output_dir: str | Path) -> dict[str, object]:
         "size_duration_guards": "FAIL",
         "session_cleanup": "FAIL",
         "cli_fallback": "FAIL",
-        "mp3_roundtrip": "NOT_AVAILABLE" if ffmpeg is None else "FAIL",
+        "mp3_roundtrip": "BLOCKED" if ffmpeg is None else "FAIL",
         "ffmpeg_available": bool(ffmpeg),
         "ffmpeg_path": ffmpeg,
+        "blockers": (
+            ["FFMPEG_UNAVAILABLE"] if ffmpeg is None else []
+        ),
         "render_feasibility": "LOCAL_PROXY_ONLY",
         "formal_perceptual_gate": "NOT_ESTABLISHED",
         "artifact_policy": "METADATA_ONLY; generated audio stays in TemporaryDirectory",
@@ -188,7 +236,9 @@ def run_acceptance(output_dir: str | Path) -> dict[str, object]:
         "message_results": [],
     }
 
-    with tempfile.TemporaryDirectory(prefix="v3_p3_acceptance_") as temporary:
+    with _capture_unexpected_exception(report), tempfile.TemporaryDirectory(
+        prefix="v3_p3_acceptance_"
+    ) as temporary:
         work = Path(temporary)
         clean_path = _make_fixture(work / "clean.wav")
         from app.audio_io import AudioData, MAX_INPUT_BYTES, decode_audio_file
@@ -229,9 +279,7 @@ def run_acceptance(output_dir: str | Path) -> dict[str, object]:
 
         wrong_key = _wrong_key_probe(clean_audio, 173)
         report["wrong_key_result"] = wrong_key
-        report["wrong_key"] = (
-            "PASS" if not wrong_key["accepted_as_expected_message"] else "FAIL"
-        )
+        report["wrong_key"] = "PASS" if wrong_key["passed"] else "FAIL"
 
         invalid_path = work / "invalid.wav"
         invalid_path.write_bytes(b"not an audio file")
@@ -302,26 +350,17 @@ def run_acceptance(output_dir: str | Path) -> dict[str, object]:
     elapsed = time.perf_counter() - started
     report["elapsed_seconds"] = round(elapsed, 6)
     report["peak_rss_mb"] = _peak_rss_mb()
-    required_pass = all(
-        report[key] == "PASS"
-        for key in (
-            "blind_detection",
-            "negative_unknown",
-            "wrong_key",
-            "invalid_input",
-            "size_duration_guards",
-            "session_cleanup",
-            "cli_fallback",
-        )
+    report["status"] = (
+        "FAIL"
+        if "unexpected_exception" in report
+        else _overall_status(report)
     )
-    mp3_acceptable = report["mp3_roundtrip"] in ("PASS", "NOT_AVAILABLE")
-    report["status"] = "PASS" if required_pass and mp3_acceptable else "FAIL"
     report_path = destination / REPORT_NAME
+    report["report_path"] = str(report_path)
     report_path.write_text(
         json.dumps(_jsonable(report), indent=2, sort_keys=True) + "\n",
         encoding="utf-8",
     )
-    report["report_path"] = str(report_path)
     return report
 
 

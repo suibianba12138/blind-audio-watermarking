@@ -56,6 +56,12 @@ PYTHONPATH=src:scripts:. python gradio_v3_app.py
 试听包会把原始准备 WAV、水印 WAV、MP3、MP3 解码 WAV 和中文清单写入显式
 指定目录，必须保持在 Git 仓库之外。
 
+真实 FFmpeg 是验收的硬性前提：如果 FFmpeg 不可用，报告必须记录
+`mp3_roundtrip = BLOCKED`、整体 `status = BLOCKED` 和阻塞项
+`FFMPEG_UNAVAILABLE`，不能返回整体 PASS。错误 key 的 gate 也采用严格规则：
+只有检测结果为 `UNKNOWN` 且 `message = None` 时才算通过。CLI 备用流程有 120 秒
+超时；未预期的验收异常会写入结构化 JSON 报告。
+
 ## GUI 模式边界
 
 集成 GUI 明确区分两种模式：

@@ -1,15 +1,20 @@
-"""Container entry point for the unmodified Gradio demo.
+"""Safe Render entrypoint: preserve Legacy unless V3 is explicitly enabled.
 
-Hosting provider supplies public HTTPS termination; this process listens only
-on the internal container port. Do not turn on Gradio's public share links.
+Setting V3_DEMO_ENABLED=1 switches to the combined V3 + Legacy Gradio UI.
+All other values preserve the original Course V2 deployment.
 """
 from __future__ import annotations
+
 import os
-from app.gui import build_demo
 
 def main() -> None:
     os.environ.setdefault("GRADIO_ANALYTICS_ENABLED", "False")
-    demo = build_demo()
+    if os.environ.get("V3_DEMO_ENABLED", "0") == "1":
+        from app.integration_gui import build_integration_demo
+        demo = build_integration_demo()
+    else:
+        from app.gui import build_demo
+        demo = build_demo()
     demo.queue(default_concurrency_limit=1, max_size=4)
     demo.launch(
         server_name=os.environ.get("GRADIO_SERVER_NAME", "0.0.0.0"),

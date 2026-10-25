@@ -30,7 +30,11 @@ def detect_file(input_path: str | Path, map_path: str | Path | None = None) -> d
 def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Blind V3 8-bit message detector")
     parser.add_argument("--input", required=True, help="received WAV/MP3 path")
-    parser.add_argument("--map", default=None, help="optional frozen public map path")
+    parser.add_argument(
+        "--map",
+        default=None,
+        help="optional frozen map path to validate only; detection uses the frozen selector",
+    )
     parser.add_argument("--json", action="store_true", help="emit one JSON object")
     return parser
 

@@ -1,6 +1,8 @@
 from __future__ import annotations
 
+import json
 import inspect
+from pathlib import Path
 
 import pytest
 
@@ -47,6 +49,91 @@ def test_v3_detection_formatter_has_no_correctness_input() -> None:
         "result",
         "elapsed_seconds",
     ]
+
+
+def test_v3_mp3_callback_returns_decoded_filepath_and_separate_state(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    import app.integration_gui as gui
+    from app.session_store import SessionStore
+
+    store = SessionStore(tmp_path / "gui-store")
+    session = store.create()
+    marked_path = session.path("watermarked.wav")
+    marked_path.write_bytes(b"marked")
+    decoded_path = session.path("compressed_128k_decoded.wav")
+    mp3_path = session.path("compressed_128k.mp3")
+
+    monkeypatch.setattr(gui, "_GUI_SESSION_STORE", store)
+    monkeypatch.setattr(gui, "decode_audio_file", lambda path: object())
+
+    def fake_encode_decode(marked, output_dir):
+        assert output_dir == session.root
+        mp3_path.write_bytes(b"mp3")
+        decoded_path.write_bytes(b"decoded")
+        return mp3_path, decoded_path, object()
+
+    monkeypatch.setattr(gui, "encode_decode_mp3", fake_encode_decode)
+    state = json.dumps({"session_id": session.root.name})
+
+    outputs = gui._compress_v3_action(state)
+
+    assert outputs[0] == str(mp3_path)
+    assert outputs[1] == str(decoded_path)
+    assert outputs[2] == str(decoded_path)
+    assert outputs[2] != outputs[3]
+    assert json.loads(outputs[3]) == {"session_id": session.root.name}
+
+
+def test_v3_gui_state_cannot_supply_arbitrary_paths(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    import app.integration_gui as gui
+    from app.session_store import SessionStore
+
+    store = SessionStore(tmp_path / "gui-store")
+    monkeypatch.setattr(gui, "_GUI_SESSION_STORE", store)
+    outside = tmp_path / "outside.wav"
+    outside.write_bytes(b"must not be read")
+
+    outputs = gui._compress_v3_action(
+        json.dumps(
+            {
+                "session_id": "../outside",
+                "marked_path": str(outside),
+                "output_dir": str(tmp_path),
+            }
+        )
+    )
+
+    assert outputs[:4] == (None, None, None, None)
+    assert "失败" in outputs[4]
+
+
+def test_v3_mp3_callback_cleans_session_after_encoding_failure(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    import app.integration_gui as gui
+    from app.session_store import SessionStore
+
+    store = SessionStore(tmp_path / "gui-store")
+    session = store.create()
+    session.path("watermarked.wav").write_bytes(b"marked")
+    monkeypatch.setattr(gui, "_GUI_SESSION_STORE", store)
+    monkeypatch.setattr(gui, "decode_audio_file", lambda path: object())
+
+    def fail_encode_decode(marked, output_dir):
+        raise RuntimeError("injected FFmpeg failure")
+
+    monkeypatch.setattr(gui, "encode_decode_mp3", fail_encode_decode)
+
+    outputs = gui._compress_v3_action(
+        json.dumps({"session_id": session.root.name})
+    )
+
+    assert outputs[:4] == (None, None, None, None)
+    assert "injected FFmpeg failure" in outputs[4]
+    assert not session.root.exists()
 
 
 def test_local_launcher_is_import_safe_and_uses_localhost(monkeypatch) -> None:

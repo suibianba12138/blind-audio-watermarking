@@ -115,6 +115,7 @@ class SessionStore:
     def create(self) -> SessionHandle:
         """Create a unique session root below this store."""
 
+        self.cleanup_expired()
         self.root.mkdir(parents=True, exist_ok=True)
         session_root = Path(
             tempfile.mkdtemp(prefix=_SESSION_PREFIX, dir=str(self.root))
@@ -124,6 +125,42 @@ class SessionStore:
             f"{created_at:.17g}\n", encoding="utf-8"
         )
         return SessionHandle(session_root, created_at, self.root)
+
+    def open(self, session_id: str, now: float | None = None) -> SessionHandle:
+        """Open one live session by its opaque direct-child identifier.
+
+        The identifier is deliberately not a path. It is resolved only below
+        this store, and expired or malformed sessions are rejected before a
+        caller can access an artifact.
+        """
+
+        if (
+            not isinstance(session_id, str)
+            or not session_id
+            or "\x00" in session_id
+            or Path(session_id).name != session_id
+            or session_id in {".", ".."}
+            or not session_id.startswith(_SESSION_PREFIX)
+        ):
+            raise ValueError("invalid session id")
+        timestamp = _validate_now(now)
+        candidate = self.root / session_id
+        resolved = _safe_session_root(candidate, self.root)
+        if not resolved.exists() or not resolved.is_dir():
+            raise FileNotFoundError("session not found")
+        marker = resolved / _CREATED_AT_FILE
+        if marker.is_symlink() or not marker.is_file():
+            raise FileNotFoundError("session metadata not found")
+        try:
+            created_at = float(marker.read_text(encoding="utf-8").strip())
+        except (OSError, ValueError) as error:
+            raise FileNotFoundError("session metadata is invalid") from error
+        if not math.isfinite(created_at):
+            raise FileNotFoundError("session metadata is invalid")
+        if timestamp - created_at >= self.ttl_seconds:
+            _remove_session_root(resolved, self.root)
+            raise FileNotFoundError("session expired")
+        return SessionHandle(resolved, created_at, self.root)
 
     def cleanup_expired(self, now: float | None = None) -> int:
         """Remove expired session children and return the number removed."""

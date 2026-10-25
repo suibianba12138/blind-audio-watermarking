@@ -9,8 +9,6 @@ from __future__ import annotations
 
 import json
 import math
-import shutil
-import tempfile
 import time
 from pathlib import Path
 from typing import Any
@@ -22,6 +20,7 @@ from .gui import (
     _embed_action as _legacy_embed_action,
 )
 from .mp3_codec import encode_decode_mp3
+from .session_store import SessionHandle, SessionStore
 from .v3_api import V3DetectionResult, embed_message
 from .v3_pipeline import detect_uploaded_file
 
@@ -30,6 +29,8 @@ V3_MODE = "V3 8-bit Soft-Code"
 LEGACY_MODE = "Legacy Course V2"
 V3_MESSAGE_MIN = 0
 V3_MESSAGE_MAX = 255
+_GUI_SESSION_TTL_SECONDS = 3600
+_GUI_SESSION_STORE = SessionStore(ttl_seconds=_GUI_SESSION_TTL_SECONDS)
 
 
 def _coerce_v3_message(value: object) -> int:
@@ -48,7 +49,7 @@ def _coerce_v3_message(value: object) -> int:
     return message
 
 
-def _state_payload(state: str | None) -> dict[str, str]:
+def _state_payload(state: str | None) -> SessionHandle:
     if not state:
         raise ValueError("请先完成 V3 水印嵌入。")
     try:
@@ -57,11 +58,13 @@ def _state_payload(state: str | None) -> dict[str, str]:
         raise ValueError("V3 会话状态无效，请重新嵌入。") from error
     if not isinstance(payload, dict):
         raise ValueError("V3 会话状态无效，请重新嵌入。")
-    marked_path = payload.get("marked_path")
-    output_dir = payload.get("output_dir")
-    if not isinstance(marked_path, str) or not isinstance(output_dir, str):
-        raise ValueError("V3 会话状态缺少音频路径，请重新嵌入。")
-    return {"marked_path": marked_path, "output_dir": output_dir}
+    session_id = payload.get("session_id")
+    if not isinstance(session_id, str):
+        raise ValueError("V3 会话状态缺少有效会话，请重新嵌入。")
+    try:
+        return _GUI_SESSION_STORE.open(session_id)
+    except (FileNotFoundError, RuntimeError, ValueError) as error:
+        raise ValueError("V3 会话已失效，请重新嵌入。") from error
 
 
 def _embed_v3_action(input_path: str | None, message: object):
@@ -69,15 +72,16 @@ def _embed_v3_action(input_path: str | None, message: object):
 
     if not input_path:
         return None, None, None, "请选择本地 WAV/音频文件。"
-    output_dir = Path(tempfile.mkdtemp(prefix="blind_audio_v3_gui_"))
+    session: SessionHandle | None = None
     try:
         value = _coerce_v3_message(message)
         source = prepare_for_demo(decode_audio_file(input_path), duration_seconds=6)
         embedded = embed_message(source, value)
-        original_path = write_wav(output_dir / "original_prepared.wav", source)
-        marked_path = write_wav(output_dir / "watermarked.wav", embedded.audio)
+        session = _GUI_SESSION_STORE.create()
+        original_path = write_wav(session.path("original_prepared.wav"), source)
+        marked_path = write_wav(session.path("watermarked.wav"), embedded.audio)
         state = json.dumps(
-            {"marked_path": str(marked_path), "output_dir": str(output_dir)},
+            {"session_id": session.root.name},
             ensure_ascii=False,
         )
         info = (
@@ -86,32 +90,43 @@ def _embed_v3_action(input_path: str | None, message: object):
         )
         return str(original_path), str(marked_path), state, info
     except Exception as error:
-        shutil.rmtree(output_dir, ignore_errors=True)
+        if session is not None:
+            session.cleanup()
         return None, None, None, f"V3 嵌入失败：{error}"
 
 
 def _compress_v3_action(state: str | None):
     """Run real FFmpeg MP3 128 kbps encoding for the current V3 artifact."""
 
+    session: SessionHandle | None = None
     try:
-        payload = _state_payload(state)
-        marked_path = Path(payload["marked_path"])
-        output_dir = Path(payload["output_dir"])
-        if not marked_path.is_file() or not output_dir.is_dir():
+        session = _state_payload(state)
+        marked_path = session.path("watermarked.wav")
+        if not marked_path.is_file():
             raise FileNotFoundError("V3 嵌入产物已失效，请重新嵌入。")
         marked = decode_audio_file(marked_path)
-        mp3_path, decoded_path, _ = encode_decode_mp3(marked, output_dir)
-        next_state = json.dumps(
-            {"received_path": str(decoded_path)}, ensure_ascii=False
-        )
+        mp3_path, decoded_path, _ = encode_decode_mp3(marked, session.root)
+        expected_mp3 = session.path("compressed_128k.mp3")
+        expected_decoded = session.path("compressed_128k_decoded.wav")
+        if (
+            Path(mp3_path).resolve(strict=False) != expected_mp3
+            or Path(decoded_path).resolve(strict=False) != expected_decoded
+            or not expected_mp3.is_file()
+            or not expected_decoded.is_file()
+        ):
+            raise RuntimeError("V3 MP3 产物路径未通过会话范围校验。")
+        next_state = json.dumps({"session_id": session.root.name}, ensure_ascii=False)
         return (
-            str(mp3_path),
-            str(decoded_path),
+            str(expected_mp3),
+            str(expected_decoded),
+            str(expected_decoded),
             next_state,
             "已完成真实 FFmpeg MP3 128 kbps 编码并解码。可直接检测，或重新上传其他接收音频。",
         )
     except Exception as error:
-        return None, None, None, f"V3 MP3 失败：{error}"
+        if session is not None:
+            session.cleanup()
+        return None, None, None, None, f"V3 MP3 失败：{error}"
 
 
 def _format_v3_detection(result: V3DetectionResult, elapsed_seconds: float) -> str:
@@ -220,6 +235,7 @@ def build_integration_demo() -> Any:
                 v3_decoded_audio = gr.Audio(
                     label="Decoded MP3 audio", type="filepath"
                 )
+            v3_received_state = gr.State()
 
             gr.Markdown(
                 "### Independent blind detection\n"
@@ -252,6 +268,7 @@ def build_integration_demo() -> Any:
                     v3_mp3_audio,
                     v3_decoded_audio,
                     v3_received_audio,
+                    v3_received_state,
                     v3_compress_info,
                 ],
             )

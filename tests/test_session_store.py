@@ -79,6 +79,35 @@ def test_non_expired_and_manual_cleanup_are_scoped(tmp_path: Path) -> None:
     sibling.cleanup()
 
 
+def test_session_store_opens_only_live_opaque_session_ids(tmp_path: Path) -> None:
+    from app.session_store import SessionStore
+
+    store = SessionStore(tmp_path, ttl_seconds=60)
+    handle = store.create()
+
+    reopened = store.open(handle.root.name)
+
+    assert reopened.root == handle.root
+    assert reopened.created_at == handle.created_at
+
+    with pytest.raises(ValueError):
+        store.open("../outside")
+    with pytest.raises(ValueError):
+        store.open(str(handle.root))
+
+
+def test_session_store_rejects_expired_session_ids(tmp_path: Path) -> None:
+    from app.session_store import SessionStore
+
+    store = SessionStore(tmp_path, ttl_seconds=1)
+    handle = store.create()
+
+    with pytest.raises(FileNotFoundError, match="expired"):
+        store.open(handle.root.name, now=handle.created_at + 2)
+
+    assert not handle.root.exists()
+
+
 def test_session_ttl_requires_a_positive_integer(tmp_path: Path) -> None:
     from app.session_store import SessionStore
 

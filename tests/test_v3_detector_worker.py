@@ -36,6 +36,7 @@ def test_worker_has_no_expected_message_option() -> None:
     assert "expected" not in completed.stdout.lower()
     assert "--input" in completed.stdout
     assert "--map" in completed.stdout
+    assert "validate only" in completed.stdout
 
 
 def test_worker_emits_one_unknown_json_object_for_clean_audio(tmp_path: Path) -> None:

@@ -1,0 +1,70 @@
+{
+  "base": "research/v3-p2-validation@2c6f53cddf7ba67ffcabe9f3f3744f6279a71cdc",
+  "branch_at_generation": "feat/v3-8bit-integration",
+  "detector_contract": {
+    "blind_inputs": [
+      "received_audio",
+      "public_config",
+      "pre_shared_selector_seed"
+    ],
+    "expected_payload_role": "post_detection_scoring_only",
+    "forbidden_inputs": [
+      "expected_payload",
+      "clean_audio",
+      "ground_truth",
+      "filename_labels"
+    ]
+  },
+  "head_at_generation": "a649554f5908344d43a38d141a6789267ac78682",
+  "historical_artifacts_unchanged": true,
+  "mp3": {
+    "bitrate": "128k",
+    "codec": "libmp3lame"
+  },
+  "parameter_selection_on_p2v": false,
+  "presence_threshold": 0.7855073980199624,
+  "protocol": {
+    "duration_seconds": 6,
+    "effective_payload_bits": 8,
+    "frames_per_bit": 4,
+    "hop_length": 2048,
+    "n_fft": 2048,
+    "physical_payload_bits": 32,
+    "sample_rate_hz": 48000,
+    "selector": "REAL_TOP32",
+    "watermark_seed": 7
+  },
+  "selector": {
+    "map_file": "real_top32_stability_map.json",
+    "map_sha256": "82c213813123239daaa86619e198b8e74f0880ac1c713518acedc0d6c109e3a9",
+    "rejection_threshold": 8,
+    "selected_group_ids_sha256": "99fa9b0a3b864401184746040353e6aacf2b7d56914d5a18a77886c3ab53199d",
+    "selector": "REAL_TOP32",
+    "selector_sha256": "99fa9b0a3b864401184746040353e6aacf2b7d56914d5a18a77886c3ab53199d",
+    "strength": 1.28,
+    "top_k": 32,
+    "watermark_seed": 7
+  },
+  "soft_codebook_sha256": "da3bc98971406a63c5f1f7539a04ac8c1139ef61b624326636c4389c3cfdfcc8",
+  "source_sha256": {
+    "V3_P2_V_DECISION.md": "cfe63771b41bbeb029d37945051b3728e7c8b177d2d9105d254c8ee94d12b77c",
+    "V3_P2_V_DETECTION_REPORT.md": "132f54afdac37acb8eaed2ac2eb06ede39fc2e2be6ce657f2713951d4a0c27dd",
+    "V3_P2_V_INDEPENDENT_VALIDATION.md": "16828fe84241b771ae6283d59cc133982912cc168c40318192e4bcc4a13ebbcc",
+    "V3_P2_V_PAIRED_RESULTS.csv": "37cde9b01a64f79c84cc410350da26630899026a5348f211570ffb76c94e2a1a",
+    "app/public_config.py": "7729ab5f8488fb7dbba23171bf250d9d1fa3c017ff5607c688e8022280470716",
+    "configs/real_top32_stability_map.json": "3a4bc6210c59799f6b92ca28888ba3383a8066e2e2eaa2a00ef5045bad06a72f",
+    "experiments/v3_p1/CONFIG_FREEZE.json": "7b3b852f01941995bfeb8292b1dbee5ec7966959d9deb39186265c1bfc63e75e",
+    "experiments/v3_p2/CONFIG_FREEZE.json": "8a4dc28a469e8d7226d699ecd7542330a120dfee2d97cb7164e5d49982c0d084",
+    "experiments/v3_p2_v/CONFIG_FREEZE.json": "3d255be802e57fb0ec90ec01f387c663ead24c1420041f508f4970aadfb57e82",
+    "src/audio_watermark/b1.py": "6697e2a74dc32fe96e7569dd7857d7c4f7431a66e6d0964ff305df3edb76cdba",
+    "src/audio_watermark/b1_soft.py": "80b4af7853e0f36e5e7b24cf827b8cd8903070e4ffcd87923f4a647b1cc6fc68",
+    "src/audio_watermark/b2_capacity.py": "3514d253f2e966e7112c8f2e5fafd56280d9cb7796c277b0195b6e3305bf5735",
+    "src/audio_watermark/detect.py": "814d664e67947cbac244d7870ee925608fa2b11d5d189f3457af631468dbb956",
+    "src/audio_watermark/embed.py": "688a451a689e1aef9545e88dfa2c77b3bb927589a71f5c5eab71a5e335583df1",
+    "src/audio_watermark/v3_p2.py": "c922107b8106a457e3595b8e6a4966fcf1839e054fcb3b98170dc56d31e0ea5a"
+  },
+  "stage": "V3_P3_V3_8BIT_CANDIDATE",
+  "strength": 1.6,
+  "threshold_provenance": "V3-P1 freeze record; not refit on P2-V",
+  "validation_basis": "V3-P2-V independent validation; no P3 parameter selection"
+}

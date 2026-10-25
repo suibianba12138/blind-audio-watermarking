@@ -1,0 +1,68 @@
+name: V3 hosting integration checks
+on:
+  pull_request:
+    paths:
+      - "app/**"
+      - "src/**"
+      - "configs/**"
+      - "Dockerfile"
+      - "requirements.txt"
+      - "pyproject.toml"
+      - "tests/**"
+      - ".github/workflows/v3-container-ci.yml"
+  push:
+    branches:
+      - feat/v3-safe-hosted-integration
+permissions:
+  contents: read
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install --no-cache-dir -r requirements.txt
+      - run: python -m pip install --no-cache-dir --no-deps -e .
+      - run: python -m pip install --no-cache-dir pytest
+      - run: PYTHONPATH=src:. pytest -q
+      - run: python -m compileall -q src app tests
+      - run: git diff --check
+  docker:
+    needs: unit
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build V3-capable image
+        run: docker build --tag blind-audio-v3:ci .
+      - name: Check container identity and FFmpeg
+        run: |
+          docker run --rm --entrypoint /bin/sh blind-audio-v3:ci -c 'id && ffmpeg -version | head -n 1'
+      - name: Start V3 in isolated container
+        run: |
+          docker run --rm -d --name blind-audio-v3-ci -p 127.0.0.1:8786:7860 \
+            -e V3_DEMO_ENABLED=1 -e PORT=7860 blind-audio-v3:ci
+          for i in $(seq 1 120); do
+            if curl -fsS http://127.0.0.1:8786/ -o /tmp/v3-page.html; then exit 0; fi
+            sleep 2
+          done
+          docker logs blind-audio-v3-ci
+          exit 1
+      - name: Gradio V3 HTTP integration check
+        run: |
+          python - <<'PY'
+          import json, urllib.request
+          cfg=json.load(urllib.request.urlopen('http://127.0.0.1:8786/config', timeout=30))
+          rendered=str(cfg)
+          assert 'V3 8-bit Soft-Code' in rendered, 'V3 mode not exposed'
+          assert 'Legacy Course V2' in rendered, 'Legacy mode not exposed'
+          print('V3+Legacy UI exposed in /config')
+          PY
+      - name: Container diagnostics
+        if: always()
+        run: |
+          docker logs blind-audio-v3-ci || true
+          docker rm -f blind-audio-v3-ci || true

@@ -132,3 +132,70 @@ URL。没有授权的容器或生产资源测试时，验收报告应记录：
 因此本地 API、MP3、盲检测、拒绝和 CLI 集成门禁通过，但 GUI/browser 门禁受环境
 依赖阻塞。最终状态为 `V3_P3_STATUS = PARTIAL`，`PUBLIC_INTEGRATION_READINESS =
 CONDITIONAL`，不得将本记录表述为已完成线上部署或正式感知质量验证。
+
+## b99846d 后的 Gradio 隔离运行时复核
+
+本节记录 transport 修复后的新鲜本地证据。它只更新验收文档，不改变冻结算法、
+Course V2、历史实验或公开部署配置。
+
+### 隔离环境
+
+- 环境目录：`/tmp/v3-p3-gradio-venv2`；Python `3.13.5`；不属于仓库，未提交。
+- `requirements.txt` 保持 pinned；实际环境版本：Gradio `4.44.1`、
+  `gradio_client = 1.3.0`、`audioop-lts = 0.2.2`。
+- 可复现的隔离安装命令：
+
+  ```bash
+  /home/nsk/anaconda3/bin/python -m venv /tmp/v3-p3-gradio-venv2
+  /tmp/v3-p3-gradio-venv2/bin/python -m pip install \
+    -r /home/nsk/blind-audio-watermarking-v3-p0/requirements.txt
+  ```
+
+  依赖仅安装在 `/tmp/v3-p3-gradio-venv2`；没有写入仓库，也没有修改系统级
+  Python 环境。
+
+### Server 与 Gradio-client
+
+- 本地服务启动：PASS；绑定 `127.0.0.1:7863`，`share=False`。
+- `GET /`：HTTP `200`。
+- `GET /config`：HTTP `200`；配置版本 `4.44.1`。
+- Gradio-client callback smoke：PASS，使用确定性的 harmonic fixture：
+  - V3 message `173` embed：PASS；
+  - 真实 FFmpeg MP3 `128 kbps`：PASS；
+  - received output：MP3 `File`；
+  - blind detect：`DETECTED: 173`；
+  - clean received WAV：`UNKNOWN`；
+  - V3 / Legacy toggle callbacks：均无异常返回。
+
+### Transport 修复说明
+
+第一次使用 `gr.Audio(type="filepath", format="wav")` 作为接收输入时，Gradio
+会通过 `audio_from_file/audio_to_file` 处理 FileData，并将 float32 WAV 量化为
+int16，导致 MP3 解码输出到盲检测器前丢失冻结 V3 信号。提交 `b99846d`
+只修复 GUI transport：
+
+- `v3_received_audio` 改为
+  `gr.File(file_types=["audio"], type="filepath")`，保留上传文件字节；
+- 压缩回调把 MP3 文件路径传给 received File；
+- decoded WAV 仍作为独立 playback 音频输出；
+- detector 仍只接收 received-file path，不接收 expected message、clean audio
+  或 embedding state。
+
+### 浏览器边界与最终状态
+
+当前 in-app browser backend 不可用：`browsers.list()` 返回空列表。因此没有
+浏览器级点击、上传和播放证据；浏览器状态记为
+`BROWSER_INTERACTION = NOT_ESTABLISHED / UNAVAILABLE`，不能写成 PASS。
+
+```ini
+GRADIO_SERVER = PASS
+GRADIO_CLIENT_SMOKE = PASS
+BROWSER_INTERACTION = NOT_ESTABLISHED / UNAVAILABLE
+V3_P3_STATUS = PARTIAL
+PUBLIC_INTEGRATION_READINESS = CONDITIONAL
+FORMAL_PERCEPTUAL_GATE = NOT_ESTABLISHED
+RENDER_FEASIBILITY = LOCAL_PROXY_ONLY
+```
+
+因此 server/client transport 和盲检测流程已有真实本地证据，但浏览器级验收及
+正式感知质量门禁仍未建立。

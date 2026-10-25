@@ -51,7 +51,17 @@ def test_v3_detection_formatter_has_no_correctness_input() -> None:
     ]
 
 
-def test_v3_mp3_callback_returns_decoded_filepath_and_separate_state(
+def test_v3_received_upload_component_preserves_file_bytes() -> None:
+    import app.integration_gui as gui
+
+    source = inspect.getsource(gui.build_integration_demo)
+
+    assert 'v3_received_audio = gr.File(' in source
+    assert 'file_types=["audio"]' in source
+    assert 'v3_received_audio = gr.Audio(' not in source
+
+
+def test_v3_mp3_callback_returns_mp3_received_filepath_and_separate_state(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
     import app.integration_gui as gui
@@ -80,8 +90,8 @@ def test_v3_mp3_callback_returns_decoded_filepath_and_separate_state(
 
     assert outputs[0] == str(mp3_path)
     assert outputs[1] == str(decoded_path)
-    assert outputs[2] == str(decoded_path)
-    assert outputs[2] != outputs[3]
+    assert outputs[2] == str(mp3_path)
+    assert outputs[2] != outputs[1]
     assert json.loads(outputs[3]) == {"session_id": session.root.name}
 
 

@@ -119,7 +119,7 @@ def _compress_v3_action(state: str | None):
         return (
             str(expected_mp3),
             str(expected_decoded),
-            str(expected_decoded),
+            str(expected_mp3),
             next_state,
             "已完成真实 FFmpeg MP3 128 kbps 编码并解码。可直接检测，或重新上传其他接收音频。",
         )
@@ -241,9 +241,9 @@ def build_integration_demo() -> Any:
                 "### Independent blind detection\n"
                 "重新上传任意接收音频；检测器不读取上方消息或嵌入状态。"
             )
-            v3_received_audio = gr.Audio(
+            v3_received_audio = gr.File(
                 label="Received audio for blind detection",
-                sources=["upload"],
+                file_types=["audio"],
                 type="filepath",
             )
             v3_detect_button = gr.Button("4. Blind detect V3", variant="primary")

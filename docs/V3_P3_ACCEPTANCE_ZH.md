@@ -199,3 +199,13 @@ RENDER_FEASIBILITY = LOCAL_PROXY_ONLY
 
 因此 server/client transport 和盲检测流程已有真实本地证据，但浏览器级验收及
 正式感知质量门禁仍未建立。
+
+## 最终交接核验（c5d7478）
+
+- 当前 HEAD：`c5d7478`；工作区 clean；未 push、未 merge。
+- `compileall`：PASS；全量回归：`106 passed, 1 skipped`。跳过项仅为默认环境中
+  的 Gradio 构造测试；隔离 Gradio client smoke 已单独通过。
+- `git diff --check`、冻结核心/历史实验审计、Git 跟踪媒体/模型扫描：均 PASS。
+- `V3_P3_STATUS = PARTIAL`；`PUBLIC_INTEGRATION_READINESS = CONDITIONAL`。
+- `CLI_FALLBACK = AVAILABLE`；`BROWSER_INTERACTION = NOT_ESTABLISHED / UNAVAILABLE`。
+- `FORMAL_PERCEPTUAL_GATE = NOT_ESTABLISHED`；`RENDER_FEASIBILITY = LOCAL_PROXY_ONLY`。

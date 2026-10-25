@@ -11,6 +11,8 @@ import numpy as np
 import pytest
 from scipy.io import wavfile
 
+from app.audio_io import MAX_INPUT_BYTES
+
 
 def make_wav(path: Path, *, seconds: float = 6.0) -> Path:
     sample_rate = 48_000
@@ -82,6 +84,86 @@ def test_v3_pipeline_rejects_unknown_codec_before_writing_outputs(tmp_path: Path
     with pytest.raises(ValueError, match="codec must be identity or mp3"):
         run_v3_demo(make_wav(tmp_path / "input.wav"), 173, codec="aac", output_dir=output_dir)
     assert not output_dir.exists()
+
+
+def test_v3_pipeline_rejects_existing_output_dir_without_overwrite(tmp_path: Path) -> None:
+    from app.v3_pipeline import run_v3_demo
+
+    output_dir = tmp_path / "existing-run"
+    output_dir.mkdir()
+    sentinel = output_dir / "watermarked.wav"
+    sentinel.write_bytes(b"preserve this file")
+
+    with pytest.raises(FileExistsError, match="must not already exist"):
+        run_v3_demo(make_wav(tmp_path / "input.wav"), 173, output_dir=output_dir)
+
+    assert sentinel.read_bytes() == b"preserve this file"
+
+
+def test_v3_pipeline_rejects_symlinked_output_dir(tmp_path: Path) -> None:
+    from app.v3_pipeline import run_v3_demo
+
+    target = tmp_path / "target"
+    target.mkdir()
+    output_dir = tmp_path / "linked-run"
+    output_dir.symlink_to(target, target_is_directory=True)
+
+    with pytest.raises(FileExistsError, match="must not already exist"):
+        run_v3_demo(make_wav(tmp_path / "input.wav"), 173, output_dir=output_dir)
+
+    assert list(target.iterdir()) == []
+
+
+def test_v3_pipeline_removes_new_partial_output_dir_on_failure(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    import app.v3_pipeline as pipeline
+
+    def fail_detection(_received_path: Path) -> object:
+        raise RuntimeError("injected detector failure")
+
+    monkeypatch.setattr(pipeline, "_detect_in_subprocess", fail_detection)
+    output_dir = tmp_path / "partial-run"
+
+    with pytest.raises(RuntimeError, match="injected detector failure"):
+        pipeline.run_v3_demo(make_wav(tmp_path / "input.wav"), 173, output_dir=output_dir)
+
+    assert not output_dir.exists()
+
+
+def test_uploaded_detector_rejects_oversized_input_before_session_creation(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    import app.v3_pipeline as pipeline
+
+    oversized = tmp_path / "oversized.wav"
+    with oversized.open("wb") as stream:
+        stream.truncate(MAX_INPUT_BYTES + 1)
+
+    def session_must_not_be_created() -> object:
+        pytest.fail("oversized input allocated a temporary detection session")
+
+    monkeypatch.setattr(pipeline, "_new_session", session_must_not_be_created)
+    with pytest.raises(ValueError, match="64 MiB"):
+        pipeline.detect_uploaded_file(oversized)
+
+
+def test_pipeline_rejects_unknown_detector_status() -> None:
+    from app.v3_pipeline import _result_from_payload
+
+    payload = {
+        "status": "NOT_A_VALID_STATUS",
+        "message": None,
+        "presence_score": 0.0,
+        "threshold": 0.7,
+        "margin": -0.7,
+        "duration_seconds": 6.0,
+        "sample_rate": 48_000,
+        "provenance": {},
+    }
+
+    with pytest.raises(RuntimeError, match="invalid detector status"):
+        _result_from_payload(payload)
 
 
 def test_cli_embed_emits_structured_json(tmp_path: Path) -> None:

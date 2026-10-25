@@ -12,10 +12,16 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Mapping
 
-from .audio_io import AudioData, decode_audio_file, prepare_for_demo, write_wav
+from .audio_io import (
+    MAX_INPUT_BYTES,
+    AudioData,
+    decode_audio_file,
+    prepare_for_demo,
+    write_wav,
+)
 from .mp3_codec import encode_decode_mp3
 from .session_store import SessionHandle, SessionStore
-from .v3_api import V3DetectionResult, embed_message
+from .v3_api import VALID_STATUSES, V3DetectionResult, embed_message
 
 
 _RELEASE_ROOT = Path(__file__).resolve().parents[1]
@@ -54,8 +60,11 @@ def _result_from_payload(payload: Mapping[str, object]) -> V3DetectionResult:
     missing = required.difference(payload)
     if missing:
         raise RuntimeError("blind detector response missing: " + ", ".join(sorted(missing)))
+    status = str(payload["status"])
+    if status not in VALID_STATUSES:
+        raise RuntimeError(f"invalid detector status: {status}")
     return V3DetectionResult(
-        status=str(payload["status"]),
+        status=status,
         message=None if payload["message"] is None else int(payload["message"]),
         presence_score=float(payload["presence_score"]),
         threshold=float(payload["threshold"]),
@@ -119,6 +128,37 @@ def _cleanup_session(
         temporary_root.cleanup()
 
 
+def _create_output_dir(output_dir: str | Path | None) -> Path:
+    """Create an exclusive artifact directory, refusing reuse or symlinks."""
+
+    if output_dir is None:
+        return Path(tempfile.mkdtemp(prefix="blind_audio_v3_demo_"))
+    destination = Path(output_dir)
+    if destination.is_symlink() or destination.exists():
+        raise FileExistsError(
+            f"output_dir must not already exist or be a symlink: {destination}"
+        )
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    destination.mkdir()
+    return destination
+
+
+def _assert_artifacts_absent(destination: Path, names: tuple[str, ...]) -> None:
+    for name in names:
+        path = destination / name
+        if path.exists() or path.is_symlink():
+            raise FileExistsError(f"output artifact already exists: {path}")
+
+
+def _validate_upload_source(input_path: str | Path) -> Path:
+    source = Path(input_path)
+    if not source.is_file():
+        raise FileNotFoundError(f"audio file not found: {source}")
+    if source.stat().st_size > MAX_INPUT_BYTES:
+        raise ValueError("audio file exceeds the 64 MiB public-demo limit")
+    return source
+
+
 def run_v3_demo(
     input_path: str | Path,
     message: int,
@@ -130,14 +170,16 @@ def run_v3_demo(
     if codec not in ("identity", "mp3"):
         raise ValueError("codec must be identity or mp3")
     temporary_root, session = _new_session()
-    created_destination = output_dir is None
-    destination = (
-        Path(output_dir)
-        if output_dir is not None
-        else Path(tempfile.mkdtemp(prefix="blind_audio_v3_demo_"))
-    )
+    destination: Path | None = None
     try:
-        destination.mkdir(parents=True, exist_ok=True)
+        destination = _create_output_dir(output_dir)
+        artifact_names = (
+            "original_prepared.wav",
+            "watermarked.wav",
+            "compressed_128k.mp3",
+            "compressed_128k_decoded.wav",
+        )
+        _assert_artifacts_absent(destination, artifact_names)
         decoded = decode_audio_file(input_path)
         prepared = prepare_for_demo(decoded, duration_seconds=6)
         embedded = embed_message(prepared, message)
@@ -169,7 +211,7 @@ def run_v3_demo(
             duration_seconds=embedded.duration_seconds,
         )
     except Exception:
-        if created_destination:
+        if destination is not None:
             shutil.rmtree(destination, ignore_errors=True)
         raise
     finally:
@@ -183,9 +225,9 @@ def detect_uploaded_file(input_path: str | Path) -> V3DetectionResult:
     It has no embedding state and is removed on both success and failure.
     """
 
+    source = _validate_upload_source(input_path)
     temporary_root, session = _new_session()
     try:
-        source = Path(input_path)
         staged = session.path("received" + source.suffix.lower())
         shutil.copyfile(source, staged)
         return _detect_in_subprocess(staged)

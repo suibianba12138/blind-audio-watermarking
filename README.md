@@ -18,6 +18,24 @@ public benchmark.
 - A small Gradio interface and a separate blind detector process.
 - Generated test-signal smoke tests; no raw dataset audio is distributed.
 
+## V3 8-bit local integration candidate
+
+The repository also contains a separate, frozen V3 8-bit Soft-Code local
+integration candidate. It uses `strength=1.60`, `REAL_TOP32`, seed `7`, and a
+six-second block; the detector is blind and returns `IDENTIFIED` or `UNKNOWN`.
+It does not replace the Course V2 entry point or its historical results.
+
+```bash
+PYTHONPATH=src:scripts:. python examples/generate_test_audio.py --output /tmp/v3_demo_input.wav
+PYTHONPATH=src:scripts:. python scripts/v3_p3_acceptance.py --output-dir /tmp/v3_p3_acceptance
+PYTHONPATH=src:scripts:. python gradio_v3_app.py
+```
+
+The V3 integration is local-only and has not been deployed to Render. See
+[`docs/V3_P3_INTEGRATION.md`](docs/V3_P3_INTEGRATION.md) and the Chinese
+acceptance record [`docs/V3_P3_ACCEPTANCE_ZH.md`](docs/V3_P3_ACCEPTANCE_ZH.md)
+for the frozen contract, P2-V evidence boundary, and listening limitations.
+
 ## Quick start
 
 ```bash

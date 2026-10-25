@@ -20,3 +20,14 @@
   binary or assert a particular system build license.
 - The GUI is a localhost teaching prototype. It is not a hardened multi-user
   service and has no public upload deployment in this release.
+- The V3 8-bit integration candidate is a separate local path. Its formal
+  evidence is limited to the frozen six-second single-block protocol; the P2-V
+  values (8-bit 117/120 trials and 58/60 sources) are historical
+  independent-validation evidence, not a P3 smoke benchmark.
+- The P3 acceptance command checks deterministic messages, blind UNKNOWN
+  behavior, guards, session cleanup, CLI fallback, and one local FFmpeg MP3
+  round trip. It reports `RENDER_FEASIBILITY = LOCAL_PROXY_ONLY` unless an
+  authorized container test exists.
+- V3 `FORMAL_PERCEPTUAL_GATE = NOT_ESTABLISHED`; the listening pack is
+  preliminary screening only. Do not claim imperceptibility or production
+  deployment readiness from it.

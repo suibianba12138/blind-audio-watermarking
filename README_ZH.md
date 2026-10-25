@@ -14,6 +14,23 @@
 - 简洁 Gradio 界面和独立盲检测器进程。
 - 自生成测试信号 smoke test；不分发原始数据集音频。
 
+## V3 8-bit 本地集成候选
+
+仓库另外包含冻结的 V3 8-bit Soft-Code 本地集成候选：`strength=1.60`、
+`REAL_TOP32`、seed `7`、6 秒单块，检测器保持 blind 并返回 `IDENTIFIED` 或
+`UNKNOWN`。它不会替换 Course V2 入口，也不会改写 Course V2 历史结果。
+
+```bash
+PYTHONPATH=src:scripts:. python examples/generate_test_audio.py --output /tmp/v3_demo_input.wav
+PYTHONPATH=src:scripts:. python scripts/v3_p3_acceptance.py --output-dir /tmp/v3_p3_acceptance
+PYTHONPATH=src:scripts:. python gradio_v3_app.py
+```
+
+V3 集成目前只支持本地运行，没有部署到 Render。请阅读
+[`docs/V3_P3_INTEGRATION.md`](docs/V3_P3_INTEGRATION.md) 和中文验收记录
+[`docs/V3_P3_ACCEPTANCE_ZH.md`](docs/V3_P3_ACCEPTANCE_ZH.md)，了解冻结接口、
+P2-V 证据边界和试听限制。
+
 ## 快速开始
 
 ```bash

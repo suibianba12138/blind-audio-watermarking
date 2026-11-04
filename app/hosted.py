@@ -15,7 +15,7 @@ def main() -> None:
     else:
         from app.gui import build_demo
         demo = build_demo()
-    demo.queue(default_concurrency_limit=1, max_size=4)
+    demo.queue(default_concurrency_limit=1, max_size=4, api_open=False)
     demo.launch(
         server_name=os.environ.get("GRADIO_SERVER_NAME", "0.0.0.0"),
         server_port=int(os.environ.get("PORT", os.environ.get("GRADIO_SERVER_PORT", "7860"))),
@@ -23,6 +23,7 @@ def main() -> None:
         inbrowser=False,
         max_file_size="16mb",
         show_error=False,
+        blocked_paths=["/workspace", "/home", "/etc", "/root"],
     )
 
 if __name__ == "__main__":

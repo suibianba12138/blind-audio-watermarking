@@ -28,6 +28,10 @@ jobs:
       - run: python -m pip install --no-cache-dir --no-deps -e .
       - run: python -m pip install --no-cache-dir pytest
       - run: PYTHONPATH=src:. pytest -q
+      - name: Confirm runtime Gradio version and dependency integrity
+        run: |
+          python -m pip check
+          python -c "import gradio; assert gradio.__version__ == '6.31.0', gradio.__version__"
       - run: python -m compileall -q src app tests
       - run: git diff --check
   docker:

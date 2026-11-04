@@ -5,8 +5,9 @@ V3 runtime modules. It preserves the existing Course V2 entrypoint and website.
 
 ## Deployment switch
 
-- Default: `V3_DEMO_ENABLED=0` (or unset), unchanged Legacy UI.
-- Opt in after acceptance: `V3_DEMO_ENABLED=1`, combined V3 + Legacy UI.
+- Default on the next manually triggered deployment: `V3_DEMO_ENABLED=1`, combined V3 + Legacy UI.
+- Rollback flag: `V3_DEMO_ENABLED=0`, Legacy-only UI.
+- No automatic Render deploy: `autoDeployTrigger: off`.
 
 The existing `Dockerfile`, `render.yaml` and `docs/` website remain unchanged.
 No new PyTorch runtime or additional paid service is needed.

@@ -6,7 +6,7 @@ unchanged until merge; Render has `autoDeployTrigger: off`.
 * Public upload service: Gradio 6.31.0 with its own matching dependencies.
 * The Gradio queue has `api_open=False`, 1 default concurrent task, queue 4,
   max input 16 MiB and restricted paths for application code / system folders.
-* V3 remains opt-in via `V3_DEMO_ENABLED=1`; default is Legacy.
+* V3 + Legacy is the default on the NEXT manually approved deployment. Set `V3_DEMO_ENABLED=0` to revert to Legacy without changing the application commit. Render `autoDeployTrigger: off` remains unchanged.
 * V3 MP3 is carried as file bytes for independent blind detection.
 * GitHub Actions unit and container checks must pass on the upgraded runtime.
 * Do not place secrets in `render.yaml`, repository code, screenshots,

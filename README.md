@@ -6,20 +6,24 @@
 
 **Codec-Aware Blind Audio Watermarking with Error-Correcting Identity Codes**
 
-A digital signal processing course project that embeds a limited identity into audio and recovers it **without the original recording**, including real MP3 compression.
+A digital signal processing course project with two blind watermark modes: **V3 8-bit Soft-Code** (256 variable messages, six-second MP3 robustness) and **Legacy Course V2** (four preset identities).
 
 [**🌐 Project Website**](https://suibianba12138.github.io/blind-audio-watermarking/) · [**🎛️ Online Demo**](https://blind-audio-watermarking-demo.onrender.com/) · [**📐 Method**](docs/METHOD.md) · [**📊 Results**](docs/RESULTS.md)
 
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-2B8C8A)
-![MP3](https://img.shields.io/badge/Recorded_MP3_Identity-46%2F48-188A69)
+![V3 MP3](https://img.shields.io/badge/V3_8bit_MP3-117%2F120-188A69)
 ![Demo](https://img.shields.io/badge/Hosted_Backend-Render_Free-7959DC)
 
 </div>
 
 ---
 
-## 🎧 Demo — Embed → Compress → Detect
+## 🎧 Demo — V3 / Legacy · Embed → Compress → Detect
+
+**V3 Soft-Code:** enter an integer message from 0 to 255, embed into a six-second 48 kHz mono block, encode/decode real MP3 128 kbps and independently upload the received file for blind detection. Source-disjoint validation: **117/120 (97.5%) correct accepted**, with **1/60** MP3-clean false positives. These are recorded test results, not a live-site success guarantee.
+
+**Legacy Course V2 (below):** the historical four-label identity workflow is retained without changing its algorithm.
 
 Upload a short audio file, choose one of **four preset identities**, embed a redundant 32-bit codeword, apply real FFmpeg **MP3 128 kbps** compression and run a separate **blind detector**. The result is an identity or **UNKNOWN**.
 

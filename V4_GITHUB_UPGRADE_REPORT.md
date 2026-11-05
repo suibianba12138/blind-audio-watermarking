@@ -4,6 +4,8 @@
 **Remote writes:** none. No push, release, or remote ref update was performed.\
 **Local preparation:** `upgrade/v4-github-prep`, based on the fetched current `origin/main` at `1641cebc327a0e9efbf5ee1d1baec0baeb706555`.
 
+**V4 content commit:** `6ff723c9c0bc5b1f40aad2ca8507c8f8e77f59a7` (local only).
+
 ## 1. Existing repository and version history
 
 Remote URL: `https://github.com/suibianba12138/blind-audio-watermarking.git`. The repository is public; the live GitHub API identifies `main` as the default branch. A fresh fetch was performed into the V4 checkout's remote-tracking refs before preparing the local branch.

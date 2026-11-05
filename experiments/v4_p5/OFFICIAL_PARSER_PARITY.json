@@ -1,0 +1,62 @@
+{
+  "purpose": "Read-only parity check of isolated official-style parsing against SilentCipher decode_wav on frozen failure sources",
+  "official_source_and_weights_modified": false,
+  "checks": [
+    {
+      "source_id": "p1_music_03",
+      "condition": "clean",
+      "custom_candidate_hex": "123456789A",
+      "official_candidate_hex": "123456789A",
+      "custom_confidence": 0.8690476190476191,
+      "official_confidence": 0.8690476417541504,
+      "parser_candidate_match": true,
+      "confidence_match": true,
+      "official_status": true,
+      "custom_parse_error": null,
+      "network_forward_seconds": 5.675230076987646,
+      "decode_wav_seconds": 5.680815440995502
+    },
+    {
+      "source_id": "p1_music_03",
+      "condition": "mp3_128k",
+      "custom_candidate_hex": null,
+      "official_candidate_hex": null,
+      "custom_confidence": 0.7142857142857143,
+      "official_confidence": null,
+      "parser_candidate_match": true,
+      "confidence_match": null,
+      "official_status": false,
+      "custom_parse_error": "MISSING_TERMINATOR",
+      "network_forward_seconds": 5.630635509005515,
+      "decode_wav_seconds": 5.666450949996943
+    },
+    {
+      "source_id": "p3_speech_02",
+      "condition": "clean",
+      "custom_candidate_hex": null,
+      "official_candidate_hex": null,
+      "custom_confidence": 0.6587301587301587,
+      "official_confidence": null,
+      "parser_candidate_match": true,
+      "confidence_match": null,
+      "official_status": false,
+      "custom_parse_error": "MISSING_TERMINATOR",
+      "network_forward_seconds": 5.672797487990465,
+      "decode_wav_seconds": 5.671376586993574
+    },
+    {
+      "source_id": "p3_speech_02",
+      "condition": "mp3_128k",
+      "custom_candidate_hex": "D3916724E8",
+      "official_candidate_hex": "D3916724E8",
+      "custom_confidence": 0.6468253968253969,
+      "official_confidence": 0.64682537317276,
+      "parser_candidate_match": true,
+      "confidence_match": true,
+      "official_status": true,
+      "custom_parse_error": null,
+      "network_forward_seconds": 5.670793031997164,
+      "decode_wav_seconds": 5.634996161999879
+    }
+  ]
+}

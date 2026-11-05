@@ -1,0 +1,81 @@
+{
+  "44k_checkpoint_sha256": {
+    "dec_c.ckpt": "c23b57635172b2fbd3a8531d15ba76b5885a10d0fe902ccb823c521c56041b33",
+    "dec_m_0.ckpt": "829540c058270d29788f05294894d45bf436e44add0e1099422242ebb94b7088",
+    "enc_c.ckpt": "ff64f80d2391fdfc888e4103c499be4a2c958e59626587a1eab6db93204814c7"
+  },
+  "capacity_bits": 40,
+  "clean_decode": {
+    "confidences": [
+      0.9801587462425232
+    ],
+    "messages": [
+      [
+        83,
+        67,
+        86,
+        52,
+        7
+      ]
+    ],
+    "status": true
+  },
+  "clean_decode_s": 6.984619743001531,
+  "device": "cpu",
+  "duration_s": 12.0,
+  "encode_s": 3.8677983689995017,
+  "input_kind": "MUSAN classical music excerpt; source 16 kHz, resampled to 44.1 kHz",
+  "isolated_environment": "temporary Python 3.12 venv outside repository; exact local path omitted",
+  "local_archive_sha256": "cd2beaa9824102c4bae5fe9de7b737cda2682b109ab5f2375a72f3303172af78",
+  "measured_snr_db": 48.62329069281224,
+  "message_bytes": [
+    83,
+    67,
+    86,
+    52,
+    7
+  ],
+  "model_load_s_warm_cache": 0.040640986000653356,
+  "model_sample_rate_hz": 44100,
+  "mp3_128k_decode": {
+    "confidences": [
+      0.9841269850730896
+    ],
+    "messages": [
+      [
+        83,
+        67,
+        86,
+        52,
+        7
+      ]
+    ],
+    "status": true
+  },
+  "mp3_bytes": 193141,
+  "mp3_decode_s": 7.035850510997989,
+  "negative_decode_s": 6.942018424997514,
+  "official_release_asset": "Models.tar.gz",
+  "official_release_asset_bytes": 64389731,
+  "official_repository": "sony/silentcipher",
+  "official_source_commit": "c11afe0e2df73f1ac0f848e2903b8af36e6a0b10",
+  "peak_rss_kib": 1680200,
+  "phase_shift_decoding": false,
+  "process_profile": {
+    "system_cpu_s": 24.61,
+    "user_cpu_s": 69.39,
+    "whole_process_wall_s": 28.61
+  },
+  "python": "3.12.14",
+  "reported_sdr_db": 48.62329069281224,
+  "source_path_recorded": false,
+  "status": "RUNTIME_PASS_SINGLE_MUSIC_CLIP",
+  "torch": "2.14.0+cpu",
+  "torch_threads": 4,
+  "unwatermarked_negative": {
+    "confidences": [],
+    "error": "Could not find message",
+    "messages": [],
+    "status": false
+  }
+}

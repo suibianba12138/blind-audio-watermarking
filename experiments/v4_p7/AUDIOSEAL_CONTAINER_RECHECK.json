@@ -1,0 +1,28 @@
+{
+  "source_id": "music_03",
+  "audioseal_message": "A55A",
+  "records": [
+    {
+      "condition": "ADTS",
+      "sample_count": 192000,
+      "detection": {
+        "presence_score": 0.9621458053588867,
+        "accepted": true,
+        "candidate": "C512",
+        "exact": false,
+        "seconds": 0.27107874100329354
+      }
+    },
+    {
+      "condition": "M4A",
+      "sample_count": 192000,
+      "detection": {
+        "presence_score": 1.0,
+        "accepted": true,
+        "candidate": "A55A",
+        "exact": true,
+        "seconds": 0.1649249449983472
+      }
+    }
+  ]
+}

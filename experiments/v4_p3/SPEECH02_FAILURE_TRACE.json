@@ -1,0 +1,232 @@
+{
+  "presence_threshold": 0.6805555373430252,
+  "protocol_id": "V4-P3-FROZEN-1",
+  "purpose": "focused decoder trace; does not alter or tune model",
+  "records": [
+    {
+      "candidate": [],
+      "condition": "positive_clean",
+      "confidence": [],
+      "decoders": [
+        {
+          "candidate": null,
+          "confidence": 0.6587301587301587,
+          "decoder_index": 0,
+          "frame_count": 261,
+          "frame_symbol_histogram": {
+            "0": 21,
+            "1": 58,
+            "2": 67,
+            "3": 64,
+            "4": 51
+          },
+          "group_count": 12,
+          "modal_symbols": [
+            4,
+            2,
+            1,
+            4,
+            3,
+            2,
+            1,
+            2,
+            2,
+            3,
+            2,
+            4,
+            1,
+            3,
+            2,
+            1,
+            4,
+            3,
+            3,
+            1,
+            2
+          ],
+          "parse_error": "MISSING_TERMINATOR",
+          "stage": "TERMINATOR",
+          "terminator_index": null
+        }
+      ],
+      "expected_message_hex": "D3916B24E8",
+      "message_id": "M1",
+      "official_status": false,
+      "source_id": "speech_02",
+      "trace_status": "TRACE_OK"
+    },
+    {
+      "candidate": [
+        [
+          211,
+          145,
+          103,
+          36,
+          232
+        ]
+      ],
+      "condition": "positive_mp3_128k",
+      "confidence": [
+        0.64682537317276
+      ],
+      "decoders": [
+        {
+          "candidate": [
+            211,
+            145,
+            103,
+            36,
+            232
+          ],
+          "confidence": 0.6468253968253969,
+          "decoder_index": 0,
+          "frame_count": 261,
+          "frame_symbol_histogram": {
+            "0": 23,
+            "1": 57,
+            "2": 68,
+            "3": 69,
+            "4": 44
+          },
+          "group_count": 12,
+          "modal_symbols": [
+            4,
+            2,
+            1,
+            4,
+            3,
+            2,
+            1,
+            2,
+            2,
+            3,
+            2,
+            4,
+            1,
+            3,
+            2,
+            1,
+            4,
+            3,
+            3,
+            1,
+            0
+          ],
+          "parse_error": null,
+          "stage": "MESSAGE",
+          "terminator_index": 20
+        }
+      ],
+      "expected_message_hex": "D3916B24E8",
+      "message_id": "M1",
+      "official_status": true,
+      "source_id": "speech_02",
+      "trace_status": "TRACE_OK"
+    },
+    {
+      "candidate": [],
+      "condition": "positive_clean",
+      "confidence": [],
+      "decoders": [
+        {
+          "candidate": null,
+          "confidence": 0.6944444444444444,
+          "decoder_index": 0,
+          "frame_count": 261,
+          "frame_symbol_histogram": {
+            "0": 12,
+            "1": 45,
+            "2": 76,
+            "3": 68,
+            "4": 60
+          },
+          "group_count": 12,
+          "modal_symbols": [
+            1,
+            3,
+            4,
+            1,
+            2,
+            3,
+            4,
+            3,
+            3,
+            2,
+            2,
+            1,
+            4,
+            2,
+            3,
+            4,
+            1,
+            2,
+            2,
+            4,
+            3
+          ],
+          "parse_error": "MISSING_TERMINATOR",
+          "stage": "TERMINATOR",
+          "terminator_index": null
+        }
+      ],
+      "expected_message_hex": "2C6E94DB17",
+      "message_id": "M2",
+      "official_status": false,
+      "source_id": "speech_02",
+      "trace_status": "TRACE_OK"
+    },
+    {
+      "candidate": [],
+      "condition": "positive_mp3_128k",
+      "confidence": [],
+      "decoders": [
+        {
+          "candidate": null,
+          "confidence": 0.6706349206349206,
+          "decoder_index": 0,
+          "frame_count": 261,
+          "frame_symbol_histogram": {
+            "0": 13,
+            "1": 44,
+            "2": 78,
+            "3": 69,
+            "4": 57
+          },
+          "group_count": 12,
+          "modal_symbols": [
+            1,
+            3,
+            4,
+            1,
+            2,
+            3,
+            4,
+            3,
+            3,
+            2,
+            2,
+            1,
+            4,
+            2,
+            3,
+            4,
+            1,
+            2,
+            2,
+            4,
+            2
+          ],
+          "parse_error": "MISSING_TERMINATOR",
+          "stage": "TERMINATOR",
+          "terminator_index": null
+        }
+      ],
+      "expected_message_hex": "2C6E94DB17",
+      "message_id": "M2",
+      "official_status": false,
+      "source_id": "speech_02",
+      "trace_status": "TRACE_OK"
+    }
+  ],
+  "status": "RUNTIME_COMPLETE"
+}

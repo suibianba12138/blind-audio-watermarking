@@ -1,0 +1,104 @@
+{
+  "records": [
+    {
+      "category": "environment",
+      "historical_use_status": "NOT_LISTED_IN_AUDITED_COURSE_V2_MANIFESTS",
+      "record_id": "r1-environment-dev-0254-noise-free-sound-0121",
+      "relative_path": "noise/free-sound/noise-free-sound-0121.wav",
+      "role": "v4_p0_development_only",
+      "source_group_id": "MUSAN:FREESOUND:noise-free-sound-0121",
+      "source_license_detail": "Public Domain per MUSAN FreeSound LICENSE",
+      "source_sha256_local": "7311ae6a69bced04e53a8f07201a9951e2c5e56b026afc3d38ef69c4d8d2b7e5",
+      "source_sha256_manifest": "7311ae6a69bced04e53a8f07201a9951e2c5e56b026afc3d38ef69c4d8d2b7e5"
+    },
+    {
+      "category": "environment",
+      "historical_use_status": "NOT_LISTED_IN_AUDITED_COURSE_V2_MANIFESTS",
+      "record_id": "r1-environment-dev-0254-noise-free-sound-0122",
+      "relative_path": "noise/free-sound/noise-free-sound-0122.wav",
+      "role": "v4_p0_development_only",
+      "source_group_id": "MUSAN:FREESOUND:noise-free-sound-0122",
+      "source_license_detail": "Public Domain per MUSAN FreeSound LICENSE",
+      "source_sha256_local": "3d9fbaa509606eac1c7d7642d65c70b182d438854c8f26686f7822fe8c22653e",
+      "source_sha256_manifest": "3d9fbaa509606eac1c7d7642d65c70b182d438854c8f26686f7822fe8c22653e"
+    },
+    {
+      "category": "environment",
+      "historical_use_status": "NOT_LISTED_IN_AUDITED_COURSE_V2_MANIFESTS",
+      "record_id": "r1-environment-dev-0254-noise-free-sound-0123",
+      "relative_path": "noise/free-sound/noise-free-sound-0123.wav",
+      "role": "v4_p0_development_only",
+      "source_group_id": "MUSAN:FREESOUND:noise-free-sound-0123",
+      "source_license_detail": "Public Domain per MUSAN FreeSound LICENSE",
+      "source_sha256_local": "a546aa244126c649a64c02158e0ff6e13fe13220900e57d97b21faaf7c15b3d6",
+      "source_sha256_manifest": "a546aa244126c649a64c02158e0ff6e13fe13220900e57d97b21faaf7c15b3d6"
+    },
+    {
+      "category": "music",
+      "historical_use_status": "NOT_LISTED_IN_AUDITED_COURSE_V2_MANIFESTS",
+      "record_id": "r1-music-dev-0254-music-fma-0031",
+      "relative_path": "music/fma/music-fma-0031.wav",
+      "role": "v4_p0_development_only",
+      "source_group_id": "MUSAN:FMA_LICENSE_GROUP_12",
+      "source_license_detail": "Emotion Music by Fabian Measures is licensed under a Attribution License.",
+      "source_sha256_local": "72abf5e6eec0f5cd6969962f5667661216e117b9e00b3747540b3efd5f23e7fe",
+      "source_sha256_manifest": "72abf5e6eec0f5cd6969962f5667661216e117b9e00b3747540b3efd5f23e7fe"
+    },
+    {
+      "category": "music",
+      "historical_use_status": "NOT_LISTED_IN_AUDITED_COURSE_V2_MANIFESTS",
+      "record_id": "r1-music-dev-0254-music-fma-0050",
+      "relative_path": "music/fma/music-fma-0050.wav",
+      "role": "v4_p0_development_only",
+      "source_group_id": "MUSAN:FMA_LICENSE_GROUP_06",
+      "source_license_detail": "Paris, Lisboa by Jahzzar is licensed under a Attribution-ShareAlike 3.0 International License.",
+      "source_sha256_local": "cf20d4e9711d758e4e4ace2eade5888b04340f94b6680f7bb1a40a0583bb2c39",
+      "source_sha256_manifest": "cf20d4e9711d758e4e4ace2eade5888b04340f94b6680f7bb1a40a0583bb2c39"
+    },
+    {
+      "category": "music",
+      "historical_use_status": "NOT_LISTED_IN_AUDITED_COURSE_V2_MANIFESTS",
+      "record_id": "r1-music-dev-0254-music-fma-0060",
+      "relative_path": "music/fma/music-fma-0060.wav",
+      "role": "v4_p0_development_only",
+      "source_group_id": "MUSAN:FMA_LICENSE_GROUP_08",
+      "source_license_detail": "Audionautix: Acoustic by Jason Shaw is licensed under a Attribution 3.0 United States License.",
+      "source_sha256_local": "8d45ceb346cb54e50040e91203ee4ec864c3f8ac96b7d89505bda8572e9d3792",
+      "source_sha256_manifest": "8d45ceb346cb54e50040e91203ee4ec864c3f8ac96b7d89505bda8572e9d3792"
+    },
+    {
+      "category": "speech",
+      "historical_use_status": "NOT_LISTED_IN_AUDITED_COURSE_V2_MANIFESTS",
+      "record_id": "r1-speech-dev-0254-speech-librivox-0084",
+      "relative_path": "speech/librivox/speech-librivox-0084.wav",
+      "role": "v4_p0_development_only",
+      "source_group_id": "MUSAN:LIBRIVOX:speech-librivox-0084",
+      "source_license_detail": "Public Domain",
+      "source_sha256_local": "53d6fd8c3ddde750f8d664a9bb5c265bfc5f1d112ee207337709b54f910bde3f",
+      "source_sha256_manifest": "53d6fd8c3ddde750f8d664a9bb5c265bfc5f1d112ee207337709b54f910bde3f"
+    },
+    {
+      "category": "speech",
+      "historical_use_status": "NOT_LISTED_IN_AUDITED_COURSE_V2_MANIFESTS",
+      "record_id": "r1-speech-dev-0254-speech-librivox-0085",
+      "relative_path": "speech/librivox/speech-librivox-0085.wav",
+      "role": "v4_p0_development_only",
+      "source_group_id": "MUSAN:LIBRIVOX:speech-librivox-0085",
+      "source_license_detail": "Public Domain",
+      "source_sha256_local": "7cac6ee672edc1e7bf105204afffa52aa8fc326a052ae796b28178542d441ff6",
+      "source_sha256_manifest": "7cac6ee672edc1e7bf105204afffa52aa8fc326a052ae796b28178542d441ff6"
+    },
+    {
+      "category": "speech",
+      "historical_use_status": "NOT_LISTED_IN_AUDITED_COURSE_V2_MANIFESTS",
+      "record_id": "r1-speech-dev-0254-speech-librivox-0086",
+      "relative_path": "speech/librivox/speech-librivox-0086.wav",
+      "role": "v4_p0_development_only",
+      "source_group_id": "MUSAN:LIBRIVOX:speech-librivox-0086",
+      "source_license_detail": "Public Domain",
+      "source_sha256_local": "3393185a3cce7744feadd2dbb3b4e0804e2fe93d1e8491ab60aca96661d146d9",
+      "source_sha256_manifest": "3393185a3cce7744feadd2dbb3b4e0804e2fe93d1e8491ab60aca96661d146d9"
+    }
+  ],
+  "status": "FROZEN_DEVELOPMENT_ONLY"
+}

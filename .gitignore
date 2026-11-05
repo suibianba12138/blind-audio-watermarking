@@ -13,3 +13,25 @@ __pycache__/
 outputs/
 demo_outputs/
 !examples/.gitkeep
+# V4 local-only assets: weights, source datasets, and generated demo outputs.
+.env
+.env.*
+!.env.example
+models/
+checkpoints/
+weights/
+data/
+datasets/
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+*.npy
+*.npz
+*.ckpt
+*.pt
+*.pth
+*.safetensors
+**/inputs/
+**/outputs/
+**/listen_ab/

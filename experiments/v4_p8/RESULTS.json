@@ -1,0 +1,4024 @@
+{
+  "checkpoint_sha256": {
+    "dec_c.ckpt": "c23b57635172b2fbd3a8531d15ba76b5885a10d0fe902ccb823c521c56041b33",
+    "dec_m_0.ckpt": "829540c058270d29788f05294894d45bf436e44add0e1099422242ebb94b7088",
+    "enc_c.ckpt": "ff64f80d2391fdfc888e4103c499be4a2c958e59626587a1eab6db93204814c7"
+  },
+  "cpu_threads": 4,
+  "duration_seconds": 12,
+  "embedding_records": [
+    {
+      "embed_seconds": 3.3125713960034773,
+      "source_id": "music_01"
+    },
+    {
+      "embed_seconds": 3.58860171600827,
+      "source_id": "music_02"
+    },
+    {
+      "embed_seconds": 3.745189619003213,
+      "source_id": "music_03"
+    },
+    {
+      "embed_seconds": 3.376484195003286,
+      "source_id": "music_04"
+    },
+    {
+      "embed_seconds": 3.451445162005257,
+      "source_id": "speech_01"
+    },
+    {
+      "embed_seconds": 3.386537913000211,
+      "source_id": "speech_02"
+    },
+    {
+      "embed_seconds": 3.4957742250117008,
+      "source_id": "speech_03"
+    },
+    {
+      "embed_seconds": 3.42424134099565,
+      "source_id": "speech_04"
+    },
+    {
+      "embed_seconds": 3.4573021980031626,
+      "source_id": "environment_01"
+    },
+    {
+      "embed_seconds": 3.619634575996315,
+      "source_id": "environment_02"
+    },
+    {
+      "embed_seconds": 3.375276826991467,
+      "source_id": "environment_03"
+    },
+    {
+      "embed_seconds": 3.3846965539996745,
+      "source_id": "environment_04"
+    }
+  ],
+  "message_hex": "D3916B24E8",
+  "message_sdr_db": 47,
+  "model": "Sony SilentCipher official 44.1 kHz 73999_iteration",
+  "model_load_seconds": 0.03676777800137643,
+  "p6_manifest_sha256": "cc34cd804182df570666cf6c777fcd83c6ed6893c98c7ba9ce06828f9a86d3c6",
+  "peak_rss_kib": 1604820,
+  "phase_shift_decoding": false,
+  "presence_threshold_frozen": 0.6805555373430252,
+  "protocol_id": "V4-P8-FROZEN-P6-SOURCES-1",
+  "records": [
+    {
+      "candidate_hex": "D3916B24E8",
+      "channel_metadata": {
+        "channels": 1,
+        "container": "wav",
+        "duration_seconds": 12.0,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "codec_seconds": 0.0,
+      "condition": "positive_wav_clean",
+      "confidence": 0.9682539701461792,
+      "correct_accepted_recovery": true,
+      "decode_error_class": null,
+      "detect_seconds": 5.8639468909968855,
+      "exact_message_recovery": true,
+      "marked_pcm16_sha256": "393bc430c6bf115a35fc8a8d2568cf5b0aa9fc6f5fa44247279f619100237e63",
+      "negative_acceptance": null,
+      "official_status": true,
+      "one_embedding_shared_across_positive_conditions": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.656524658203125,
+        "rms": 0.10454019742224366,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "music_01",
+      "state": "IDENTIFIED",
+      "valid_candidate": true,
+      "wrong_message_acceptance": false
+    },
+    {
+      "candidate_hex": null,
+      "channel_metadata": {
+        "decoded_sample_count_before_p6_slice": 530432,
+        "decoded_sample_rate_hz": 44100,
+        "leading_samples_discarded": 0,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "0.000000",
+            "duration_time": "0.023220",
+            "pts": 0,
+            "pts_time": "0.000000"
+          },
+          "first_packet_side_data": [],
+          "format_duration_seconds": 12.969409,
+          "format_name": "aac",
+          "stream": {
+            "bit_rate": "120853",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.969409",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": null,
+            "start_time": null,
+            "time_base": "1/28224000"
+          }
+        },
+        "post_p6_slice_sample_count": 529200,
+        "tail_samples_truncated_or_padded": -1232
+      },
+      "codec_seconds": 0.1987568999902578,
+      "condition": "positive_aac_adts_p6",
+      "confidence": null,
+      "correct_accepted_recovery": false,
+      "decode_error_class": null,
+      "detect_seconds": 5.911833441990893,
+      "exact_message_recovery": false,
+      "marked_pcm16_sha256": "393bc430c6bf115a35fc8a8d2568cf5b0aa9fc6f5fa44247279f619100237e63",
+      "negative_acceptance": null,
+      "official_status": false,
+      "one_embedding_shared_across_positive_conditions": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.6573930978775024,
+        "rms": 0.10421042855156375,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "music_01",
+      "state": "UNKNOWN",
+      "valid_candidate": false,
+      "wrong_message_acceptance": false
+    },
+    {
+      "candidate_hex": "D3916B24E8",
+      "channel_metadata": {
+        "decoded_sample_count_before_trim": 529408,
+        "effective_sample_range_samples": [
+          0,
+          529200
+        ],
+        "encoded_metadata": {
+          "channels": 1,
+          "duration_seconds": 12.0,
+          "sample_rate_hz": 44100
+        },
+        "leading_samples_discarded": 0,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "-0.023220",
+            "duration_time": "0.023220",
+            "pts": -1024,
+            "pts_time": "-0.023220"
+          },
+          "first_packet_side_data": [
+            {
+              "discard_padding": 0,
+              "discard_reason": 0,
+              "side_data_type": "Skip Samples",
+              "skip_reason": 0,
+              "skip_samples": 1024
+            }
+          ],
+          "format_duration_seconds": 12.0,
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "stream": {
+            "bit_rate": "127951",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.000000",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "time_base": "1/44100"
+          }
+        },
+        "output_duration_seconds": 12.0,
+        "tail_padding_samples_removed": 208
+      },
+      "codec_seconds": 0.20066489299642853,
+      "condition": "positive_aac_m4a_corrected",
+      "confidence": 0.8650793433189392,
+      "correct_accepted_recovery": true,
+      "decode_error_class": null,
+      "detect_seconds": 5.814010863003205,
+      "exact_message_recovery": true,
+      "marked_pcm16_sha256": "393bc430c6bf115a35fc8a8d2568cf5b0aa9fc6f5fa44247279f619100237e63",
+      "negative_acceptance": null,
+      "official_status": true,
+      "one_embedding_shared_across_positive_conditions": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.6573930978775024,
+        "rms": 0.10425273591438866,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "music_01",
+      "state": "IDENTIFIED",
+      "valid_candidate": true,
+      "wrong_message_acceptance": false
+    },
+    {
+      "candidate_hex": "C200DF3B01",
+      "channel_metadata": {
+        "channels": 1,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "codec_seconds": 0.0,
+      "condition": "negative_wav_clean",
+      "confidence": 0.3888888955116272,
+      "correct_accepted_recovery": null,
+      "decode_error_class": null,
+      "detect_seconds": 6.171642004002933,
+      "exact_message_recovery": null,
+      "negative_acceptance": false,
+      "negative_pcm16_sha256": "7e3249ab90a4b91cc465b3143e5ed2065e1779753166177c969caa9ba6241c1a",
+      "official_status": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.657501220703125,
+        "rms": 0.10455865761791179,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "music_01",
+      "state": "UNKNOWN",
+      "valid_candidate": true,
+      "wrong_message_acceptance": null
+    },
+    {
+      "candidate_hex": null,
+      "channel_metadata": {
+        "decoded_sample_count_before_p6_slice": 530432,
+        "decoded_sample_rate_hz": 44100,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "0.000000",
+            "duration_time": "0.023220",
+            "pts": 0,
+            "pts_time": "0.000000"
+          },
+          "first_packet_side_data": [],
+          "format_duration_seconds": 13.11569,
+          "format_name": "aac",
+          "stream": {
+            "bit_rate": "119302",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "13.115690",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": null,
+            "start_time": null,
+            "time_base": "1/28224000"
+          }
+        },
+        "post_p6_slice_sample_count": 529200
+      },
+      "codec_seconds": 0.19532923900987953,
+      "condition": "negative_aac_adts_p6",
+      "confidence": null,
+      "correct_accepted_recovery": null,
+      "decode_error_class": null,
+      "detect_seconds": 5.925288709986489,
+      "exact_message_recovery": null,
+      "negative_acceptance": false,
+      "negative_pcm16_sha256": "7e3249ab90a4b91cc465b3143e5ed2065e1779753166177c969caa9ba6241c1a",
+      "official_status": false,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.6497939825057983,
+        "rms": 0.10422754130240945,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "music_01",
+      "state": "UNKNOWN",
+      "valid_candidate": false,
+      "wrong_message_acceptance": null
+    },
+    {
+      "candidate_hex": "0A00E33049",
+      "channel_metadata": {
+        "decoded_sample_count_before_trim": 529408,
+        "effective_sample_range_samples": [
+          0,
+          529200
+        ],
+        "encoded_metadata": {
+          "channels": 1,
+          "duration_seconds": 12.0,
+          "sample_rate_hz": 44100
+        },
+        "leading_samples_discarded": 0,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "-0.023220",
+            "duration_time": "0.023220",
+            "pts": -1024,
+            "pts_time": "-0.023220"
+          },
+          "first_packet_side_data": [
+            {
+              "discard_padding": 0,
+              "discard_reason": 0,
+              "side_data_type": "Skip Samples",
+              "skip_reason": 0,
+              "skip_samples": 1024
+            }
+          ],
+          "format_duration_seconds": 12.0,
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "stream": {
+            "bit_rate": "127729",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.000000",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "time_base": "1/44100"
+          }
+        },
+        "output_duration_seconds": 12.0,
+        "tail_padding_samples_removed": 208
+      },
+      "codec_seconds": 0.20127177900576498,
+      "condition": "negative_aac_m4a_corrected",
+      "confidence": 0.4047619104385376,
+      "correct_accepted_recovery": null,
+      "decode_error_class": null,
+      "detect_seconds": 6.24046145399916,
+      "exact_message_recovery": null,
+      "negative_acceptance": false,
+      "negative_pcm16_sha256": "7e3249ab90a4b91cc465b3143e5ed2065e1779753166177c969caa9ba6241c1a",
+      "official_status": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.6497939825057983,
+        "rms": 0.10426986162609798,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "music_01",
+      "state": "UNKNOWN",
+      "valid_candidate": true,
+      "wrong_message_acceptance": null
+    },
+    {
+      "candidate_hex": "D3916B24E8",
+      "channel_metadata": {
+        "channels": 1,
+        "container": "wav",
+        "duration_seconds": 12.0,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "codec_seconds": 0.0,
+      "condition": "positive_wav_clean",
+      "confidence": 0.9960317611694336,
+      "correct_accepted_recovery": true,
+      "decode_error_class": null,
+      "detect_seconds": 5.950311706998036,
+      "exact_message_recovery": true,
+      "marked_pcm16_sha256": "db401d2b5556c8807b17992e4eb5093b0ba61842e3dc81d610643a9aae71ab00",
+      "negative_acceptance": null,
+      "official_status": true,
+      "one_embedding_shared_across_positive_conditions": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.944580078125,
+        "rms": 0.37547847784805155,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "music_02",
+      "state": "IDENTIFIED",
+      "valid_candidate": true,
+      "wrong_message_acceptance": false
+    },
+    {
+      "candidate_hex": "4F516FE0A0",
+      "channel_metadata": {
+        "decoded_sample_count_before_p6_slice": 530432,
+        "decoded_sample_rate_hz": 44100,
+        "leading_samples_discarded": 0,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "0.000000",
+            "duration_time": "0.023220",
+            "pts": 0,
+            "pts_time": "0.000000"
+          },
+          "first_packet_side_data": [],
+          "format_duration_seconds": 11.938784,
+          "format_name": "aac",
+          "stream": {
+            "bit_rate": "132384",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "11.938784",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": null,
+            "start_time": null,
+            "time_base": "1/28224000"
+          }
+        },
+        "post_p6_slice_sample_count": 529200,
+        "tail_samples_truncated_or_padded": -1232
+      },
+      "codec_seconds": 0.22440314898267388,
+      "condition": "positive_aac_adts_p6",
+      "confidence": 0.5833333134651184,
+      "correct_accepted_recovery": false,
+      "decode_error_class": null,
+      "detect_seconds": 5.967859009004314,
+      "exact_message_recovery": false,
+      "marked_pcm16_sha256": "db401d2b5556c8807b17992e4eb5093b0ba61842e3dc81d610643a9aae71ab00",
+      "negative_acceptance": null,
+      "official_status": true,
+      "one_embedding_shared_across_positive_conditions": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.9667223691940308,
+        "rms": 0.3747048671782855,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "music_02",
+      "state": "UNKNOWN",
+      "valid_candidate": true,
+      "wrong_message_acceptance": false
+    },
+    {
+      "candidate_hex": "D3916B24E8",
+      "channel_metadata": {
+        "decoded_sample_count_before_trim": 529408,
+        "effective_sample_range_samples": [
+          0,
+          529200
+        ],
+        "encoded_metadata": {
+          "channels": 1,
+          "duration_seconds": 12.0,
+          "sample_rate_hz": 44100
+        },
+        "leading_samples_discarded": 0,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "-0.023220",
+            "duration_time": "0.023220",
+            "pts": -1024,
+            "pts_time": "-0.023220"
+          },
+          "first_packet_side_data": [
+            {
+              "discard_padding": 0,
+              "discard_reason": 0,
+              "side_data_type": "Skip Samples",
+              "skip_reason": 0,
+              "skip_samples": 1024
+            }
+          ],
+          "format_duration_seconds": 12.0,
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "stream": {
+            "bit_rate": "129041",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.000000",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "time_base": "1/44100"
+          }
+        },
+        "output_duration_seconds": 12.0,
+        "tail_padding_samples_removed": 208
+      },
+      "codec_seconds": 0.21430432100896724,
+      "condition": "positive_aac_m4a_corrected",
+      "confidence": 0.988095223903656,
+      "correct_accepted_recovery": true,
+      "decode_error_class": null,
+      "detect_seconds": 5.943439509006566,
+      "exact_message_recovery": true,
+      "marked_pcm16_sha256": "db401d2b5556c8807b17992e4eb5093b0ba61842e3dc81d610643a9aae71ab00",
+      "negative_acceptance": null,
+      "official_status": true,
+      "one_embedding_shared_across_positive_conditions": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.9667223691940308,
+        "rms": 0.3749916825468327,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "music_02",
+      "state": "IDENTIFIED",
+      "valid_candidate": true,
+      "wrong_message_acceptance": false
+    },
+    {
+      "candidate_hex": "0460056480",
+      "channel_metadata": {
+        "channels": 1,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "codec_seconds": 0.0,
+      "condition": "negative_wav_clean",
+      "confidence": 0.3730158805847168,
+      "correct_accepted_recovery": null,
+      "decode_error_class": null,
+      "detect_seconds": 6.072755156012136,
+      "exact_message_recovery": null,
+      "negative_acceptance": false,
+      "negative_pcm16_sha256": "38b457b992ff2fb731f6952b0e09c75523defb52884f7faaa719856a06caf543",
+      "official_status": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.95050048828125,
+        "rms": 0.375555758511818,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "music_02",
+      "state": "UNKNOWN",
+      "valid_candidate": true,
+      "wrong_message_acceptance": null
+    },
+    {
+      "candidate_hex": "035314D15C",
+      "channel_metadata": {
+        "decoded_sample_count_before_p6_slice": 530432,
+        "decoded_sample_rate_hz": 44100,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "0.000000",
+            "duration_time": "0.023220",
+            "pts": 0,
+            "pts_time": "0.000000"
+          },
+          "first_packet_side_data": [],
+          "format_duration_seconds": 11.723902,
+          "format_name": "aac",
+          "stream": {
+            "bit_rate": "135039",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "11.723902",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": null,
+            "start_time": null,
+            "time_base": "1/28224000"
+          }
+        },
+        "post_p6_slice_sample_count": 529200
+      },
+      "codec_seconds": 0.21510346898867283,
+      "condition": "negative_aac_adts_p6",
+      "confidence": 0.408730149269104,
+      "correct_accepted_recovery": null,
+      "decode_error_class": null,
+      "detect_seconds": 6.182552576996386,
+      "exact_message_recovery": null,
+      "negative_acceptance": false,
+      "negative_pcm16_sha256": "38b457b992ff2fb731f6952b0e09c75523defb52884f7faaa719856a06caf543",
+      "official_status": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.9791440367698669,
+        "rms": 0.37486696868191455,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "music_02",
+      "state": "UNKNOWN",
+      "valid_candidate": true,
+      "wrong_message_acceptance": null
+    },
+    {
+      "candidate_hex": null,
+      "channel_metadata": {
+        "decoded_sample_count_before_trim": 529408,
+        "effective_sample_range_samples": [
+          0,
+          529200
+        ],
+        "encoded_metadata": {
+          "channels": 1,
+          "duration_seconds": 12.0,
+          "sample_rate_hz": 44100
+        },
+        "leading_samples_discarded": 0,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "-0.023220",
+            "duration_time": "0.023220",
+            "pts": -1024,
+            "pts_time": "-0.023220"
+          },
+          "first_packet_side_data": [
+            {
+              "discard_padding": 0,
+              "discard_reason": 0,
+              "side_data_type": "Skip Samples",
+              "skip_reason": 0,
+              "skip_samples": 1024
+            }
+          ],
+          "format_duration_seconds": 12.0,
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "stream": {
+            "bit_rate": "129264",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.000000",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "time_base": "1/44100"
+          }
+        },
+        "output_duration_seconds": 12.0,
+        "tail_padding_samples_removed": 208
+      },
+      "codec_seconds": 0.21081570300157182,
+      "condition": "negative_aac_m4a_corrected",
+      "confidence": null,
+      "correct_accepted_recovery": null,
+      "decode_error_class": null,
+      "detect_seconds": 6.102900062993285,
+      "exact_message_recovery": null,
+      "negative_acceptance": false,
+      "negative_pcm16_sha256": "38b457b992ff2fb731f6952b0e09c75523defb52884f7faaa719856a06caf543",
+      "official_status": false,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.9791440367698669,
+        "rms": 0.37515244634914696,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "music_02",
+      "state": "UNKNOWN",
+      "valid_candidate": false,
+      "wrong_message_acceptance": null
+    },
+    {
+      "candidate_hex": "D3916B24E8",
+      "channel_metadata": {
+        "channels": 1,
+        "container": "wav",
+        "duration_seconds": 12.0,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "codec_seconds": 0.0,
+      "condition": "positive_wav_clean",
+      "confidence": 0.9682539701461792,
+      "correct_accepted_recovery": true,
+      "decode_error_class": null,
+      "detect_seconds": 6.005471019001561,
+      "exact_message_recovery": true,
+      "marked_pcm16_sha256": "2a3921837711cbcabb109149e38f430bd1a6ac0199ad2061eef2995b584e514f",
+      "negative_acceptance": null,
+      "official_status": true,
+      "one_embedding_shared_across_positive_conditions": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.99005126953125,
+        "rms": 0.346056262072927,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "music_03",
+      "state": "IDENTIFIED",
+      "valid_candidate": true,
+      "wrong_message_acceptance": false
+    },
+    {
+      "candidate_hex": "D391AB54E8",
+      "channel_metadata": {
+        "decoded_sample_count_before_p6_slice": 530432,
+        "decoded_sample_rate_hz": 44100,
+        "leading_samples_discarded": 0,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "0.000000",
+            "duration_time": "0.023220",
+            "pts": 0,
+            "pts_time": "0.000000"
+          },
+          "first_packet_side_data": [],
+          "format_duration_seconds": 12.960081,
+          "format_name": "aac",
+          "stream": {
+            "bit_rate": "123677",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.960081",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": null,
+            "start_time": null,
+            "time_base": "1/28224000"
+          }
+        },
+        "post_p6_slice_sample_count": 529200,
+        "tail_samples_truncated_or_padded": -1232
+      },
+      "codec_seconds": 0.2409937469928991,
+      "condition": "positive_aac_adts_p6",
+      "confidence": 0.5476190447807312,
+      "correct_accepted_recovery": false,
+      "decode_error_class": null,
+      "detect_seconds": 5.939080841999385,
+      "exact_message_recovery": false,
+      "marked_pcm16_sha256": "2a3921837711cbcabb109149e38f430bd1a6ac0199ad2061eef2995b584e514f",
+      "negative_acceptance": null,
+      "official_status": true,
+      "one_embedding_shared_across_positive_conditions": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 1.0230551958084106,
+        "rms": 0.34489508242074407,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "music_03",
+      "state": "UNKNOWN",
+      "valid_candidate": true,
+      "wrong_message_acceptance": false
+    },
+    {
+      "candidate_hex": "D3916B24E8",
+      "channel_metadata": {
+        "decoded_sample_count_before_trim": 529408,
+        "effective_sample_range_samples": [
+          0,
+          529200
+        ],
+        "encoded_metadata": {
+          "channels": 1,
+          "duration_seconds": 12.0,
+          "sample_rate_hz": 44100
+        },
+        "leading_samples_discarded": 0,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "-0.023220",
+            "duration_time": "0.023220",
+            "pts": -1024,
+            "pts_time": "-0.023220"
+          },
+          "first_packet_side_data": [
+            {
+              "discard_padding": 0,
+              "discard_reason": 0,
+              "side_data_type": "Skip Samples",
+              "skip_reason": 0,
+              "skip_samples": 1024
+            }
+          ],
+          "format_duration_seconds": 12.0,
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "stream": {
+            "bit_rate": "130901",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.000000",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "time_base": "1/44100"
+          }
+        },
+        "output_duration_seconds": 12.0,
+        "tail_padding_samples_removed": 208
+      },
+      "codec_seconds": 0.2488501420011744,
+      "condition": "positive_aac_m4a_corrected",
+      "confidence": 0.908730149269104,
+      "correct_accepted_recovery": true,
+      "decode_error_class": null,
+      "detect_seconds": 5.876211994996993,
+      "exact_message_recovery": true,
+      "marked_pcm16_sha256": "2a3921837711cbcabb109149e38f430bd1a6ac0199ad2061eef2995b584e514f",
+      "negative_acceptance": null,
+      "official_status": true,
+      "one_embedding_shared_across_positive_conditions": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 1.0230551958084106,
+        "rms": 0.34533252529479175,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "music_03",
+      "state": "IDENTIFIED",
+      "valid_candidate": true,
+      "wrong_message_acceptance": false
+    },
+    {
+      "candidate_hex": null,
+      "channel_metadata": {
+        "channels": 1,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "codec_seconds": 0.0,
+      "condition": "negative_wav_clean",
+      "confidence": null,
+      "correct_accepted_recovery": null,
+      "decode_error_class": null,
+      "detect_seconds": 5.970334337995155,
+      "exact_message_recovery": null,
+      "negative_acceptance": false,
+      "negative_pcm16_sha256": "6c3f25ff06197067fbcba09266047b98eea7b55a4a12ebc74414abf1261745a4",
+      "official_status": false,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.990234375,
+        "rms": 0.34613265356784256,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "music_03",
+      "state": "UNKNOWN",
+      "valid_candidate": false,
+      "wrong_message_acceptance": null
+    },
+    {
+      "candidate_hex": "AEFEF2BCED",
+      "channel_metadata": {
+        "decoded_sample_count_before_p6_slice": 530432,
+        "decoded_sample_rate_hz": 44100,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "0.000000",
+            "duration_time": "0.023220",
+            "pts": 0,
+            "pts_time": "0.000000"
+          },
+          "first_packet_side_data": [],
+          "format_duration_seconds": 12.917673,
+          "format_name": "aac",
+          "stream": {
+            "bit_rate": "124576",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.917673",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": null,
+            "start_time": null,
+            "time_base": "1/28224000"
+          }
+        },
+        "post_p6_slice_sample_count": 529200
+      },
+      "codec_seconds": 0.24531336400832515,
+      "condition": "negative_aac_adts_p6",
+      "confidence": 0.3849206268787384,
+      "correct_accepted_recovery": null,
+      "decode_error_class": null,
+      "detect_seconds": 5.938408077010536,
+      "exact_message_recovery": null,
+      "negative_acceptance": false,
+      "negative_pcm16_sha256": "6c3f25ff06197067fbcba09266047b98eea7b55a4a12ebc74414abf1261745a4",
+      "official_status": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 1.034535527229309,
+        "rms": 0.3450508003230556,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "music_03",
+      "state": "UNKNOWN",
+      "valid_candidate": true,
+      "wrong_message_acceptance": null
+    },
+    {
+      "candidate_hex": "0099325438",
+      "channel_metadata": {
+        "decoded_sample_count_before_trim": 529408,
+        "effective_sample_range_samples": [
+          0,
+          529200
+        ],
+        "encoded_metadata": {
+          "channels": 1,
+          "duration_seconds": 12.0,
+          "sample_rate_hz": 44100
+        },
+        "leading_samples_discarded": 0,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "-0.023220",
+            "duration_time": "0.023220",
+            "pts": -1024,
+            "pts_time": "-0.023220"
+          },
+          "first_packet_side_data": [
+            {
+              "discard_padding": 0,
+              "discard_reason": 0,
+              "side_data_type": "Skip Samples",
+              "skip_reason": 0,
+              "skip_samples": 1024
+            }
+          ],
+          "format_duration_seconds": 12.0,
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "stream": {
+            "bit_rate": "131431",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.000000",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "time_base": "1/44100"
+          }
+        },
+        "output_duration_seconds": 12.0,
+        "tail_padding_samples_removed": 208
+      },
+      "codec_seconds": 0.25625595600286033,
+      "condition": "negative_aac_m4a_corrected",
+      "confidence": 0.3730158805847168,
+      "correct_accepted_recovery": null,
+      "decode_error_class": null,
+      "detect_seconds": 5.918891227993299,
+      "exact_message_recovery": null,
+      "negative_acceptance": false,
+      "negative_pcm16_sha256": "6c3f25ff06197067fbcba09266047b98eea7b55a4a12ebc74414abf1261745a4",
+      "official_status": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 1.034535527229309,
+        "rms": 0.34548091613024656,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "music_03",
+      "state": "UNKNOWN",
+      "valid_candidate": true,
+      "wrong_message_acceptance": null
+    },
+    {
+      "candidate_hex": "D3916B24E8",
+      "channel_metadata": {
+        "channels": 1,
+        "container": "wav",
+        "duration_seconds": 12.0,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "codec_seconds": 0.0,
+      "condition": "positive_wav_clean",
+      "confidence": 0.9960317611694336,
+      "correct_accepted_recovery": true,
+      "decode_error_class": null,
+      "detect_seconds": 5.9456277239951305,
+      "exact_message_recovery": true,
+      "marked_pcm16_sha256": "8c05113b443b6e60f746677f1b69d8017f80098004c4ec1bb2458a0b2cdac278",
+      "negative_acceptance": null,
+      "official_status": true,
+      "one_embedding_shared_across_positive_conditions": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.943939208984375,
+        "rms": 0.3035343761960097,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "music_04",
+      "state": "IDENTIFIED",
+      "valid_candidate": true,
+      "wrong_message_acceptance": false
+    },
+    {
+      "candidate_hex": null,
+      "channel_metadata": {
+        "decoded_sample_count_before_p6_slice": 530432,
+        "decoded_sample_rate_hz": 44100,
+        "leading_samples_discarded": 0,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "0.000000",
+            "duration_time": "0.023220",
+            "pts": 0,
+            "pts_time": "0.000000"
+          },
+          "first_packet_side_data": [],
+          "format_duration_seconds": 12.456912,
+          "format_name": "aac",
+          "stream": {
+            "bit_rate": "127482",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.456912",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": null,
+            "start_time": null,
+            "time_base": "1/28224000"
+          }
+        },
+        "post_p6_slice_sample_count": 529200,
+        "tail_samples_truncated_or_padded": -1232
+      },
+      "codec_seconds": 0.22786744401673786,
+      "condition": "positive_aac_adts_p6",
+      "confidence": null,
+      "correct_accepted_recovery": false,
+      "decode_error_class": null,
+      "detect_seconds": 5.990294094997807,
+      "exact_message_recovery": false,
+      "marked_pcm16_sha256": "8c05113b443b6e60f746677f1b69d8017f80098004c4ec1bb2458a0b2cdac278",
+      "negative_acceptance": null,
+      "official_status": false,
+      "one_embedding_shared_across_positive_conditions": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.9415598511695862,
+        "rms": 0.3027474745481613,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "music_04",
+      "state": "UNKNOWN",
+      "valid_candidate": false,
+      "wrong_message_acceptance": false
+    },
+    {
+      "candidate_hex": "D3916B24E8",
+      "channel_metadata": {
+        "decoded_sample_count_before_trim": 529408,
+        "effective_sample_range_samples": [
+          0,
+          529200
+        ],
+        "encoded_metadata": {
+          "channels": 1,
+          "duration_seconds": 12.0,
+          "sample_rate_hz": 44100
+        },
+        "leading_samples_discarded": 0,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "-0.023220",
+            "duration_time": "0.023220",
+            "pts": -1024,
+            "pts_time": "-0.023220"
+          },
+          "first_packet_side_data": [
+            {
+              "discard_padding": 0,
+              "discard_reason": 0,
+              "side_data_type": "Skip Samples",
+              "skip_reason": 0,
+              "skip_samples": 1024
+            }
+          ],
+          "format_duration_seconds": 12.0,
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "stream": {
+            "bit_rate": "129667",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.000000",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "time_base": "1/44100"
+          }
+        },
+        "output_duration_seconds": 12.0,
+        "tail_padding_samples_removed": 208
+      },
+      "codec_seconds": 0.2209323909919476,
+      "condition": "positive_aac_m4a_corrected",
+      "confidence": 0.9404761791229248,
+      "correct_accepted_recovery": true,
+      "decode_error_class": null,
+      "detect_seconds": 5.938341503991978,
+      "exact_message_recovery": true,
+      "marked_pcm16_sha256": "8c05113b443b6e60f746677f1b69d8017f80098004c4ec1bb2458a0b2cdac278",
+      "negative_acceptance": null,
+      "official_status": true,
+      "one_embedding_shared_across_positive_conditions": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.9415598511695862,
+        "rms": 0.3029828741916,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "music_04",
+      "state": "IDENTIFIED",
+      "valid_candidate": true,
+      "wrong_message_acceptance": false
+    },
+    {
+      "candidate_hex": null,
+      "channel_metadata": {
+        "channels": 1,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "codec_seconds": 0.0,
+      "condition": "negative_wav_clean",
+      "confidence": null,
+      "correct_accepted_recovery": null,
+      "decode_error_class": null,
+      "detect_seconds": 5.928058381003211,
+      "exact_message_recovery": null,
+      "negative_acceptance": false,
+      "negative_pcm16_sha256": "e556adacf1928bdb1531950fa346b5ec7e2821cd8076195897c81a116369c4df",
+      "official_status": false,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.944091796875,
+        "rms": 0.30359589227739353,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "music_04",
+      "state": "UNKNOWN",
+      "valid_candidate": false,
+      "wrong_message_acceptance": null
+    },
+    {
+      "candidate_hex": null,
+      "channel_metadata": {
+        "decoded_sample_count_before_p6_slice": 530432,
+        "decoded_sample_rate_hz": 44100,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "0.000000",
+            "duration_time": "0.023220",
+            "pts": 0,
+            "pts_time": "0.000000"
+          },
+          "first_packet_side_data": [],
+          "format_duration_seconds": 12.134542,
+          "format_name": "aac",
+          "stream": {
+            "bit_rate": "130903",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.134542",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": null,
+            "start_time": null,
+            "time_base": "1/28224000"
+          }
+        },
+        "post_p6_slice_sample_count": 529200
+      },
+      "codec_seconds": 0.22057631899951957,
+      "condition": "negative_aac_adts_p6",
+      "confidence": null,
+      "correct_accepted_recovery": null,
+      "decode_error_class": null,
+      "detect_seconds": 5.903029867011355,
+      "exact_message_recovery": null,
+      "negative_acceptance": false,
+      "negative_pcm16_sha256": "e556adacf1928bdb1531950fa346b5ec7e2821cd8076195897c81a116369c4df",
+      "official_status": false,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.9401681423187256,
+        "rms": 0.3026937377937852,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "music_04",
+      "state": "UNKNOWN",
+      "valid_candidate": false,
+      "wrong_message_acceptance": null
+    },
+    {
+      "candidate_hex": "8D58DC4F10",
+      "channel_metadata": {
+        "decoded_sample_count_before_trim": 529408,
+        "effective_sample_range_samples": [
+          0,
+          529200
+        ],
+        "encoded_metadata": {
+          "channels": 1,
+          "duration_seconds": 12.0,
+          "sample_rate_hz": 44100
+        },
+        "leading_samples_discarded": 0,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "-0.023220",
+            "duration_time": "0.023220",
+            "pts": -1024,
+            "pts_time": "-0.023220"
+          },
+          "first_packet_side_data": [
+            {
+              "discard_padding": 0,
+              "discard_reason": 0,
+              "side_data_type": "Skip Samples",
+              "skip_reason": 0,
+              "skip_samples": 1024
+            }
+          ],
+          "format_duration_seconds": 12.0,
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "stream": {
+            "bit_rate": "129702",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.000000",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "time_base": "1/44100"
+          }
+        },
+        "output_duration_seconds": 12.0,
+        "tail_padding_samples_removed": 208
+      },
+      "codec_seconds": 0.22644900699378923,
+      "condition": "negative_aac_m4a_corrected",
+      "confidence": 0.3531745970249176,
+      "correct_accepted_recovery": null,
+      "decode_error_class": null,
+      "detect_seconds": 5.9419540079979924,
+      "exact_message_recovery": null,
+      "negative_acceptance": false,
+      "negative_pcm16_sha256": "e556adacf1928bdb1531950fa346b5ec7e2821cd8076195897c81a116369c4df",
+      "official_status": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.9401681423187256,
+        "rms": 0.3029287677516108,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "music_04",
+      "state": "UNKNOWN",
+      "valid_candidate": true,
+      "wrong_message_acceptance": null
+    },
+    {
+      "candidate_hex": "D3916B24E8",
+      "channel_metadata": {
+        "channels": 1,
+        "container": "wav",
+        "duration_seconds": 12.0,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "codec_seconds": 0.0,
+      "condition": "positive_wav_clean",
+      "confidence": 0.9841269850730896,
+      "correct_accepted_recovery": true,
+      "decode_error_class": null,
+      "detect_seconds": 5.908362576010404,
+      "exact_message_recovery": true,
+      "marked_pcm16_sha256": "6d7a154ef69e52124712fbfd117db9e22d0e9db4fe536062639230c951bc73a1",
+      "negative_acceptance": null,
+      "official_status": true,
+      "one_embedding_shared_across_positive_conditions": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.73358154296875,
+        "rms": 0.06262863597069679,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "speech_01",
+      "state": "IDENTIFIED",
+      "valid_candidate": true,
+      "wrong_message_acceptance": false
+    },
+    {
+      "candidate_hex": "816FA7E0D4",
+      "channel_metadata": {
+        "decoded_sample_count_before_p6_slice": 530432,
+        "decoded_sample_rate_hz": 44100,
+        "leading_samples_discarded": 0,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "0.000000",
+            "duration_time": "0.023220",
+            "pts": 0,
+            "pts_time": "0.000000"
+          },
+          "first_packet_side_data": [],
+          "format_duration_seconds": 12.530637,
+          "format_name": "aac",
+          "stream": {
+            "bit_rate": "127869",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.530637",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": null,
+            "start_time": null,
+            "time_base": "1/28224000"
+          }
+        },
+        "post_p6_slice_sample_count": 529200,
+        "tail_samples_truncated_or_padded": -1232
+      },
+      "codec_seconds": 0.22460385601152666,
+      "condition": "positive_aac_adts_p6",
+      "confidence": 0.591269850730896,
+      "correct_accepted_recovery": false,
+      "decode_error_class": null,
+      "detect_seconds": 5.925760512996931,
+      "exact_message_recovery": false,
+      "marked_pcm16_sha256": "6d7a154ef69e52124712fbfd117db9e22d0e9db4fe536062639230c951bc73a1",
+      "negative_acceptance": null,
+      "official_status": true,
+      "one_embedding_shared_across_positive_conditions": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.7329033017158508,
+        "rms": 0.0624023324362997,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "speech_01",
+      "state": "UNKNOWN",
+      "valid_candidate": true,
+      "wrong_message_acceptance": false
+    },
+    {
+      "candidate_hex": "D3916B24E8",
+      "channel_metadata": {
+        "decoded_sample_count_before_trim": 529408,
+        "effective_sample_range_samples": [
+          0,
+          529200
+        ],
+        "encoded_metadata": {
+          "channels": 1,
+          "duration_seconds": 12.0,
+          "sample_rate_hz": 44100
+        },
+        "leading_samples_discarded": 0,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "-0.023220",
+            "duration_time": "0.023220",
+            "pts": -1024,
+            "pts_time": "-0.023220"
+          },
+          "first_packet_side_data": [
+            {
+              "discard_padding": 0,
+              "discard_reason": 0,
+              "side_data_type": "Skip Samples",
+              "skip_reason": 0,
+              "skip_samples": 1024
+            }
+          ],
+          "format_duration_seconds": 12.0,
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "stream": {
+            "bit_rate": "130852",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.000000",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "time_base": "1/44100"
+          }
+        },
+        "output_duration_seconds": 12.0,
+        "tail_padding_samples_removed": 208
+      },
+      "codec_seconds": 0.2240525249944767,
+      "condition": "positive_aac_m4a_corrected",
+      "confidence": 0.9246031641960144,
+      "correct_accepted_recovery": true,
+      "decode_error_class": null,
+      "detect_seconds": 5.915378374993452,
+      "exact_message_recovery": true,
+      "marked_pcm16_sha256": "6d7a154ef69e52124712fbfd117db9e22d0e9db4fe536062639230c951bc73a1",
+      "negative_acceptance": null,
+      "official_status": true,
+      "one_embedding_shared_across_positive_conditions": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.7329033017158508,
+        "rms": 0.06240252305696883,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "speech_01",
+      "state": "IDENTIFIED",
+      "valid_candidate": true,
+      "wrong_message_acceptance": false
+    },
+    {
+      "candidate_hex": "A510890E88",
+      "channel_metadata": {
+        "channels": 1,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "codec_seconds": 0.0,
+      "condition": "negative_wav_clean",
+      "confidence": 0.3611111044883728,
+      "correct_accepted_recovery": null,
+      "decode_error_class": null,
+      "detect_seconds": 5.8993676399986725,
+      "exact_message_recovery": null,
+      "negative_acceptance": false,
+      "negative_pcm16_sha256": "09a1f57fa123309961f102239298fb6c051d11931f790d8a664a0a0653c1607d",
+      "official_status": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.7337646484375,
+        "rms": 0.06264065184905376,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "speech_01",
+      "state": "UNKNOWN",
+      "valid_candidate": true,
+      "wrong_message_acceptance": null
+    },
+    {
+      "candidate_hex": "9102444984",
+      "channel_metadata": {
+        "decoded_sample_count_before_p6_slice": 530432,
+        "decoded_sample_rate_hz": 44100,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "0.000000",
+            "duration_time": "0.023220",
+            "pts": 0,
+            "pts_time": "0.000000"
+          },
+          "first_packet_side_data": [],
+          "format_duration_seconds": 12.891258,
+          "format_name": "aac",
+          "stream": {
+            "bit_rate": "123430",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.891258",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": null,
+            "start_time": null,
+            "time_base": "1/28224000"
+          }
+        },
+        "post_p6_slice_sample_count": 529200
+      },
+      "codec_seconds": 0.22473635600181296,
+      "condition": "negative_aac_adts_p6",
+      "confidence": 0.3571428656578064,
+      "correct_accepted_recovery": null,
+      "decode_error_class": null,
+      "detect_seconds": 6.012098598002922,
+      "exact_message_recovery": null,
+      "negative_acceptance": false,
+      "negative_pcm16_sha256": "09a1f57fa123309961f102239298fb6c051d11931f790d8a664a0a0653c1607d",
+      "official_status": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.7341893911361694,
+        "rms": 0.062411970405911475,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "speech_01",
+      "state": "UNKNOWN",
+      "valid_candidate": true,
+      "wrong_message_acceptance": null
+    },
+    {
+      "candidate_hex": null,
+      "channel_metadata": {
+        "decoded_sample_count_before_trim": 529408,
+        "effective_sample_range_samples": [
+          0,
+          529200
+        ],
+        "encoded_metadata": {
+          "channels": 1,
+          "duration_seconds": 12.0,
+          "sample_rate_hz": 44100
+        },
+        "leading_samples_discarded": 0,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "-0.023220",
+            "duration_time": "0.023220",
+            "pts": -1024,
+            "pts_time": "-0.023220"
+          },
+          "first_packet_side_data": [
+            {
+              "discard_padding": 0,
+              "discard_reason": 0,
+              "side_data_type": "Skip Samples",
+              "skip_reason": 0,
+              "skip_samples": 1024
+            }
+          ],
+          "format_duration_seconds": 12.0,
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "stream": {
+            "bit_rate": "129928",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.000000",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "time_base": "1/44100"
+          }
+        },
+        "output_duration_seconds": 12.0,
+        "tail_padding_samples_removed": 208
+      },
+      "codec_seconds": 0.2231807589996606,
+      "condition": "negative_aac_m4a_corrected",
+      "confidence": null,
+      "correct_accepted_recovery": null,
+      "decode_error_class": null,
+      "detect_seconds": 5.863955621010973,
+      "exact_message_recovery": null,
+      "negative_acceptance": false,
+      "negative_pcm16_sha256": "09a1f57fa123309961f102239298fb6c051d11931f790d8a664a0a0653c1607d",
+      "official_status": false,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.7341893911361694,
+        "rms": 0.062412183575755,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "speech_01",
+      "state": "UNKNOWN",
+      "valid_candidate": false,
+      "wrong_message_acceptance": null
+    },
+    {
+      "candidate_hex": "D3916B24E8",
+      "channel_metadata": {
+        "channels": 1,
+        "container": "wav",
+        "duration_seconds": 12.0,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "codec_seconds": 0.0,
+      "condition": "positive_wav_clean",
+      "confidence": 0.976190447807312,
+      "correct_accepted_recovery": true,
+      "decode_error_class": null,
+      "detect_seconds": 6.0006153309950605,
+      "exact_message_recovery": true,
+      "marked_pcm16_sha256": "1704cdc9189a822effce109e346d2d706356ab43c6c9d12680a3a92a190778f9",
+      "negative_acceptance": null,
+      "official_status": true,
+      "one_embedding_shared_across_positive_conditions": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.751434326171875,
+        "rms": 0.0827800710170523,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "speech_02",
+      "state": "IDENTIFIED",
+      "valid_candidate": true,
+      "wrong_message_acceptance": false
+    },
+    {
+      "candidate_hex": null,
+      "channel_metadata": {
+        "decoded_sample_count_before_p6_slice": 530432,
+        "decoded_sample_rate_hz": 44100,
+        "leading_samples_discarded": 0,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "0.000000",
+            "duration_time": "0.023220",
+            "pts": 0,
+            "pts_time": "0.000000"
+          },
+          "first_packet_side_data": [],
+          "format_duration_seconds": 12.333809,
+          "format_name": "aac",
+          "stream": {
+            "bit_rate": "128253",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.333809",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": null,
+            "start_time": null,
+            "time_base": "1/28224000"
+          }
+        },
+        "post_p6_slice_sample_count": 529200,
+        "tail_samples_truncated_or_padded": -1232
+      },
+      "codec_seconds": 0.24417977200937457,
+      "condition": "positive_aac_adts_p6",
+      "confidence": null,
+      "correct_accepted_recovery": false,
+      "decode_error_class": null,
+      "detect_seconds": 6.1697122330078855,
+      "exact_message_recovery": false,
+      "marked_pcm16_sha256": "1704cdc9189a822effce109e346d2d706356ab43c6c9d12680a3a92a190778f9",
+      "negative_acceptance": null,
+      "official_status": false,
+      "one_embedding_shared_across_positive_conditions": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.7380170822143555,
+        "rms": 0.08248919563503115,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "speech_02",
+      "state": "UNKNOWN",
+      "valid_candidate": false,
+      "wrong_message_acceptance": false
+    },
+    {
+      "candidate_hex": "D3916B24E8",
+      "channel_metadata": {
+        "decoded_sample_count_before_trim": 529408,
+        "effective_sample_range_samples": [
+          0,
+          529200
+        ],
+        "encoded_metadata": {
+          "channels": 1,
+          "duration_seconds": 12.0,
+          "sample_rate_hz": 44100
+        },
+        "leading_samples_discarded": 0,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "-0.023220",
+            "duration_time": "0.023220",
+            "pts": -1024,
+            "pts_time": "-0.023220"
+          },
+          "first_packet_side_data": [
+            {
+              "discard_padding": 0,
+              "discard_reason": 0,
+              "side_data_type": "Skip Samples",
+              "skip_reason": 0,
+              "skip_samples": 1024
+            }
+          ],
+          "format_duration_seconds": 12.0,
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "stream": {
+            "bit_rate": "129153",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.000000",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "time_base": "1/44100"
+          }
+        },
+        "output_duration_seconds": 12.0,
+        "tail_padding_samples_removed": 208
+      },
+      "codec_seconds": 0.21919518799404614,
+      "condition": "positive_aac_m4a_corrected",
+      "confidence": 0.9285714030265808,
+      "correct_accepted_recovery": true,
+      "decode_error_class": null,
+      "detect_seconds": 6.078491923995898,
+      "exact_message_recovery": true,
+      "marked_pcm16_sha256": "1704cdc9189a822effce109e346d2d706356ab43c6c9d12680a3a92a190778f9",
+      "negative_acceptance": null,
+      "official_status": true,
+      "one_embedding_shared_across_positive_conditions": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.7380170822143555,
+        "rms": 0.08262912014234516,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "speech_02",
+      "state": "IDENTIFIED",
+      "valid_candidate": true,
+      "wrong_message_acceptance": false
+    },
+    {
+      "candidate_hex": null,
+      "channel_metadata": {
+        "channels": 1,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "codec_seconds": 0.0,
+      "condition": "negative_wav_clean",
+      "confidence": null,
+      "correct_accepted_recovery": null,
+      "decode_error_class": null,
+      "detect_seconds": 6.137950345990248,
+      "exact_message_recovery": null,
+      "negative_acceptance": false,
+      "negative_pcm16_sha256": "d93a01d27bc1286e7c57db8edb4dc7b69b982d985e80c311e036c71188006cf4",
+      "official_status": false,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.7513427734375,
+        "rms": 0.08279457183260518,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "speech_02",
+      "state": "UNKNOWN",
+      "valid_candidate": false,
+      "wrong_message_acceptance": null
+    },
+    {
+      "candidate_hex": null,
+      "channel_metadata": {
+        "decoded_sample_count_before_p6_slice": 530432,
+        "decoded_sample_rate_hz": 44100,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "0.000000",
+            "duration_time": "0.023220",
+            "pts": 0,
+            "pts_time": "0.000000"
+          },
+          "first_packet_side_data": [],
+          "format_duration_seconds": 12.412074,
+          "format_name": "aac",
+          "stream": {
+            "bit_rate": "127715",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.412074",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": null,
+            "start_time": null,
+            "time_base": "1/28224000"
+          }
+        },
+        "post_p6_slice_sample_count": 529200
+      },
+      "codec_seconds": 0.2147248070104979,
+      "condition": "negative_aac_adts_p6",
+      "confidence": null,
+      "correct_accepted_recovery": null,
+      "decode_error_class": null,
+      "detect_seconds": 6.560367800004315,
+      "exact_message_recovery": null,
+      "negative_acceptance": false,
+      "negative_pcm16_sha256": "d93a01d27bc1286e7c57db8edb4dc7b69b982d985e80c311e036c71188006cf4",
+      "official_status": false,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.7619439959526062,
+        "rms": 0.08254749445788527,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "speech_02",
+      "state": "UNKNOWN",
+      "valid_candidate": false,
+      "wrong_message_acceptance": null
+    },
+    {
+      "candidate_hex": null,
+      "channel_metadata": {
+        "decoded_sample_count_before_trim": 529408,
+        "effective_sample_range_samples": [
+          0,
+          529200
+        ],
+        "encoded_metadata": {
+          "channels": 1,
+          "duration_seconds": 12.0,
+          "sample_rate_hz": 44100
+        },
+        "leading_samples_discarded": 0,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "-0.023220",
+            "duration_time": "0.023220",
+            "pts": -1024,
+            "pts_time": "-0.023220"
+          },
+          "first_packet_side_data": [
+            {
+              "discard_padding": 0,
+              "discard_reason": 0,
+              "side_data_type": "Skip Samples",
+              "skip_reason": 0,
+              "skip_samples": 1024
+            }
+          ],
+          "format_duration_seconds": 12.0,
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "stream": {
+            "bit_rate": "129432",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.000000",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "time_base": "1/44100"
+          }
+        },
+        "output_duration_seconds": 12.0,
+        "tail_padding_samples_removed": 208
+      },
+      "codec_seconds": 0.21440844099561218,
+      "condition": "negative_aac_m4a_corrected",
+      "confidence": null,
+      "correct_accepted_recovery": null,
+      "decode_error_class": null,
+      "detect_seconds": 5.972450215005665,
+      "exact_message_recovery": null,
+      "negative_acceptance": false,
+      "negative_pcm16_sha256": "d93a01d27bc1286e7c57db8edb4dc7b69b982d985e80c311e036c71188006cf4",
+      "official_status": false,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.7619439959526062,
+        "rms": 0.08268720414485303,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "speech_02",
+      "state": "UNKNOWN",
+      "valid_candidate": false,
+      "wrong_message_acceptance": null
+    },
+    {
+      "candidate_hex": "D3916B24E8",
+      "channel_metadata": {
+        "channels": 1,
+        "container": "wav",
+        "duration_seconds": 12.0,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "codec_seconds": 0.0,
+      "condition": "positive_wav_clean",
+      "confidence": 0.976190447807312,
+      "correct_accepted_recovery": true,
+      "decode_error_class": null,
+      "detect_seconds": 6.456013931005145,
+      "exact_message_recovery": true,
+      "marked_pcm16_sha256": "d5134cbdc634fbeb3357184fb2695606e82c14e3379060bf16b53e0ef8decdc7",
+      "negative_acceptance": null,
+      "official_status": true,
+      "one_embedding_shared_across_positive_conditions": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.967437744140625,
+        "rms": 0.11456887098470823,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "speech_03",
+      "state": "IDENTIFIED",
+      "valid_candidate": true,
+      "wrong_message_acceptance": false
+    },
+    {
+      "candidate_hex": null,
+      "channel_metadata": {
+        "decoded_sample_count_before_p6_slice": 530432,
+        "decoded_sample_rate_hz": 44100,
+        "leading_samples_discarded": 0,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "0.000000",
+            "duration_time": "0.023220",
+            "pts": 0,
+            "pts_time": "0.000000"
+          },
+          "first_packet_side_data": [],
+          "format_duration_seconds": 12.480916,
+          "format_name": "aac",
+          "stream": {
+            "bit_rate": "131682",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.480916",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": null,
+            "start_time": null,
+            "time_base": "1/28224000"
+          }
+        },
+        "post_p6_slice_sample_count": 529200,
+        "tail_samples_truncated_or_padded": -1232
+      },
+      "codec_seconds": 0.2541032629960682,
+      "condition": "positive_aac_adts_p6",
+      "confidence": null,
+      "correct_accepted_recovery": false,
+      "decode_error_class": null,
+      "detect_seconds": 6.135291313010384,
+      "exact_message_recovery": false,
+      "marked_pcm16_sha256": "d5134cbdc634fbeb3357184fb2695606e82c14e3379060bf16b53e0ef8decdc7",
+      "negative_acceptance": null,
+      "official_status": false,
+      "one_embedding_shared_across_positive_conditions": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.9626948237419128,
+        "rms": 0.11362411650610492,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "speech_03",
+      "state": "UNKNOWN",
+      "valid_candidate": false,
+      "wrong_message_acceptance": false
+    },
+    {
+      "candidate_hex": "D3916B24E8",
+      "channel_metadata": {
+        "decoded_sample_count_before_trim": 529408,
+        "effective_sample_range_samples": [
+          0,
+          529200
+        ],
+        "encoded_metadata": {
+          "channels": 1,
+          "duration_seconds": 12.0,
+          "sample_rate_hz": 44100
+        },
+        "leading_samples_discarded": 0,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "-0.023220",
+            "duration_time": "0.023220",
+            "pts": -1024,
+            "pts_time": "-0.023220"
+          },
+          "first_packet_side_data": [
+            {
+              "discard_padding": 0,
+              "discard_reason": 0,
+              "side_data_type": "Skip Samples",
+              "skip_reason": 0,
+              "skip_samples": 1024
+            }
+          ],
+          "format_duration_seconds": 12.0,
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "stream": {
+            "bit_rate": "134282",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.000000",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "time_base": "1/44100"
+          }
+        },
+        "output_duration_seconds": 12.0,
+        "tail_padding_samples_removed": 208
+      },
+      "codec_seconds": 0.2651977900095517,
+      "condition": "positive_aac_m4a_corrected",
+      "confidence": 0.920634925365448,
+      "correct_accepted_recovery": true,
+      "decode_error_class": null,
+      "detect_seconds": 6.036435833011637,
+      "exact_message_recovery": true,
+      "marked_pcm16_sha256": "d5134cbdc634fbeb3357184fb2695606e82c14e3379060bf16b53e0ef8decdc7",
+      "negative_acceptance": null,
+      "official_status": true,
+      "one_embedding_shared_across_positive_conditions": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.9626948237419128,
+        "rms": 0.11372793905144023,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "speech_03",
+      "state": "IDENTIFIED",
+      "valid_candidate": true,
+      "wrong_message_acceptance": false
+    },
+    {
+      "candidate_hex": null,
+      "channel_metadata": {
+        "channels": 1,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "codec_seconds": 0.0,
+      "condition": "negative_wav_clean",
+      "confidence": null,
+      "correct_accepted_recovery": null,
+      "decode_error_class": null,
+      "detect_seconds": 5.911240111992811,
+      "exact_message_recovery": null,
+      "negative_acceptance": false,
+      "negative_pcm16_sha256": "feff007a60c0b6e98194e59afec788db5c160a0daf5f34afbddeb31da7cfc7a1",
+      "official_status": false,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.96759033203125,
+        "rms": 0.11459274732814442,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "speech_03",
+      "state": "UNKNOWN",
+      "valid_candidate": false,
+      "wrong_message_acceptance": null
+    },
+    {
+      "candidate_hex": null,
+      "channel_metadata": {
+        "decoded_sample_count_before_p6_slice": 530432,
+        "decoded_sample_rate_hz": 44100,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "0.000000",
+            "duration_time": "0.023220",
+            "pts": 0,
+            "pts_time": "0.000000"
+          },
+          "first_packet_side_data": [],
+          "format_duration_seconds": 12.576157,
+          "format_name": "aac",
+          "stream": {
+            "bit_rate": "131013",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.576157",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": null,
+            "start_time": null,
+            "time_base": "1/28224000"
+          }
+        },
+        "post_p6_slice_sample_count": 529200
+      },
+      "codec_seconds": 0.25621482799761,
+      "condition": "negative_aac_adts_p6",
+      "confidence": null,
+      "correct_accepted_recovery": null,
+      "decode_error_class": null,
+      "detect_seconds": 5.905243168992456,
+      "exact_message_recovery": null,
+      "negative_acceptance": false,
+      "negative_pcm16_sha256": "feff007a60c0b6e98194e59afec788db5c160a0daf5f34afbddeb31da7cfc7a1",
+      "official_status": false,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.9774270057678223,
+        "rms": 0.11365137916983843,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "speech_03",
+      "state": "UNKNOWN",
+      "valid_candidate": false,
+      "wrong_message_acceptance": null
+    },
+    {
+      "candidate_hex": null,
+      "channel_metadata": {
+        "decoded_sample_count_before_trim": 529408,
+        "effective_sample_range_samples": [
+          0,
+          529200
+        ],
+        "encoded_metadata": {
+          "channels": 1,
+          "duration_seconds": 12.0,
+          "sample_rate_hz": 44100
+        },
+        "leading_samples_discarded": 0,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "-0.023220",
+            "duration_time": "0.023220",
+            "pts": -1024,
+            "pts_time": "-0.023220"
+          },
+          "first_packet_side_data": [
+            {
+              "discard_padding": 0,
+              "discard_reason": 0,
+              "side_data_type": "Skip Samples",
+              "skip_reason": 0,
+              "skip_samples": 1024
+            }
+          ],
+          "format_duration_seconds": 12.0,
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "stream": {
+            "bit_rate": "134625",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.000000",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "time_base": "1/44100"
+          }
+        },
+        "output_duration_seconds": 12.0,
+        "tail_padding_samples_removed": 208
+      },
+      "codec_seconds": 0.2592349119950086,
+      "condition": "negative_aac_m4a_corrected",
+      "confidence": null,
+      "correct_accepted_recovery": null,
+      "decode_error_class": null,
+      "detect_seconds": 5.844264086001203,
+      "exact_message_recovery": null,
+      "negative_acceptance": false,
+      "negative_pcm16_sha256": "feff007a60c0b6e98194e59afec788db5c160a0daf5f34afbddeb31da7cfc7a1",
+      "official_status": false,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.9774270057678223,
+        "rms": 0.11375521556671779,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "speech_03",
+      "state": "UNKNOWN",
+      "valid_candidate": false,
+      "wrong_message_acceptance": null
+    },
+    {
+      "candidate_hex": "D3916B24E8",
+      "channel_metadata": {
+        "channels": 1,
+        "container": "wav",
+        "duration_seconds": 12.0,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "codec_seconds": 0.0,
+      "condition": "positive_wav_clean",
+      "confidence": 0.976190447807312,
+      "correct_accepted_recovery": true,
+      "decode_error_class": null,
+      "detect_seconds": 6.004872321005678,
+      "exact_message_recovery": true,
+      "marked_pcm16_sha256": "dc9c85fc6e7aef38eb73d7dce10c842894fa910da562953ca56d61fb649e8099",
+      "negative_acceptance": null,
+      "official_status": true,
+      "one_embedding_shared_across_positive_conditions": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.970367431640625,
+        "rms": 0.10022686200494525,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "speech_04",
+      "state": "IDENTIFIED",
+      "valid_candidate": true,
+      "wrong_message_acceptance": false
+    },
+    {
+      "candidate_hex": null,
+      "channel_metadata": {
+        "decoded_sample_count_before_p6_slice": 530432,
+        "decoded_sample_rate_hz": 44100,
+        "leading_samples_discarded": 0,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "0.000000",
+            "duration_time": "0.023220",
+            "pts": 0,
+            "pts_time": "0.000000"
+          },
+          "first_packet_side_data": [],
+          "format_duration_seconds": 11.630654,
+          "format_name": "aac",
+          "stream": {
+            "bit_rate": "140237",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "11.630654",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": null,
+            "start_time": null,
+            "time_base": "1/28224000"
+          }
+        },
+        "post_p6_slice_sample_count": 529200,
+        "tail_samples_truncated_or_padded": -1232
+      },
+      "codec_seconds": 0.25252235199150164,
+      "condition": "positive_aac_adts_p6",
+      "confidence": null,
+      "correct_accepted_recovery": false,
+      "decode_error_class": null,
+      "detect_seconds": 5.925137537007686,
+      "exact_message_recovery": false,
+      "marked_pcm16_sha256": "dc9c85fc6e7aef38eb73d7dce10c842894fa910da562953ca56d61fb649e8099",
+      "negative_acceptance": null,
+      "official_status": false,
+      "one_embedding_shared_across_positive_conditions": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.9375179409980774,
+        "rms": 0.09961189500134769,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "speech_04",
+      "state": "UNKNOWN",
+      "valid_candidate": false,
+      "wrong_message_acceptance": false
+    },
+    {
+      "candidate_hex": "D3916B24E8",
+      "channel_metadata": {
+        "decoded_sample_count_before_trim": 529408,
+        "effective_sample_range_samples": [
+          0,
+          529200
+        ],
+        "encoded_metadata": {
+          "channels": 1,
+          "duration_seconds": 12.0,
+          "sample_rate_hz": 44100
+        },
+        "leading_samples_discarded": 0,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "-0.023220",
+            "duration_time": "0.023220",
+            "pts": -1024,
+            "pts_time": "-0.023220"
+          },
+          "first_packet_side_data": [
+            {
+              "discard_padding": 0,
+              "discard_reason": 0,
+              "side_data_type": "Skip Samples",
+              "skip_reason": 0,
+              "skip_samples": 1024
+            }
+          ],
+          "format_duration_seconds": 12.0,
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "stream": {
+            "bit_rate": "133245",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.000000",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "time_base": "1/44100"
+          }
+        },
+        "output_duration_seconds": 12.0,
+        "tail_padding_samples_removed": 208
+      },
+      "codec_seconds": 0.25297142899944447,
+      "condition": "positive_aac_m4a_corrected",
+      "confidence": 0.9166666865348816,
+      "correct_accepted_recovery": true,
+      "decode_error_class": null,
+      "detect_seconds": 5.91667681299441,
+      "exact_message_recovery": true,
+      "marked_pcm16_sha256": "dc9c85fc6e7aef38eb73d7dce10c842894fa910da562953ca56d61fb649e8099",
+      "negative_acceptance": null,
+      "official_status": true,
+      "one_embedding_shared_across_positive_conditions": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.9375179409980774,
+        "rms": 0.09965985966631201,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "speech_04",
+      "state": "IDENTIFIED",
+      "valid_candidate": true,
+      "wrong_message_acceptance": false
+    },
+    {
+      "candidate_hex": null,
+      "channel_metadata": {
+        "channels": 1,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "codec_seconds": 0.0,
+      "condition": "negative_wav_clean",
+      "confidence": null,
+      "correct_accepted_recovery": null,
+      "decode_error_class": null,
+      "detect_seconds": 5.928806104988325,
+      "exact_message_recovery": null,
+      "negative_acceptance": false,
+      "negative_pcm16_sha256": "30036b705d4c1821abc720589e8d3be3b21a9f9564cc92454914d7de1c51d5be",
+      "official_status": false,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.970794677734375,
+        "rms": 0.10024493040275341,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "speech_04",
+      "state": "UNKNOWN",
+      "valid_candidate": false,
+      "wrong_message_acceptance": null
+    },
+    {
+      "candidate_hex": null,
+      "channel_metadata": {
+        "decoded_sample_count_before_p6_slice": 530432,
+        "decoded_sample_rate_hz": 44100,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "0.000000",
+            "duration_time": "0.023220",
+            "pts": 0,
+            "pts_time": "0.000000"
+          },
+          "first_packet_side_data": [],
+          "format_duration_seconds": 11.862444,
+          "format_name": "aac",
+          "stream": {
+            "bit_rate": "136846",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "11.862444",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": null,
+            "start_time": null,
+            "time_base": "1/28224000"
+          }
+        },
+        "post_p6_slice_sample_count": 529200
+      },
+      "codec_seconds": 0.2621970379987033,
+      "condition": "negative_aac_adts_p6",
+      "confidence": null,
+      "correct_accepted_recovery": null,
+      "decode_error_class": "ValueError",
+      "detect_seconds": 5.926672558009159,
+      "exact_message_recovery": null,
+      "negative_acceptance": false,
+      "negative_pcm16_sha256": "30036b705d4c1821abc720589e8d3be3b21a9f9564cc92454914d7de1c51d5be",
+      "official_status": false,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.946661651134491,
+        "rms": 0.09970330681891093,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "speech_04",
+      "state": "DECODE_ERROR",
+      "valid_candidate": false,
+      "wrong_message_acceptance": null
+    },
+    {
+      "candidate_hex": "0D3B953144",
+      "channel_metadata": {
+        "decoded_sample_count_before_trim": 529408,
+        "effective_sample_range_samples": [
+          0,
+          529200
+        ],
+        "encoded_metadata": {
+          "channels": 1,
+          "duration_seconds": 12.0,
+          "sample_rate_hz": 44100
+        },
+        "leading_samples_discarded": 0,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "-0.023220",
+            "duration_time": "0.023220",
+            "pts": -1024,
+            "pts_time": "-0.023220"
+          },
+          "first_packet_side_data": [
+            {
+              "discard_padding": 0,
+              "discard_reason": 0,
+              "side_data_type": "Skip Samples",
+              "skip_reason": 0,
+              "skip_samples": 1024
+            }
+          ],
+          "format_duration_seconds": 12.0,
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "stream": {
+            "bit_rate": "132603",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.000000",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "time_base": "1/44100"
+          }
+        },
+        "output_duration_seconds": 12.0,
+        "tail_padding_samples_removed": 208
+      },
+      "codec_seconds": 0.25500036899757106,
+      "condition": "negative_aac_m4a_corrected",
+      "confidence": 0.3730158805847168,
+      "correct_accepted_recovery": null,
+      "decode_error_class": null,
+      "detect_seconds": 5.942145474007702,
+      "exact_message_recovery": null,
+      "negative_acceptance": false,
+      "negative_pcm16_sha256": "30036b705d4c1821abc720589e8d3be3b21a9f9564cc92454914d7de1c51d5be",
+      "official_status": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.946661651134491,
+        "rms": 0.09975125558376305,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "speech_04",
+      "state": "UNKNOWN",
+      "valid_candidate": true,
+      "wrong_message_acceptance": null
+    },
+    {
+      "candidate_hex": "D3916B24E8",
+      "channel_metadata": {
+        "channels": 1,
+        "container": "wav",
+        "duration_seconds": 12.0,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "codec_seconds": 0.0,
+      "condition": "positive_wav_clean",
+      "confidence": 1.0,
+      "correct_accepted_recovery": true,
+      "decode_error_class": null,
+      "detect_seconds": 5.992645578007796,
+      "exact_message_recovery": true,
+      "marked_pcm16_sha256": "468c1e3be0049b633a81cfe667b9575c35fddb1a9df3a65828312f73ec1fe10b",
+      "negative_acceptance": null,
+      "official_status": true,
+      "one_embedding_shared_across_positive_conditions": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 1.0,
+        "rms": 0.3376130304611019,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "environment_01",
+      "state": "IDENTIFIED",
+      "valid_candidate": true,
+      "wrong_message_acceptance": false
+    },
+    {
+      "candidate_hex": null,
+      "channel_metadata": {
+        "decoded_sample_count_before_p6_slice": 530432,
+        "decoded_sample_rate_hz": 44100,
+        "leading_samples_discarded": 0,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "0.000000",
+            "duration_time": "0.023220",
+            "pts": 0,
+            "pts_time": "0.000000"
+          },
+          "first_packet_side_data": [],
+          "format_duration_seconds": 12.427373,
+          "format_name": "aac",
+          "stream": {
+            "bit_rate": "126681",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.427373",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": null,
+            "start_time": null,
+            "time_base": "1/28224000"
+          }
+        },
+        "post_p6_slice_sample_count": 529200,
+        "tail_samples_truncated_or_padded": -1232
+      },
+      "codec_seconds": 0.20458490699820686,
+      "condition": "positive_aac_adts_p6",
+      "confidence": null,
+      "correct_accepted_recovery": false,
+      "decode_error_class": null,
+      "detect_seconds": 5.825696091997088,
+      "exact_message_recovery": false,
+      "marked_pcm16_sha256": "468c1e3be0049b633a81cfe667b9575c35fddb1a9df3a65828312f73ec1fe10b",
+      "negative_acceptance": null,
+      "official_status": false,
+      "one_embedding_shared_across_positive_conditions": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 1.0237958431243896,
+        "rms": 0.3348037333690654,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "environment_01",
+      "state": "UNKNOWN",
+      "valid_candidate": false,
+      "wrong_message_acceptance": false
+    },
+    {
+      "candidate_hex": "D3916B24E8",
+      "channel_metadata": {
+        "decoded_sample_count_before_trim": 529408,
+        "effective_sample_range_samples": [
+          0,
+          529200
+        ],
+        "encoded_metadata": {
+          "channels": 1,
+          "duration_seconds": 12.0,
+          "sample_rate_hz": 44100
+        },
+        "leading_samples_discarded": 0,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "-0.023220",
+            "duration_time": "0.023220",
+            "pts": -1024,
+            "pts_time": "-0.023220"
+          },
+          "first_packet_side_data": [
+            {
+              "discard_padding": 0,
+              "discard_reason": 0,
+              "side_data_type": "Skip Samples",
+              "skip_reason": 0,
+              "skip_samples": 1024
+            }
+          ],
+          "format_duration_seconds": 12.0,
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "stream": {
+            "bit_rate": "128526",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.000000",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "time_base": "1/44100"
+          }
+        },
+        "output_duration_seconds": 12.0,
+        "tail_padding_samples_removed": 208
+      },
+      "codec_seconds": 0.20090311601234134,
+      "condition": "positive_aac_m4a_corrected",
+      "confidence": 0.9960317611694336,
+      "correct_accepted_recovery": true,
+      "decode_error_class": null,
+      "detect_seconds": 6.101468225009739,
+      "exact_message_recovery": true,
+      "marked_pcm16_sha256": "468c1e3be0049b633a81cfe667b9575c35fddb1a9df3a65828312f73ec1fe10b",
+      "negative_acceptance": null,
+      "official_status": true,
+      "one_embedding_shared_across_positive_conditions": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 1.0237958431243896,
+        "rms": 0.3351603429705584,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "environment_01",
+      "state": "IDENTIFIED",
+      "valid_candidate": true,
+      "wrong_message_acceptance": false
+    },
+    {
+      "candidate_hex": "4C49405AB0",
+      "channel_metadata": {
+        "channels": 1,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "codec_seconds": 0.0,
+      "condition": "negative_wav_clean",
+      "confidence": 0.3531745970249176,
+      "correct_accepted_recovery": null,
+      "decode_error_class": null,
+      "detect_seconds": 6.266834775989992,
+      "exact_message_recovery": null,
+      "negative_acceptance": false,
+      "negative_pcm16_sha256": "9f031150e243bea301a6629de26807f3b276b8bbe088fb28b125c2dee5247f56",
+      "official_status": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 1.0,
+        "rms": 0.33768069288465474,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "environment_01",
+      "state": "UNKNOWN",
+      "valid_candidate": true,
+      "wrong_message_acceptance": null
+    },
+    {
+      "candidate_hex": "2001F7F00F",
+      "channel_metadata": {
+        "decoded_sample_count_before_p6_slice": 530432,
+        "decoded_sample_rate_hz": 44100,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "0.000000",
+            "duration_time": "0.023220",
+            "pts": 0,
+            "pts_time": "0.000000"
+          },
+          "first_packet_side_data": [],
+          "format_duration_seconds": 12.36065,
+          "format_name": "aac",
+          "stream": {
+            "bit_rate": "127348",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.360650",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": null,
+            "start_time": null,
+            "time_base": "1/28224000"
+          }
+        },
+        "post_p6_slice_sample_count": 529200
+      },
+      "codec_seconds": 0.20232043099531438,
+      "condition": "negative_aac_adts_p6",
+      "confidence": 0.3968254029750824,
+      "correct_accepted_recovery": null,
+      "decode_error_class": null,
+      "detect_seconds": 6.3379918440041365,
+      "exact_message_recovery": null,
+      "negative_acceptance": false,
+      "negative_pcm16_sha256": "9f031150e243bea301a6629de26807f3b276b8bbe088fb28b125c2dee5247f56",
+      "official_status": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 1.060677409172058,
+        "rms": 0.335321844262562,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "environment_01",
+      "state": "UNKNOWN",
+      "valid_candidate": true,
+      "wrong_message_acceptance": null
+    },
+    {
+      "candidate_hex": null,
+      "channel_metadata": {
+        "decoded_sample_count_before_trim": 529408,
+        "effective_sample_range_samples": [
+          0,
+          529200
+        ],
+        "encoded_metadata": {
+          "channels": 1,
+          "duration_seconds": 12.0,
+          "sample_rate_hz": 44100
+        },
+        "leading_samples_discarded": 0,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "-0.023220",
+            "duration_time": "0.023220",
+            "pts": -1024,
+            "pts_time": "-0.023220"
+          },
+          "first_packet_side_data": [
+            {
+              "discard_padding": 0,
+              "discard_reason": 0,
+              "side_data_type": "Skip Samples",
+              "skip_reason": 0,
+              "skip_samples": 1024
+            }
+          ],
+          "format_duration_seconds": 12.0,
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "stream": {
+            "bit_rate": "128509",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.000000",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "time_base": "1/44100"
+          }
+        },
+        "output_duration_seconds": 12.0,
+        "tail_padding_samples_removed": 208
+      },
+      "codec_seconds": 0.2080268959980458,
+      "condition": "negative_aac_m4a_corrected",
+      "confidence": null,
+      "correct_accepted_recovery": null,
+      "decode_error_class": null,
+      "detect_seconds": 6.0751982200017665,
+      "exact_message_recovery": null,
+      "negative_acceptance": false,
+      "negative_pcm16_sha256": "9f031150e243bea301a6629de26807f3b276b8bbe088fb28b125c2dee5247f56",
+      "official_status": false,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 1.060677409172058,
+        "rms": 0.33567852623148287,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "environment_01",
+      "state": "UNKNOWN",
+      "valid_candidate": false,
+      "wrong_message_acceptance": null
+    },
+    {
+      "candidate_hex": "D3916B24E8",
+      "channel_metadata": {
+        "channels": 1,
+        "container": "wav",
+        "duration_seconds": 12.0,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "codec_seconds": 0.0,
+      "condition": "positive_wav_clean",
+      "confidence": 0.9285714030265808,
+      "correct_accepted_recovery": true,
+      "decode_error_class": null,
+      "detect_seconds": 6.149534786003642,
+      "exact_message_recovery": true,
+      "marked_pcm16_sha256": "baac3d1c2adb2fadc20a8816b54198ddf070b1709d807c034ab2abea7ff6d230",
+      "negative_acceptance": null,
+      "official_status": true,
+      "one_embedding_shared_across_positive_conditions": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.999969482421875,
+        "rms": 0.12037492760219644,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "environment_02",
+      "state": "IDENTIFIED",
+      "valid_candidate": true,
+      "wrong_message_acceptance": false
+    },
+    {
+      "candidate_hex": "5351AC10A8",
+      "channel_metadata": {
+        "decoded_sample_count_before_p6_slice": 530432,
+        "decoded_sample_rate_hz": 44100,
+        "leading_samples_discarded": 0,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "0.000000",
+            "duration_time": "0.023220",
+            "pts": 0,
+            "pts_time": "0.000000"
+          },
+          "first_packet_side_data": [],
+          "format_duration_seconds": 12.471845,
+          "format_name": "aac",
+          "stream": {
+            "bit_rate": "125804",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.471845",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": null,
+            "start_time": null,
+            "time_base": "1/28224000"
+          }
+        },
+        "post_p6_slice_sample_count": 529200,
+        "tail_samples_truncated_or_padded": -1232
+      },
+      "codec_seconds": 0.21888542298984248,
+      "condition": "positive_aac_adts_p6",
+      "confidence": 0.5079365372657776,
+      "correct_accepted_recovery": false,
+      "decode_error_class": null,
+      "detect_seconds": 5.959590868995292,
+      "exact_message_recovery": false,
+      "marked_pcm16_sha256": "baac3d1c2adb2fadc20a8816b54198ddf070b1709d807c034ab2abea7ff6d230",
+      "negative_acceptance": null,
+      "official_status": true,
+      "one_embedding_shared_across_positive_conditions": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.9481102228164673,
+        "rms": 0.11942489542865752,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "environment_02",
+      "state": "UNKNOWN",
+      "valid_candidate": true,
+      "wrong_message_acceptance": false
+    },
+    {
+      "candidate_hex": "D3916B24E8",
+      "channel_metadata": {
+        "decoded_sample_count_before_trim": 529408,
+        "effective_sample_range_samples": [
+          0,
+          529200
+        ],
+        "encoded_metadata": {
+          "channels": 1,
+          "duration_seconds": 12.0,
+          "sample_rate_hz": 44100
+        },
+        "leading_samples_discarded": 0,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "-0.023220",
+            "duration_time": "0.023220",
+            "pts": -1024,
+            "pts_time": "-0.023220"
+          },
+          "first_packet_side_data": [
+            {
+              "discard_padding": 0,
+              "discard_reason": 0,
+              "side_data_type": "Skip Samples",
+              "skip_reason": 0,
+              "skip_samples": 1024
+            }
+          ],
+          "format_duration_seconds": 12.0,
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "stream": {
+            "bit_rate": "128085",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.000000",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "time_base": "1/44100"
+          }
+        },
+        "output_duration_seconds": 12.0,
+        "tail_padding_samples_removed": 208
+      },
+      "codec_seconds": 0.20441501300956588,
+      "condition": "positive_aac_m4a_corrected",
+      "confidence": 0.8214285969734192,
+      "correct_accepted_recovery": true,
+      "decode_error_class": null,
+      "detect_seconds": 5.898384704007185,
+      "exact_message_recovery": true,
+      "marked_pcm16_sha256": "baac3d1c2adb2fadc20a8816b54198ddf070b1709d807c034ab2abea7ff6d230",
+      "negative_acceptance": null,
+      "official_status": true,
+      "one_embedding_shared_across_positive_conditions": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.9481102228164673,
+        "rms": 0.11954393451557398,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "environment_02",
+      "state": "IDENTIFIED",
+      "valid_candidate": true,
+      "wrong_message_acceptance": false
+    },
+    {
+      "candidate_hex": "2D550C0298",
+      "channel_metadata": {
+        "channels": 1,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "codec_seconds": 0.0,
+      "condition": "negative_wav_clean",
+      "confidence": 0.3968254029750824,
+      "correct_accepted_recovery": null,
+      "decode_error_class": null,
+      "detect_seconds": 5.90722021998954,
+      "exact_message_recovery": null,
+      "negative_acceptance": false,
+      "negative_pcm16_sha256": "ec8e3d0bb3156ac3d27c4cf6d7e438988e3598b8d231d919e9b01e19c6dcb188",
+      "official_status": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.999969482421875,
+        "rms": 0.12039597393590405,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "environment_02",
+      "state": "UNKNOWN",
+      "valid_candidate": true,
+      "wrong_message_acceptance": null
+    },
+    {
+      "candidate_hex": null,
+      "channel_metadata": {
+        "decoded_sample_count_before_p6_slice": 530432,
+        "decoded_sample_rate_hz": 44100,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "0.000000",
+            "duration_time": "0.023220",
+            "pts": 0,
+            "pts_time": "0.000000"
+          },
+          "first_packet_side_data": [],
+          "format_duration_seconds": 12.530214,
+          "format_name": "aac",
+          "stream": {
+            "bit_rate": "125172",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.530214",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": null,
+            "start_time": null,
+            "time_base": "1/28224000"
+          }
+        },
+        "post_p6_slice_sample_count": 529200
+      },
+      "codec_seconds": 0.2000765609991504,
+      "condition": "negative_aac_adts_p6",
+      "confidence": null,
+      "correct_accepted_recovery": null,
+      "decode_error_class": null,
+      "detect_seconds": 5.909342140002991,
+      "exact_message_recovery": null,
+      "negative_acceptance": false,
+      "negative_pcm16_sha256": "ec8e3d0bb3156ac3d27c4cf6d7e438988e3598b8d231d919e9b01e19c6dcb188",
+      "official_status": false,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.9464735984802246,
+        "rms": 0.11940892041242974,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "environment_02",
+      "state": "UNKNOWN",
+      "valid_candidate": false,
+      "wrong_message_acceptance": null
+    },
+    {
+      "candidate_hex": null,
+      "channel_metadata": {
+        "decoded_sample_count_before_trim": 529408,
+        "effective_sample_range_samples": [
+          0,
+          529200
+        ],
+        "encoded_metadata": {
+          "channels": 1,
+          "duration_seconds": 12.0,
+          "sample_rate_hz": 44100
+        },
+        "leading_samples_discarded": 0,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "-0.023220",
+            "duration_time": "0.023220",
+            "pts": -1024,
+            "pts_time": "-0.023220"
+          },
+          "first_packet_side_data": [
+            {
+              "discard_padding": 0,
+              "discard_reason": 0,
+              "side_data_type": "Skip Samples",
+              "skip_reason": 0,
+              "skip_samples": 1024
+            }
+          ],
+          "format_duration_seconds": 12.0,
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "stream": {
+            "bit_rate": "128037",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.000000",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "time_base": "1/44100"
+          }
+        },
+        "output_duration_seconds": 12.0,
+        "tail_padding_samples_removed": 208
+      },
+      "codec_seconds": 0.2122763850056799,
+      "condition": "negative_aac_m4a_corrected",
+      "confidence": null,
+      "correct_accepted_recovery": null,
+      "decode_error_class": null,
+      "detect_seconds": 5.931211905000964,
+      "exact_message_recovery": null,
+      "negative_acceptance": false,
+      "negative_pcm16_sha256": "ec8e3d0bb3156ac3d27c4cf6d7e438988e3598b8d231d919e9b01e19c6dcb188",
+      "official_status": false,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.9464735984802246,
+        "rms": 0.11952913529507725,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "environment_02",
+      "state": "UNKNOWN",
+      "valid_candidate": false,
+      "wrong_message_acceptance": null
+    },
+    {
+      "candidate_hex": "D3916B24E8",
+      "channel_metadata": {
+        "channels": 1,
+        "container": "wav",
+        "duration_seconds": 12.0,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "codec_seconds": 0.0,
+      "condition": "positive_wav_clean",
+      "confidence": 1.0,
+      "correct_accepted_recovery": true,
+      "decode_error_class": null,
+      "detect_seconds": 5.961194165007328,
+      "exact_message_recovery": true,
+      "marked_pcm16_sha256": "9f9ed204a4f041679c97f7f0ecb56e05662b82c53b90a809f1ba6eb7b31575ee",
+      "negative_acceptance": null,
+      "official_status": true,
+      "one_embedding_shared_across_positive_conditions": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.8155517578125,
+        "rms": 0.2430803441133055,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "environment_03",
+      "state": "IDENTIFIED",
+      "valid_candidate": true,
+      "wrong_message_acceptance": false
+    },
+    {
+      "candidate_hex": "B052834281",
+      "channel_metadata": {
+        "decoded_sample_count_before_p6_slice": 530432,
+        "decoded_sample_rate_hz": 44100,
+        "leading_samples_discarded": 0,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "0.000000",
+            "duration_time": "0.023220",
+            "pts": 0,
+            "pts_time": "0.000000"
+          },
+          "first_packet_side_data": [],
+          "format_duration_seconds": 12.021811,
+          "format_name": "aac",
+          "stream": {
+            "bit_rate": "130759",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.021811",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": null,
+            "start_time": null,
+            "time_base": "1/28224000"
+          }
+        },
+        "post_p6_slice_sample_count": 529200,
+        "tail_samples_truncated_or_padded": -1232
+      },
+      "codec_seconds": 0.20333309601119254,
+      "condition": "positive_aac_adts_p6",
+      "confidence": 0.6230158805847168,
+      "correct_accepted_recovery": false,
+      "decode_error_class": null,
+      "detect_seconds": 5.910091517987894,
+      "exact_message_recovery": false,
+      "marked_pcm16_sha256": "9f9ed204a4f041679c97f7f0ecb56e05662b82c53b90a809f1ba6eb7b31575ee",
+      "negative_acceptance": null,
+      "official_status": true,
+      "one_embedding_shared_across_positive_conditions": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.8130157589912415,
+        "rms": 0.24275259348535225,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "environment_03",
+      "state": "UNKNOWN",
+      "valid_candidate": true,
+      "wrong_message_acceptance": false
+    },
+    {
+      "candidate_hex": "D3916B24E8",
+      "channel_metadata": {
+        "decoded_sample_count_before_trim": 529408,
+        "effective_sample_range_samples": [
+          0,
+          529200
+        ],
+        "encoded_metadata": {
+          "channels": 1,
+          "duration_seconds": 12.0,
+          "sample_rate_hz": 44100
+        },
+        "leading_samples_discarded": 0,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "-0.023220",
+            "duration_time": "0.023220",
+            "pts": -1024,
+            "pts_time": "-0.023220"
+          },
+          "first_packet_side_data": [
+            {
+              "discard_padding": 0,
+              "discard_reason": 0,
+              "side_data_type": "Skip Samples",
+              "skip_reason": 0,
+              "skip_samples": 1024
+            }
+          ],
+          "format_duration_seconds": 12.0,
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "stream": {
+            "bit_rate": "128331",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.000000",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "time_base": "1/44100"
+          }
+        },
+        "output_duration_seconds": 12.0,
+        "tail_padding_samples_removed": 208
+      },
+      "codec_seconds": 0.20932185200217646,
+      "condition": "positive_aac_m4a_corrected",
+      "confidence": 1.0,
+      "correct_accepted_recovery": true,
+      "decode_error_class": null,
+      "detect_seconds": 5.929757953010267,
+      "exact_message_recovery": true,
+      "marked_pcm16_sha256": "9f9ed204a4f041679c97f7f0ecb56e05662b82c53b90a809f1ba6eb7b31575ee",
+      "negative_acceptance": null,
+      "official_status": true,
+      "one_embedding_shared_across_positive_conditions": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.8130157589912415,
+        "rms": 0.24295687177455927,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "environment_03",
+      "state": "IDENTIFIED",
+      "valid_candidate": true,
+      "wrong_message_acceptance": false
+    },
+    {
+      "candidate_hex": null,
+      "channel_metadata": {
+        "channels": 1,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "codec_seconds": 0.0,
+      "condition": "negative_wav_clean",
+      "confidence": null,
+      "correct_accepted_recovery": null,
+      "decode_error_class": null,
+      "detect_seconds": 5.865985675001866,
+      "exact_message_recovery": null,
+      "negative_acceptance": false,
+      "negative_pcm16_sha256": "10f2be49286cd9cc3b9e99ff2504bf6d66ab23681c1b26f71de3ab4f4225e09e",
+      "official_status": false,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.814697265625,
+        "rms": 0.24313011766973777,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "environment_03",
+      "state": "UNKNOWN",
+      "valid_candidate": false,
+      "wrong_message_acceptance": null
+    },
+    {
+      "candidate_hex": "0C03000000",
+      "channel_metadata": {
+        "decoded_sample_count_before_p6_slice": 530432,
+        "decoded_sample_rate_hz": 44100,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "0.000000",
+            "duration_time": "0.023220",
+            "pts": 0,
+            "pts_time": "0.000000"
+          },
+          "first_packet_side_data": [],
+          "format_duration_seconds": 12.025768,
+          "format_name": "aac",
+          "stream": {
+            "bit_rate": "130706",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.025768",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": null,
+            "start_time": null,
+            "time_base": "1/28224000"
+          }
+        },
+        "post_p6_slice_sample_count": 529200
+      },
+      "codec_seconds": 0.2106231199868489,
+      "condition": "negative_aac_adts_p6",
+      "confidence": 0.44841268658638,
+      "correct_accepted_recovery": null,
+      "decode_error_class": null,
+      "detect_seconds": 5.928660752004362,
+      "exact_message_recovery": null,
+      "negative_acceptance": false,
+      "negative_pcm16_sha256": "10f2be49286cd9cc3b9e99ff2504bf6d66ab23681c1b26f71de3ab4f4225e09e",
+      "official_status": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.8127495050430298,
+        "rms": 0.2428220084032903,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "environment_03",
+      "state": "UNKNOWN",
+      "valid_candidate": true,
+      "wrong_message_acceptance": null
+    },
+    {
+      "candidate_hex": "0C20022422",
+      "channel_metadata": {
+        "decoded_sample_count_before_trim": 529408,
+        "effective_sample_range_samples": [
+          0,
+          529200
+        ],
+        "encoded_metadata": {
+          "channels": 1,
+          "duration_seconds": 12.0,
+          "sample_rate_hz": 44100
+        },
+        "leading_samples_discarded": 0,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "-0.023220",
+            "duration_time": "0.023220",
+            "pts": -1024,
+            "pts_time": "-0.023220"
+          },
+          "first_packet_side_data": [
+            {
+              "discard_padding": 0,
+              "discard_reason": 0,
+              "side_data_type": "Skip Samples",
+              "skip_reason": 0,
+              "skip_samples": 1024
+            }
+          ],
+          "format_duration_seconds": 12.0,
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "stream": {
+            "bit_rate": "128321",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.000000",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "time_base": "1/44100"
+          }
+        },
+        "output_duration_seconds": 12.0,
+        "tail_padding_samples_removed": 208
+      },
+      "codec_seconds": 0.215932052989956,
+      "condition": "negative_aac_m4a_corrected",
+      "confidence": 0.4404761791229248,
+      "correct_accepted_recovery": null,
+      "decode_error_class": null,
+      "detect_seconds": 5.879713235000963,
+      "exact_message_recovery": null,
+      "negative_acceptance": false,
+      "negative_pcm16_sha256": "10f2be49286cd9cc3b9e99ff2504bf6d66ab23681c1b26f71de3ab4f4225e09e",
+      "official_status": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.8127495050430298,
+        "rms": 0.24302683161351094,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "environment_03",
+      "state": "UNKNOWN",
+      "valid_candidate": true,
+      "wrong_message_acceptance": null
+    },
+    {
+      "candidate_hex": "D3916B24E8",
+      "channel_metadata": {
+        "channels": 1,
+        "container": "wav",
+        "duration_seconds": 12.0,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "codec_seconds": 0.0,
+      "condition": "positive_wav_clean",
+      "confidence": 0.7936508059501648,
+      "correct_accepted_recovery": true,
+      "decode_error_class": null,
+      "detect_seconds": 5.9387477160053095,
+      "exact_message_recovery": true,
+      "marked_pcm16_sha256": "3684571c6b63d0cd972a2f29fde7072ae861d11d0a6319f763624fe8e973ce35",
+      "negative_acceptance": null,
+      "official_status": true,
+      "one_embedding_shared_across_positive_conditions": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 1.0,
+        "rms": 0.1848245018625819,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "environment_04",
+      "state": "IDENTIFIED",
+      "valid_candidate": true,
+      "wrong_message_acceptance": false
+    },
+    {
+      "candidate_hex": null,
+      "channel_metadata": {
+        "decoded_sample_count_before_p6_slice": 530432,
+        "decoded_sample_rate_hz": 44100,
+        "leading_samples_discarded": 0,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "0.000000",
+            "duration_time": "0.023220",
+            "pts": 0,
+            "pts_time": "0.000000"
+          },
+          "first_packet_side_data": [],
+          "format_duration_seconds": 12.012719,
+          "format_name": "aac",
+          "stream": {
+            "bit_rate": "131454",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.012719",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": null,
+            "start_time": null,
+            "time_base": "1/28224000"
+          }
+        },
+        "post_p6_slice_sample_count": 529200,
+        "tail_samples_truncated_or_padded": -1232
+      },
+      "codec_seconds": 0.21942006499739364,
+      "condition": "positive_aac_adts_p6",
+      "confidence": null,
+      "correct_accepted_recovery": false,
+      "decode_error_class": null,
+      "detect_seconds": 5.940900226996746,
+      "exact_message_recovery": false,
+      "marked_pcm16_sha256": "3684571c6b63d0cd972a2f29fde7072ae861d11d0a6319f763624fe8e973ce35",
+      "negative_acceptance": null,
+      "official_status": false,
+      "one_embedding_shared_across_positive_conditions": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.943854570388794,
+        "rms": 0.18421337198838336,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "environment_04",
+      "state": "UNKNOWN",
+      "valid_candidate": false,
+      "wrong_message_acceptance": false
+    },
+    {
+      "candidate_hex": "D3916B24E8",
+      "channel_metadata": {
+        "decoded_sample_count_before_trim": 529408,
+        "effective_sample_range_samples": [
+          0,
+          529200
+        ],
+        "encoded_metadata": {
+          "channels": 1,
+          "duration_seconds": 12.0,
+          "sample_rate_hz": 44100
+        },
+        "leading_samples_discarded": 0,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "-0.023220",
+            "duration_time": "0.023220",
+            "pts": -1024,
+            "pts_time": "-0.023220"
+          },
+          "first_packet_side_data": [
+            {
+              "discard_padding": 0,
+              "discard_reason": 0,
+              "side_data_type": "Skip Samples",
+              "skip_reason": 0,
+              "skip_samples": 1024
+            }
+          ],
+          "format_duration_seconds": 12.0,
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "stream": {
+            "bit_rate": "128926",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.000000",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "time_base": "1/44100"
+          }
+        },
+        "output_duration_seconds": 12.0,
+        "tail_padding_samples_removed": 208
+      },
+      "codec_seconds": 0.23131539300084114,
+      "condition": "positive_aac_m4a_corrected",
+      "confidence": 0.6388888955116272,
+      "correct_accepted_recovery": false,
+      "decode_error_class": null,
+      "detect_seconds": 5.914654530992266,
+      "exact_message_recovery": true,
+      "marked_pcm16_sha256": "3684571c6b63d0cd972a2f29fde7072ae861d11d0a6319f763624fe8e973ce35",
+      "negative_acceptance": null,
+      "official_status": true,
+      "one_embedding_shared_across_positive_conditions": true,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.943854570388794,
+        "rms": 0.1843724798877466,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "environment_04",
+      "state": "UNKNOWN",
+      "valid_candidate": true,
+      "wrong_message_acceptance": false
+    },
+    {
+      "candidate_hex": null,
+      "channel_metadata": {
+        "channels": 1,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "codec_seconds": 0.0,
+      "condition": "negative_wav_clean",
+      "confidence": null,
+      "correct_accepted_recovery": null,
+      "decode_error_class": null,
+      "detect_seconds": 5.961712792995968,
+      "exact_message_recovery": null,
+      "negative_acceptance": false,
+      "negative_pcm16_sha256": "cf4ae16f90739f99c6fc7c74797fc29ae26e4a5782adc1e537ef211620752f65",
+      "official_status": false,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 1.0,
+        "rms": 0.18486245018622408,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "environment_04",
+      "state": "UNKNOWN",
+      "valid_candidate": false,
+      "wrong_message_acceptance": null
+    },
+    {
+      "candidate_hex": null,
+      "channel_metadata": {
+        "decoded_sample_count_before_p6_slice": 530432,
+        "decoded_sample_rate_hz": 44100,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "0.000000",
+            "duration_time": "0.023220",
+            "pts": 0,
+            "pts_time": "0.000000"
+          },
+          "first_packet_side_data": [],
+          "format_duration_seconds": 12.004712,
+          "format_name": "aac",
+          "stream": {
+            "bit_rate": "131581",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.004712",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": null,
+            "start_time": null,
+            "time_base": "1/28224000"
+          }
+        },
+        "post_p6_slice_sample_count": 529200
+      },
+      "codec_seconds": 0.21421321399975568,
+      "condition": "negative_aac_adts_p6",
+      "confidence": null,
+      "correct_accepted_recovery": null,
+      "decode_error_class": null,
+      "detect_seconds": 5.897524141997565,
+      "exact_message_recovery": null,
+      "negative_acceptance": false,
+      "negative_pcm16_sha256": "cf4ae16f90739f99c6fc7c74797fc29ae26e4a5782adc1e537ef211620752f65",
+      "official_status": false,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.9423412084579468,
+        "rms": 0.18410176827758018,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "environment_04",
+      "state": "UNKNOWN",
+      "valid_candidate": false,
+      "wrong_message_acceptance": null
+    },
+    {
+      "candidate_hex": null,
+      "channel_metadata": {
+        "decoded_sample_count_before_trim": 529408,
+        "effective_sample_range_samples": [
+          0,
+          529200
+        ],
+        "encoded_metadata": {
+          "channels": 1,
+          "duration_seconds": 12.0,
+          "sample_rate_hz": 44100
+        },
+        "leading_samples_discarded": 0,
+        "metadata": {
+          "first_packet": {
+            "dts_time": "-0.023220",
+            "duration_time": "0.023220",
+            "pts": -1024,
+            "pts_time": "-0.023220"
+          },
+          "first_packet_side_data": [
+            {
+              "discard_padding": 0,
+              "discard_reason": 0,
+              "side_data_type": "Skip Samples",
+              "skip_reason": 0,
+              "skip_samples": 1024
+            }
+          ],
+          "format_duration_seconds": 12.0,
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "stream": {
+            "bit_rate": "128965",
+            "channel_layout": "mono",
+            "channels": 1,
+            "codec_name": "aac",
+            "duration": "12.000000",
+            "profile": "LC",
+            "sample_rate": "44100",
+            "start_pts": 0,
+            "start_time": "0.000000",
+            "time_base": "1/44100"
+          }
+        },
+        "output_duration_seconds": 12.0,
+        "tail_padding_samples_removed": 208
+      },
+      "codec_seconds": 0.2127316870028153,
+      "condition": "negative_aac_m4a_corrected",
+      "confidence": null,
+      "correct_accepted_recovery": null,
+      "decode_error_class": null,
+      "detect_seconds": 5.880099271002109,
+      "exact_message_recovery": null,
+      "negative_acceptance": false,
+      "negative_pcm16_sha256": "cf4ae16f90739f99c6fc7c74797fc29ae26e4a5782adc1e537ef211620752f65",
+      "official_status": false,
+      "presence_threshold_frozen": 0.6805555373430252,
+      "signal_stats": {
+        "channels": 1,
+        "duration_seconds": 12.0,
+        "peak_abs": 0.9423412084579468,
+        "rms": 0.1842590211978948,
+        "sample_count": 529200,
+        "sample_rate_hz": 44100
+      },
+      "source_id": "environment_04",
+      "state": "UNKNOWN",
+      "valid_candidate": false,
+      "wrong_message_acceptance": null
+    }
+  ],
+  "sample_rate_hz": 44100,
+  "source_count": 12,
+  "source_unit": "unique P6 recording; one fixed message; paired conditions are repeated measures",
+  "sources": [
+    {
+      "category": "music",
+      "crop_duration_seconds": 12.0,
+      "crop_start_seconds": 10.0,
+      "source_id": "music_01",
+      "source_sample_rate_hz": 16000,
+      "source_sha256": "0f7abd39d9a044e89966d3ff5a60ca0ccdedd076546068af2fb4226e9f774afc"
+    },
+    {
+      "category": "music",
+      "crop_duration_seconds": 12.0,
+      "crop_start_seconds": 30.0,
+      "source_id": "music_02",
+      "source_sample_rate_hz": 16000,
+      "source_sha256": "ff51c346d1b8663ce83991dcfafd3b91ed5611ba4b7f33d5dfd01ee2c26e557b"
+    },
+    {
+      "category": "music",
+      "crop_duration_seconds": 12.0,
+      "crop_start_seconds": 50.0,
+      "source_id": "music_03",
+      "source_sample_rate_hz": 16000,
+      "source_sha256": "86e0ea8e63a2a2a07747cfe711e15a8d86c990a2a0035acdb426dc163bbbd320"
+    },
+    {
+      "category": "music",
+      "crop_duration_seconds": 12.0,
+      "crop_start_seconds": 70.0,
+      "source_id": "music_04",
+      "source_sample_rate_hz": 16000,
+      "source_sha256": "ebb2ef7dbdf7b42c602531529b328474c284557d7c755ef2ec57c7712b670d20"
+    },
+    {
+      "category": "speech",
+      "crop_duration_seconds": 12.0,
+      "crop_start_seconds": 15.0,
+      "source_id": "speech_01",
+      "source_sample_rate_hz": 16000,
+      "source_sha256": "6a74f9d017dacbae23e1d6a42f5e29afa52cbc21a4c08e30e86879890e8ad5a8"
+    },
+    {
+      "category": "speech",
+      "crop_duration_seconds": 12.0,
+      "crop_start_seconds": 30.0,
+      "source_id": "speech_02",
+      "source_sample_rate_hz": 16000,
+      "source_sha256": "aa31bcba6049760ee64468437cc11a3d9359a71310f403c27d69ca2f25e9ed12"
+    },
+    {
+      "category": "speech",
+      "crop_duration_seconds": 12.0,
+      "crop_start_seconds": 45.0,
+      "source_id": "speech_03",
+      "source_sample_rate_hz": 16000,
+      "source_sha256": "f907f96e69eb8e680c86964f63ff570d2c24458beacd7d94520c44b2a5c10868"
+    },
+    {
+      "category": "speech",
+      "crop_duration_seconds": 12.0,
+      "crop_start_seconds": 60.0,
+      "source_id": "speech_04",
+      "source_sample_rate_hz": 16000,
+      "source_sha256": "8c1370aaca2843057072ded459deb739413910e7a2c5a1f21d3e04c2b3fe4c6b"
+    },
+    {
+      "category": "environment",
+      "crop_duration_seconds": 12.0,
+      "crop_start_seconds": 2.0,
+      "source_id": "environment_01",
+      "source_sample_rate_hz": 16000,
+      "source_sha256": "38624671753649af38f97b5872463017badcb3e29411787a95f6f2beb9edbfec"
+    },
+    {
+      "category": "environment",
+      "crop_duration_seconds": 12.0,
+      "crop_start_seconds": 10.0,
+      "source_id": "environment_02",
+      "source_sample_rate_hz": 16000,
+      "source_sha256": "757966dde40b87b2862013eaf0808e47a560e1d3bc9e75167df292313328ab56"
+    },
+    {
+      "category": "environment",
+      "crop_duration_seconds": 12.0,
+      "crop_start_seconds": 20.0,
+      "source_id": "environment_03",
+      "source_sample_rate_hz": 16000,
+      "source_sha256": "a4c955e6b759de071e7b71b71d2a2a1dc5392408ef386f3d713f83f71bbf5928"
+    },
+    {
+      "category": "environment",
+      "crop_duration_seconds": 12.0,
+      "crop_start_seconds": 1.0,
+      "source_id": "environment_04",
+      "source_sample_rate_hz": 16000,
+      "source_sha256": "d0d6eb43054994b91263d8cc5caf277c9622d2903144347e7f7736b3c228711f"
+    }
+  ],
+  "status": "V4_P8_PAIRED_AAC_PROTOCOL_REVALIDATION"
+}

@@ -4,6 +4,23 @@
 
 > SilentCipher 是 Sony Research 的第三方模型，不是本项目原创模型。其官方代码采用 MIT 许可；公开的 checkpoint 归档没有清晰的独立权重许可说明，因此本仓库不打包或再分发权重。
 
+## Studio 页面风格与交互流程
+
+V4 Studio 采用与 [Embodied Semantic Communication 项目展示页](https://shengkaini.com/embodied-semantic-communication/)一致的**简约学术项目风格**：浅灰白背景、深灰蓝文字、青绿色强调色、细边框卡片、等宽技术标签和宽松的页面留白。两者是相互独立的课程项目；V4 不依赖参考网站的脚本或素材，只复用视觉语言。
+
+四个标签页对应完整的实际实验流程：
+
+| 页面 | 操作 | 输出 |
+| --- | --- | --- |
+| **01 · Watermark** | 上传音频，选择 Neural 40-bit 或 V3 8-bit，输入消息 | 原音/水印音试听、WAV 下载及嵌入信息 |
+| **02 · Channel Lab** | 重新上传水印文件，进行 MP3/AAC、噪声或裁剪处理 | 真实处理后的文件、播放与信道信息 |
+| **03 · Blind Detection** | 独立上传接收文件，选择检测后端 | \`IDENTIFIED\`、\`UNKNOWN\` 或 \`DECODE_ERROR\`，诊断候选和置信度 |
+| **04 · Signal Analysis** | 上传原音和处理后文件，设置最大对齐偏移 | 波形、STFT 幅度谱、频谱差异，以及可信对齐下的 SNR/LSD |
+
+界面美化不更改判决规则：低于临时置信度阈值的候选仍显示为 \`UNKNOWN\`；噪声和裁剪选项不能被解释为已经验证鲁棒。主题使用 Gradio 内的本地 CSS 与静态 HTML，不加载外部字体、脚本或 CDN。
+
+**验收状态：** 新版界面仍需要在真实浏览器中检查桌面/移动端布局、音频播放与下载、长文本和图表溢出。自动化组件与 CI 测试不能代替视觉验收；人工 A/B 试听也尚未完成。
+
 ## V4 功能
 
 - **Watermark：**SilentCipher 40-bit（5 字节）、单声道 44.1 kHz / 12 秒；或冻结 V3 8-bit、单声道 48 kHz / 6 秒。

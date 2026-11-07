@@ -7,6 +7,9 @@ on:
       - "configs/**"
       - "Dockerfile"
       - "requirements.txt"
+      - "requirements-dev.txt"
+      - "requirements-v4.txt"
+      - "requirements-v4-dev.txt"
       - "pyproject.toml"
       - "tests/**"
       - ".github/workflows/v3-container-ci.yml"
@@ -16,7 +19,7 @@ on:
 permissions:
   contents: read
 jobs:
-  unit:
+  v3_unit:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -24,18 +27,58 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - run: python -m pip install --no-cache-dir -r requirements.txt
+      - run: python -m pip install --no-cache-dir -r requirements-dev.txt
       - run: python -m pip install --no-cache-dir --no-deps -e .
-      - run: python -m pip install --no-cache-dir pytest
-      - run: PYTHONPATH=src:. pytest -q
+      - name: Run frozen V3 and Legacy tests
+        run: >-
+          PYTHONPATH=src:. pytest -q
+          tests/test_b1_soft_code.py
+          tests/test_b2_capacity.py
+          tests/test_hosted_session_cleanup.py
+          tests/test_public_contracts.py
+          tests/test_public_identity.py
+          tests/test_public_payload.py
+          tests/test_session_store.py
+          tests/test_v3_api_behavior.py
+          tests/test_v3_api_contract.py
+          tests/test_v3_detector_worker.py
+          tests/test_v3_pipeline.py
       - name: Confirm runtime Gradio version and dependency integrity
         run: |
           python -m pip check
           python -c "import gradio; assert gradio.__version__ == '6.31.0', gradio.__version__"
       - run: python -m compileall -q src app tests
       - run: git diff --check
+
+  v4_unit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      V3_SOURCE_ROOT: ${{ github.workspace }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install --no-cache-dir -r requirements-v4-dev.txt
+      - name: Run V4 unit tests without private audio or model weights
+        run: >-
+          PYTHONPATH=src:. pytest -q
+          tests/test_ci_workflow_contract.py
+          tests/test_silentcipher_adapter.py
+          tests/test_v4_gradio_compat.py
+          tests/test_v4_p4_audio_processing.py
+          tests/test_v4_p4_backends.py
+          tests/test_v4_pcm16_peak_safety.py
+      - name: Confirm V4 dependency integrity
+        run: |
+          python -m pip check
+          python -c "import gradio; assert gradio.__version__ == '6.31.0', gradio.__version__"
+      - run: python -m compileall -q src app tests
+      - run: git diff --check
+
   docker:
-    needs: unit
+    needs: v3_unit
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:

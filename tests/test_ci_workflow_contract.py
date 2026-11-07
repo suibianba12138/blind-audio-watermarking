@@ -25,6 +25,7 @@ def test_v3_and_v4_tests_use_separate_jobs_and_docker_keeps_v3_gate() -> None:
     assert "tests/test_v3_api_behavior.py" in v3
     assert "tests/test_v4_p4_audio_processing.py" not in v3
     assert "-r requirements-v4-dev.txt" in v4
+    assert "apt-get install -y ffmpeg" in v4
     assert "V3_SOURCE_ROOT: ${{ github.workspace }}" in v4
     assert "PYTHONPATH=src:. pytest -q" in v4
     assert "tests/test_v4_p4_audio_processing.py" in v4

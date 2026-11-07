@@ -6,16 +6,56 @@
   "publish_rule": "All four files per track must match the frozen SHA256 hashes before published=true.",
   "tracks": {
     "music_01": {
-      "published": false,
-      "validation": "PENDING_LOCAL_AUDIO_FILES",
+      "published": true,
+      "validation": "SHA256_VERIFIED",
       "license": "CC0 1.0",
-      "source_url": "https://freemusicarchive.org/music/maarten-schellekens/public-domain-1/sax-and-piano-free-track/"
+      "source_url": "https://freemusicarchive.org/music/maarten-schellekens/public-domain-1/sax-and-piano-free-track/",
+      "original": {
+        "file": "music_01_original_prepared.wav",
+        "sha256": "1ab6de691310639176f88dd70c9b763411169d5543c32b92484979c7c9f7a974",
+        "bytes": 1058444
+      },
+      "watermarked": {
+        "file": "music_01_watermarked.wav",
+        "sha256": "85289a63aa3dcdb257b6f9a6df5e8f9179ebeb94814b48327a5a617debbc08f0",
+        "bytes": 1058444
+      },
+      "mp3": {
+        "file": "music_01_mp3_128k.mp3",
+        "sha256": "30ed55cdc13e30f887dfa1e11e197c6e53c42c1b8ce458d5de9a9f6daf08ce2b",
+        "bytes": 193141
+      },
+      "aac": {
+        "file": "music_01_aac_lc_m4a_128k.m4a",
+        "sha256": "18fd87b6f8400facd260484a00794582baee9d2f650203e2698855e0c860cd35",
+        "bytes": 197963
+      }
     },
     "music_02": {
-      "published": false,
-      "validation": "PENDING_LOCAL_AUDIO_FILES",
+      "published": true,
+      "validation": "SHA256_VERIFIED",
       "license": "CC0 1.0",
-      "source_url": "https://freemusicarchive.org/music/Monplaisir/Free_To_Use/Monplaisir_-_Free_To_Use_-_01_Free_To_Use_1/"
+      "source_url": "https://freemusicarchive.org/music/Monplaisir/Free_To_Use/Monplaisir_-_Free_To_Use_-_01_Free_To_Use_1/",
+      "original": {
+        "file": "music_02_original_prepared.wav",
+        "sha256": "12a31ec46ad8cab8ce80c1743efc75619a63874f44a2708d531b3fab4114ccc3",
+        "bytes": 1058444
+      },
+      "watermarked": {
+        "file": "music_02_watermarked.wav",
+        "sha256": "98fe7c41dfccc29166bdbcf771962f3758db93fc183d22e3a589a7c2fead917a",
+        "bytes": 1058444
+      },
+      "mp3": {
+        "file": "music_02_mp3_128k.mp3",
+        "sha256": "9af756799508b227405cc747550b1a78b4b588ff0b5980e3c86feeca483f4f5c",
+        "bytes": 193141
+      },
+      "aac": {
+        "file": "music_02_aac_lc_m4a_128k.m4a",
+        "sha256": "30a89c1163c475086f4620936a3a182db51cfa9f257e87868bd7df1c4134189f",
+        "bytes": 191944
+      }
     }
   }
 }

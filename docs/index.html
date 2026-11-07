@@ -11,8 +11,10 @@
 <title>Robust Audio Watermarking | Project Showcase</title>
 <link rel="stylesheet" href="./assets/v4-showcase.css">
 <link rel="stylesheet" href="./assets/v4-experience.css">
+<link rel="stylesheet" href="./assets/v4-listening.css">
 <script src="./assets/v4-showcase.js" defer></script>
 <script src="./assets/v4-experience.js" defer></script>
+<script src="./assets/v4-listening.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#overview">Skip to content</a>
@@ -21,7 +23,7 @@
     <a href="#top" class="brand"><span class="brand-icon" aria-hidden="true">N</span> Robust Audio Watermarking</a>
     <nav class="topnav" aria-label="Primary navigation">
       <a href="#overview">Overview</a>
-      <a href="#lab">V4 Demo</a><a href="#evidence">Results</a>
+      <a href="#lab">V4 Demo</a><a href="#listen">Listen</a><a href="#evidence">Results</a>
       <a href="#method">System</a>
       <a href="#versions">Versions</a>
       <a href="https://shengkaini.com/">Home ↗</a>
@@ -95,6 +97,62 @@
     </div>
     <div class="v4-lab-bottom"><div><strong>What this demonstrates</strong><p>Independent blind file recovery of a fixed 40-bit payload. Controls switch real recorded results, not generated success claims.</p></div><div><strong>What it does not demonstrate</strong><p>This static replay cannot process visitors' audio or prove inaudibility. The original/watermarked A/B audio exports exist locally, but have not been published as verified website media.</p></div></div>
   </section>
+  <section class="wrap v4-listen section" id="listen" aria-labelledby="listen-heading">
+    <div class="section-head">
+      <div><div class="kicker">LISTENING LAB / FROZEN P4 ASSETS</div><h2 id="listen-heading">Hear the watermark—or try to.</h2>
+      <p>Listen to the <strong>same 12-second excerpt</strong> before and after embedding, then compare the actual MP3 and AAC files used for independent blind detection. Pair the listening test with the detector scores below.</p></div>
+      <span class="badge" id="v4-audio-availability">AUDIO · VALIDATION PENDING</span>
+    </div>
+    <div class="v4-audio-layout">
+      <div class="v4-audio-main">
+        <div class="v4-audio-top"><div><small>TRACK SELECTION / CC0 MUSIC</small><h3>Original versus watermarked</h3></div><span class="v4-audio-format">12 s · 44.1 kHz · mono</span></div>
+        <div class="v4-audio-trackset" role="group" aria-label="Choose music sample">
+          <button type="button" data-audio-track="music_01" aria-pressed="true"><span>01</span> Sax &amp; piano</button>
+          <button type="button" data-audio-track="music_02" aria-pressed="false"><span>02</span> Free To Use</button>
+        </div>
+        <div class="v4-audio-ab">
+          <div class="v4-audio-card">
+            <span class="v4-audio-index">A / ORIGINAL</span>
+            <strong>Prepared source</strong>
+            <p>No embedded 40-bit message.</p>
+            <audio id="v4-player-original" controls preload="none" aria-label="Original source audio"></audio>
+          </div>
+          <div class="v4-audio-card">
+            <span class="v4-audio-index">B / WATERMARKED</span>
+            <strong>Watermarked WAV</strong>
+            <p>Actual SilentCipher 40-bit export.</p>
+            <audio id="v4-player-watermarked" controls preload="none" aria-label="Watermarked audio"></audio>
+          </div>
+        </div>
+        <div class="v4-audio-compare">
+          <button type="button" id="v4-ab-toggle" disabled>Switch A ↔ B at playback position</button>
+          <span id="v4-audio-comparison-note">Player files will appear only after verified experiment audio is published.</span>
+        </div>
+        <div class="v4-audio-encoding">
+          <div class="v4-audio-mini-title">SAME WATERMARKED AUDIO / REAL 128 KBPS CODECS</div>
+          <div class="v4-audio-encoded-grid">
+            <div><label for="v4-player-mp3">MP3 · libmp3lame</label><audio id="v4-player-mp3" controls preload="none" aria-label="Real MP3 channel output"></audio><a id="v4-mp3-download" hidden download>Download MP3 ↗</a></div>
+            <div><label for="v4-player-aac">AAC-LC · M4A</label><audio id="v4-player-aac" controls preload="none" aria-label="Real AAC M4A channel output"></audio><a id="v4-aac-download" hidden download>Download M4A ↗</a></div>
+          </div>
+          <p class="v4-audio-playback-hint">M4A playback depends on browser support. Downloads remain available when media are published.</p>
+        </div>
+        <p id="v4-audio-status" class="v4-audio-status" role="status">The listening panel is ready; authentic P4 audio files have not been published yet. No simulated or replacement recording is used.</p>
+      </div>
+      <aside class="v4-audio-evidence">
+        <small>DECODE RECORD / SELECTED MUSIC</small>
+        <h3>Listen. Compress. Recover.</h3>
+        <div class="v4-audio-message"><span>EMBEDDED MESSAGE</span><strong>A4D97E216B</strong></div>
+        <div class="v4-audio-scoreline"><span>Clean WAV</span><b id="v4-listen-clean">1.000000</b><i>IDENTIFIED</i></div>
+        <div class="v4-audio-scoreline"><span>MP3 128 kbps</span><b id="v4-listen-mp3">0.988095</b><i>IDENTIFIED</i></div>
+        <div class="v4-audio-scoreline"><span>AAC/M4A 128 kbps</span><b id="v4-listen-aac">0.984127</b><i>IDENTIFIED</i></div>
+        <div class="v4-audio-quality"><div><span>WATERMARK EXPORT SNR</span><strong id="v4-listen-snr">48.49 dB</strong></div><div><span>ALIGNED LSD</span><strong id="v4-listen-lsd">3.535 dB</strong></div></div>
+        <p>These are <strong>frozen P4 detector responses</strong>, not measurements made in your browser. A successful decode does not prove that the watermark is inaudible.</p>
+        <a class="v4-audio-evidence-link" href="#lab">Inspect the corresponding detector result →</a>
+        <a id="v4-audio-origin" class="v4-audio-origin" href="https://freemusicarchive.org/music/maarten-schellekens/public-domain-1/sax-and-piano-free-track/" target="_blank" rel="noopener noreferrer">Original recording · FMA / CC0 ↗</a>
+      </aside>
+    </div>
+  </section>
+
   <section class="wrap prose" id="overview">
     <h2>Abstract</h2>
     <p>Audio watermarking embeds a compact message into a signal while seeking to preserve the listening experience and enable recovery after signal processing. This project develops a reproducible <strong>40-bit blind audio watermarking workflow</strong> around Sony Research's existing SilentCipher pretrained model. The V4 Studio combines message embedding, actual MP3/AAC-LC codec round trips, independent file-based detection, and waveform/STFT quality inspection.</p>

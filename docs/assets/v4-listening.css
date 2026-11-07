@@ -1,0 +1,48 @@
+/* V4 local P4 listening panel: understated acoustic worksheet */
+.v4-listen{padding-top:72px}
+.v4-audio-layout{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(280px,.68fr);gap:15px;align-items:stretch}
+.v4-audio-main,.v4-audio-evidence{border:1px solid var(--line);border-radius:8px;background:#fff;min-width:0;padding:24px}
+.v4-audio-top{display:flex;justify-content:space-between;gap:15px;align-items:center;flex-wrap:wrap}
+.v4-audio-top small,.v4-audio-evidence>small{font:700 10px var(--mono);color:var(--accent);letter-spacing:1px}
+.v4-audio-top h3{font-size:19px;letter-spacing:-.25px;margin:5px 0 0}
+.v4-audio-format{font:10px var(--mono);color:var(--faint)}
+.v4-audio-trackset{display:flex;gap:8px;flex-wrap:wrap;margin:21px 0 18px}
+.v4-audio-trackset button{border:1px solid #d5e0e3;padding:8px 12px;background:#fff;border-radius:5px;font-size:12px;font-weight:650;color:#4b6670}
+.v4-audio-trackset button span{font:700 10px var(--mono);color:#1f7a78;margin-right:8px}
+.v4-audio-trackset button[aria-pressed=true]{border-color:#8fc8c2;color:#236d72;background:#eaf6f3}
+.v4-audio-ab{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.v4-audio-card{border:1px solid #dce6e7;background:#f9fbfb;border-radius:7px;padding:16px;min-width:0}
+.v4-audio-index{font:700 10px var(--mono);color:#268078;letter-spacing:.7px}
+.v4-audio-card strong{display:block;font-size:15px;margin:7px 0 2px}
+.v4-audio-card p{font-size:11px;color:#6c7e86;margin:0 0 14px}
+.v4-audio-card audio,.v4-audio-encoded-grid audio{width:100%;height:45px;display:block}
+.v4-audio-compare{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:15px 0;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.v4-audio-compare button{background:#236f79;color:#fff;border:1px solid #236f79;border-radius:5px;padding:9px 12px;font-size:12px;font-weight:650}
+.v4-audio-compare button:disabled{opacity:.5;cursor:not-allowed}
+.v4-audio-compare span{flex:1;font-size:11px;color:#768b92;line-height:1.6}
+.v4-audio-mini-title{font:700 10px var(--mono);letter-spacing:.6px;color:#6a7c83;margin:18px 0 12px}
+.v4-audio-encoded-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.v4-audio-encoded-grid>div{min-width:0}
+.v4-audio-encoded-grid label{display:block;font:11px var(--mono);color:#4c6872;margin-bottom:7px}
+.v4-audio-encoded-grid a{font:11px var(--mono);display:inline-block;margin-top:9px}
+.v4-audio-playback-hint{font-size:11px;color:#899aa1;margin-top:11px}
+.v4-audio-status{padding:12px 13px;border:1px solid #e2e8e9;background:#f7faf9;border-radius:5px;font-size:12px;color:#526970;line-height:1.7;margin-top:17px}
+.v4-audio-status.ready{border-color:#b8d6c9;background:#eff8f3;color:#257068}
+.v4-audio-status.unavailable{border-color:#e8d5be;background:#fffaf4;color:#8c6647}
+.v4-audio-evidence{background:#fdfefe}
+.v4-audio-evidence h3{font-size:23px;letter-spacing:-.6px;line-height:1.3;margin:10px 0 19px}
+.v4-audio-message{padding:15px;background:#eaf6f3;border:1px solid #d1e5e0;border-radius:5px;margin-bottom:15px}
+.v4-audio-message span,.v4-audio-quality span{font:10px var(--mono);color:#637d84;display:block}
+.v4-audio-message strong{font:700 clamp(17px,2vw,22px) var(--mono);color:#236f79;letter-spacing:.7px;display:block;margin-top:7px;overflow-wrap:anywhere}
+.v4-audio-scoreline{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px;border-bottom:1px solid #e0e8e9;padding:11px 0}
+.v4-audio-scoreline span{color:#667c85;font-size:11px;flex:1}
+.v4-audio-scoreline b{font:700 13px var(--mono);color:#375a62}
+.v4-audio-scoreline i{font:700 9px var(--mono);font-style:normal;color:#16806b}
+.v4-audio-quality{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:21px}
+.v4-audio-quality>div{border:1px solid var(--line);border-radius:5px;padding:11px;min-width:0}
+.v4-audio-quality strong{display:block;color:#296a6a;margin-top:7px;font:700 15px var(--mono)}
+.v4-audio-evidence p{font-size:12px;color:#687c84;line-height:1.8;margin-top:17px}
+.v4-audio-evidence-link,.v4-audio-origin{display:block;font-size:12px;margin-top:14px}
+.v4-audio-origin{color:#6c818c}
+@media(max-width:920px){.v4-audio-layout{grid-template-columns:1fr}}
+@media(max-width:650px){.v4-audio-main,.v4-audio-evidence{padding:16px}.v4-audio-ab,.v4-audio-encoded-grid{grid-template-columns:1fr}}

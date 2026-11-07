@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f7f9fa">
+<meta name="description" content="Course V2 historical DSP audio watermarking: four identity codes, 32-bit redundant QIM embedding, measured MP3 recovery and the project evolution toward V3.">
+<title>V2 · Original Course DSP Prototype | Robust Audio Watermarking</title>
+<link rel="stylesheet" href="../assets/v4-showcase.css">
+<link rel="stylesheet" href="../assets/version-pages.css">
+</head><body class="version-page">
+<a class="skip" href="#v2-main">Skip to content</a>
+<header class="topbar"><div class="top-inner">
+<a href="../" class="brand"><span class="brand-icon" aria-hidden="true">N</span> Robust Audio Watermarking <span style="font:10px var(--mono);color:#84969c">/ VERSION STUDIES</span></a>
+<nav class="topnav" aria-label="Navigation"><a href="../">V4 Main</a><a href="../v3/">V3 Classical DSP</a><a href="#method">Method</a><a href="#results">Results</a><a href="https://shengkaini.com/">Home ↗</a></nav>
+</div></header>
+<main class="v-wrap" id="v2-main">
+<nav class="v-breadcrumb" aria-label="Breadcrumb"><a href="../">Audio Watermarking</a> / Versions / Course Prototype · V2</nav>
+<section class="v-header">
+<div><div class="v-eyebrow">VERSION 02 / ORIGINAL COURSE PROTOTYPE · ARCHIVED</div>
+<h1>Four identities.<br><em>One classical signal path.</em></h1>
+<p class="v-lead">The original transform-domain audio watermarking project: encode one of four identities into a 32-position redundant codeword, embed it with spectral QIM, and detect it blindly after real MP3 processing.</p>
+<p class="v-sublead">V2 establishes the engineering foundation for later versions. The effective identity payload is <strong>2 bits</strong>; the redundant 32-bit carrier must not be confused with 32 reliable message bits.</p>
+<div class="v-tag-row"><span class="v-tag">4 preset identities</span><span class="v-tag">2 bits of information</span><span class="v-tag">32 physical code positions</span><span class="v-tag">48 kHz · 6 s validation</span></div>
+<div class="v-actions"><a class="v-action primary" href="https://blind-audio-watermarking-demo.onrender.com/" target="_blank" rel="noopener noreferrer">Try hosted V2 / V3 system ↗</a><a class="v-action" href="../v3/">See the V3 evolution ↗</a><a class="v-action" href="https://github.com/suibianba12138/blind-audio-watermarking/tree/a89b4935ec056a6709cc17379e333a9b1f7c387e" target="_blank" rel="noopener noreferrer">V2 source snapshot ↗</a></div>
+</div>
+<aside class="v-header-aside"><small>FROZEN COURSE V2 · REAL MP3 128 KBPS</small><strong>46 / 48</strong><span>Correctly recovered preset identities under MP3, for a set of 48 positive source recordings. These are identity decisions, not arbitrary-message recovery.</span><div class="v-aside-foot">Historical frozen validation · No new benchmarking by the website</div></aside>
+</section>
+<section class="v-section" id="method">
+<div class="v-section-head"><span class="v-index">01 / METHOD</span><h2>How the first version worked</h2><p>A simple, explainable DSP system with a strict four-identity message contract, later generalized in V3.</p></div>
+<div class="v-steps">
+<article class="v-step"><span class="v-step-num">01 / IDENTITY</span><h3>Two useful bits</h3><p>Encode one of four preset labels with source bits <span class="mono">a, b</span>.</p><code>00 · 01 · 10 · 11</code></article>
+<article class="v-step"><span class="v-step-num">02 / REDUNDANCY</span><h3>Fixed 32-bit codeword</h3><p>Repeat the source bits and their XOR over 32 physical code positions. Codebook minimum Hamming distance is 21.</p><code>[a×10, b×11, (a⊕b)×11]</code></article>
+<article class="v-step"><span class="v-step-num">03 / EMBEDDING</span><h3>FFT/QIM carrier path</h3><p>2048-point non-overlapping FFT frames. Modulate A/B log spectral magnitudes while retaining phase.</p><code>REAL_TOP32 / 1000–10000 Hz</code></article>
+<article class="v-step"><span class="v-step-num">04 / DECODING</span><h3>Blind identity decision</h3><p>Compare received bits to legal identity codewords. Reject as <span class="mono">UNKNOWN</span> when the distance is too large or tied.</p><code>rejection distance &gt; 8</code></article>
+</div>
+<div class="v-panel" style="margin-top:15px">
+<h3>Explore the fixed identity codebook</h3>
+<p>The actual V2 mapping is deterministic. It illustrates how four labels use 32 physical code positions to withstand a limited number of bit errors.</p>
+<div class="v-legacy-band">
+<div class="v-legacy-block"><small>IDENTITY 00</small><strong>0 × 32</strong><p>All-zero codeword.</p></div>
+<div class="v-legacy-block"><small>IDENTITY 01</small><strong>0 × 10 / 1 × 22</strong><p>Second source bit and XOR block become ones.</p></div>
+<div class="v-legacy-block"><small>IDENTITY 10</small><strong>1 × 10 / 0 × 11 / 1 × 11</strong><p>First source bit and XOR block become ones.</p></div>
+</div>
+<div class="v-note">The fourth identity (11) has its first 21 positions set and its XOR positions zero. Each of the four fixed words is uniquely represented, but only 2 bits identify a message.</div>
+</div>
+</section>
+<section class="v-section" id="results">
+<div class="v-section-head"><span class="v-index">02 / FROZEN RESULTS</span><h2>Why it was a useful starting point</h2><p>The final Course V2 record was based on actual external recordings, but its identity and arbitrary-message metrics must be kept separate.</p></div>
+<div class="v-results">
+<div class="v-result"><strong>48/48</strong><span>Clean identity recovery</span><p>Four-label identity decision; 48 independent positive sources.</p></div>
+<div class="v-result"><strong>46/48</strong><span>MP3 128 kbps identity recovery</span><p>Two positive environmental recordings were rejected as UNKNOWN.</p></div>
+<div class="v-result"><strong>5/48</strong><span>MP3 arbitrary 32-bit recovery</span><p>The old 32-bit arbitrary message path does not inherit identity-code robustness.</p></div>
+</div>
+<div class="v-table-wrap" style="margin-top:16px"><table class="v-table"><thead><tr><th>Frozen measurement</th><th>Observed result</th><th>What it measures</th></tr></thead><tbody>
+<tr><td>Clean identity</td><td><strong>48 / 48</strong></td><td>Four-label identity</td></tr>
+<tr><td>MP3 128 kbps identity</td><td><strong>46 / 48</strong></td><td>Same positive sources</td></tr>
+<tr><td>MP3 arbitrary 32-bit recovery</td><td><strong>5 / 48</strong></td><td>Arbitrary payload, not identity code</td></tr>
+<tr><td>Identity negative controls</td><td><strong>1 / 60</strong></td><td>One false identification</td></tr>
+<tr><td>MP3 negative controls</td><td><strong>0 / 60</strong></td><td>Finite negative set</td></tr>
+</tbody></table></div>
+<div class="v-callout"><strong>The key observation:</strong> Strong redundancy gives the four predetermined identities much greater robustness than unrestricted arbitrary-message recovery under the same broad DSP family. V2 therefore motivated V3's choice to trade part of the physical code space for an 8-bit variable message.</div>
+</section>
+<section class="v-section" id="legacy">
+<div class="v-section-head"><span class="v-index">03 / HISTORY &amp; SCOPE</span><h2>What stayed—and what changed</h2></div>
+<div class="v-dual"><div class="v-panel"><h3>What V2 already established</h3><p>Deterministic message-to-codeword mapping, frequency-domain embedding, a blind detector that receives no original signal, and real FFmpeg MP3 round trips.</p><p style="margin-top:11px">Historical 6/15/30-second modes remain in the teaching demo. Only 6-second, single-block recordings belong to the formal frozen positive-source validation table.</p></div>
+<div class="v-panel"><h3>What V3 added</h3><p>V3 retained the fixed FFT/QIM approach while upgrading to 256 variable messages, a fixed Boolean-evaluation subcode, and continuous soft-decision statistics. Its 117/120 MP3 accepted-exact result is from a different protocol and should not be directly compared to V2's 46/48 identity score.</p><div class="v-links"><a class="v-link" href="../v3/">Read the V3 technical study ↗</a></div></div></div>
+<div class="v-note"><strong>Limitations:</strong> Formal listening/perceptual transparency was not established. Frozen Course V2 source recordings are not republished here. The four-label identity system is a historical course artifact—not a secure authentication service or a general 32-bit robust payload algorithm.</div>
+<div class="v-links"><a class="v-link" href="https://github.com/suibianba12138/blind-audio-watermarking/blob/main/docs/METHOD.md" target="_blank" rel="noopener noreferrer">Frozen V2 method ↗</a><a class="v-link" href="https://github.com/suibianba12138/blind-audio-watermarking/blob/main/docs/RESULTS.md" target="_blank" rel="noopener noreferrer">Frozen V2 results ↗</a><a class="v-link" href="https://github.com/suibianba12138/blind-audio-watermarking/blob/main/docs/LIMITATIONS.md" target="_blank" rel="noopener noreferrer">Limitations ↗</a></div>
+</section>
+<aside class="v-next"><div><small>VERSION 03 / NEXT STEP</small><strong>From four preset labels to 256 messages</strong><p>See the exact interactive 8-to-32-bit encoding diagram and the documented 60-source V3 MP3 validation.</p></div><a href="../v3/" class="v-action primary">Read V3 method study ↗</a></aside>
+</main><footer class="v-wrap v-foot"><span>Blind Audio Watermarking · Legacy Course V2 · Archive</span><a href="../">V4 main page ↑</a></footer>
+</body></html>

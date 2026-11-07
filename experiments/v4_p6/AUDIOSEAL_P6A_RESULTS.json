@@ -1,0 +1,272 @@
+{
+  "audioseal_version": "0.2.1",
+  "codec_records": [
+    {
+      "codec": "mp3_128k",
+      "codec_roundtrip_seconds": 0.1260735929972725,
+      "source_id": "music_01"
+    },
+    {
+      "codec": "negative_mp3_128k",
+      "codec_roundtrip_seconds": 0.1253452630044194,
+      "source_id": "music_01"
+    },
+    {
+      "codec": "mp3_128k",
+      "codec_roundtrip_seconds": 0.12870710600691382,
+      "source_id": "speech_01"
+    },
+    {
+      "codec": "negative_mp3_128k",
+      "codec_roundtrip_seconds": 0.12130091601284221,
+      "source_id": "speech_01"
+    },
+    {
+      "codec": "mp3_128k",
+      "codec_roundtrip_seconds": 0.1260388980008429,
+      "source_id": "environment_01"
+    },
+    {
+      "codec": "negative_mp3_128k",
+      "codec_roundtrip_seconds": 0.12403044100210536,
+      "source_id": "environment_01"
+    }
+  ],
+  "cpu_threads": 4,
+  "decision_rule": "official detect_watermark score >=0.5; raw score is positive-class sample occupancy fraction; candidate bits are never accepted without presence rule",
+  "detection_records": [
+    {
+      "condition": "negative_clean",
+      "correct_accepted_recovery": null,
+      "decoded_message_hex": "0C60",
+      "detect_seconds": 0.42107840500830207,
+      "exact_message_recovery": null,
+      "negative_acceptance": false,
+      "presence_accepted": false,
+      "presence_score": 0.06764062494039536,
+      "presence_threshold": 0.5,
+      "raw_positive_sample_fraction": 0.06764062494039536,
+      "raw_positive_sample_max": 0.9604218602180481,
+      "raw_positive_sample_mean": 0.10938780009746552,
+      "source_id": "music_01",
+      "wrong_message_acceptance": null
+    },
+    {
+      "condition": "clean",
+      "correct_accepted_recovery": false,
+      "decoded_message_hex": "E55E",
+      "detect_seconds": 0.308206847999827,
+      "exact_message_recovery": false,
+      "negative_acceptance": null,
+      "presence_accepted": true,
+      "presence_score": 1.0,
+      "presence_threshold": 0.5,
+      "raw_positive_sample_fraction": 1.0,
+      "raw_positive_sample_max": 0.9999973773956299,
+      "raw_positive_sample_mean": 0.9998432397842407,
+      "source_id": "music_01",
+      "wrong_message_acceptance": true
+    },
+    {
+      "condition": "mp3_128k",
+      "correct_accepted_recovery": false,
+      "decoded_message_hex": "E55E",
+      "detect_seconds": 0.3160120529937558,
+      "exact_message_recovery": false,
+      "negative_acceptance": null,
+      "presence_accepted": true,
+      "presence_score": 1.0,
+      "presence_threshold": 0.5,
+      "raw_positive_sample_fraction": 1.0,
+      "raw_positive_sample_max": 0.9999974966049194,
+      "raw_positive_sample_mean": 0.9998258352279663,
+      "source_id": "music_01",
+      "wrong_message_acceptance": true
+    },
+    {
+      "condition": "negative_mp3_128k",
+      "correct_accepted_recovery": null,
+      "decoded_message_hex": "0C60",
+      "detect_seconds": 0.31158381899876986,
+      "exact_message_recovery": null,
+      "negative_acceptance": false,
+      "presence_accepted": false,
+      "presence_score": 0.06328646093606949,
+      "presence_threshold": 0.5,
+      "raw_positive_sample_fraction": 0.06328646093606949,
+      "raw_positive_sample_max": 0.9604148268699646,
+      "raw_positive_sample_mean": 0.11424459517002106,
+      "source_id": "music_01",
+      "wrong_message_acceptance": null
+    },
+    {
+      "condition": "negative_clean",
+      "correct_accepted_recovery": null,
+      "decoded_message_hex": "7FF4",
+      "detect_seconds": 0.31225830799667165,
+      "exact_message_recovery": null,
+      "negative_acceptance": false,
+      "presence_accepted": false,
+      "presence_score": 0.0005833333125337958,
+      "presence_threshold": 0.5,
+      "raw_positive_sample_fraction": 0.0005833333125337958,
+      "raw_positive_sample_max": 0.5693365335464478,
+      "raw_positive_sample_mean": 0.014637120999395847,
+      "source_id": "speech_01",
+      "wrong_message_acceptance": null
+    },
+    {
+      "condition": "clean",
+      "correct_accepted_recovery": true,
+      "decoded_message_hex": "A55A",
+      "detect_seconds": 0.3152463220030768,
+      "exact_message_recovery": true,
+      "negative_acceptance": null,
+      "presence_accepted": true,
+      "presence_score": 1.0,
+      "presence_threshold": 0.5,
+      "raw_positive_sample_fraction": 1.0,
+      "raw_positive_sample_max": 0.9999994039535522,
+      "raw_positive_sample_mean": 0.999987781047821,
+      "source_id": "speech_01",
+      "wrong_message_acceptance": false
+    },
+    {
+      "condition": "mp3_128k",
+      "correct_accepted_recovery": true,
+      "decoded_message_hex": "A55A",
+      "detect_seconds": 0.3164377010107273,
+      "exact_message_recovery": true,
+      "negative_acceptance": null,
+      "presence_accepted": true,
+      "presence_score": 1.0,
+      "presence_threshold": 0.5,
+      "raw_positive_sample_fraction": 1.0,
+      "raw_positive_sample_max": 0.9999995231628418,
+      "raw_positive_sample_mean": 0.9999876022338867,
+      "source_id": "speech_01",
+      "wrong_message_acceptance": false
+    },
+    {
+      "condition": "negative_mp3_128k",
+      "correct_accepted_recovery": null,
+      "decoded_message_hex": "7FF4",
+      "detect_seconds": 0.3134284960106015,
+      "exact_message_recovery": null,
+      "negative_acceptance": false,
+      "presence_accepted": false,
+      "presence_score": 0.002062499988824129,
+      "presence_threshold": 0.5,
+      "raw_positive_sample_fraction": 0.002062499988824129,
+      "raw_positive_sample_max": 0.7346935868263245,
+      "raw_positive_sample_mean": 0.01433093473315239,
+      "source_id": "speech_01",
+      "wrong_message_acceptance": null
+    },
+    {
+      "condition": "negative_clean",
+      "correct_accepted_recovery": null,
+      "decoded_message_hex": "4FA4",
+      "detect_seconds": 0.3150347310001962,
+      "exact_message_recovery": null,
+      "negative_acceptance": false,
+      "presence_accepted": false,
+      "presence_score": 0.0,
+      "presence_threshold": 0.5,
+      "raw_positive_sample_fraction": 0.0,
+      "raw_positive_sample_max": 0.37189996242523193,
+      "raw_positive_sample_mean": 0.005281904246658087,
+      "source_id": "environment_01",
+      "wrong_message_acceptance": null
+    },
+    {
+      "condition": "clean",
+      "correct_accepted_recovery": true,
+      "decoded_message_hex": "A55A",
+      "detect_seconds": 0.3186365690053208,
+      "exact_message_recovery": true,
+      "negative_acceptance": null,
+      "presence_accepted": true,
+      "presence_score": 1.0,
+      "presence_threshold": 0.5,
+      "raw_positive_sample_fraction": 1.0,
+      "raw_positive_sample_max": 0.9999984502792358,
+      "raw_positive_sample_mean": 0.9999734163284302,
+      "source_id": "environment_01",
+      "wrong_message_acceptance": false
+    },
+    {
+      "condition": "mp3_128k",
+      "correct_accepted_recovery": true,
+      "decoded_message_hex": "A55A",
+      "detect_seconds": 0.31119005200162064,
+      "exact_message_recovery": true,
+      "negative_acceptance": null,
+      "presence_accepted": true,
+      "presence_score": 1.0,
+      "presence_threshold": 0.5,
+      "raw_positive_sample_fraction": 1.0,
+      "raw_positive_sample_max": 0.9999984502792358,
+      "raw_positive_sample_mean": 0.999973714351654,
+      "source_id": "environment_01",
+      "wrong_message_acceptance": false
+    },
+    {
+      "condition": "negative_mp3_128k",
+      "correct_accepted_recovery": null,
+      "decoded_message_hex": "4FA4",
+      "detect_seconds": 0.3214947460073745,
+      "exact_message_recovery": null,
+      "negative_acceptance": false,
+      "presence_accepted": false,
+      "presence_score": 0.0,
+      "presence_threshold": 0.5,
+      "raw_positive_sample_fraction": 0.0,
+      "raw_positive_sample_max": 0.4443989098072052,
+      "raw_positive_sample_mean": 0.008779837749898434,
+      "source_id": "environment_01",
+      "wrong_message_acceptance": null
+    }
+  ],
+  "embedding_records": [
+    {
+      "embed_seconds": 57.60131686599925,
+      "embedding_lsd_db": 2.2774097398630913,
+      "embedding_snr_db": 19.84866970745136,
+      "source_id": "music_01"
+    },
+    {
+      "embed_seconds": 0.3264279279974289,
+      "embedding_lsd_db": 1.2453816339064387,
+      "embedding_snr_db": 23.935209349945097,
+      "source_id": "speech_01"
+    },
+    {
+      "embed_seconds": 0.29773561700130813,
+      "embedding_lsd_db": 1.2143969098504668,
+      "embedding_snr_db": 36.53013999996779,
+      "source_id": "environment_01"
+    }
+  ],
+  "manifest_sha256": "cc34cd804182df570666cf6c777fcd83c6ed6893c98c7ba9ce06828f9a86d3c6",
+  "model_load_detector_seconds": 0.06984207099594641,
+  "model_load_generator_seconds": 0.1337686689948896,
+  "peak_rss_kib": 1451952,
+  "protocol_id": "V4-P6-FROZEN-1",
+  "status": "P6A_AUDIOSEAL_CPU_RUNTIME",
+  "torch_version": "2.5.1+cpu",
+  "weights": {
+    "files": {
+      "detector_base.pth": {
+        "bytes": 34667641,
+        "sha256": "8a78e8a83584113523e161fc599fcab10fd0e94c04d2eb9d2fa1e9ec91ab69d9"
+      },
+      "generator_base.pth": {
+        "bytes": 58805980,
+        "sha256": "7a845b5fbe9364a63a3909d8ab3fe064d13a76ae4c2e983573e08c69b7b51748"
+      }
+    },
+    "repo": "facebook/audioseal",
+    "revision": "3c19eba53390776cf2cc9ed5f6c9ac67ce72ecba"
+  }
+}

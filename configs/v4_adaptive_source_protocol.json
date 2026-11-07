@@ -1,0 +1,172 @@
+{
+  "protocol_id": "V4-ADAPTIVE-SEND-SIDE-1",
+  "status": "FROZEN_BEFORE_NEW_SOURCE_MODEL_INFERENCE",
+  "frozen_date": "2026-11-05",
+  "model": "official Sony SilentCipher 44.1 kHz 73999_iteration; frozen checkpoint",
+  "model_sample_rate_hz": 44100,
+  "duration_seconds": 12,
+  "message_sdr_candidates_db": [
+    47,
+    45,
+    43
+  ],
+  "candidate_order": "47 -> 45 -> 43; if 47 passes all quality and channel checks stop immediately; otherwise evaluate remaining fixed candidates, then select passing candidate by highest exported-WAV SNR, lower LSD, then higher message_sdr",
+  "target_channels": [
+    "clean_wav",
+    "mp3_128k",
+    "aac_lc_m4a_128k"
+  ],
+  "mp3_protocol": "P8-compatible PCM16 mono WAV at 44100 Hz -> FFmpeg libmp3lame CBR 128 kbps -> PCM float WAV",
+  "aac_protocol": "reuse app.v4_audio_processing.process_channel AAC 128 kbps: native AAC-LC M4A, metadata-aware FFmpeg decode, preserve leading samples, trim only known trailing padding to source sample count",
+  "presence_threshold_frozen": 0.6805555373430252,
+  "presence_calibration": "PROVISIONAL; unchanged",
+  "message_compare": "sender-side exact-message comparison occurs only after independent detector result; blind detector receives only received samples, model, sample rate, and frozen PresencePolicy",
+  "quality_gate": {
+    "minimum_snr_db": 40.0,
+    "maximum_lsd_db": 5.0,
+    "new_clipping_allowed": false,
+    "note": "predeclared engineering floors; LSD is not a perceptual metric and no listening test is implied"
+  },
+  "selection": "among candidates meeting every channel exact+IDENTIFIED result and quality gate, maximize exported PCM16 WAV SNR; tie-break lower LSD then higher message_sdr_db",
+  "source_unit": "one distinct original recording per source; two messages on each new source are repeated measures",
+  "historical_development_sources": [
+    {
+      "source_id": "p1_music_03",
+      "category": "music",
+      "source_file": "music_beat_mekanik_dreams.mp3",
+      "root_env": "V4_P1_MUSIC_ROOT",
+      "sha256": "5f46ae433685dcab0b86209e3fad47b235880780db2cbb23e39a5ee86a5274a3",
+      "source_sample_rate_hz": 44100,
+      "source_crop_start_seconds": 194.608,
+      "crop_duration_seconds": 12,
+      "license": "CC0 1.0 Universal (official FMA track page)",
+      "payload_hex": [
+        "123456789A"
+      ],
+      "message_source": "P1 frozen historical failed MP3 case"
+    },
+    {
+      "source_id": "p3_speech_02",
+      "category": "speech",
+      "relative_path": "speech/us-gov/speech-us-gov-0007.wav",
+      "root_env": "V4_ADAPTIVE_MUSAN_ROOT",
+      "sha256": "e4cb3464796bb9b6491b08996c762f58afa5ca6df31d22a129a877c5e9d9f6a7",
+      "source_sample_rate_hz": 16000,
+      "source_crop_start_seconds": 200.0,
+      "crop_duration_seconds": 12,
+      "license": "Public Domain per MUSAN speech/us-gov/LICENSE",
+      "payload_hex": [
+        "D3916B24E8",
+        "2C6E94DB17"
+      ],
+      "message_source": "P3 frozen historical clean/MP3 failures"
+    }
+  ],
+  "new_source_evaluation": [
+    {
+      "source_id": "music_adapt_01",
+      "category": "music",
+      "relative_path": "music/fma/music-fma-0012.wav",
+      "crop_start_seconds": 20.0,
+      "payload_hex": [
+        "D3916B24E8",
+        "2C6E94DB17"
+      ],
+      "license": "MUSAN FMA per-file license mapping",
+      "sha256": "36ec33a0d5cee31d5096f48bb32ff18a8f7cf64c155d33816b3122bd023e0ded",
+      "source_sample_rate_hz": 16000,
+      "source_duration_seconds": 170.031,
+      "source_channels": 1,
+      "root_env": "V4_ADAPTIVE_MUSAN_ROOT",
+      "model_resampling": "downmix to mono, then one resample to 44100 Hz"
+    },
+    {
+      "source_id": "music_adapt_02",
+      "category": "music",
+      "relative_path": "music/fma/music-fma-0013.wav",
+      "crop_start_seconds": 20.0,
+      "payload_hex": [
+        "2C6E94DB17",
+        "D3916B24E8"
+      ],
+      "license": "MUSAN FMA per-file license mapping",
+      "sha256": "6e0a3926c9ebb4f6dc46cb356655302edb687ebe0f324ea52dadffa8cafa1531",
+      "source_sample_rate_hz": 16000,
+      "source_duration_seconds": 277.2375625,
+      "source_channels": 1,
+      "root_env": "V4_ADAPTIVE_MUSAN_ROOT",
+      "model_resampling": "downmix to mono, then one resample to 44100 Hz"
+    },
+    {
+      "source_id": "speech_adapt_01",
+      "category": "speech",
+      "relative_path": "speech/librivox/speech-librivox-0015.wav",
+      "crop_start_seconds": 50.0,
+      "payload_hex": [
+        "D3916B24E8",
+        "2C6E94DB17"
+      ],
+      "license": "Public Domain per MUSAN LibriVox LICENSE",
+      "sha256": "85851c1032a16e7791545a4380bea046c016096e010c4f645a3c5d799616b613",
+      "source_sample_rate_hz": 16000,
+      "source_duration_seconds": 591.6735,
+      "source_channels": 1,
+      "root_env": "V4_ADAPTIVE_MUSAN_ROOT",
+      "model_resampling": "downmix to mono, then one resample to 44100 Hz"
+    },
+    {
+      "source_id": "speech_adapt_02",
+      "category": "speech",
+      "relative_path": "speech/librivox/speech-librivox-0016.wav",
+      "crop_start_seconds": 50.0,
+      "payload_hex": [
+        "2C6E94DB17",
+        "D3916B24E8"
+      ],
+      "license": "Public Domain per MUSAN LibriVox LICENSE",
+      "sha256": "0b648e1d734adf72b0607c6c92133886fbb025740ac90f238239a679ac27cb9d",
+      "source_sample_rate_hz": 16000,
+      "source_duration_seconds": 630.2301875,
+      "source_channels": 1,
+      "root_env": "V4_ADAPTIVE_MUSAN_ROOT",
+      "model_resampling": "downmix to mono, then one resample to 44100 Hz"
+    },
+    {
+      "source_id": "environment_adapt_01",
+      "category": "environment",
+      "relative_path": "noise/free-sound/noise-free-sound-0027.wav",
+      "crop_start_seconds": 2.0,
+      "payload_hex": [
+        "D3916B24E8",
+        "2C6E94DB17"
+      ],
+      "license": "Public Domain per local MUSAN FreeSound LICENSE",
+      "sha256": "4db3c574680cc59775807541478a76af01d904ddcd68e67b8f27e264fcb4c9a5",
+      "source_sample_rate_hz": 16000,
+      "source_duration_seconds": 23.04,
+      "source_channels": 1,
+      "root_env": "V4_ADAPTIVE_MUSAN_ROOT",
+      "model_resampling": "downmix to mono, then one resample to 44100 Hz"
+    },
+    {
+      "source_id": "environment_adapt_02",
+      "category": "environment",
+      "relative_path": "noise/free-sound/noise-free-sound-0028.wav",
+      "crop_start_seconds": 2.0,
+      "payload_hex": [
+        "2C6E94DB17",
+        "D3916B24E8"
+      ],
+      "license": "Public Domain per local MUSAN FreeSound LICENSE",
+      "sha256": "948376903998d3e18ef3b3a0043e508eba4e990c5abef47bd7c6432327f803d5",
+      "source_sample_rate_hz": 16000,
+      "source_duration_seconds": 19.6179375,
+      "source_channels": 1,
+      "root_env": "V4_ADAPTIVE_MUSAN_ROOT",
+      "model_resampling": "downmix to mono, then one resample to 44100 Hz"
+    }
+  ],
+  "new_source_limits": "Six MUSAN source recordings are unique relative to P1/P3/P5/P6/P9 manifest SHA256s and paths. Their music files are 16 kHz, resampled once; no new native 44.1/48 kHz music source is available locally. New-source results are exploratory and source-disjoint from listed historical phases, not a large generalization study.",
+  "negative_controls": "unwatermarked clean, MP3 128 kbps, AAC-LC/M4A 128 kbps for each of six new sources; detector receives no message or embedding context",
+  "random_seed": 20261105
+}

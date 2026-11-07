@@ -1,0 +1,14 @@
+{
+  "repo": "facebook/audioseal",
+  "revision": "3c19eba53390776cf2cc9ed5f6c9ac67ce72ecba",
+  "files": {
+    "generator_base.pth": {
+      "sha256": "7a845b5fbe9364a63a3909d8ab3fe064d13a76ae4c2e983573e08c69b7b51748",
+      "bytes": 58805980
+    },
+    "detector_base.pth": {
+      "sha256": "8a78e8a83584113523e161fc599fcab10fd0e94c04d2eb9d2fa1e9ec91ab69d9",
+      "bytes": 34667641
+    }
+  }
+}

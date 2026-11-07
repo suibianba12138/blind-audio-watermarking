@@ -1,0 +1,768 @@
+{
+  "protocol": "V4 end-to-end Studio API acceptance",
+  "timestamp_utc": "2026-11-05T16:26:43.898297+00:00",
+  "message_hex": "A4D97E216B",
+  "backend": "Advanced Neural / SilentCipher official 44.1 kHz, 40-bit, 47 dB",
+  "channels": {},
+  "cases": [
+    {
+      "source_id": "music_01",
+      "category": "music",
+      "source_sha256": "83b8c88b10bbb21788636bccca8f0aa6817d195ef91557507d0981f323865ff1",
+      "demo_input_sha256": "c7436d25a4dcb27321561eeb13289e6fb92d2fcfa491516d20a6bba8efe51af8",
+      "source_sample_rate_hz": 44100,
+      "crop_start_seconds": 18.745,
+      "license": "CC0 1.0 Universal (official FMA track page)",
+      "message_hex": "A4D97E216B",
+      "channels": {
+        "mp3_128k": {
+          "channel_seconds": 0.3582030319957994,
+          "ui_details": "FFmpeg MP3 128 kbps encode/decode; mono 44100 Hz · output .MP3 · 12.00 s · 193141 bytes · 0.17 s · input 44100 Hz, 12.00 s. Channel availability does not imply watermark robustness.",
+          "encoded_output": {
+            "file": "music_01_mp3_128k.mp3",
+            "bytes": 193141,
+            "sha256": "30ed55cdc13e30f887dfa1e11e197c6e53c42c1b8ce458d5de9a9f6daf08ce2b"
+          },
+          "encoded_probe": {
+            "programs": [],
+            "streams": [
+              {
+                "codec_name": "mp3",
+                "sample_rate": "44100",
+                "channels": 1,
+                "bit_rate": "128000"
+              }
+            ],
+            "format": {
+              "format_name": "mp3",
+              "duration": "12.042449"
+            }
+          },
+          "decoded_playback_wav": {
+            "file": "music_01_mp3_128k_decoded.wav",
+            "bytes": 2116914,
+            "sha256": "a8cf37bbaeb1ddf9bc9acdbc0552814102ab01a0a9550d0d27c53bdf861b9968"
+          },
+          "detect_seconds": 6.136543090993655,
+          "blind_detection_text": "IDENTIFIED\nCandidate decode (diagnostic): A4D97E216B\nScore: 0.988095\nPolicy: PROVISIONAL\nPresence threshold: 0.680556\nDetection CPU: 5.95 s · loaded input 12.04 s",
+          "state": "IDENTIFIED",
+          "candidate_hex": "A4D97E216B",
+          "correct_accepted": true,
+          "decoded_playback_probe": {
+            "programs": [],
+            "streams": [
+              {
+                "codec_name": "pcm_f32le",
+                "sample_rate": "44100",
+                "channels": 1
+              }
+            ],
+            "format": {
+              "duration": "12.000000"
+            }
+          },
+          "decoded_playback_samples": 529200,
+          "decoded_playback_peak_abs": 0.677251398563385,
+          "decoded_playback_clipping_sample_count": 0
+        },
+        "aac_lc_m4a_128k": {
+          "channel_seconds": 0.46697605001099873,
+          "ui_details": "FFmpeg AAC 128 kbps encode/decode; mono 44100 Hz · output .M4A · 12.00 s · 197963 bytes · 0.21 s · input 44100 Hz, 12.00 s. Channel availability does not imply watermark robustness.",
+          "encoded_output": {
+            "file": "music_01_aac_lc_m4a_128k.m4a",
+            "bytes": 197963,
+            "sha256": "18fd87b6f8400facd260484a00794582baee9d2f650203e2698855e0c860cd35"
+          },
+          "encoded_probe": {
+            "programs": [],
+            "streams": [
+              {
+                "codec_name": "aac",
+                "sample_rate": "44100",
+                "channels": 1,
+                "bit_rate": "129804"
+              }
+            ],
+            "format": {
+              "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+              "duration": "12.000000"
+            }
+          },
+          "decoded_playback_wav": {
+            "file": "music_01_aac_lc_m4a_128k_decoded.wav",
+            "bytes": 2116880,
+            "sha256": "89d9b426e4696148c5dfe76ee75ddb901db2bb28a8e4e47e6710a87a62c39648"
+          },
+          "detect_seconds": 6.277591785008553,
+          "blind_detection_text": "IDENTIFIED\nCandidate decode (diagnostic): A4D97E216B\nScore: 0.984127\nPolicy: PROVISIONAL\nPresence threshold: 0.680556\nDetection CPU: 6.09 s · loaded input 12.00 s",
+          "state": "IDENTIFIED",
+          "candidate_hex": "A4D97E216B",
+          "correct_accepted": true,
+          "decoded_playback_probe": {
+            "programs": [],
+            "streams": [
+              {
+                "codec_name": "pcm_f32le",
+                "sample_rate": "44100",
+                "channels": 1
+              }
+            ],
+            "format": {
+              "duration": "12.000000"
+            }
+          },
+          "decoded_playback_samples": 529200,
+          "decoded_playback_peak_abs": 0.7102127075195312,
+          "decoded_playback_clipping_sample_count": 0
+        },
+        "clean_wav": {
+          "detect_seconds": 6.180431938992115,
+          "blind_detection_text": "IDENTIFIED\nCandidate decode (diagnostic): A4D97E216B\nScore: 1.000000\nPolicy: PROVISIONAL\nPresence threshold: 0.680556\nDetection CPU: 6.06 s · loaded input 12.00 s",
+          "state": "IDENTIFIED",
+          "candidate_hex": "A4D97E216B",
+          "correct_accepted": true
+        }
+      },
+      "embedding": {
+        "seconds": 4.7803967259969795,
+        "ui_details": "Embedded · Advanced Neural · message A4D97E216B · 44100 Hz / 12 s · SNR 48.49 dB · 4.54 s CPU · model initialization recorded 0.04 s · PCM16 shared peak gain 1.000000 · input 44100 Hz, 12.00 s",
+        "original_prepared": {
+          "file": "music_01_original_prepared.wav",
+          "bytes": 1058444,
+          "sha256": "1ab6de691310639176f88dd70c9b763411169d5543c32b92484979c7c9f7a974"
+        },
+        "watermarked_wav": {
+          "file": "music_01_watermarked.wav",
+          "bytes": 1058444,
+          "sha256": "85289a63aa3dcdb257b6f9a6df5e8f9179ebeb94814b48327a5a617debbc08f0"
+        },
+        "watermarked_probe": {
+          "programs": [],
+          "streams": [
+            {
+              "codec_name": "pcm_s16le",
+              "sample_rate": "44100",
+              "channels": 1,
+              "bit_rate": "705600"
+            }
+          ],
+          "format": {
+            "format_name": "wav",
+            "duration": "12.000000"
+          }
+        }
+      },
+      "signal_analysis": {
+        "seconds": 0.5199027990020113,
+        "figures_generated": 3,
+        "figure_types": [
+          "plotly",
+          "plotly",
+          "plotly"
+        ],
+        "figure_payload_nonempty": [
+          true,
+          true,
+          true
+        ],
+        "metrics_text": "Aligned SNR: 48.48 dB · LSD: 3.535 dB · lag: +0.0000 s · compared: 12.00 s\nReference 44100 Hz / 12.00 s; processed 44100 Hz / 12.00 s; analysis resampled to 48 kHz and used bounded cross-correlation alignment."
+      },
+      "elapsed_seconds": 24.876847587991506,
+      "watermark_quality": {
+        "sample_rate_hz": 44100,
+        "sample_count": 529200,
+        "duration_seconds": 12.0,
+        "original_peak_abs": 0.712677001953125,
+        "watermarked_peak_abs": 0.71234130859375,
+        "original_full_scale_sample_count": 0,
+        "watermarked_full_scale_sample_count": 0,
+        "new_full_scale_samples": 0,
+        "pcm_export_snr_db": 48.48634300094802,
+        "signal_analysis_snr_db": 48.48,
+        "signal_analysis_lsd_db": 3.535,
+        "signal_analysis_lag_seconds": 0.0,
+        "audible_distortion_human_check": "PENDING",
+        "original_prepared_sha256": "1ab6de691310639176f88dd70c9b763411169d5543c32b92484979c7c9f7a974",
+        "watermarked_wav_sha256": "85289a63aa3dcdb257b6f9a6df5e8f9179ebeb94814b48327a5a617debbc08f0",
+        "ab_files": [
+          "listen_ab/music_01_A_original.wav",
+          "listen_ab/music_01_B_watermarked.wav"
+        ]
+      }
+    },
+    {
+      "source_id": "music_02",
+      "category": "music",
+      "source_sha256": "44c5a2df842e3dcee420e391a39170e5f94e62d1031521c8851bc796917b4a12",
+      "demo_input_sha256": "a432beb6ebc9bf668cf7e899c2d9f5afd3efbfd0357e16cb3fdbde3aa7257c25",
+      "source_sample_rate_hz": 44100,
+      "crop_start_seconds": 1.173,
+      "license": "CC0 1.0 Universal (official FMA track page)",
+      "message_hex": "A4D97E216B",
+      "channels": {
+        "mp3_128k": {
+          "channel_seconds": 0.4235530540026957,
+          "ui_details": "FFmpeg MP3 128 kbps encode/decode; mono 44100 Hz · output .MP3 · 12.00 s · 193141 bytes · 0.18 s · input 44100 Hz, 12.00 s. Channel availability does not imply watermark robustness.",
+          "encoded_output": {
+            "file": "music_02_mp3_128k.mp3",
+            "bytes": 193141,
+            "sha256": "9af756799508b227405cc747550b1a78b4b588ff0b5980e3c86feeca483f4f5c"
+          },
+          "encoded_probe": {
+            "programs": [],
+            "streams": [
+              {
+                "codec_name": "mp3",
+                "sample_rate": "44100",
+                "channels": 1,
+                "bit_rate": "128000"
+              }
+            ],
+            "format": {
+              "format_name": "mp3",
+              "duration": "12.042449"
+            }
+          },
+          "decoded_playback_wav": {
+            "file": "music_02_mp3_128k_decoded.wav",
+            "bytes": 2116914,
+            "sha256": "0d3277ba77f204cb9c00c89b91768bf3fc4ec6757355e5104f6149c28e640246"
+          },
+          "detect_seconds": 6.2922846660076175,
+          "blind_detection_text": "IDENTIFIED\nCandidate decode (diagnostic): A4D97E216B\nScore: 0.996032\nPolicy: PROVISIONAL\nPresence threshold: 0.680556\nDetection CPU: 6.11 s · loaded input 12.04 s",
+          "state": "IDENTIFIED",
+          "candidate_hex": "A4D97E216B",
+          "correct_accepted": true,
+          "decoded_playback_probe": {
+            "programs": [],
+            "streams": [
+              {
+                "codec_name": "pcm_f32le",
+                "sample_rate": "44100",
+                "channels": 1
+              }
+            ],
+            "format": {
+              "duration": "12.000000"
+            }
+          },
+          "decoded_playback_samples": 529200,
+          "decoded_playback_peak_abs": 0.5721050500869751,
+          "decoded_playback_clipping_sample_count": 0
+        },
+        "aac_lc_m4a_128k": {
+          "channel_seconds": 0.4578926380054327,
+          "ui_details": "FFmpeg AAC 128 kbps encode/decode; mono 44100 Hz · output .M4A · 12.00 s · 191944 bytes · 0.20 s · input 44100 Hz, 12.00 s. Channel availability does not imply watermark robustness.",
+          "encoded_output": {
+            "file": "music_02_aac_lc_m4a_128k.m4a",
+            "bytes": 191944,
+            "sha256": "30a89c1163c475086f4620936a3a182db51cfa9f257e87868bd7df1c4134189f"
+          },
+          "encoded_probe": {
+            "programs": [],
+            "streams": [
+              {
+                "codec_name": "aac",
+                "sample_rate": "44100",
+                "channels": 1,
+                "bit_rate": "125799"
+              }
+            ],
+            "format": {
+              "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+              "duration": "12.000000"
+            }
+          },
+          "decoded_playback_wav": {
+            "file": "music_02_aac_lc_m4a_128k_decoded.wav",
+            "bytes": 2116880,
+            "sha256": "8f2b478aa85d248353fc6bfcc5fb57cf3cb92e4ae662595fe9c1931881292e1a"
+          },
+          "detect_seconds": 6.341192542997305,
+          "blind_detection_text": "IDENTIFIED\nCandidate decode (diagnostic): A4D97E216B\nScore: 0.992063\nPolicy: PROVISIONAL\nPresence threshold: 0.680556\nDetection CPU: 6.13 s · loaded input 12.00 s",
+          "state": "IDENTIFIED",
+          "candidate_hex": "A4D97E216B",
+          "correct_accepted": true,
+          "decoded_playback_probe": {
+            "programs": [],
+            "streams": [
+              {
+                "codec_name": "pcm_f32le",
+                "sample_rate": "44100",
+                "channels": 1
+              }
+            ],
+            "format": {
+              "duration": "12.000000"
+            }
+          },
+          "decoded_playback_samples": 529200,
+          "decoded_playback_peak_abs": 0.5960932970046997,
+          "decoded_playback_clipping_sample_count": 0
+        },
+        "clean_wav": {
+          "detect_seconds": 6.348933834000491,
+          "blind_detection_text": "IDENTIFIED\nCandidate decode (diagnostic): A4D97E216B\nScore: 1.000000\nPolicy: PROVISIONAL\nPresence threshold: 0.680556\nDetection CPU: 6.12 s · loaded input 12.00 s",
+          "state": "IDENTIFIED",
+          "candidate_hex": "A4D97E216B",
+          "correct_accepted": true
+        }
+      },
+      "embedding": {
+        "seconds": 3.7374830420012586,
+        "ui_details": "Embedded · Advanced Neural · message A4D97E216B · 44100 Hz / 12 s · SNR 48.50 dB · 3.46 s CPU · model initialization recorded 0.04 s · PCM16 shared peak gain 1.000000 · input 44100 Hz, 12.00 s",
+        "original_prepared": {
+          "file": "music_02_original_prepared.wav",
+          "bytes": 1058444,
+          "sha256": "12a31ec46ad8cab8ce80c1743efc75619a63874f44a2708d531b3fab4114ccc3"
+        },
+        "watermarked_wav": {
+          "file": "music_02_watermarked.wav",
+          "bytes": 1058444,
+          "sha256": "98fe7c41dfccc29166bdbcf771962f3758db93fc183d22e3a589a7c2fead917a"
+        },
+        "watermarked_probe": {
+          "programs": [],
+          "streams": [
+            {
+              "codec_name": "pcm_s16le",
+              "sample_rate": "44100",
+              "channels": 1,
+              "bit_rate": "705600"
+            }
+          ],
+          "format": {
+            "format_name": "wav",
+            "duration": "12.000000"
+          }
+        }
+      },
+      "signal_analysis": {
+        "seconds": 0.359151374999783,
+        "figures_generated": 3,
+        "figure_types": [
+          "plotly",
+          "plotly",
+          "plotly"
+        ],
+        "figure_payload_nonempty": [
+          true,
+          true,
+          true
+        ],
+        "metrics_text": "Aligned SNR: 48.47 dB · LSD: 5.241 dB · lag: +0.0000 s · compared: 12.00 s\nReference 44100 Hz / 12.00 s; processed 44100 Hz / 12.00 s; analysis resampled to 48 kHz and used bounded cross-correlation alignment."
+      },
+      "elapsed_seconds": 24.119919655000558,
+      "watermark_quality": {
+        "sample_rate_hz": 44100,
+        "sample_count": 529200,
+        "duration_seconds": 12.0,
+        "original_peak_abs": 0.605499267578125,
+        "watermarked_peak_abs": 0.605133056640625,
+        "original_full_scale_sample_count": 0,
+        "watermarked_full_scale_sample_count": 0,
+        "new_full_scale_samples": 0,
+        "pcm_export_snr_db": 48.47730859010085,
+        "signal_analysis_snr_db": 48.47,
+        "signal_analysis_lsd_db": 5.241,
+        "signal_analysis_lag_seconds": 0.0,
+        "audible_distortion_human_check": "PENDING",
+        "original_prepared_sha256": "12a31ec46ad8cab8ce80c1743efc75619a63874f44a2708d531b3fab4114ccc3",
+        "watermarked_wav_sha256": "98fe7c41dfccc29166bdbcf771962f3758db93fc183d22e3a589a7c2fead917a",
+        "ab_files": [
+          "listen_ab/music_02_A_original.wav",
+          "listen_ab/music_02_B_watermarked.wav"
+        ]
+      }
+    },
+    {
+      "source_id": "speech-librivox-0004",
+      "category": "speech",
+      "source_sha256": "76965f20b10ce0ed48beed1670d8c5ed81182a2bc797ed5e4d7dbe24c4c58ae8",
+      "demo_input_sha256": "cff8ebe055d76589b92453a1830ccfd0ad70936400a8767e1ca8a1162c68e789",
+      "source_sample_rate_hz": 16000,
+      "crop_start_seconds": 20,
+      "license": "Public Domain per local LibriVox license",
+      "message_hex": "A4D97E216B",
+      "channels": {
+        "mp3_128k": {
+          "channel_seconds": 0.37393768699257635,
+          "ui_details": "FFmpeg MP3 128 kbps encode/decode; mono 44100 Hz · output .MP3 · 12.00 s · 193141 bytes · 0.16 s · input 44100 Hz, 12.00 s. Channel availability does not imply watermark robustness.",
+          "encoded_output": {
+            "file": "speech-librivox-0004_mp3_128k.mp3",
+            "bytes": 193141,
+            "sha256": "f2063f2c3a678d98ada8fba033ef460c9fd9c6ac5685bfea37faade53cb41051"
+          },
+          "encoded_probe": {
+            "programs": [],
+            "streams": [
+              {
+                "codec_name": "mp3",
+                "sample_rate": "44100",
+                "channels": 1,
+                "bit_rate": "128000"
+              }
+            ],
+            "format": {
+              "format_name": "mp3",
+              "duration": "12.042449"
+            }
+          },
+          "decoded_playback_wav": {
+            "file": "speech-librivox-0004_mp3_128k_decoded.wav",
+            "bytes": 2116914,
+            "sha256": "577524bd3c0c6cd7469270d8ec80402622cdc62b32f81f048e7d454ce781c507"
+          },
+          "detect_seconds": 6.389740407001227,
+          "blind_detection_text": "IDENTIFIED\nCandidate decode (diagnostic): A4D97E216B\nScore: 0.992063\nPolicy: PROVISIONAL\nPresence threshold: 0.680556\nDetection CPU: 6.11 s · loaded input 12.04 s",
+          "state": "IDENTIFIED",
+          "candidate_hex": "A4D97E216B",
+          "correct_accepted": true,
+          "decoded_playback_probe": {
+            "programs": [],
+            "streams": [
+              {
+                "codec_name": "pcm_f32le",
+                "sample_rate": "44100",
+                "channels": 1
+              }
+            ],
+            "format": {
+              "duration": "12.000000"
+            }
+          },
+          "decoded_playback_samples": 529200,
+          "decoded_playback_peak_abs": 0.6008280515670776,
+          "decoded_playback_clipping_sample_count": 0
+        },
+        "aac_lc_m4a_128k": {
+          "channel_seconds": 0.5060616299888352,
+          "ui_details": "FFmpeg AAC 128 kbps encode/decode; mono 44100 Hz · output .M4A · 12.00 s · 200988 bytes · 0.24 s · input 44100 Hz, 12.00 s. Channel availability does not imply watermark robustness.",
+          "encoded_output": {
+            "file": "speech-librivox-0004_aac_lc_m4a_128k.m4a",
+            "bytes": 200988,
+            "sha256": "0355077d1b1c4aefe291c066391305a07ea18b5d61e2532f61e953ba7a063e26"
+          },
+          "encoded_probe": {
+            "programs": [],
+            "streams": [
+              {
+                "codec_name": "aac",
+                "sample_rate": "44100",
+                "channels": 1,
+                "bit_rate": "131817"
+              }
+            ],
+            "format": {
+              "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+              "duration": "12.000000"
+            }
+          },
+          "decoded_playback_wav": {
+            "file": "speech-librivox-0004_aac_lc_m4a_128k_decoded.wav",
+            "bytes": 2116880,
+            "sha256": "34afc5bde019167cb6f3829dd54c99a8ca832948cd5a505460a4e4fc722e45b5"
+          },
+          "detect_seconds": 6.391216046002228,
+          "blind_detection_text": "IDENTIFIED\nCandidate decode (diagnostic): A4D97E216B\nScore: 0.960317\nPolicy: PROVISIONAL\nPresence threshold: 0.680556\nDetection CPU: 6.12 s · loaded input 12.00 s",
+          "state": "IDENTIFIED",
+          "candidate_hex": "A4D97E216B",
+          "correct_accepted": true,
+          "decoded_playback_probe": {
+            "programs": [],
+            "streams": [
+              {
+                "codec_name": "pcm_f32le",
+                "sample_rate": "44100",
+                "channels": 1
+              }
+            ],
+            "format": {
+              "duration": "12.000000"
+            }
+          },
+          "decoded_playback_samples": 529200,
+          "decoded_playback_peak_abs": 0.6307017207145691,
+          "decoded_playback_clipping_sample_count": 0
+        },
+        "clean_wav": {
+          "detect_seconds": 6.3413140019983985,
+          "blind_detection_text": "IDENTIFIED\nCandidate decode (diagnostic): A4D97E216B\nScore: 1.000000\nPolicy: PROVISIONAL\nPresence threshold: 0.680556\nDetection CPU: 6.22 s · loaded input 12.00 s",
+          "state": "IDENTIFIED",
+          "candidate_hex": "A4D97E216B",
+          "correct_accepted": true
+        }
+      },
+      "embedding": {
+        "seconds": 3.7530772790050833,
+        "ui_details": "Embedded · Advanced Neural · message A4D97E216B · 44100 Hz / 12 s · SNR 48.88 dB · 3.47 s CPU · model initialization recorded 0.04 s · PCM16 shared peak gain 1.000000 · input 16000 Hz, 12.00 s",
+        "original_prepared": {
+          "file": "speech-librivox-0004_original_prepared.wav",
+          "bytes": 1058444,
+          "sha256": "11251494f18927da9a00dbd5ee030df90af32c8480faa38003329cac9fcf95da"
+        },
+        "watermarked_wav": {
+          "file": "speech-librivox-0004_watermarked.wav",
+          "bytes": 1058444,
+          "sha256": "436deef2de6928807dce2763f2ef7ff4d8afe5bcf8bb32afc423c825d8ba1f88"
+        },
+        "watermarked_probe": {
+          "programs": [],
+          "streams": [
+            {
+              "codec_name": "pcm_s16le",
+              "sample_rate": "44100",
+              "channels": 1,
+              "bit_rate": "705600"
+            }
+          ],
+          "format": {
+            "format_name": "wav",
+            "duration": "12.000000"
+          }
+        }
+      },
+      "signal_analysis": {
+        "seconds": 0.3969167489995016,
+        "figures_generated": 3,
+        "figure_types": [
+          "plotly",
+          "plotly",
+          "plotly"
+        ],
+        "figure_payload_nonempty": [
+          true,
+          true,
+          true
+        ],
+        "metrics_text": "Aligned SNR: 48.87 dB · LSD: 6.102 dB · lag: +0.0000 s · compared: 12.00 s\nReference 44100 Hz / 12.00 s; processed 44100 Hz / 12.00 s; analysis resampled to 48 kHz and used bounded cross-correlation alignment."
+      },
+      "elapsed_seconds": 24.314641519988072,
+      "watermark_quality": {
+        "sample_rate_hz": 44100,
+        "sample_count": 529200,
+        "duration_seconds": 12.0,
+        "original_peak_abs": 0.632537841796875,
+        "watermarked_peak_abs": 0.632537841796875,
+        "original_full_scale_sample_count": 0,
+        "watermarked_full_scale_sample_count": 0,
+        "new_full_scale_samples": 0,
+        "pcm_export_snr_db": 48.87328691525938,
+        "signal_analysis_snr_db": 48.87,
+        "signal_analysis_lsd_db": 6.102,
+        "signal_analysis_lag_seconds": 0.0,
+        "audible_distortion_human_check": "PENDING",
+        "original_prepared_sha256": "11251494f18927da9a00dbd5ee030df90af32c8480faa38003329cac9fcf95da",
+        "watermarked_wav_sha256": "436deef2de6928807dce2763f2ef7ff4d8afe5bcf8bb32afc423c825d8ba1f88",
+        "ab_files": [
+          "listen_ab/speech-librivox-0004_A_original.wav",
+          "listen_ab/speech-librivox-0004_B_watermarked.wav"
+        ]
+      }
+    },
+    {
+      "source_id": "noise-free-sound-0005",
+      "category": "environment",
+      "source_sha256": "71a5ca36940fc9ee6ba1571c7f36b30bf192ddf1783bd31d1205acfb9fea5bf6",
+      "demo_input_sha256": "9f053c1c0e1159c7d63e38c0d4f262e02877364ccce61ba64f813eafe2be5a99",
+      "source_sample_rate_hz": 16000,
+      "crop_start_seconds": 2,
+      "license": "Public Domain per local FreeSound license",
+      "message_hex": "A4D97E216B",
+      "channels": {
+        "mp3_128k": {
+          "channel_seconds": 0.37285487999906763,
+          "ui_details": "FFmpeg MP3 128 kbps encode/decode; mono 44100 Hz · output .MP3 · 12.00 s · 193141 bytes · 0.15 s · input 44100 Hz, 12.00 s. Channel availability does not imply watermark robustness.",
+          "encoded_output": {
+            "file": "noise-free-sound-0005_mp3_128k.mp3",
+            "bytes": 193141,
+            "sha256": "4d1c4661303beab78afc46a6b2c320f2c04abfbdef9e63c8921a52e96dfa42a1"
+          },
+          "encoded_probe": {
+            "programs": [],
+            "streams": [
+              {
+                "codec_name": "mp3",
+                "sample_rate": "44100",
+                "channels": 1,
+                "bit_rate": "128000"
+              }
+            ],
+            "format": {
+              "format_name": "mp3",
+              "duration": "12.042449"
+            }
+          },
+          "decoded_playback_wav": {
+            "file": "noise-free-sound-0005_mp3_128k_decoded.wav",
+            "bytes": 2116914,
+            "sha256": "375e7c00ded4b53eb48e742ee949dc79077a9e3b4c8dd9f47d0f102001ef0bfd"
+          },
+          "detect_seconds": 6.090209371992387,
+          "blind_detection_text": "IDENTIFIED\nCandidate decode (diagnostic): A4D97E216B\nScore: 1.000000\nPolicy: PROVISIONAL\nPresence threshold: 0.680556\nDetection CPU: 5.91 s · loaded input 12.04 s",
+          "state": "IDENTIFIED",
+          "candidate_hex": "A4D97E216B",
+          "correct_accepted": true,
+          "decoded_playback_probe": {
+            "programs": [],
+            "streams": [
+              {
+                "codec_name": "pcm_f32le",
+                "sample_rate": "44100",
+                "channels": 1
+              }
+            ],
+            "format": {
+              "duration": "12.000000"
+            }
+          },
+          "decoded_playback_samples": 529200,
+          "decoded_playback_peak_abs": 0.9676610827445984,
+          "decoded_playback_clipping_sample_count": 0
+        },
+        "aac_lc_m4a_128k": {
+          "channel_seconds": 0.46664253900235053,
+          "ui_details": "FFmpeg AAC 128 kbps encode/decode; mono 44100 Hz · output .M4A · 12.00 s · 196949 bytes · 0.19 s · input 44100 Hz, 12.00 s. Channel availability does not imply watermark robustness.",
+          "encoded_output": {
+            "file": "noise-free-sound-0005_aac_lc_m4a_128k.m4a",
+            "bytes": 196949,
+            "sha256": "f3a4489b63f02da0e7aaef00c1e60bf1fab55fefee454d9ffc9e7c4915f3ffac"
+          },
+          "encoded_probe": {
+            "programs": [],
+            "streams": [
+              {
+                "codec_name": "aac",
+                "sample_rate": "44100",
+                "channels": 1,
+                "bit_rate": "129130"
+              }
+            ],
+            "format": {
+              "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+              "duration": "12.000000"
+            }
+          },
+          "decoded_playback_wav": {
+            "file": "noise-free-sound-0005_aac_lc_m4a_128k_decoded.wav",
+            "bytes": 2116880,
+            "sha256": "2da8f3aeb893714bc102ec765aa93c21dca36791c8e388ba4766471f20ac6177"
+          },
+          "detect_seconds": 6.23699812500854,
+          "blind_detection_text": "IDENTIFIED\nCandidate decode (diagnostic): A4D97E216B\nScore: 1.000000\nPolicy: PROVISIONAL\nPresence threshold: 0.680556\nDetection CPU: 6.03 s · loaded input 12.00 s",
+          "state": "IDENTIFIED",
+          "candidate_hex": "A4D97E216B",
+          "correct_accepted": true,
+          "decoded_playback_probe": {
+            "programs": [],
+            "streams": [
+              {
+                "codec_name": "pcm_f32le",
+                "sample_rate": "44100",
+                "channels": 1
+              }
+            ],
+            "format": {
+              "duration": "12.000000"
+            }
+          },
+          "decoded_playback_samples": 529200,
+          "decoded_playback_peak_abs": 1.0248117446899414,
+          "decoded_playback_clipping_sample_count": 1
+        },
+        "clean_wav": {
+          "detect_seconds": 6.293902905003051,
+          "blind_detection_text": "IDENTIFIED\nCandidate decode (diagnostic): A4D97E216B\nScore: 1.000000\nPolicy: PROVISIONAL\nPresence threshold: 0.680556\nDetection CPU: 6.14 s · loaded input 12.00 s",
+          "state": "IDENTIFIED",
+          "candidate_hex": "A4D97E216B",
+          "correct_accepted": true
+        }
+      },
+      "embedding": {
+        "seconds": 3.658225663995836,
+        "ui_details": "Embedded · Advanced Neural · message A4D97E216B · 44100 Hz / 12 s · SNR 48.35 dB · 3.43 s CPU · model initialization recorded 0.04 s · PCM16 shared peak gain 0.882616 · input 16000 Hz, 12.00 s",
+        "original_prepared": {
+          "file": "noise-free-sound-0005_original_prepared.wav",
+          "bytes": 1058444,
+          "sha256": "06c340f9d74aa35d16c61ffa7e3cc8ad346d6e4c014816857d2622e379d319e4"
+        },
+        "watermarked_wav": {
+          "file": "noise-free-sound-0005_watermarked.wav",
+          "bytes": 1058444,
+          "sha256": "0851edc061d4427d46d856e92b33b04c3c242a0b393251f57063fdb56b8202dc"
+        },
+        "watermarked_probe": {
+          "programs": [],
+          "streams": [
+            {
+              "codec_name": "pcm_s16le",
+              "sample_rate": "44100",
+              "channels": 1,
+              "bit_rate": "705600"
+            }
+          ],
+          "format": {
+            "format_name": "wav",
+            "duration": "12.000000"
+          }
+        }
+      },
+      "signal_analysis": {
+        "seconds": 0.4061409100104356,
+        "figures_generated": 3,
+        "figure_types": [
+          "plotly",
+          "plotly",
+          "plotly"
+        ],
+        "figure_payload_nonempty": [
+          true,
+          true,
+          true
+        ],
+        "metrics_text": "Aligned SNR: 48.34 dB · LSD: 5.750 dB · lag: +0.0000 s · compared: 12.00 s\nReference 44100 Hz / 12.00 s; processed 44100 Hz / 12.00 s; analysis resampled to 48 kHz and used bounded cross-correlation alignment."
+      },
+      "elapsed_seconds": 23.678708407998784,
+      "watermark_quality": {
+        "sample_rate_hz": 44100,
+        "sample_count": 529200,
+        "duration_seconds": 12.0,
+        "original_peak_abs": 0.99993896484375,
+        "watermarked_peak_abs": 0.99432373046875,
+        "original_full_scale_sample_count": 0,
+        "watermarked_full_scale_sample_count": 0,
+        "new_full_scale_samples": 0,
+        "pcm_export_snr_db": 48.35112094320104,
+        "signal_analysis_snr_db": 48.34,
+        "signal_analysis_lsd_db": 5.75,
+        "signal_analysis_lag_seconds": 0.0,
+        "audible_distortion_human_check": "PENDING",
+        "original_prepared_sha256": "06c340f9d74aa35d16c61ffa7e3cc8ad346d6e4c014816857d2622e379d319e4",
+        "watermarked_wav_sha256": "0851edc061d4427d46d856e92b33b04c3c242a0b393251f57063fdb56b8202dc",
+        "ab_files": [
+          "listen_ab/noise-free-sound-0005_A_original.wav",
+          "listen_ab/noise-free-sound-0005_B_watermarked.wav"
+        ]
+      }
+    }
+  ],
+  "unwatermarked_negative": {
+    "source_id": "speech-librivox-0004",
+    "source_audio_sha256": "cff8ebe055d76589b92453a1830ccfd0ad70936400a8767e1ca8a1162c68e789",
+    "detect_seconds": 6.28610442399804,
+    "blind_detection_text": "UNKNOWN\nCandidate decode (diagnostic): None\nScore: unavailable\nPolicy: PROVISIONAL\nPresence threshold: 0.680556\nDetection CPU: 6.13 s · loaded input 12.00 s",
+    "state": "UNKNOWN",
+    "accepted": false
+  },
+  "invalid_message": {
+    "reported": "Neural 消息必须是恰好 10 位十六进制字符（5 字节）。",
+    "outputs_empty": true
+  },
+  "invalid_audio": {
+    "response": "DECODE_ERROR\n无法读取音频文件信息。",
+    "safe_error": true
+  },
+  "total_runtime_seconds": 103.57440739100275,
+  "all_positive_cases_correct_all_channels": true,
+  "results_json_sha256_excluded": true
+}

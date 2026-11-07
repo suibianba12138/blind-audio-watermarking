@@ -1,0 +1,45 @@
+{
+  "status": "PARTIAL_RUNTIME_PASS_PHASE_SHIFT_BUDGET_EXHAUSTED",
+  "source_id": "speech_03",
+  "message_id": "A",
+  "official_44_1_khz_weights": true,
+  "phase_shift_hard_time_budget_s": 90,
+  "records": [
+    {
+      "crop": "remove_first_0.5s",
+      "input_seconds": 11.5,
+      "phase_shift_decoding": false,
+      "elapsed_seconds": 6.3627,
+      "status": true,
+      "decoded_message": [18, 52, 86, 120, 154],
+      "confidence": 0.6709956527,
+      "exact_message_recovery": true,
+      "presence_threshold": 0.6805555373,
+      "presence_accepted": false,
+      "error": null
+    },
+    {
+      "crop": "remove_first_0.5s",
+      "input_seconds": 11.5,
+      "phase_shift_decoding": true,
+      "elapsed_seconds": 90.152,
+      "status": false,
+      "decoded_message": null,
+      "confidence": null,
+      "exact_message_recovery": false,
+      "error": "Could not find message after hard time budget"
+    },
+    {
+      "crop": "9s_segment_from_t1s",
+      "input_seconds": 9.0,
+      "phase_shift_decoding": false,
+      "elapsed_seconds": 4.4543,
+      "status": false,
+      "decoded_message": null,
+      "confidence": null,
+      "exact_message_recovery": false,
+      "error": "Could not find message"
+    }
+  ],
+  "note": "The second phase-shift search was not run because the first used the full time budget. No other sources were tested."
+}

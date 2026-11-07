@@ -1,114 +1,89 @@
-<div align="center">
+# Robust Audio Watermarking Studio
 
-# Blind Audio Watermarking
+> **Project website (V4 first):** https://shengkaini.com/blind-audio-watermarking/ — evidence-grounded static showcase for the 40-bit neural system, P9 codec results, full local Studio workflow, and V2/V3 version history. The static page does **not** perform V4 inference.
+>
+> **Try the real online V3 demo:** https://blind-audio-watermarking-demo.onrender.com/ — the existing separate classical DSP/Legacy hosted application (may require a cold start).
+>
 
-### Embed. Compress. Detect.
+A local-first course project for blind audio watermarking with two distinct backends: Sony's third-party pretrained SilentCipher model and the repository's frozen V3 DSP baseline. The V4 Studio combines audio processing, real codec round trips, blind detection, and signal analysis in one Gradio Blocks application.
 
-**Codec-Aware Blind Audio Watermarking with Error-Correcting Identity Codes**
+> SilentCipher is an external model by Sony Research. It is not an original model created by this project. Its official code is MIT licensed; the published checkpoint archive does not include a clear standalone weight license notice. The weights are therefore not bundled or redistributed here.
 
-A digital signal processing course project with two blind watermark modes: **V3 8-bit Soft-Code** (256 variable messages, six-second MP3 robustness) and **Legacy Course V2** (four preset identities).
+## Studio interface · academic project style
 
-[**🌐 Project Website**](https://suibianba12138.github.io/blind-audio-watermarking/) · [**🎛️ Online Demo**](https://blind-audio-watermarking-demo.onrender.com/) · [**📐 Method**](docs/METHOD.md) · [**📊 Results**](docs/RESULTS.md)
+The V4 interface follows the restrained visual language of the [Embodied Semantic Communication project page](https://shengkaini.com/embodied-semantic-communication/): soft off-white canvas, charcoal/slate text, teal accents, thin bordered panels, monospaced technical labels, and a spacious research-page hierarchy. The shared design is **visual only**; these are independent course projects and V4 does not require the other site's assets or scripts.
 
-![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-2B8C8A)
-![V3 MP3](https://img.shields.io/badge/V3_8bit_MP3-117%2F120-188A69)
-![Demo](https://img.shields.io/badge/Hosted_Backend-Render_Free-7959DC)
+The four tabs follow the actual experiment lifecycle:
 
-</div>
+| Tab | What you do | What you receive |
+| --- | --- | --- |
+| **01 · Watermark** | Upload a source, choose neural 40-bit or V3 8-bit, enter a message | Prepared original and marked WAV for listening/download, embedding diagnostics |
+| **02 · Channel Lab** | Re-upload marked audio and select MP3 128 kbps, AAC/M4A 128 kbps, noise or crop | Actual processed file, playback and codec metadata |
+| **03 · Blind Detection** | Upload the received file independently and choose its backend | \`IDENTIFIED\`, \`UNKNOWN\` or \`DECODE_ERROR\`, diagnostic candidate and confidence |
+| **04 · Signal Analysis** | Upload reference and modified files and set the alignment bound | Waveform, STFT magnitude and spectral-difference plots; SNR/LSD if alignment is credible |
 
----
+The result state is not cosmetically promoted: a candidate under the provisional confidence threshold remains \`UNKNOWN\`, and noise/cropping are not claimed as generally robust channels. The project-page theme is implemented as local, scoped CSS and static HTML headings within Gradio; no external fonts, JavaScript, telemetry or CDN are required.
 
-## 🎧 Demo — V3 / Legacy · Embed → Compress → Detect
+**Visual QA:** The refreshed layout still needs a real browser check (desktop/mobile, player and file controls, long result text and plot overflow). GitHub Actions and programmatic Gradio component tests do not substitute for browser verification. Human A/B listening is likewise pending.
 
-**V3 Soft-Code:** enter an integer message from 0 to 255, embed into a six-second 48 kHz mono block, encode/decode real MP3 128 kbps and independently upload the received file for blind detection. Source-disjoint validation: **117/120 (97.5%) correct accepted**, with **1/60** MP3-clean false positives. These are recorded test results, not a live-site success guarantee.
+## What V4 provides
 
-**Legacy Course V2 (below):** the historical four-label identity workflow is retained without changing its algorithm.
+- **Watermark:** SilentCipher, 40-bit (five bytes), mono 44.1 kHz / 12 s; or frozen V3, 8-bit, mono 48 kHz / 6 s.
+- **Channel Lab:** actual FFmpeg MP3 128 kbps and AAC-LC/M4A 128 kbps round trips, seeded additive noise, and fixed crop. A transform being available does not mean the watermark is robust to it.
+- **Blind Detection:** a separate received-file upload and backend-specific presence policy. SilentCipher's current threshold remains provisional; the decoder never receives the expected message or embed session.
+- **Signal Analysis:** aligned waveforms, STFT magnitude and difference plots, SNR, LSD, and audio metadata. Metrics are withheld when alignment is not credible.
+- CPU-first execution, model singleton, bounded single-worker queue, local-only binding, upload and duration limits, and expiring temporary artifacts.
 
-Upload a short audio file, choose one of **four preset identities**, embed a redundant 32-bit codeword, apply real FFmpeg **MP3 128 kbps** compression and run a separate **blind detector**. The result is an identity or **UNKNOWN**.
+## Evidence snapshot
 
-| 01 · Embed | 02 · Compress | 03 · Detect |
-| :---: | :---: | :---: |
-| REAL_TOP32 spectral QIM | FFmpeg MP3 128 kbps | Independent blind decoding |
-| Four-label identity codebook | Actual audio processing | Identity or UNKNOWN |
+The results below are bounded engineering checks, not an SOTA claim or a population-level guarantee.
 
-The [responsive project website](https://suibianba12138.github.io/blind-audio-watermarking/) includes a browser-local waveform/player preview and an on-demand iframe linking to the [Render-hosted Gradio processor](https://blind-audio-watermarking-demo.onrender.com/). Gradio runs Python + FFmpeg server-side; the local waveform preview does not embed watermarks. **Owner reports the hosted UI loads; the live browser end-to-end flow has not been independently verified.** Render Free may need about a minute to wake up.
+- P9 tested 12 independent sources with two fixed messages per source. Correct accepted recovery was 24/24 for clean WAV and 24/24 for MP3 128 kbps. AAC/M4A produced 24/24 exact raw decodes and 23/24 correct accepted detections; one fully correct message was rejected by the frozen provisional threshold. No accepted wrong messages were observed in those trials. The source-level sample is small and is not a formal false-acceptance estimate.
+- P4's four selected demo clips (two music, one speech, one environment) each passed clean, MP3, and AAC/M4A blind re-upload checks (12/12). The acceptance remains **PARTIAL** because browser-level validation and human A/B listening were not complete in that acceptance run.
+- Earlier P1/P3 failures, the AAC ADTS priming diagnosis, and the corrected M4A protocol remain in the archived reports. The reports retain negative evidence and protocol differences.
 
-## ✨ Highlights
+The 2026-11-07 Gradio upgrade smoke used Python 3.13.5, CPU-only PyTorch 2.14.0, Gradio 6.31.0, and FFmpeg 6.1.1. One saved, licensed 44.1 kHz music excerpt was freshly embedded with a new 40-bit message; downloaded Clean WAV, MP3 128 kbps, and AAC-LC/M4A 128 kbps files were independently re-uploaded and all returned the exact message as `IDENTIFIED`. The unwatermarked excerpt returned `UNKNOWN`, invalid audio returned `DECODE_ERROR`, and Signal Analysis returned aligned plots/metrics. This one-source check is a release smoke, not a new performance estimate. Automated tests passed 79/79. Browser visual/click-through QA remains pending because the installed browser launchers are blocked by the host Snap/AppArmor runtime; local callback/API success is not a visual browser pass.
 
-- **Blind detector:** no clean audio, expected identity, original payload, filename label or answer cache is supplied.
-- **Codec-aware carrier selection:** frozen REAL_TOP32 frequency map.
-- **Identity encoding:** four preset identities mapped to 32-bit codewords, minimum pairwise Hamming distance **21**, rejection threshold **8**.
-- **Real MP3 processing:** encode and decode through FFmpeg.
-- **Baseline API:** arbitrary 32-bit payload embedding/detection remains accessible, but is far less reliable after MP3.
-- **Multi-block processing:** 6 / 15 / 30 s implementations; formal validation refers to **6 s / one block** only.
+See [`docs/reports/v4/`](docs/reports/v4/) and [`experiments/`](experiments/) for reports and sanitized text records. Audio samples, generated outputs, checkpoints, and model archives are excluded.
 
-## 🧩 How It Works
+## Local setup
 
-**Audio → spectral QIM / REAL_TOP32 → MP3 → blind bit decoding → codebook match or UNKNOWN**
+Use a dedicated Python environment (3.12 or newer, as supported by the selected CPU PyTorch build). Do not install these packages into the V3/robotics environment. The earlier four-source end-to-end acceptance used CPU-only PyTorch 2.14.0, Gradio 4.44.1, FFmpeg 6.1.1, and Sony's SilentCipher 1.0.4 source. This release-preparation pass upgrades the UI to Gradio 6.31.0 and freshly verifies one music source through neural embed, Clean/MP3/AAC file re-upload detection, negative input, and signal analysis (see the dated smoke above). The sample is not a replacement for the P4/P9 evaluation records. The tested PyTorch combination differs from SilentCipher's published `torch<=2.0.0` requirement, so treat it as empirical compatibility evidence rather than an upstream-supported matrix.
 
-The identity codebook carries only **2 bits of information** (four possible labels) in each 32-bit redundant codeword. **95.83% identity accuracy does not mean that arbitrary 32-bit payloads are recovered at 95.83%.** The frozen operating point is strength **1.28**, threshold **8**, seed **7**. See [Method](docs/METHOD.md).
+1. Install FFmpeg with `ffprobe` and `libmp3lame` / AAC support.
+2. Create and activate a dedicated Python 3.12-or-newer virtual environment.
+3. Install the Studio packages listed in [`requirements-v4.txt`](requirements-v4.txt), then install a compatible CPU PyTorch build in that environment. Gradio resolves its matching client and web dependencies; do not pin old Gradio transitive dependencies separately.
+4. Obtain the official SilentCipher source and 44.1 kHz checkpoint from the [Sony repository](https://github.com/sony/silentcipher) and its [official release](https://github.com/sony/silentcipher/releases/tag/release). Review the upstream terms before downloading or using the checkpoint. Do not place model files in this repository.
+5. Configure the external paths and launch locally:
 
-## 📊 Evaluation — Frozen Course V2
+```bash
+export SILENTCIPHER_SOURCE_ROOT=/path/to/official/silentcipher
+export SILENTCIPHER_MODEL_DIR=/path/to/official/44_1_khz/73999_iteration
+export V3_SOURCE_ROOT="$PWD"
+export V4_STUDIO_PYTHON=python
+bash scripts/run_v4_studio.sh
+```
 
-These values are recorded from the earlier Course V2 validation at source commit **7b0dca6b94f74d98304b1cb4a64209201fb2675a**. They were **not re-measured** using the clean public export.
+Open `http://127.0.0.1:7862`. The app does not enable Gradio sharing and binds to localhost. The V4 Studio UI was updated for Gradio 6.31.0; the published CPU model runtime still requires a machine with the external SilentCipher source and weights. Do not expose it to a network without a separate security review.
 
-| Measurement | Recorded result |
-|---|---:|
-| Identity, no attack | **48/48 (100%)** |
-| Identity, MP3 128 kbps | **46/48 (95.83%)** |
-| Arbitrary 32-bit full packet, MP3 | **5/48 (10.42%)** |
-| Wrong identity on positive MP3 recordings | **0/48** |
-| Unmarked-source false positives | **1/60** |
-| MP3-negative false positives | **0/60** |
+Detailed provenance, model files, CPU notes, and reproduction caveats are in [`docs/V4_REPRODUCTION.md`](docs/V4_REPRODUCTION.md).
 
-All 48 positive source tests were **6 s / 1 block**. Two environment audio cases returned UNKNOWN after MP3. The frozen peak audit found no additional clipping, but **formal perceptual/listening validation is not established**. These finite-sample results do not guarantee equivalent results for arbitrary uploads.
+## Tests
 
-[**Read full results and provenance →**](docs/RESULTS.md)
+Install the development test dependency from `requirements-v4-dev.txt`, then run the suite below.
 
-## 🚀 Quick Start
+```bash
+PYTHONPATH=src:. python -m pytest tests/test_silentcipher_adapter.py tests/test_v4_p4_audio_processing.py tests/test_v4_p4_backends.py tests/test_v4_pcm16_peak_safety.py tests/test_v4_gradio_compat.py
+```
 
-**Prerequisites:** Python 3.10+ and FFmpeg installed and on PATH.
+These are local code tests. Full model-runtime checks additionally require external SilentCipher source and weights.
 
-~~~bash
-git clone https://github.com/suibianba12138/blind-audio-watermarking.git
-cd blind-audio-watermarking
+## Historical versions
 
-python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install -e '.[gui,dev]'
+- **Course V2 release snapshot:** [`a89b493`](https://github.com/suibianba12138/blind-audio-watermarking/tree/a89b4935ec056a6709cc17379e333a9b1f7c387e), preserved in repository history.
+- **Frozen V3 8-bit integration:** [`feat/v3-8bit-integration`](https://github.com/suibianba12138/blind-audio-watermarking/tree/feat/v3-8bit-integration) at `7fe678234e8af1d0be34a0a3e56297c7182945ff`.
+- The current repository `main` already contains the V3 integration and hosted-site history. V4 is prepared as a fast-forwardable continuation of that current history; no history is rewritten.
 
-python examples/generate_test_audio.py --output /tmp/watermark_test_signal.wav
-python scripts/demo.py --input /tmp/watermark_test_signal.wav --identity UESTC-003 --codec mp3
-python -m app.gui
-~~~
+## License and attribution
 
-The GUI binds to **127.0.0.1** without public sharing. CLI outputs include the prepared source, marked WAV, compressed MP3, decoded WAV and blind detector JSON. For checks: run **python -m pytest -q** after installing the development extra.
-
-## 📂 Repository Layout
-
-~~~text
-src/audio_watermark/   QIM and blind detection
-app/                   Local Gradio GUI, FFmpeg, independent detector
-configs/               Frozen carrier map and parameters
-scripts/               CLI embedding and detection
-tests/                 Standalone contract checks
-examples/              Generated synthetic audio example
-docs/                  Architecture, results, limits and site
-~~~
-
-## 🌐 Website & Deployment
-
-The site source is at [docs/index.html](docs/index.html) with styles and scripts in **docs/assets/**. It follows the information hierarchy of [RecallVision-Course](https://github.com/suibianba12138/RecallVision-Course), adapted to DSP audio. GitHub Pages hosts the informational site; the [Render-hosted backend](https://blind-audio-watermarking-demo.onrender.com/) runs the real Python processing service. The embedded Gradio interface loads only after a visitor chooses to open it and has an external full-screen fallback. Live browser end-to-end acceptance remains pending.
-
-## ⚠️ Scope & Limitations
-
-This is a teaching prototype, **not cryptographic ownership authentication**. Public identities can be imitated, intentional forgery/removal resistance is untested, and broad codec generalization has not been established. Longer modes have smoke tests but no formal success-rate evidence. The project redistributes **no MUSAN raw audio**; its frozen research data used [MUSAN / OpenSLR SLR17](https://www.openslr.org/17/) with proper upstream attribution. See [Limitations](docs/LIMITATIONS.md).
-
-## 📜 License
-
-Original project code: **[MIT License](LICENSE)** · © 2026 suibianba12138. Third-party code, FFmpeg builds and datasets retain their own terms.
-
----
-
-<div align="center"><sub>Blind Audio Watermarking · Digital Signal Processing · Reproducible research software with explicit limits.</sub></div>
+This repository's project code is MIT licensed. Sony SilentCipher code is third-party MIT-licensed code; its checkpoint archive is not included, and the archive's separate redistribution terms were not established during this audit. Third-party audio was used only in local tests; this repository does not redistribute audio. Experiment reports identify sources and licenses where known. Dependencies and FFmpeg retain their own licenses.

@@ -25,7 +25,7 @@
       <a href="#overview">Overview</a>
       <a href="#lab">V4 Demo</a><a href="#listen">Listen</a><a href="#evidence">Results</a>
       <a href="#method">System</a>
-      <a href="#versions">Versions</a>
+      <a href="#versions">Versions</a><a href="./v3/">V3 DSP ↗</a>
       <a href="https://shengkaini.com/">Home ↗</a>
       <a href="https://github.com/suibianba12138/blind-audio-watermarking">GitHub ↗</a>
     </nav>
@@ -227,10 +227,10 @@
       <article class="v3-card">
         <div class="version-top"><small>CLASSIC DSP · V3</small><b>LIVE DEMO</b></div>
         <h3 class="version-title">FFT / QIM + Soft-Code</h3>
-        <p class="version-copy">An 8-bit traditional DSP baseline retained as a historical, more interpretable alternative. Explore the real V3/Legacy embed–compress–detect interface on the existing hosted demo service.</p>
+        <p class="version-copy">An independent classical DSP achievement: an 8-bit message mapped into 32 physical bits using a fixed Soft-Code, REAL_TOP32 spectral QIM, and soft-decision blind decoding. The frozen V3 validation recovered 117/120 messages after MP3 128 kbps. Explore the method in its dedicated study, or run its live online demo.</p>
         <div class="version-spec"><span>8-bit effective payload</span><span>6 s / 48 kHz</span><span>Classic DSP</span></div>
         <div class="version-actions">
-          <a class="pill primary" href="https://blind-audio-watermarking-demo.onrender.com/" target="_blank" rel="noopener noreferrer">Open real V3 demo ↗</a>
+          <a class="pill primary" href="./v3/">Explore V3 methodology ↗</a><a class="pill" href="https://blind-audio-watermarking-demo.onrender.com/" target="_blank" rel="noopener noreferrer">Try real V3 demo ↗</a>
           <a class="pill" href="https://github.com/suibianba12138/blind-audio-watermarking/tree/feat/v3-8bit-integration" target="_blank" rel="noopener noreferrer">V3 frozen code ↗</a>
         </div>
         <p class="small-note">Hosted V3 may need an initial cold start. V3 and V4 used different evaluation protocols, so their headline acceptance counts are not a paired benchmark.</p>
@@ -238,8 +238,8 @@
     </div>
     <div class="section-head" style="margin-top:40px"><div><div class="kicker">VERSION ARCHIVE</div><h2>Development history</h2></div></div>
     <div class="history">
-      <article><div class="history-head"><small>V2 / COURSE BASELINE</small><span>2026</span></div><h3>Early DSP implementation</h3><p>Historical course implementation and initial repository snapshot; useful as a reference for the method's evolution.</p><a href="https://github.com/suibianba12138/blind-audio-watermarking/tree/a89b4935ec056a6709cc17379e333a9b1f7c387e" target="_blank" rel="noopener noreferrer">View V2 snapshot ↗</a></article>
-      <article><div class="history-head"><small>V3 / FROZEN CLASSIC</small><span>2026</span></div><h3>8-bit Soft-Code</h3><p>The fully retained traditional DSP stage, with its own frozen source and functioning hosted demonstration.</p><a href="https://github.com/suibianba12138/blind-audio-watermarking/tree/feat/v3-8bit-integration" target="_blank" rel="noopener noreferrer">Explore V3 source ↗</a></article>
+      <article><div class="history-head"><small>V2 / COURSE BASELINE</small><span>2026</span></div><h3>Four-identity FFT/QIM</h3><p>Original traditional DSP course prototype: four identities encoded with a redundant 32-position codeword, followed by real MP3 testing.</p><a href="./v2/">Read V2 history ↗</a></article>
+      <article><div class="history-head"><small>V3 / FROZEN CLASSIC</small><span>2026</span></div><h3>8-bit Soft-Code</h3><p>REAL_TOP32 carrier selection, 8-to-32-bit encoding and soft-decision blind detection. 117/120 correctly accepted under source-disjoint MP3 tests.</p><a href="./v3/">Read V3 technical study ↗</a></article>
       <article><div class="history-head"><small>V4 / CURRENT SHOWCASE</small><span>2026</span></div><h3>40-bit neural Studio</h3><p>New blind watermarking backend, AAC/MP3 verification, instrumented experiments and a local four-tab Studio.</p><a href="https://github.com/suibianba12138/blind-audio-watermarking/pull/5" target="_blank" rel="noopener noreferrer">Inspect V4 integration PR ↗</a></article>
     </div>
   </section>

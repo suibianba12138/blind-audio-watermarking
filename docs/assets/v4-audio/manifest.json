@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "protocol": "P4_END_TO_END_FROZEN",
+  "message_hex": "A4D97E216B",
+  "evidence_ref": "experiments/v4_end_to_end_acceptance/results.json",
+  "publish_rule": "All four files per track must match the frozen SHA256 hashes before published=true.",
+  "tracks": {
+    "music_01": {
+      "published": false,
+      "validation": "PENDING_LOCAL_AUDIO_FILES",
+      "license": "CC0 1.0",
+      "source_url": "https://freemusicarchive.org/music/maarten-schellekens/public-domain-1/sax-and-piano-free-track/"
+    },
+    "music_02": {
+      "published": false,
+      "validation": "PENDING_LOCAL_AUDIO_FILES",
+      "license": "CC0 1.0",
+      "source_url": "https://freemusicarchive.org/music/Monplaisir/Free_To_Use/Monplaisir_-_Free_To_Use_-_01_Free_To_Use_1/"
+    }
+  }
+}

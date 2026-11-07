@@ -6,8 +6,8 @@ Uses stdlib only. By default it audits without copying. --publish copies
 only when all 8 exact local files match their recorded SHA256 checksums.
 
 Example:
-  python scripts/publish_v4_audio.py --source-root experiments/v4_end_to_end_acceptance
-  python scripts/publish_v4_audio.py --source-root experiments/v4_end_to_end_acceptance --publish
+  python scripts/publish_v4_audio.py --source-root /path/to/V4/experiments/v4_end_to_end_acceptance
+  python scripts/publish_v4_audio.py --source-root /path/to/V4/experiments/v4_end_to_end_acceptance --publish
   git add -f docs/assets/v4-audio/*.wav docs/assets/v4-audio/*.mp3 docs/assets/v4-audio/*.m4a
   git add docs/assets/v4-audio/manifest.json
   git commit -m "feat(pages): publish verified P4 V4 audio samples"
@@ -28,7 +28,6 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 DEST = ROOT / "docs" / "assets" / "v4-audio"
-EVIDENCE = ROOT / "experiments" / "v4_end_to_end_acceptance" / "results.json"
 MANIFEST = DEST / "manifest.json"
 EXPECTED = {
     "music_01": {
@@ -60,20 +59,22 @@ def main() -> int:
                         help="Directory containing actual P4 exports, including possible subdirectories.")
     parser.add_argument("--publish", action="store_true",
                         help="Copy verified audio into docs/ and set published=true in its manifest.")
+    parser.add_argument("--evidence", type=Path, default=None,
+                        help="Frozen results.json path; defaults to <source-root>/results.json.")
     args = parser.parse_args()
     source_root = args.source_root.expanduser().resolve()
+    evidence_file = (args.evidence or source_root / "results.json").expanduser().resolve()
     if not source_root.is_dir():
         print(f"NOT FOUND: {source_root}", file=sys.stderr)
         return 2
 
     # Manifest and result records are only used as an additional contract;
     # if the branch is missing those records, do not trust hand-entered names alone.
-    if not EVIDENCE.is_file():
-        print(f"Missing frozen evidence: {EVIDENCE}", file=sys.stderr)
-        print("Merge the reviewed evidence from the V4 candidate branch first, "
-              "or run this tool in a checkout containing its results.json.", file=sys.stderr)
+    if not evidence_file.is_file():
+        print(f"Missing frozen evidence: {evidence_file}", file=sys.stderr)
+        print("Point --evidence to the preserved V4 P4 results.json.", file=sys.stderr)
         return 2
-    evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
+    evidence = json.loads(evidence_file.read_text(encoding="utf-8"))
     assert evidence["message_hex"] == "A4D97E216B", "Unexpected frozen message"
     evidence_cases = {case["source_id"]: case for case in evidence["cases"]}
 

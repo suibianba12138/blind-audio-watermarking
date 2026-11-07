@@ -20,15 +20,17 @@ The results below are bounded engineering checks, not an SOTA claim or a populat
 - P4's four selected demo clips (two music, one speech, one environment) each passed clean, MP3, and AAC/M4A blind re-upload checks (12/12). The acceptance remains **PARTIAL** because browser-level validation and human A/B listening were not complete in that acceptance run.
 - Earlier P1/P3 failures, the AAC ADTS priming diagnosis, and the corrected M4A protocol remain in the archived reports. The reports retain negative evidence and protocol differences.
 
+The 2026-11-07 Gradio upgrade smoke used Python 3.13.5, CPU-only PyTorch 2.14.0, Gradio 6.31.0, and FFmpeg 6.1.1. One saved, licensed 44.1 kHz music excerpt was freshly embedded with a new 40-bit message; downloaded Clean WAV, MP3 128 kbps, and AAC-LC/M4A 128 kbps files were independently re-uploaded and all returned the exact message as `IDENTIFIED`. The unwatermarked excerpt returned `UNKNOWN`, invalid audio returned `DECODE_ERROR`, and Signal Analysis returned aligned plots/metrics. This one-source check is a release smoke, not a new performance estimate. Automated tests passed 79/79. Browser visual/click-through QA remains pending because the installed browser launchers are blocked by the host Snap/AppArmor runtime; local callback/API success is not a visual browser pass.
+
 See [`docs/reports/v4/`](docs/reports/v4/) and [`experiments/`](experiments/) for reports and sanitized text records. Audio samples, generated outputs, checkpoints, and model archives are excluded.
 
 ## Local setup
 
-Use a dedicated Python 3.12 environment. Do not install these packages into the V3/robotics environment. The integration was exercised with CPU-only PyTorch 2.14.0, Gradio 4.44.1, FFmpeg 6.1.1, and Sony's SilentCipher 1.0.4 source. The tested combination differs from SilentCipher's published `torch<=2.0.0` requirement, so treat it as an empirically working local combination rather than an upstream-supported matrix.
+Use a dedicated Python environment (3.12 or newer, as supported by the selected CPU PyTorch build). Do not install these packages into the V3/robotics environment. The earlier four-source end-to-end acceptance used CPU-only PyTorch 2.14.0, Gradio 4.44.1, FFmpeg 6.1.1, and Sony's SilentCipher 1.0.4 source. This release-preparation pass upgrades the UI to Gradio 6.31.0 and freshly verifies one music source through neural embed, Clean/MP3/AAC file re-upload detection, negative input, and signal analysis (see the dated smoke above). The sample is not a replacement for the P4/P9 evaluation records. The tested PyTorch combination differs from SilentCipher's published `torch<=2.0.0` requirement, so treat it as empirical compatibility evidence rather than an upstream-supported matrix.
 
 1. Install FFmpeg with `ffprobe` and `libmp3lame` / AAC support.
-2. Create and activate a dedicated Python 3.12 virtual environment.
-3. Install the Studio packages listed in [`requirements-v4.txt`](requirements-v4.txt), then install a compatible CPU PyTorch build in that environment.
+2. Create and activate a dedicated Python 3.12-or-newer virtual environment.
+3. Install the Studio packages listed in [`requirements-v4.txt`](requirements-v4.txt), then install a compatible CPU PyTorch build in that environment. Gradio resolves its matching client and web dependencies; do not pin old Gradio transitive dependencies separately.
 4. Obtain the official SilentCipher source and 44.1 kHz checkpoint from the [Sony repository](https://github.com/sony/silentcipher) and its [official release](https://github.com/sony/silentcipher/releases/tag/release). Review the upstream terms before downloading or using the checkpoint. Do not place model files in this repository.
 5. Configure the external paths and launch locally:
 
@@ -40,7 +42,7 @@ export V4_STUDIO_PYTHON=python
 bash scripts/run_v4_studio.sh
 ```
 
-Open `http://127.0.0.1:7862`. The app does not enable Gradio sharing. Keep it on localhost; the pinned Gradio 4.44.1 runtime is the version used for local verification and has not been security-upgraded/revalidated for public exposure. Review current upstream advisories before any network-facing deployment.
+Open `http://127.0.0.1:7862`. The app does not enable Gradio sharing and binds to localhost. The V4 Studio UI was updated for Gradio 6.31.0; the published CPU model runtime still requires a machine with the external SilentCipher source and weights. Do not expose it to a network without a separate security review.
 
 Detailed provenance, model files, CPU notes, and reproduction caveats are in [`docs/V4_REPRODUCTION.md`](docs/V4_REPRODUCTION.md).
 
@@ -49,7 +51,7 @@ Detailed provenance, model files, CPU notes, and reproduction caveats are in [`d
 Install the development test dependency from `requirements-v4-dev.txt`, then run the suite below.
 
 ```bash
-python -m pytest tests/test_silentcipher_adapter.py tests/test_v4_p4_audio_processing.py tests/test_v4_p4_backends.py tests/test_v4_pcm16_peak_safety.py
+PYTHONPATH=src:. python -m pytest tests/test_silentcipher_adapter.py tests/test_v4_p4_audio_processing.py tests/test_v4_p4_backends.py tests/test_v4_pcm16_peak_safety.py tests/test_v4_gradio_compat.py
 ```
 
 These are local code tests. Full model-runtime checks additionally require external SilentCipher source and weights.

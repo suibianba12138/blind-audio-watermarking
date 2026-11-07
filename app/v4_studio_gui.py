@@ -179,7 +179,7 @@ def analysis_callback(reference_upload, modified_upload, max_offset: float):
 def build_demo():
     import gradio as gr
 
-    with gr.Blocks(title="Robust Audio Watermarking Studio", theme=gr.themes.Soft()) as demo:
+    with gr.Blocks(title="Robust Audio Watermarking Studio") as demo:
         gr.Markdown("# Robust Audio Watermarking Studio\nLocal CPU system · two frozen backends · independent blind detection")
         with gr.Tab("Watermark"):
             backend = gr.Radio(list(BACKEND_INFO), value="Advanced Neural", label="Watermark backend")
@@ -241,9 +241,12 @@ def build_demo():
 
 
 def main():
+    import gradio as gr
+
     demo = build_demo()
     demo.launch(server_name="127.0.0.1", server_port=int(os.environ.get("V4_STUDIO_PORT", "7862")),
-                share=False, show_error=False, inbrowser=False, max_threads=1, max_file_size="16mb")
+                share=False, show_error=False, inbrowser=False, max_threads=1, max_file_size="16mb",
+                theme=gr.themes.Soft())
 
 
 if __name__ == "__main__":

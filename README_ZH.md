@@ -20,15 +20,17 @@
 - P4 选取的 4 段演示素材（音乐 2、语音 1、环境声 1）各自通过 Clean、MP3、AAC/M4A 独立重新上传盲检，共 12/12。该轮验收仍为 **PARTIAL**：未完成浏览器端完整交互验证，也未完成人工 A/B 听音。
 - 更早的 P1/P3 失败、AAC ADTS priming 诊断和修正后的 M4A 协议均保留在报告中，包含负面结果和协议差异。
 
+2026-11-07 的 Gradio 升级 smoke 使用 Python 3.13.5、CPU PyTorch 2.14.0、Gradio 6.31.0 和 FFmpeg 6.1.1。对一段已保存且许可明确的原生 44.1 kHz 音乐重新嵌入了新的 40-bit 消息；Clean WAV、MP3 128 kbps、AAC-LC/M4A 128 kbps 均经下载后独立重新上传，并以 `IDENTIFIED` 恢复正确消息。未水印原音返回 `UNKNOWN`，非法音频返回 `DECODE_ERROR`，Signal Analysis 返回对齐图形和指标。该单来源结果只是发布回归 smoke，不是新的性能统计。自动化测试 79/79 通过。由于主机 Snap/AppArmor 限制，已安装的浏览器启动器无法运行，因此浏览器可视和点击验收仍待完成；本地 API/回调通过不等于浏览器验收通过。
+
 报告见 [`docs/reports/v4/`](docs/reports/v4/)，脱敏后的文本实验记录见 [`experiments/`](experiments/)。音频、生成文件、checkpoint 和模型归档均不包含在仓库中。
 
 ## 本地运行
 
-请使用独立的 Python 3.12 环境，不要将这些依赖安装到 V3/机器人环境。系统整合使用 CPU PyTorch 2.14.0、Gradio 4.44.1、FFmpeg 6.1.1 和 Sony SilentCipher 1.0.4 源码完成过运行验证。此组合不同于 SilentCipher 上游发布的 `torch<=2.0.0` 要求；它是实测可工作的本地组合，不代表上游支持矩阵。
+请使用独立 Python 环境（Python 3.12 或更新版本，并确保与所选 CPU PyTorch 版本兼容），不要将这些依赖安装到 V3/机器人环境。此前四来源端到端验收使用 CPU PyTorch 2.14.0、Gradio 4.44.1、FFmpeg 6.1.1 和 Sony SilentCipher 1.0.4 源码。本次发布准备将界面升级到 Gradio 6.31.0，并以真实模型重新验证一段音乐的嵌入、Clean/MP3/AAC 文件重新上传盲检、负例及信号分析（见上方日期 smoke）。这是一条样本的回归，不替代 P4/P9 评估结果。该 PyTorch 组合不同于 SilentCipher 上游发布的 `torch<=2.0.0` 要求，是工程实测而非上游支持矩阵。
 
 1. 安装含 `ffprobe`、`libmp3lame` 和 AAC 支持的 FFmpeg。
-2. 创建并启用独立的 Python 3.12 虚拟环境。
-3. 安装 [`requirements-v4.txt`](requirements-v4.txt) 中的 Studio 依赖，再在该环境安装兼容的 CPU PyTorch。
+2. 创建并启用独立的 Python 3.12 或更新版本虚拟环境。
+3. 安装 [`requirements-v4.txt`](requirements-v4.txt) 中的 Studio 依赖，再在该环境安装兼容的 CPU PyTorch。Gradio 会解析匹配的 client 和 Web 依赖，不要额外固定旧版 Gradio 间接依赖。
 4. 从 [Sony 官方仓库](https://github.com/sony/silentcipher) 和[官方模型发布页](https://github.com/sony/silentcipher/releases/tag/release)获取源码与 44.1 kHz 权重。下载和使用模型前请自行审阅上游条款；不要把模型文件放入本仓库。
 5. 设置外部路径并在本机启动：
 
@@ -40,7 +42,7 @@ export V4_STUDIO_PYTHON=python
 bash scripts/run_v4_studio.sh
 ```
 
-打开 `http://127.0.0.1:7862`。程序不会启用 Gradio 公共分享。请仅在 localhost 使用；Gradio 4.44.1 是本地验证版本，尚未升级并重新验证为公网服务。未来任何联网部署前都应重新审查上游安全公告。
+打开 `http://127.0.0.1:7862`。程序不会启用 Gradio 公共分享，并绑定 localhost。V4 Studio 界面已更新到 Gradio 6.31.0；CPU 模型运行仍需要外置 SilentCipher 源码和权重。联网暴露前必须另行进行安全审查。
 
 模型来源、文件清单、CPU 环境和复现限制见 [`docs/V4_REPRODUCTION.md`](docs/V4_REPRODUCTION.md)。
 
@@ -49,7 +51,7 @@ bash scripts/run_v4_studio.sh
 先按 `requirements-v4-dev.txt` 安装 pytest 开发依赖，再运行以下测试。
 
 ```bash
-python -m pytest tests/test_silentcipher_adapter.py tests/test_v4_p4_audio_processing.py tests/test_v4_p4_backends.py tests/test_v4_pcm16_peak_safety.py
+PYTHONPATH=src:. python -m pytest tests/test_silentcipher_adapter.py tests/test_v4_p4_audio_processing.py tests/test_v4_p4_backends.py tests/test_v4_pcm16_peak_safety.py tests/test_v4_gradio_compat.py
 ```
 
 这些是本地代码测试。完整模型运行还需要外部 SilentCipher 源码和权重。

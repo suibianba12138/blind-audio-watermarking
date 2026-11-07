@@ -2,7 +2,7 @@
 
 ## Runtime configuration
 
-The validated local Studio used Python 3.12, CPU-only PyTorch 2.14.0, Gradio 4.44.1, FFmpeg 6.1.1, and Sony SilentCipher 1.0.4 source. The official repository requirements specify `torch<=2.0.0`; the tested runtime is therefore empirical compatibility evidence, not an upstream-supported version combination. No GPU is required for the tested single-worker workflow. Approximate peak process memory was 1.5–1.7 GiB in prior local runs; startup and inference time vary with CPU and filesystem cache.
+The earlier full neural Studio acceptance used Python 3.12, CPU-only PyTorch 2.14.0, Gradio 4.44.1, FFmpeg 6.1.1, and Sony SilentCipher source commit `c11afe0e2df73f1ac0f848e2903b8af36e6a0b10`. The 2026-11-07 release-preparation run used an isolated Python 3.13.5 environment with PyTorch 2.14.0+cpu, Gradio 6.31.0 and its resolved `gradio_client` 2.7.2 dependency. It passed 79 automated tests, launched the live Blocks app, and exercised upload/download plus real MP3/AAC and aligned analysis callbacks. One saved licensed native-44.1-kHz music excerpt was freshly embedded with a new 40-bit message; Clean, MP3 and AAC/M4A files were independently re-uploaded and correctly identified. An unwatermarked version returned `UNKNOWN`; malformed audio returned a safe `DECODE_ERROR`. This is a one-source release smoke, not a new performance estimate. Browser visual/click-through QA remains pending because the host's Snap/AppArmor setup prevents launching the installed browsers. The official repository requirements specify `torch<=2.0.0`; the tested Torch 2.14.0 runtime is empirical compatibility evidence, not an upstream-supported version combination. No GPU is required for the tested single-worker workflow; measured Studio peak RSS was about 1.56 GiB.
 
 The official source and model archive remain outside this repository. Before starting, provide:
 
@@ -38,7 +38,7 @@ These samples support bounded engineering conclusions only. They do not establis
 
 ## Reproduction steps
 
-Create a dedicated Python 3.12 environment, install the Studio dependencies in `requirements-v4.txt`, install a CPU PyTorch build, and obtain SilentCipher source/weights from the official links above. Check the upstream dependency requirements before installation; do not install into a robotics or V3 environment. Then, from the repository root:
+Create a dedicated Python environment compatible with Gradio 6.31.0 and the selected CPU PyTorch build, install `requirements-v4.txt`, install CPU PyTorch separately, and obtain SilentCipher source/weights from the official links above. `requirements-v4.txt` includes the audio, plotting, and SilentCipher runtime libraries used by the Studio. Gradio resolves its matching client and web stack; do not add legacy direct pins for those transitive dependencies. Check upstream dependency terms before installation; do not install into a robotics or V3 environment. Then, from the repository root:
 
 ```bash
 export SILENTCIPHER_SOURCE_ROOT=/path/to/official/silentcipher
@@ -48,6 +48,6 @@ export V4_STUDIO_PYTHON=python
 bash scripts/run_v4_studio.sh
 ```
 
-The studio should be available at `http://127.0.0.1:7862`. For this archived local stack, do not bind to a public interface. Gradio 4.44.1 was the version used in P4 runtime checks; the app has not been security-upgraded and revalidated for public exposure.
+The studio should be available at `http://127.0.0.1:7862`. Do not bind to a public interface. The current requirements pin Gradio 6.31.0; local service, upload/file components, event registration, real MP3/AAC channel callbacks, Signal Analysis, and a fresh one-source neural Clean/MP3/AAC re-upload cycle were smoke-checked with that version. Browser-level visual QA and larger regression sampling remain separate. The Studio is for localhost use and has not received a separate network-exposure security review.
 
 Run the selected unit suite with the command in the root README. End-to-end model tests additionally require the external source and checkpoints.

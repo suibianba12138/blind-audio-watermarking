@@ -1,25 +1,15 @@
-# Local-only V4 Studio runtime; tested with Python 3.12.
+# Local-only V4 Studio runtime; install in a dedicated compatible environment.
 # Keep separate from the V3/hosted environment.
 numpy>=1.24,<3
 scipy>=1.10,<2
 soundfile==0.13.1
 librosa==0.10.2.post1
-gradio==4.44.1
-gradio_client==1.3.0
-fastapi==0.115.2
-starlette==0.40.0
-pydantic==2.10.6
-pydantic-core==2.27.2
-huggingface_hub==0.24.7
-pyaml>=24.4.0
-uvicorn==0.32.0
-aiofiles==23.2.1
-python-multipart==0.0.12
-pydub==0.25.1
-ffmpy==0.4.0
-semantic-version==2.10.0
-tomlkit==0.12.0
-websockets==12.0
-orjson==3.10.12
-# PyTorch and SilentCipher are external model-runtime dependencies. Install in
-# the isolated environment using the tested CPU build and Sony's instructions.
+PyYAML>=6,<7
+pydub>=0.25.1,<1
+plotly>=5,<7
+gradio==6.31.0
+# Gradio 6.31.0 declares its compatible gradio_client, FastAPI, Starlette,
+# Pydantic, Uvicorn, and file-serving dependencies. Avoid stale direct pins.
+# PyTorch and SilentCipher source/weights are external model-runtime inputs.
+# The local smoke used torch==2.14.0+cpu (upstream SilentCipher declares <=2.0.0;
+# this newer combination is empirical compatibility evidence, not upstream support).

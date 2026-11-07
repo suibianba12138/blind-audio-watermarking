@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#fafafa">
+<meta name="description" content="Robust Audio Watermarking: an evidence-grounded 40-bit neural blind audio watermarking project showcase, with MP3/AAC results, DSP analysis and a live V3 baseline demo.">
+<meta property="og:title" content="Robust Audio Watermarking | V4 Studio">
+<meta property="og:description" content="40-bit blind audio watermarking · Real MP3/AAC · Reproducible experiments · V3 live demonstration">
+<title>Robust Audio Watermarking | Project Showcase</title>
+<link rel="stylesheet" href="./css/styles.css">
+<script src="./js/app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#overview">Skip to content</a>
+<header class="topbar">
+  <div class="top-inner">
+    <a href="#top" class="brand"><span class="brand-icon" aria-hidden="true">N</span> Robust Audio Watermarking</a>
+    <nav class="topnav" aria-label="Primary navigation">
+      <a href="#overview">Overview</a>
+      <a href="#evidence">Results</a>
+      <a href="#method">System</a>
+      <a href="#versions">Versions</a>
+      <a href="https://shengkaini.com/">Home ↗</a>
+      <a href="https://github.com/suibianba12138/blind-audio-watermarking">GitHub ↗</a>
+    </nav>
+  </div>
+</header>
+<main id="top">
+  <section class="wrap hero" aria-labelledby="page-title">
+    <div class="eyebrow">DIGITAL SIGNAL PROCESSING · COURSE PROJECT · V4 · 2026</div>
+    <h1 id="page-title">Robust Audio<br>Watermarking Studio</h1>
+    <p class="hero-lead">Blind message recovery after real audio compression.<br>
+    A 40-bit neural watermarking system with a reproducible DSP baseline.</p>
+    <p class="hero-cn" lang="zh-CN">鲁棒盲音频数字水印系统 · 神经水印、真实编解码信道与信号分析</p>
+    <div class="hero-links">
+      <a class="pill primary" href="#evidence">Explore verified results ↓</a>
+      <a class="pill" href="#versions">V4 / V3 / V2 versions</a>
+      <a class="pill" href="https://blind-audio-watermarking-demo.onrender.com/" target="_blank" rel="noopener noreferrer">Try live V3 demo ↗</a>
+      <a class="pill" href="https://github.com/suibianba12138/blind-audio-watermarking/tree/upgrade/v4-github-prep" target="_blank" rel="noopener noreferrer">V4 source ↗</a>
+    </div>
+    <div class="hero-meta" aria-label="System facts">
+      <span class="meta-item"><b>40 bit</b> neural payload</span>
+      <span class="meta-item"><b>44.1 kHz</b> source processing</span>
+      <span class="meta-item"><b>12 s</b> model input</span>
+      <span class="meta-item"><b>MP3 / AAC</b> codec round trips</span>
+    </div>
+    <figure class="hero-figure">
+      <div class="signal-head"><span>END-TO-END SIGNAL PATH</span><b>REAL AUDIO / INDEPENDENT BLIND DECODING</b></div>
+      <div class="signal-layout">
+        <article class="signal-node">
+          <span class="num">01 / INPUT</span><div class="mini" aria-hidden="true"><svg viewBox="0 0 185 45" preserveAspectRatio="none"><path d="M1 23 L12 23 L16 17 L20 29 L24 5 L28 38 L32 18 L38 24 L47 22 L52 7 L57 39 L64 12 L69 30 L76 20 L83 25 L88 13 L96 32 L102 20 L111 24 L116 3 L120 41 L127 17 L132 27 L138 19 L145 26 L153 17 L158 30 L165 15 L175 24 L184 23"/></svg></div>
+          <h3>Source audio</h3><p>Mono audio prepared at the model input rate and duration.</p>
+          <span class="mono-line">44,100 samples/s</span>
+        </article>
+        <article class="signal-node">
+          <span class="num">02 / EMBED</span><div class="mini" aria-hidden="true"><svg viewBox="0 0 185 45" preserveAspectRatio="none"><path d="M1 22 L13 22 L20 12 L25 32 L31 8 L38 37 L43 19 L52 24 L60 16 L68 30 L78 13 L85 33 L90 16 L97 26 L105 12 L112 32 L120 22 L128 17 L136 29 L144 10 L153 34 L163 18 L171 23 L184 23"/></svg></div>
+          <h3>40-bit watermark</h3><p>Third-party pretrained Sony SilentCipher, fixed 5-byte message.</p>
+          <span class="mono-line">10 HEX DIGITS / 5 BYTES</span>
+        </article>
+        <article class="signal-node">
+          <span class="num">03 / CHANNEL</span><div class="mini" aria-hidden="true"><svg viewBox="0 0 185 45" preserveAspectRatio="none"><path d="M1 23 L14 23 L23 16 L31 28 L40 17 L48 28 L57 21 L65 24 L72 17 L80 29 L88 13 L96 30 L104 17 L111 29 L119 15 L127 26 L135 21 L143 23 L151 15 L160 30 L167 18 L176 24 L184 23"/></svg></div>
+          <h3>MP3 / AAC-LC</h3><p>Actual FFmpeg 128 kbps encoding and decoding, not a synthetic codec proxy.</p>
+          <span class="mono-line">DOWNLOAD → RE-UPLOAD</span>
+        </article>
+        <article class="signal-node active">
+          <span class="num">04 / RECOVER</span><div class="mini" aria-hidden="true"><svg viewBox="0 0 185 45" preserveAspectRatio="none"><path d="M1 22 L12 22 L18 12 L25 31 L31 8 L38 37 L43 19 L52 24 L60 16 L68 30 L78 13 L85 33 L90 16 L97 26 L105 12 L112 32 L120 22 L128 17 L136 29 L144 10 L153 34 L163 18 L171 23 L184 23"/></svg></div>
+          <h3>Blind detection</h3><p>Received file alone; neither reference audio nor expected message is passed.</p>
+          <span class="mono-line">IDENTIFIED / UNKNOWN</span>
+        </article>
+      </div>
+      <figcaption>Conceptual signal-flow illustration, not an experimental waveform. Model and codec results below are taken from frozen local evaluations; this website does not execute V4 inference.</figcaption>
+    </figure>
+  </section>
+
+  <section class="wrap prose" id="overview">
+    <h2>Abstract</h2>
+    <p>Audio watermarking embeds a compact message into a signal while seeking to preserve the listening experience and enable recovery after signal processing. This project develops a reproducible <strong>40-bit blind audio watermarking workflow</strong> around Sony Research's existing SilentCipher pretrained model. The V4 Studio combines message embedding, actual MP3/AAC-LC codec round trips, independent file-based detection, and waveform/STFT quality inspection.</p>
+    <p>The project also preserves a <strong>traditional 8-bit FFT/QIM + Soft-Code DSP baseline (V3)</strong>. V4 provides the main experimental results; V3 remains accessible as a separate <em>live</em> web application. The V4 model runs locally on CPU and is not served from this static project page.</p>
+  </section>
+
+  <section class="wrap section" id="evidence">
+    <div class="section-head"><div><div class="kicker">QUANTITATIVE EVIDENCE</div><h2>Blind recovery after compression</h2><p>Explore the reported P9 results by channel. These are <strong>recorded evaluations</strong>: 12 source-distinct clips × 2 fixed messages, with the same marked WAV tested over three channel conditions.</p></div><span class="badge">P9 · FROZEN RESULTS</span></div>
+    <div class="data-layout">
+      <section class="card data-main" aria-label="Historical results explorer">
+        <div class="panel-head"><div><small>REPORTED RESULTS / POSITIVE WATERMARKS</small><strong>Channel reliability</strong></div><span class="badge">RECORD DISPLAY</span></div>
+        <div class="tabset" role="tablist" aria-label="Choose recorded codec condition">
+          <button class="tab" type="button" role="tab" id="tab-clean" aria-controls="channel-result" data-condition="clean" aria-selected="false">Clean WAV</button>
+          <button class="tab" type="button" role="tab" id="tab-mp3" aria-controls="channel-result" data-condition="mp3" aria-selected="true">MP3 · 128 kbps</button>
+          <button class="tab" type="button" role="tab" id="tab-aac" aria-controls="channel-result" data-condition="aac" aria-selected="false">AAC/M4A · 128 kbps</button>
+        </div>
+        <div id="channel-result" role="tabpanel" aria-labelledby="tab-mp3" aria-live="polite">
+          <div class="measurement"><div><small>CORRECTLY ACCEPTED / TESTED</small><strong id="successMetric">24 / 24</strong></div><div class="right"><small>RECOVERY RATE IN THIS SET</small><strong id="percentMetric">100%</strong></div></div>
+          <div class="meter" role="img" aria-label="Correct accepted recovery fraction" id="resultMeter"><div id="meterFill" class="meter-fill"></div></div>
+          <div class="stat-row"><span id="conditionLabel">MP3 · 128 kbps</span><span><b id="rawExact">24 / 24</b> raw exact decodes</span></div>
+          <p class="data-note" id="conditionNote">Real libmp3lame CBR encoding and re-decoding; 24/24 correct messages passed the frozen presence threshold.</p>
+        </div>
+      </section>
+      <aside class="card detail-card" aria-label="Evaluation protocol">
+        <div class="tagline">EXPERIMENT CONTRACT</div><h3>What the counts mean</h3>
+        <div class="detail-list"><span>Independent positive sources</span><b>12</b></div>
+        <div class="detail-list"><span>Pre-fixed messages / source</span><b>2</b></div>
+        <div class="detail-list"><span>Payload length</span><b>40 bit</b></div>
+        <div class="detail-list"><span>Recording categories</span><b>Music / Speech / Environment</b></div>
+        <div class="detail-list"><span>Unwatermarked recordings</span><b>24 sources</b></div>
+        <div class="detail-list"><span>Incorrect accepted messages</span><b>0 observed</b></div>
+        <div class="detail-note">The 24 positive trials per codec are <strong>not 24 independent audio sources</strong>. No wrong message was accepted in the evaluated positives; the 24 watermark-free recordings produced 0/24 accepted detections per channel. This is <strong>not</strong> a population-level false-accept-rate estimate.</div>
+      </aside>
+    </div>
+    <div class="section-head" style="margin-top:36px"><div><div class="kicker">END-TO-END FILE VALIDATION</div><h2>Four selected showcase clips</h2><p>A separate P4 acceptance used downloaded files re-uploaded to the blind detector through real Gradio HTTP endpoints. This is a selected demo, not a new independent generalization evaluation.</p></div></div>
+    <div class="case-select" role="group" aria-label="Select a recorded source category">
+      <button type="button" data-case="music" aria-pressed="true">Music × 2</button>
+      <button type="button" data-case="speech" aria-pressed="false">Speech × 1</button>
+      <button type="button" data-case="environment" aria-pressed="false">Environment × 1</button>
+    </div>
+    <div class="case-grid" id="caseGrid" aria-live="polite">
+      <article class="case-card"><small>CLEAN WAV</small><strong>2/2</strong><span>Exact message accepted</span></article>
+      <article class="case-card"><small>MP3 128 KBPS</small><strong>2/2</strong><span>Exact message accepted</span></article>
+      <article class="case-card"><small>AAC/M4A 128 KBPS</small><strong>2/2</strong><span>Exact message accepted</span></article>
+    </div>
+    <p class="small-note" id="caseNote">Music: 2 selected sources, each accepted under all three tested file conditions. A human A/B listening pass and full visual-browser acceptance remain pending.</p>
+  </section>
+
+  <section class="wrap section" id="method">
+    <div class="section-head"><div><div class="kicker">SYSTEM DESIGN</div><h2>From watermark to evidence</h2><p>Four modules implement the actual local Studio workflow. The public web page here is a recorded-evidence showcase, not the V4 production UI or neural-model backend.</p></div></div>
+    <div class="method-flow">
+      <article><small>01 / WATERMARK</small><h3>Message embedding</h3><p>Prepare 12 s of mono 44.1 kHz audio and embed a 5-byte message with the upstream pretrained neural model.</p><p class="micro">SILENTCIPHER · 40 BIT · WAV</p></article>
+      <article><small>02 / CHANNEL LAB</small><h3>Real audio codecs</h3><p>FFmpeg round trips through MP3 CBR 128 kbps or AAC-LC/M4A 128 kbps; separate noise/crop diagnostics are also available locally.</p><p class="micro">FFMPEG · MP3 · AAC-LC</p></article>
+      <article><small>03 / BLIND DETECTION</small><h3>Independent receiver</h3><p>Re-upload downloaded files. The detector sees only the received audio and selected backend, not the source or expected bytes.</p><p class="micro">NO REFERENCE · PROVISIONAL GATE</p></article>
+      <article><small>04 / SIGNAL ANALYSIS</small><h3>Quality inspection</h3><p>Align the reference and modified signals, display waveforms, STFT magnitudes and spectral differences; compute SNR/LSD when alignment is credible.</p><p class="micro">STFT · SNR · LSD</p></article>
+    </div>
+  </section>
+
+  <section class="wrap section" id="versions">
+    <div class="section-head"><div><div class="kicker">PROJECT VERSIONS</div><h2>Neural V4 and classical V3</h2><p>V4 is the featured result. V3 is a genuinely usable online system hosted separately; older versions and repository history are preserved.</p></div></div>
+    <div class="compare">
+      <article class="v4-card">
+        <div class="version-top"><small>PRIMARY SHOWCASE · V4</small><b>RECORDED RESULTS</b></div>
+        <h3 class="version-title">Robust Audio Watermarking Studio</h3>
+        <p class="version-copy">A 40-bit neural blind watermarking system with real codec processing, independent detection and signal analysis. Built on Sony's pretrained SilentCipher model; the model is third-party, not developed here. The full Studio runs locally, while this public page presents its verified results and architecture.</p>
+        <div class="version-spec"><span>40-bit payload</span><span>12 s / 44.1 kHz</span><span>MP3 / AAC</span><span>CPU model</span></div>
+        <div class="version-actions">
+          <a class="pill primary" href="#evidence">V4 results ↑</a>
+          <a class="pill" href="https://github.com/suibianba12138/blind-audio-watermarking/tree/upgrade/v4-github-prep" target="_blank" rel="noopener noreferrer">V4 source & reports ↗</a>
+        </div>
+      </article>
+      <article class="v3-card">
+        <div class="version-top"><small>CLASSIC DSP · V3</small><b>LIVE DEMO</b></div>
+        <h3 class="version-title">FFT / QIM + Soft-Code</h3>
+        <p class="version-copy">An 8-bit traditional DSP baseline retained as a historical, more interpretable alternative. Explore the real V3/Legacy embed–compress–detect interface on the existing hosted demo service.</p>
+        <div class="version-spec"><span>8-bit effective payload</span><span>6 s / 48 kHz</span><span>Classic DSP</span></div>
+        <div class="version-actions">
+          <a class="pill primary" href="https://blind-audio-watermarking-demo.onrender.com/" target="_blank" rel="noopener noreferrer">Open real V3 demo ↗</a>
+          <a class="pill" href="https://github.com/suibianba12138/blind-audio-watermarking/tree/feat/v3-8bit-integration" target="_blank" rel="noopener noreferrer">V3 frozen code ↗</a>
+        </div>
+        <p class="small-note">Hosted V3 may need an initial cold start. V3 and V4 used different evaluation protocols, so their headline acceptance counts are not a paired benchmark.</p>
+      </article>
+    </div>
+    <div class="section-head" style="margin-top:40px"><div><div class="kicker">VERSION ARCHIVE</div><h2>Development history</h2></div></div>
+    <div class="history">
+      <article><div class="history-head"><small>V2 / COURSE BASELINE</small><span>2026</span></div><h3>Early DSP implementation</h3><p>Historical course implementation and initial repository snapshot; useful as a reference for the method's evolution.</p><a href="https://github.com/suibianba12138/blind-audio-watermarking/tree/a89b4935ec056a6709cc17379e333a9b1f7c387e" target="_blank" rel="noopener noreferrer">View V2 snapshot ↗</a></article>
+      <article><div class="history-head"><small>V3 / FROZEN CLASSIC</small><span>2026</span></div><h3>8-bit Soft-Code</h3><p>The fully retained traditional DSP stage, with its own frozen source and functioning hosted demonstration.</p><a href="https://github.com/suibianba12138/blind-audio-watermarking/tree/feat/v3-8bit-integration" target="_blank" rel="noopener noreferrer">Explore V3 source ↗</a></article>
+      <article><div class="history-head"><small>V4 / CURRENT SHOWCASE</small><span>2026</span></div><h3>40-bit neural Studio</h3><p>New blind watermarking backend, AAC/MP3 verification, instrumented experiments and a local four-tab Studio.</p><a href="https://github.com/suibianba12138/blind-audio-watermarking/pull/5" target="_blank" rel="noopener noreferrer">Inspect V4 integration PR ↗</a></article>
+    </div>
+  </section>
+
+  <section class="wrap limitations" id="limitations">
+    <h2>Limitations & reproducibility</h2>
+    <p><strong>Recorded, not live V4:</strong> The tabs above switch among frozen results; they do not run watermark inference. The official Sony model and weights are not hosted or redistributed through this page. The V4 Studio is a local CPU program; the separately linked V3 service is the only live demo.</p>
+    <p><strong>Scope:</strong> The 12-source P9 trial supports bounded results on the tested music/speech/environment files, not a global robustness or false-accept-rate claim. One AAC candidate recovered the correct message but fell below the provisional presence threshold (23/24 accepted). Time edits and cropping remain unreliable. Some subjective quality checks are pending; objective SNR/LSD cannot establish inaudibility.</p>
+    <p><strong>Attribution:</strong> SilentCipher neural architecture and pretrained weights belong to Sony Research, not this project's authors. Evaluation materials are not redistributed here. Consult the original repository and the model terms before using checkpoints.</p>
+    <div class="references">
+      <a href="https://github.com/suibianba12138/blind-audio-watermarking/tree/upgrade/v4-github-prep/docs/reports/v4" target="_blank" rel="noopener noreferrer">V4 experiment reports ↗</a>
+      <a href="https://github.com/sony/silentcipher" target="_blank" rel="noopener noreferrer">Upstream SilentCipher ↗</a>
+      <a href="https://github.com/suibianba12138/blind-audio-watermarking" target="_blank" rel="noopener noreferrer">Full project repository ↗</a>
+    </div>
+  </section>
+</main>
+<footer class="wrap footer"><span>Robust Audio Watermarking · 2026 · Communication Engineering</span><span>V4 showcase / V3 live demonstration / V2 archive</span><a href="#top">Back to top ↑</a></footer>
+</body>
+</html>

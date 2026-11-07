@@ -182,7 +182,7 @@ def build_demo():
     # Visual-only redesign: callbacks, backend contracts and API names stay frozen.
     from .v4_studio_theme import STUDIO_CSS, STUDIO_HERO, STUDIO_FOOTER, section_intro
 
-    with gr.Blocks(title="Robust Audio Watermarking Studio", css=STUDIO_CSS) as demo:
+    with gr.Blocks(title="Robust Audio Watermarking Studio") as demo:
         gr.HTML(STUDIO_HERO)
         with gr.Tab("Watermark"):
             gr.HTML(section_intro(
@@ -334,10 +334,12 @@ def build_demo():
 def main():
     import gradio as gr
 
+    from .v4_studio_theme import STUDIO_CSS
+
     demo = build_demo()
     demo.launch(server_name="127.0.0.1", server_port=int(os.environ.get("V4_STUDIO_PORT", "7862")),
                 share=False, show_error=False, inbrowser=False, max_threads=1, max_file_size="16mb",
-                theme=gr.themes.Soft())
+                theme=gr.themes.Soft(), css=STUDIO_CSS)
 
 
 if __name__ == "__main__":

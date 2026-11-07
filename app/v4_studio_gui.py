@@ -179,64 +179,155 @@ def analysis_callback(reference_upload, modified_upload, max_offset: float):
 def build_demo():
     import gradio as gr
 
-    with gr.Blocks(title="Robust Audio Watermarking Studio") as demo:
-        gr.Markdown("# Robust Audio Watermarking Studio\nLocal CPU system · two frozen backends · independent blind detection")
+    # Visual-only redesign: callbacks, backend contracts and API names stay frozen.
+    from .v4_studio_theme import STUDIO_CSS, STUDIO_HERO, STUDIO_FOOTER, section_intro
+
+    with gr.Blocks(title="Robust Audio Watermarking Studio", css=STUDIO_CSS) as demo:
+        gr.HTML(STUDIO_HERO)
         with gr.Tab("Watermark"):
-            backend = gr.Radio(list(BACKEND_INFO), value="Advanced Neural", label="Watermark backend")
-            backend_info = gr.Markdown(BACKEND_INFO["Advanced Neural"])
-            backend.change(lambda x: BACKEND_INFO[x], backend, backend_info, api_name="backend_info")
-            source = gr.File(label="Upload audio", file_types=["audio"], type="filepath")
-            message = gr.Textbox(value="123456789A", label="Message · Neural: 10 hex digits / Classic: integer 0–255")
-            embed_button = gr.Button("Embed watermark", variant="primary")
-            embed_status = gr.Textbox(label="Embedding details", interactive=False)
-            with gr.Row():
-                original_player = gr.Audio(label="Prepared original", type="filepath")
-                marked_player = gr.Audio(label="Watermarked audio", type="filepath")
-            marked_download = gr.File(label="Download watermarked WAV")
+            gr.HTML(section_intro(
+                "01", "MESSAGE EMBEDDING", "Embed a watermark",
+                "Select the neural 40-bit model or the frozen 8-bit DSP baseline. "
+                "Upload a source, enter the payload, then compare and download the marked WAV."
+            ))
+            with gr.Row(equal_height=False):
+                with gr.Column(scale=5, elem_classes=["nsk-panel"]):
+                    gr.HTML('<div class="nsk-panel__heading">INPUT / PAYLOAD</div>'
+                            '<p class="nsk-panel__hint">Neural: <strong>10 hex digits</strong> '
+                            '(40 bit) · Classic: <strong>0–255</strong> (8 bit)</p>')
+                    backend = gr.Radio(list(BACKEND_INFO), value="Advanced Neural",
+                                       label="Watermark backend")
+                    backend_info = gr.Markdown(BACKEND_INFO["Advanced Neural"])
+                    backend.change(lambda x: BACKEND_INFO[x], backend, backend_info,
+                                   api_name="backend_info")
+                    source = gr.File(label="Upload source audio", file_types=["audio"],
+                                     type="filepath")
+                    message = gr.Textbox(value="123456789A",
+                                         label="Message · Neural: 10 hex digits / Classic: integer 0–255")
+                    embed_button = gr.Button("Embed watermark →", variant="primary",
+                                             elem_classes=["nsk-action"])
+                with gr.Column(scale=6, elem_classes=["nsk-panel"]):
+                    gr.HTML('<div class="nsk-panel__heading">AUDIO / RESULT</div>'
+                            '<p class="nsk-panel__hint">Listen to the prepared original and '
+                            'the watermarked export at a consistent playback volume.</p>')
+                    with gr.Row():
+                        original_player = gr.Audio(label="Prepared original", type="filepath")
+                        marked_player = gr.Audio(label="Watermarked audio", type="filepath")
+                    marked_download = gr.File(label="Download watermarked WAV")
+                    embed_status = gr.Textbox(label="Embedding details", interactive=False,
+                                              lines=4, elem_classes=["nsk-results"])
             embed_button.click(embed_callback, [source, backend, message],
                                [original_player, marked_player, marked_download, embed_status],
                                concurrency_limit=1, api_name="embed")
 
         with gr.Tab("Channel Lab"):
-            channel_input = gr.File(label="Upload audio", file_types=["audio"], type="filepath")
-            operation = gr.Dropdown(["MP3 128 kbps", "AAC 128 kbps", "Additive noise", "Fixed crop"],
-                                    value="MP3 128 kbps", label="Channel operation")
-            with gr.Row():
-                seed = gr.Number(value=2026, precision=0, label="Noise seed")
-                noise_snr = gr.Slider(0, 60, value=20, step=1, label="Noise target SNR (dB)")
-                crop_start = gr.Number(value=0.0, label="Crop start (s)")
-                crop_duration = gr.Number(value=3.0, label="Crop duration (s)")
-            channel_button = gr.Button("Apply channel", variant="primary")
-            channel_details = gr.Textbox(label="Applied operation and parameters", interactive=False, lines=3)
-            channel_player = gr.Audio(label="Processed audio", type="filepath")
-            channel_download = gr.File(label="Download processed output")
-            channel_button.click(channel_callback,
-                                 [channel_input, operation, seed, noise_snr, crop_start, crop_duration],
-                                 [channel_player, channel_download, channel_details],
-                                 concurrency_limit=1, api_name="channel")
+            gr.HTML(section_intro(
+                "02", "AUDIO CHANNEL", "Test a transmission channel",
+                "Apply a real MP3/AAC codec round trip or a diagnostic transform. "
+                "Download the output and send it to Blind Detection as an independent file."
+            ))
+            with gr.Row(equal_height=False):
+                with gr.Column(scale=5, elem_classes=["nsk-panel"]):
+                    gr.HTML('<div class="nsk-panel__heading">CHANNEL CONFIGURATION</div>')
+                    channel_input = gr.File(label="Upload watermarked WAV", file_types=["audio"],
+                                            type="filepath")
+                    operation = gr.Dropdown(
+                        ["MP3 128 kbps", "AAC 128 kbps", "Additive noise", "Fixed crop"],
+                        value="MP3 128 kbps", label="Channel operation"
+                    )
+                    with gr.Row():
+                        seed = gr.Number(value=2026, precision=0, label="Noise seed")
+                        noise_snr = gr.Slider(0, 60, value=20, step=1,
+                                              label="Noise target SNR (dB)")
+                    with gr.Row():
+                        crop_start = gr.Number(value=0.0, label="Crop start (s)")
+                        crop_duration = gr.Number(value=3.0, label="Crop duration (s)")
+                    channel_button = gr.Button("Apply channel →", variant="primary",
+                                                elem_classes=["nsk-action"])
+                with gr.Column(scale=6, elem_classes=["nsk-panel"]):
+                    gr.HTML('<div class="nsk-panel__heading">PROCESSED OUTPUT</div>')
+                    channel_player = gr.Audio(label="Processed audio", type="filepath")
+                    channel_download = gr.File(label="Download processed output")
+                    channel_details = gr.Textbox(
+                        label="Applied operation and parameters", interactive=False,
+                        lines=4, elem_classes=["nsk-results"]
+                    )
+                    gr.HTML('<div class="nsk-quiet-note"><strong>Scope:</strong> '
+                            'MP3/AAC are verified on selected full-length 12 s clips. '
+                            'Noise and crop are experimental stressors and may break recovery.</div>')
+            channel_button.click(
+                channel_callback,
+                [channel_input, operation, seed, noise_snr, crop_start, crop_duration],
+                [channel_player, channel_download, channel_details],
+                concurrency_limit=1, api_name="channel"
+            )
 
         with gr.Tab("Blind Detection"):
-            gr.Markdown("Upload a received file independently. The detector cannot access embed message, reference audio, or session data.")
-            detect_backend = gr.Radio(list(BACKEND_INFO), value="Advanced Neural", label="Detection backend")
-            received = gr.File(label="Received audio", file_types=["audio"], type="filepath")
-            detect_button = gr.Button("Blind detect", variant="primary")
-            detect_output = gr.Textbox(label="Detection state and diagnostic candidate", lines=6, interactive=False)
-            detect_button.click(blind_detect_callback, [received, detect_backend], [detect_output],
-                                concurrency_limit=1, api_name="detect")
+            gr.HTML(section_intro(
+                "03", "INDEPENDENT DECODING", "Recover the hidden message",
+                "Upload a received WAV, MP3 or M4A file separately. "
+                "Detection has no access to the original audio, expected message or embed session."
+            ))
+            with gr.Row(equal_height=False):
+                with gr.Column(scale=5, elem_classes=["nsk-panel"]):
+                    gr.HTML('<div class="nsk-panel__heading">RECEIVED AUDIO</div>')
+                    detect_backend = gr.Radio(
+                        list(BACKEND_INFO), value="Advanced Neural",
+                        label="Detection backend"
+                    )
+                    received = gr.File(label="Received audio", file_types=["audio"],
+                                        type="filepath")
+                    detect_button = gr.Button("Blind detect →", variant="primary",
+                                               elem_classes=["nsk-action"])
+                with gr.Column(scale=6, elem_classes=["nsk-panel"]):
+                    gr.HTML('<div class="nsk-panel__heading">DETECTION RESULT</div>')
+                    detect_output = gr.Textbox(
+                        label="Detection state and diagnostic candidate", lines=7,
+                        interactive=False, elem_classes=["nsk-result-status"]
+                    )
+                    gr.HTML('<div class="nsk-quiet-note"><strong>Interpretation:</strong> '
+                            '<code>IDENTIFIED</code> is an accepted watermark; '
+                            '<code>UNKNOWN</code> is not accepted. Diagnostic candidates '
+                            'below the provisional threshold are not identified messages.</div>')
+            detect_button.click(blind_detect_callback, [received, detect_backend],
+                                [detect_output], concurrency_limit=1, api_name="detect")
 
         with gr.Tab("Signal Analysis"):
-            reference = gr.File(label="Reference/original audio", file_types=["audio"], type="filepath")
-            modified = gr.File(label="Watermarked/processed audio", file_types=["audio"], type="filepath")
-            max_offset = gr.Slider(0, 2, value=0.5, step=0.05, label="Maximum alignment offset (s)")
-            analyze_button = gr.Button("Analyze aligned signals", variant="primary")
-            metrics = gr.Textbox(label="Aligned quality metrics and audio metadata", lines=4, interactive=False)
-            wave_plot = gr.Plot(label="Aligned waveforms")
-            spectrum_plot = gr.Plot(label="STFT magnitude comparison")
-            difference_plot = gr.Plot(label="Aligned spectral difference")
-            analyze_button.click(analysis_callback, [reference, modified, max_offset],
-                                 [wave_plot, spectrum_plot, difference_plot, metrics],
-                                 concurrency_limit=1, api_name="analyze")
-        gr.Markdown("Model weights remain external to this repository. MP3/AAC/noise/crop are processing tools; availability does not certify robustness.")
+            gr.HTML(section_intro(
+                "04", "DIGITAL SIGNAL PROCESSING", "Inspect waveform and spectrum",
+                "Compare the reference and processed file with bounded temporal alignment. "
+                "Inspect signal quality using SNR, log-spectral distance and STFT views."
+            ))
+            with gr.Column(elem_classes=["nsk-panel"]):
+                with gr.Row():
+                    reference = gr.File(label="Reference / original audio",
+                                         file_types=["audio"], type="filepath")
+                    modified = gr.File(label="Watermarked / processed audio",
+                                        file_types=["audio"], type="filepath")
+                max_offset = gr.Slider(0, 2, value=0.5, step=0.05,
+                                        label="Maximum alignment offset (s)")
+                analyze_button = gr.Button("Analyze aligned signals →", variant="primary",
+                                            elem_classes=["nsk-action"])
+                metrics = gr.Textbox(
+                    label="Aligned quality metrics and audio metadata", lines=4,
+                    interactive=False, elem_classes=["nsk-results"]
+                )
+            with gr.Row():
+                wave_plot = gr.Plot(label="Aligned waveforms", elem_classes=["nsk-plot"])
+                spectrum_plot = gr.Plot(label="STFT magnitude comparison",
+                                        elem_classes=["nsk-plot"])
+            difference_plot = gr.Plot(label="Aligned spectral difference",
+                                      elem_classes=["nsk-plot"])
+            gr.HTML('<div class="nsk-quiet-note">SNR and LSD are objective engineering '
+                    'metrics, not proof of inaudibility. Metrics are withheld when '
+                    'alignment is insufficient.</div>')
+            analyze_button.click(
+                analysis_callback, [reference, modified, max_offset],
+                [wave_plot, spectrum_plot, difference_plot, metrics],
+                concurrency_limit=1, api_name="analyze"
+            )
+
+        gr.HTML(STUDIO_FOOTER)
     return demo.queue(default_concurrency_limit=1, max_size=4)
 
 

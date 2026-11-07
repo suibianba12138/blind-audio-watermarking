@@ -1,5 +1,10 @@
 # Robust Audio Watermarking Studio
 
+> **Project website (V4 first):** https://shengkaini.com/blind-audio-watermarking/ — evidence-grounded static showcase for the 40-bit neural system, P9 codec results, full local Studio workflow, and V2/V3 version history. The static page does **not** perform V4 inference.
+>
+> **Try the real online V3 demo:** https://blind-audio-watermarking-demo.onrender.com/ — the existing separate classical DSP/Legacy hosted application (may require a cold start).
+>
+
 A local-first course project for blind audio watermarking with two distinct backends: Sony's third-party pretrained SilentCipher model and the repository's frozen V3 DSP baseline. The V4 Studio combines audio processing, real codec round trips, blind detection, and signal analysis in one Gradio Blocks application.
 
 > SilentCipher is an external model by Sony Research. It is not an original model created by this project. Its official code is MIT licensed; the published checkpoint archive does not include a clear standalone weight license notice. The weights are therefore not bundled or redistributed here.

@@ -4,6 +4,23 @@ A local-first course project for blind audio watermarking with two distinct back
 
 > SilentCipher is an external model by Sony Research. It is not an original model created by this project. Its official code is MIT licensed; the published checkpoint archive does not include a clear standalone weight license notice. The weights are therefore not bundled or redistributed here.
 
+## Studio interface · academic project style
+
+The V4 interface follows the restrained visual language of the [Embodied Semantic Communication project page](https://shengkaini.com/embodied-semantic-communication/): soft off-white canvas, charcoal/slate text, teal accents, thin bordered panels, monospaced technical labels, and a spacious research-page hierarchy. The shared design is **visual only**; these are independent course projects and V4 does not require the other site's assets or scripts.
+
+The four tabs follow the actual experiment lifecycle:
+
+| Tab | What you do | What you receive |
+| --- | --- | --- |
+| **01 · Watermark** | Upload a source, choose neural 40-bit or V3 8-bit, enter a message | Prepared original and marked WAV for listening/download, embedding diagnostics |
+| **02 · Channel Lab** | Re-upload marked audio and select MP3 128 kbps, AAC/M4A 128 kbps, noise or crop | Actual processed file, playback and codec metadata |
+| **03 · Blind Detection** | Upload the received file independently and choose its backend | \`IDENTIFIED\`, \`UNKNOWN\` or \`DECODE_ERROR\`, diagnostic candidate and confidence |
+| **04 · Signal Analysis** | Upload reference and modified files and set the alignment bound | Waveform, STFT magnitude and spectral-difference plots; SNR/LSD if alignment is credible |
+
+The result state is not cosmetically promoted: a candidate under the provisional confidence threshold remains \`UNKNOWN\`, and noise/cropping are not claimed as generally robust channels. The project-page theme is implemented as local, scoped CSS and static HTML headings within Gradio; no external fonts, JavaScript, telemetry or CDN are required.
+
+**Visual QA:** The refreshed layout still needs a real browser check (desktop/mobile, player and file controls, long result text and plot overflow). GitHub Actions and programmatic Gradio component tests do not substitute for browser verification. Human A/B listening is likewise pending.
+
 ## What V4 provides
 
 - **Watermark:** SilentCipher, 40-bit (five bytes), mono 44.1 kHz / 12 s; or frozen V3, 8-bit, mono 48 kHz / 6 s.

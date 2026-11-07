@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f7f9fa">
+<meta name="description" content="V3 traditional FFT/QIM blind audio watermarking: REAL_TOP32 stable carriers, 8-bit to 32-bit soft error-control coding, MP3 validation and live DSP demonstration.">
+<title>V3 · Classical DSP Watermarking | Robust Audio Watermarking</title>
+<link rel="stylesheet" href="../assets/v4-showcase.css">
+<link rel="stylesheet" href="../assets/version-pages.css">
+<script src="../assets/v3-version.js" defer></script>
+</head>
+<body class="version-page">
+<a class="skip" href="#v3-overview">Skip to content</a>
+<header class="topbar"><div class="top-inner">
+<a class="brand" href="../"><span class="brand-icon" aria-hidden="true">N</span> Robust Audio Watermarking <span style="color:#82969e;font:10px var(--mono)">/ VERSION STUDIES</span></a>
+<nav class="topnav" aria-label="Navigation"><a href="../">V4 Main</a><a href="#mechanism">Method</a><a href="#encoding">Encoding Lab</a><a href="#validation">Evidence</a><a href="../v2/">V2 Archive</a><a href="https://shengkaini.com/">Home ↗</a></nav>
+</div></header>
+<main class="v-wrap">
+<nav class="v-breadcrumb" aria-label="Breadcrumb"><a href="../">Audio Watermarking</a> / Versions / Classical DSP · V3</nav>
+<section class="v-header" id="v3-overview">
+<div>
+<div class="v-eyebrow">VERSION 03 / CLASSICAL DIGITAL SIGNAL PROCESSING</div>
+<h1>How far can <em>FFT / QIM</em> take us?</h1>
+<p class="v-lead">A practical 8-bit blind audio watermark: carefully selected spectral carriers, 32 physical code bits, and soft-decision recovery after real MP3 compression.</p>
+<p class="v-sublead">V3 explores the capacity–robustness trade-off <strong>within our frozen transform-domain DSP architecture</strong>. It is not a demonstrated upper bound on all classical audio watermarking methods.</p>
+<div class="v-tag-row"><span class="v-tag">8-bit variable message</span><span class="v-tag">32-bit encoded codeword</span><span class="v-tag">48 kHz · 6 s</span><span class="v-tag">Real MP3 128 kbps</span></div>
+<div class="v-actions">
+<a class="v-action primary" href="https://blind-audio-watermarking-demo.onrender.com/" target="_blank" rel="noopener noreferrer">Run V3 live DSP demo ↗</a>
+<a class="v-action" href="#encoding">Explore 8 → 32 bit encoding ↓</a>
+<a class="v-action" href="https://github.com/suibianba12138/blind-audio-watermarking/tree/feat/v3-8bit-integration" target="_blank" rel="noopener noreferrer">Frozen V3 source ↗</a>
+</div>
+</div>
+<aside class="v-header-aside"><small>SOURCE-DISJOINT P2-V · MP3 128 KBPS</small><strong>117/120</strong><span>Correct accepted 8-bit messages on 60 independent sources, 2 fixed messages per source. 58/60 sources passed both messages.</span><div class="v-aside-foot">Frozen decision / selection before this result · No population-level reliability claim</div></aside>
+</section>
+
+<section class="v-section" id="mechanism">
+<div class="v-section-head"><span class="v-index">01 / SIGNAL PATH</span><h2>A fully traditional DSP pipeline</h2><p>V3 does not depend on a neural model. Its watermark travels through frequency-domain amplitude modification and a fixed public 8-to-32-bit code. Blind detection uses the received audio, public configuration and a preshared selector—not the expected answer.</p></div>
+<div class="v-steps">
+<article class="v-step"><span class="v-step-num">01 / MESSAGE</span><h3>8 useful bits</h3><p>Choose any integer 0–255. Encode it into a fixed 32-bit Boolean-evaluation subcode rather than placing eight unprotected bits directly.</p><code>256 distinct messages</code></article>
+<article class="v-step"><span class="v-step-num">02 / CARRIER</span><h3>REAL_TOP32</h3><p>Use a frozen 32-group spectral carrier selection map. Each physical bit is embedded in four FFT frames.</p><code>FFT=2048 · 48 kHz</code></article>
+<article class="v-step"><span class="v-step-num">03 / EMBED</span><h3>Log-magnitude QIM</h3><p>Move the A/B spectral log-magnitude difference toward bit-dependent quantization lattices, while preserving the phase.</p><code>strength = 1.60</code></article>
+<article class="v-step"><span class="v-step-num">04 / DETECT</span><h3>Soft correlation</h3><p>Aggregate continuous per-bit detection statistics, score all 256 legal codewords and accept only if the frozen presence rule permits it.</p><code>threshold = 0.785507</code></article>
+</div>
+<div class="v-callout"><strong>Why is the code needed?</strong> The earlier 32-bit arbitrary message path was not reliably recoverable after MP3. Reallocating 32 physical positions to only 8 effective message bits allows redundancy and soft decoding. The gain is robustness under a narrower payload contract—not a claim of general 32-bit reliable transfer.</div>
+</section>
+
+<section class="v-section" id="encoding">
+<div class="v-section-head"><span class="v-index">02 / INTERACTIVE DSP LAB</span><h2>See an 8-bit message become 32 bits</h2><p>Move the slider or enter a message. The diagram computes the exact frozen V3 Boolean-evaluation codeword rule from the source implementation. This is a <strong>client-side encoder visualization</strong>, not a live detector or a simulated MP3 result.</p></div>
+<div class="v-encoding">
+<div class="v-encoder-ui"><label for="v3-message-slider">MESSAGE VALUE / 0–255</label><div class="v-range-line"><input id="v3-message-slider" type="range" min="0" max="255" value="173"><input id="v3-message-number" type="number" min="0" max="255" step="1" value="173" aria-label="Message integer 0 to 255"></div>
+<div class="v-msg-bits" id="v3-message-bits">10101101</div><div class="v-msg-caption">8 MESSAGE BITS · MOST SIGNIFICANT BIT FIRST</div><p style="margin-top:21px">The message controls eight basis coefficients evaluated across 32 positions. Every different valid message produces its own 32-bit codeword.</p>
+<div class="v-note"><strong>Educational display only:</strong> Codewords are exact, but this panel does not embed audio or make recovery predictions. For live audio processing, use the real hosted V3 demo.</div></div>
+<div class="v-encoder-out"><div class="v-encoder-heading">32 PHYSICAL BIT POSITIONS / FIXED CODEBOOK</div><div class="v-codebar" id="v3-codebar" role="img" aria-label="Encoded physical bits"></div><div id="v3-code-text" class="v-code-text">11001001 00110110 00110110 11001001</div>
+<div class="v-code-caption">5-bit coordinate inputs (0…31) · eight Boolean basis terms · arithmetic modulo two</div>
+<div style="border-top:1px solid #34515b;margin:28px 0 17px"></div>
+<div class="v-encoder-heading">REPRESENTATION COST</div><div style="display:flex;gap:26px;align-items:baseline;flex-wrap:wrap;margin-top:11px"><strong style="font:750 34px var(--mono);color:#8adcc5">4×</strong><span style="font-size:12px;color:#a6c4c5">32 physical bits / 8 information bits</span></div>
+<div class="v-code-caption">Each of these 32 physical bits is repeated across four non-overlapping FFT frames. The displayed bars are code bits, not real measured FFT magnitudes.</div></div>
+</div>
+<div class="v-note">Encoding rule: five coordinate bits, one constant term, five linear terms, plus the two quadratic terms <span class="mono">x₀x₁</span> and <span class="mono">x₀x₂</span>. This frozen 8-dimensional subcode has minimum pairwise Hamming distance 8 in its 32-bit codebook. No decoder confidence is fabricated here.</div>
+</section>
+
+<section class="v-section" id="validation">
+<div class="v-section-head"><span class="v-index">03 / INDEPENDENT EVIDENCE</span><h2>Measured robustness, not an abstract claim</h2><p>Source-disjoint MP3 128 kbps validation from V3-P2-V. The same 60 recordings appear with two messages each; trial count and source count are deliberately separated.</p></div>
+<div class="v-results"><div class="v-result"><strong>117/120</strong><span>8-bit correct accepted trials</span><p>Real FFmpeg MP3 128 kbps, 60 source-distinct recordings × 2 messages.</p></div><div class="v-result"><strong>58/60</strong><span>Sources with both messages accepted</span><p>This is the source-level count, not 117 independently recorded audio sources.</p></div><div class="v-result"><strong>1/60</strong><span>MP3-clean negative false positives</span><p>Finite negative set; not enough to infer a population-wide low false-alarm rate.</p></div></div>
+<div class="v-table-wrap" style="margin-top:16px"><table class="v-table"><thead><tr><th>Candidate</th><th>Correct accepted trials</th><th>Sources passing both messages</th><th>Channel</th></tr></thead><tbody><tr><td><strong>8-bit Soft-Code · frozen V3</strong></td><td>117 / 120</td><td>58 / 60</td><td>FFmpeg MP3 128 kbps</td></tr><tr><td>12-bit Soft-Code · evaluated candidate</td><td>97 / 120</td><td>45 / 60</td><td>Same evaluation protocol</td></tr></tbody></table></div>
+<div class="v-callout"><strong>What the comparison shows:</strong> Under this architecture and protocol, the stronger 8-bit redundancy outperformed the tested 12-bit candidate. It does not establish the global channel capacity, the optimal DSP algorithm, or the limit of all classical watermarking methods.</div>
+<div class="v-dual" style="margin-top:15px">
+<div class="v-panel"><h3>Presence detection</h3><p>Frozen presence gate; 0/60 clean false positives and 1/60 MP3-clean false positive in the finite controls. Wrong-key MP3 acceptance was 0/120. An <code>UNKNOWN</code> response is a legitimate rejection, not an implicit successful decode.</p></div>
+<div class="v-panel"><h3>Audio quality</h3><p>A formal controlled listening study was not established for V3, so these results do not prove that its watermark is imperceptible. They also do not warrant an unqualified claim that V3 is near the limit of traditional DSP.</p></div>
+</div>
+</section>
+
+<section class="v-section" id="history">
+<div class="v-section-head"><span class="v-index">04 / WHY V3 MATTERS</span><h2>What we learned on the classical path</h2><p>The value of V3 lies in the engineering constraints and trade-offs it made measurable.</p></div>
+<div class="v-dual">
+<div class="v-panel v-prose"><h3>From V2 to an arbitrary 8-bit message</h3><p>Legacy V2 provides only four predetermined identities, i.e. two bits of useful identity information. V3 raises the effective message space to 256 values while remaining a fully blind DSP pipeline.</p><p>Carrier selection, code redundancy, and using continuous rather than only hard bit decisions address observed MP3 distortions within the frozen transform-domain approach.</p><div class="v-links"><a class="v-link" href="../v2/">Read V2 method history ↗</a></div></div>
+<div class="v-panel v-prose"><h3>Why move on to V4?</h3><p>V3 provides strong bounded six-second MP3 evidence at an 8-bit payload, but increasing effective payload reduced reliability in the evaluated 12-bit candidate. V4 explores a different, third-party pretrained neural model at 40 bits, 12 seconds and MP3/AAC.</p><p>V3 and V4 results come from different protocols. They should <strong>not</strong> be interpreted as an apples-to-apples leaderboard.</p><div class="v-links"><a class="v-link" href="../">Explore the featured V4 results ↗</a></div></div>
+</div>
+</section>
+
+<section class="v-section" id="references">
+<div class="v-section-head"><span class="v-index">05 / PROVENANCE</span><h2>Source code, freeze and limitations</h2><p>Methods and values above are grounded in the frozen V3 artifacts. The interactive codeword diagram is a direct JavaScript representation of the frozen Boolean basis, not a new method.</p></div>
+<div class="v-links">
+<a class="v-link" href="https://github.com/suibianba12138/blind-audio-watermarking/blob/main/docs/V3_P3_INTEGRATION.md" target="_blank" rel="noopener noreferrer">V3 P3 integration report ↗</a>
+<a class="v-link" href="https://github.com/suibianba12138/blind-audio-watermarking/blob/main/configs/v3_8bit_candidate_freeze.json" target="_blank" rel="noopener noreferrer">Exact frozen parameters ↗</a>
+<a class="v-link" href="https://github.com/suibianba12138/blind-audio-watermarking/blob/feat/v3-8bit-integration/src/audio_watermark/b1_soft.py" target="_blank" rel="noopener noreferrer">Soft-Code implementation ↗</a>
+<a class="v-link" href="https://github.com/suibianba12138/blind-audio-watermarking/blob/feat/v3-8bit-integration/docs/V3_P3_ACCEPTANCE_ZH.md" target="_blank" rel="noopener noreferrer">Chinese acceptance record ↗</a>
+</div>
+</section>
+<aside class="v-next"><div><small>CONTINUE THE PROJECT STORY</small><strong>From classical DSP to the V4 neural Studio</strong><p>Explore full recorded V4 MP3/AAC recovery, real audio A/B listening and the documented failure cases.</p></div><a href="../" class="v-action primary">Go to V4 main showcase ↗</a></aside>
+</main>
+<footer class="v-wrap v-foot"><span>Blind Audio Watermarking · V3 Classical DSP Study · 2026</span><span>Source-disjoint evidence · No general capacity-limit claim</span><a href="../">Back to main project ↑</a></footer>
+</body></html>

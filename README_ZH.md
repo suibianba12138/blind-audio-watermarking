@@ -1,5 +1,10 @@
 # Robust Audio Watermarking Studio
 
+> **V4 项目展示主页：** https://shengkaini.com/blind-audio-watermarking/ — 以 40-bit 神经音频水印为主，展示真实 MP3/AAC 实验结果、系统流程及 V2/V3 沿革。页面为**静态实验结果展示**，不执行 V4 在线模型推理。
+>
+> **V3 真实在线演示：** https://blind-audio-watermarking-demo.onrender.com/ — 保留的传统 DSP/Legacy 在线系统，首次访问可能需要冷启动。
+>
+
 这是一个以本地运行优先的课程设计项目，包含两个相互独立的盲音频水印后端：Sony 提供的第三方 SilentCipher 预训练模型，以及仓库内冻结的 V3 DSP 基线。V4 Studio 将音频处理、真实编解码、盲检测和信号分析整合在一个 Gradio Blocks 界面中。
 
 > SilentCipher 是 Sony Research 的第三方模型，不是本项目原创模型。其官方代码采用 MIT 许可；公开的 checkpoint 归档没有清晰的独立权重许可说明，因此本仓库不打包或再分发权重。

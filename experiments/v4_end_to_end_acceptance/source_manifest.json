@@ -1,0 +1,58 @@
+{
+  "protocol": "V4 end-to-end demonstration acceptance",
+  "message_hex": "A4D97E216B",
+  "source_manifest": [
+    {
+      "source_id": "music_01",
+      "category": "music",
+      "source_sha256": "83b8c88b10bbb21788636bccca8f0aa6817d195ef91557507d0981f323865ff1",
+      "demo_input_sha256": "c7436d25a4dcb27321561eeb13289e6fb92d2fcfa491516d20a6bba8efe51af8",
+      "source_sample_rate_hz": 44100,
+      "crop_start_seconds": 18.745,
+      "crop_duration_seconds": 12.0,
+      "license": "CC0 1.0 Universal (official FMA track page)",
+      "source_page": "https://freemusicarchive.org/music/maarten-schellekens/public-domain-1/sax-and-piano-free-track/",
+      "container": "decoded PCM16 WAV demo crop",
+      "demo_input_file": "music_01.wav"
+    },
+    {
+      "source_id": "music_02",
+      "category": "music",
+      "source_sha256": "44c5a2df842e3dcee420e391a39170e5f94e62d1031521c8851bc796917b4a12",
+      "demo_input_sha256": "a432beb6ebc9bf668cf7e899c2d9f5afd3efbfd0357e16cb3fdbde3aa7257c25",
+      "source_sample_rate_hz": 44100,
+      "crop_start_seconds": 1.173,
+      "crop_duration_seconds": 12.0,
+      "license": "CC0 1.0 Universal (official FMA track page)",
+      "source_page": "https://freemusicarchive.org/music/Monplaisir/Free_To_Use/Monplaisir_-_Free_To_Use_-_01_Free_To_Use_1/",
+      "container": "decoded PCM16 WAV demo crop",
+      "demo_input_file": "music_02.wav"
+    },
+    {
+      "source_id": "speech-librivox-0004",
+      "category": "speech",
+      "source_sha256": "76965f20b10ce0ed48beed1670d8c5ed81182a2bc797ed5e4d7dbe24c4c58ae8",
+      "demo_input_sha256": "cff8ebe055d76589b92453a1830ccfd0ad70936400a8767e1ca8a1162c68e789",
+      "source_sample_rate_hz": 16000,
+      "crop_start_seconds": 20,
+      "crop_duration_seconds": 12,
+      "license": "Public Domain per local LibriVox license",
+      "source_page": "https://librivox.org/",
+      "container": "decoded PCM16 WAV demo crop",
+      "demo_input_file": "speech-librivox-0004.wav"
+    },
+    {
+      "source_id": "noise-free-sound-0005",
+      "category": "environment",
+      "source_sha256": "71a5ca36940fc9ee6ba1571c7f36b30bf192ddf1783bd31d1205acfb9fea5bf6",
+      "demo_input_sha256": "9f053c1c0e1159c7d63e38c0d4f262e02877364ccce61ba64f813eafe2be5a99",
+      "source_sample_rate_hz": 16000,
+      "crop_start_seconds": 2,
+      "crop_duration_seconds": 12,
+      "license": "Public Domain per local FreeSound license",
+      "source_page": "https://freesound.org/",
+      "container": "decoded PCM16 WAV demo crop",
+      "demo_input_file": "noise-free-sound-0005.wav"
+    }
+  ]
+}

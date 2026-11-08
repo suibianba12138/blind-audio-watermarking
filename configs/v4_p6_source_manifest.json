@@ -1,0 +1,203 @@
+{
+  "protocol_id": "V4-P6-FROZEN-1",
+  "status": "FROZEN_BEFORE_AUDIOSEAL_MODEL_INFERENCE",
+  "freeze_date": "2026-11-05",
+  "source_unit": "unique recording; one fixed message per model and source",
+  "source_selection": "first four sorted unused MUSAN files per class after excluding SHA256 in V4-P1/P3/P5 manifests",
+  "p6a_sources": [
+    "music_01",
+    "speech_01",
+    "environment_01"
+  ],
+  "audioseal": {
+    "official_package": "audioseal==0.2.1",
+    "generator_model": "audioseal_wm_16bits",
+    "detector_model": "audioseal_detector_16bits",
+    "sample_rate_hz": 16000,
+    "message_bits_hex": "A55A",
+    "message_bit_order": "MSB first",
+    "presence_rule": "AudioSeal detect_watermark detection score >= 0.5; official method score is proportion of samples with positive-class probability > 0.5",
+    "presence_cutoff_provisional": 0.5
+  },
+  "silentcipher": {
+    "model": "official Sony 44.1 kHz 73999_iteration",
+    "sample_rate_hz": 44100,
+    "payload_hex": "D3916B24E8",
+    "presence_rule": "P1 provisional threshold 0.6805555373430252 and valid 5-byte decode candidate; no recalibration"
+  },
+  "conditions": [
+    "clean",
+    "mp3_128k",
+    "aac_128k",
+    "negative_clean",
+    "negative_mp3_128k",
+    "crop_4s_from_second_4s_of_marked_audio_audioseal_only"
+  ],
+  "codecs": {
+    "mp3": "FFmpeg libmp3lame CBR 128 kbps",
+    "aac": "FFmpeg native AAC 128 kbps in ADTS"
+  },
+  "crop_check": "AudioSeal only, 4 seconds at t=4s from each watermarked 12-second segment; no phase search",
+  "sources": [
+    {
+      "source_id": "music_01",
+      "category": "music",
+      "relative_path": "music/fma/music-fma-0000.wav",
+      "sha256": "0f7abd39d9a044e89966d3ff5a60ca0ccdedd076546068af2fb4226e9f774afc",
+      "source_sample_rate_hz": 16000,
+      "source_duration_seconds": 297.97875,
+      "channels": 1,
+      "crop_start_seconds": 10.0,
+      "crop_duration_seconds": 12.0,
+      "license": "CC BY 3.0 per local MUSAN FMA LICENSE",
+      "native_high_rate_music": false
+    },
+    {
+      "source_id": "music_02",
+      "category": "music",
+      "relative_path": "music/fma/music-fma-0001.wav",
+      "sha256": "ff51c346d1b8663ce83991dcfafd3b91ed5611ba4b7f33d5dfd01ee2c26e557b",
+      "source_sample_rate_hz": 16000,
+      "source_duration_seconds": 218.044062,
+      "channels": 1,
+      "crop_start_seconds": 30.0,
+      "crop_duration_seconds": 12.0,
+      "license": "CC BY 3.0 per local MUSAN FMA LICENSE",
+      "native_high_rate_music": false
+    },
+    {
+      "source_id": "music_03",
+      "category": "music",
+      "relative_path": "music/fma/music-fma-0002.wav",
+      "sha256": "86e0ea8e63a2a2a07747cfe711e15a8d86c990a2a0035acdb426dc163bbbd320",
+      "source_sample_rate_hz": 16000,
+      "source_duration_seconds": 249.54775,
+      "channels": 1,
+      "crop_start_seconds": 50.0,
+      "crop_duration_seconds": 12.0,
+      "license": "CC BY 3.0 per local MUSAN FMA LICENSE",
+      "native_high_rate_music": false
+    },
+    {
+      "source_id": "music_04",
+      "category": "music",
+      "relative_path": "music/fma/music-fma-0003.wav",
+      "sha256": "ebb2ef7dbdf7b42c602531529b328474c284557d7c755ef2ec57c7712b670d20",
+      "source_sample_rate_hz": 16000,
+      "source_duration_seconds": 324.780438,
+      "channels": 1,
+      "crop_start_seconds": 70.0,
+      "crop_duration_seconds": 12.0,
+      "license": "CC BY 3.0 per local MUSAN FMA LICENSE",
+      "native_high_rate_music": false
+    },
+    {
+      "source_id": "speech_01",
+      "category": "speech",
+      "relative_path": "speech/librivox/speech-librivox-0000.wav",
+      "sha256": "6a74f9d017dacbae23e1d6a42f5e29afa52cbc21a4c08e30e86879890e8ad5a8",
+      "source_sample_rate_hz": 16000,
+      "source_duration_seconds": 444.029375,
+      "channels": 1,
+      "crop_start_seconds": 15.0,
+      "crop_duration_seconds": 12.0,
+      "license": "Public Domain per local MUSAN LibriVox LICENSE",
+      "native_high_rate_music": false
+    },
+    {
+      "source_id": "speech_02",
+      "category": "speech",
+      "relative_path": "speech/librivox/speech-librivox-0001.wav",
+      "sha256": "aa31bcba6049760ee64468437cc11a3d9359a71310f403c27d69ca2f25e9ed12",
+      "source_sample_rate_hz": 16000,
+      "source_duration_seconds": 79.934687,
+      "channels": 1,
+      "crop_start_seconds": 30.0,
+      "crop_duration_seconds": 12.0,
+      "license": "Public Domain per local MUSAN LibriVox LICENSE",
+      "native_high_rate_music": false
+    },
+    {
+      "source_id": "speech_03",
+      "category": "speech",
+      "relative_path": "speech/librivox/speech-librivox-0002.wav",
+      "sha256": "f907f96e69eb8e680c86964f63ff570d2c24458beacd7d94520c44b2a5c10868",
+      "source_sample_rate_hz": 16000,
+      "source_duration_seconds": 253.727375,
+      "channels": 1,
+      "crop_start_seconds": 45.0,
+      "crop_duration_seconds": 12.0,
+      "license": "Public Domain per local MUSAN LibriVox LICENSE",
+      "native_high_rate_music": false
+    },
+    {
+      "source_id": "speech_04",
+      "category": "speech",
+      "relative_path": "speech/librivox/speech-librivox-0003.wav",
+      "sha256": "8c1370aaca2843057072ded459deb739413910e7a2c5a1f21d3e04c2b3fe4c6b",
+      "source_sample_rate_hz": 16000,
+      "source_duration_seconds": 234.579563,
+      "channels": 1,
+      "crop_start_seconds": 60.0,
+      "crop_duration_seconds": 12.0,
+      "license": "Public Domain per local MUSAN LibriVox LICENSE",
+      "native_high_rate_music": false
+    },
+    {
+      "source_id": "environment_01",
+      "category": "environment",
+      "relative_path": "noise/free-sound/noise-free-sound-0000.wav",
+      "sha256": "38624671753649af38f97b5872463017badcb3e29411787a95f6f2beb9edbfec",
+      "source_sample_rate_hz": 16000,
+      "source_duration_seconds": 17.65875,
+      "channels": 1,
+      "crop_start_seconds": 2.0,
+      "crop_duration_seconds": 12.0,
+      "license": "Public Domain per local MUSAN FreeSound LICENSE",
+      "native_high_rate_music": false
+    },
+    {
+      "source_id": "environment_02",
+      "category": "environment",
+      "relative_path": "noise/free-sound/noise-free-sound-0001.wav",
+      "sha256": "757966dde40b87b2862013eaf0808e47a560e1d3bc9e75167df292313328ab56",
+      "source_sample_rate_hz": 16000,
+      "source_duration_seconds": 40.5365,
+      "channels": 1,
+      "crop_start_seconds": 10.0,
+      "crop_duration_seconds": 12.0,
+      "license": "Public Domain per local MUSAN FreeSound LICENSE",
+      "native_high_rate_music": false
+    },
+    {
+      "source_id": "environment_03",
+      "category": "environment",
+      "relative_path": "noise/free-sound/noise-free-sound-0002.wav",
+      "sha256": "a4c955e6b759de071e7b71b71d2a2a1dc5392408ef386f3d713f83f71bbf5928",
+      "source_sample_rate_hz": 16000,
+      "source_duration_seconds": 71.2175,
+      "channels": 1,
+      "crop_start_seconds": 20.0,
+      "crop_duration_seconds": 12.0,
+      "license": "Public Domain per local MUSAN FreeSound LICENSE",
+      "native_high_rate_music": false
+    },
+    {
+      "source_id": "environment_04",
+      "category": "environment",
+      "relative_path": "noise/free-sound/noise-free-sound-0003.wav",
+      "sha256": "d0d6eb43054994b91263d8cc5caf277c9622d2903144347e7f7736b3c228711f",
+      "source_sample_rate_hz": 16000,
+      "source_duration_seconds": 14.235812,
+      "channels": 1,
+      "crop_start_seconds": 1.0,
+      "crop_duration_seconds": 12.0,
+      "license": "Public Domain per local MUSAN FreeSound LICENSE",
+      "native_high_rate_music": false
+    }
+  ],
+  "limitations": [
+    "All local unused source files are 16 kHz; no qualifying unused native 44.1/48 kHz music was found locally. No upsampled content is described as native high-rate.",
+    "MUSAN source-specific license statements come from local collection license files; source audio is not copied to the project."
+  ]
+}

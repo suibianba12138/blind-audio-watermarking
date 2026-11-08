@@ -1,0 +1,15 @@
+# Local-only V4 Studio runtime; install in a dedicated compatible environment.
+# Keep separate from the V3/hosted environment.
+numpy>=1.24,<3
+scipy>=1.10,<2
+soundfile==0.13.1
+librosa==0.10.2.post1
+PyYAML>=6,<7
+pydub>=0.25.1,<1
+plotly>=5,<7
+gradio==6.31.0
+# Gradio 6.31.0 declares its compatible gradio_client, FastAPI, Starlette,
+# Pydantic, Uvicorn, and file-serving dependencies. Avoid stale direct pins.
+# PyTorch and SilentCipher source/weights are external model-runtime inputs.
+# The local smoke used torch==2.14.0+cpu (upstream SilentCipher declares <=2.0.0;
+# this newer combination is empirical compatibility evidence, not upstream support).

@@ -1,0 +1,48 @@
+{
+  "bins_per_frame": 96,
+  "branch": "research/v4-p0",
+  "candidate": "V4-TF-SS",
+  "carrier_band_hz": [
+    1500.0,
+    12000.0
+  ],
+  "center_padding": "reflect n_fft//2 on both sides",
+  "detector_contract": {
+    "blind_inputs": [
+      "received_audio",
+      "V4TFConfig",
+      "public seed"
+    ],
+    "forbidden_inputs": [
+      "expected message",
+      "clean audio",
+      "ground truth",
+      "filename labels",
+      "embedding search records"
+    ],
+    "presence_score": "mean(abs(per-bit signed correlation))",
+    "threshold_status": "initial development value 0.02; not independently calibrated"
+  },
+  "head_at_generation": "b23ff280fafe91b2d78e3ac5c29b994245147d28",
+  "hop_length": 512,
+  "n_fft": 2048,
+  "parameter_selection_policy": "bounded development observation only; no independent test selection",
+  "payload_bits_tested": [
+    8,
+    16
+  ],
+  "sample_rate_hz": 48000,
+  "seed": 20261025,
+  "source_sha256": {
+    "docs/V4_P0_ALGORITHM_DESIGN.md": "876f2048204511e688a5283e8f68a4aa015705be985601e4ef6d20003bce83ea",
+    "scripts/v4_p0_development_experiment.py": "34470091fb914e9ef734c33d1fe97b57eb087c9de077edca1198f1f65a6e3e88",
+    "src/audio_watermark/evaluation.py": "dc3472dbe7fd4640d223a23df8f98523c81fd492c81fc607495db3cb0175d262",
+    "src/audio_watermark/v4_tf.py": "1149be94aad2fdb27644a52390c05b33bcff074d23d7531f980fcfcd2548be91"
+  },
+  "status": "FROZEN_FOR_P0_DEVELOPMENT_ONLY",
+  "strength_candidates": [
+    0.04,
+    0.08
+  ],
+  "window": "hann"
+}

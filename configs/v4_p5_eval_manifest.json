@@ -1,0 +1,28 @@
+{
+  "protocol_id": "V4-P5-HOLDOUT-1",
+  "status": "FROZEN_BEFORE_P5_ADAPTER_IMPLEMENTATION_AND_MODEL_INFERENCE",
+  "created_date": "2026-11-05",
+  "source_unit": "unique source recording; two payloads are repeated measures, not independent sources",
+  "root_env": "V4_P5_MUSAN_ROOT",
+  "model": "official Sony SilentCipher 44.1 kHz 73999_iteration; unchanged weights",
+  "model_sample_rate_hz": 44100,
+  "clip_duration_seconds": 12.0,
+  "payloads_40bit_hex": ["D3916B24E8", "2C6E94DB17"],
+  "payload_order": "fixed order for every source",
+  "strengths_message_sdr_db": [47, 45, 43],
+  "strength_selection": "47 dB official default; 45 dB and 43 dB fixed before inference as the only two variants",
+  "positive_conditions": ["clean", "ffmpeg_libmp3lame_cbr_128k_roundtrip"],
+  "negative_conditions": ["unwatermarked_clean", "unwatermarked_ffmpeg_libmp3lame_cbr_128k_roundtrip"],
+  "mp3_protocol": "PCM16 mono WAV at 44.1 kHz -> FFmpeg libmp3lame CBR 128 kbps -> PCM float WAV decode",
+  "presence_threshold": 0.6805555373430252,
+  "presence_threshold_source": "V4-P1 development-only provisional threshold; frozen and not reselected for P5",
+  "sources": [
+    {"source_id":"music_holdout_01","category":"music","relative_path":"music/hd-classical/music-hd-0006.wav","sha256":"51f44c078bc5687f5e0429ccf4692ca545edef746d424bf53b9c115ef310499d","source_sample_rate_hz":16000,"source_duration_seconds":157.204875,"channels":1,"crop_start_seconds":24.0,"crop_duration_seconds":12.0,"license":"CC BY-SA 3.0 DE per MUSAN hd-classical LICENSE","source_title":"March of the Dwarfs, Lyric Pieces for piano - HD - Edward Grieg","source_page":"http://www.hdclassicalmusic.com/browse/?by=performer&id_performer=7","native_high_rate_music":false},
+    {"source_id":"music_holdout_02","category":"music","relative_path":"music/hd-classical/music-hd-0045.wav","sha256":"300f6b8767adf3cd03a09a4901088a466efe0ceab2655fb36cedf1b4e48624d3","source_sample_rate_hz":16000,"source_duration_seconds":68.1535,"channels":1,"crop_start_seconds":32.0,"crop_duration_seconds":12.0,"license":"Public Domain per MUSAN hd-classical LICENSE","source_title":"What If I Never Speed - John Dowland","source_page":"http://www.hdclassicalmusic.com/listen/?id_song=586","native_high_rate_music":false},
+    {"source_id":"speech_holdout_01","category":"speech","relative_path":"speech/librivox/speech-librivox-0049.wav","sha256":"4036998b90085affda02abf0675a2de2573ec4db57d14a97c40b789765abb49b","source_sample_rate_hz":16000,"source_duration_seconds":691.7746875,"channels":1,"crop_start_seconds":200.0,"crop_duration_seconds":12.0,"license":"Public Domain per MUSAN LibriVox LICENSE","source_title":"LibriVox recording speech-librivox-0049","source_page":"https://librivox.org/","native_high_rate_music":false},
+    {"source_id":"speech_holdout_02","category":"speech","relative_path":"speech/librivox/speech-librivox-0143.wav","sha256":"101d4f0edebb3f6656c679788f30a3d74d8cad2c106b8c8b468f64db81a36683","source_sample_rate_hz":16000,"source_duration_seconds":545.12325,"channels":1,"crop_start_seconds":360.0,"crop_duration_seconds":12.0,"license":"Public Domain per MUSAN LibriVox LICENSE","source_title":"LibriVox recording speech-librivox-0143","source_page":"https://librivox.org/","native_high_rate_music":false},
+    {"source_id":"environment_holdout_01","category":"environment","relative_path":"noise/sound-bible/noise-sound-bible-0062.wav","sha256":"844a80aa903f94094daec9e22b73db3e625613a6722384af4d3dc45509732dfd","source_sample_rate_hz":16000,"source_duration_seconds":15.908,"channels":1,"crop_start_seconds":2.0,"crop_duration_seconds":12.0,"license":"Attribution 3.0 per MUSAN SoundBible LICENSE","source_title":"Rain","source_page":"http://soundbible.com/1158-Rain.html","native_high_rate_music":false},
+    {"source_id":"environment_holdout_02","category":"environment","relative_path":"noise/sound-bible/noise-sound-bible-0048.wav","sha256":"b978a4cd75fcb7487de465b29e4c84761f206886d668d0d9c3ec35983013bb93","source_sample_rate_hz":16000,"source_duration_seconds":62.641625,"channels":1,"crop_start_seconds":22.0,"crop_duration_seconds":12.0,"license":"Attribution 3.0 per MUSAN SoundBible LICENSE","source_title":"Night Rain In Russian City","source_page":"http://soundbible.com/2059-Night-Rain-In-Russian-City.html","native_high_rate_music":false}
+  ],
+  "limitations_frozen": "No untouched native 44.1/48 kHz music source was present locally. Holdout music comes from licensed MUSAN 16 kHz tracks and is resampled to 44.1 kHz; it cannot establish high-resolution music fidelity generalization. No internet data or new dataset was acquired."
+}

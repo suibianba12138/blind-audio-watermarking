@@ -1,0 +1,36 @@
+name: C2-C3 Online Lab Smoke
+on:
+  push:
+    branches:
+      - main
+      - feat/online-c2c3-api
+    paths:
+      - 'course_release/online/**'
+      - 'course_release/pyproject.toml'
+      - 'course_release/Dockerfile.online'
+      - '.github/workflows/c2c3-online-api.yml'
+  pull_request:
+    paths:
+      - 'course_release/online/**'
+      - 'course_release/pyproject.toml'
+      - 'course_release/Dockerfile.online'
+      - '.github/workflows/c2c3-online-api.yml'
+jobs:
+  public-key-api:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install ffmpeg and API requirements
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
+          python -m pip install -U pip
+          python -m pip install -e 'course_release[online,test]'
+      - name: Python compilation
+        run: python -m compileall -q course_release/online
+      - name: HTTP API smoke tests on real public-key watermark engine
+        run: python -m pytest course_release/online/tests -q

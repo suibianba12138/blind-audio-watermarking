@@ -1,0 +1,11 @@
+FROM python:3.12-slim
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 PORT=10000
+RUN apt-get update && apt-get install --no-install-recommends -y ffmpeg && rm -rf /var/lib/apt/lists/*
+WORKDIR /srv
+COPY course_release/ /srv/course_release/
+RUN python -m pip install --no-cache-dir -e /srv/course_release/ fastapi==0.115.12 uvicorn==0.34.2 python-multipart==0.0.20
+RUN useradd -m -u 10001 webapp
+USER webapp
+WORKDIR /srv
+EXPOSE 10000
+CMD ["sh", "-c", "uvicorn course_release.online.app:app --host 0.0.0.0 --port ${PORT:-10000} --workers 1 --no-server-header"]

@@ -1,0 +1,18 @@
+{
+  "release_package": "course_release",
+  "source_modules": {
+    "C2": {
+      "frozen_sha256": "330c3f9230523a76bf801d2b338072cbb00747225e3a9a44b3df95bf7bdb08ea",
+      "public_module": "src/course_watermark/c2.py",
+      "public_sha256": "f3fdc0de848e496067f731e2671a1a89fce0b0ab52a443a8fdf82cd3a60d237e",
+      "release_adaptation": "Removed the frozen hardcoded key default; the caller must supply a key. All non-key source lines match the frozen module."
+    },
+    "C3-16": {
+      "frozen_sha256": "3b05b262921c84d4f595c1865978ba06587dac3b99f59ac5b195b71ea3495e3b",
+      "public_module": "src/course_watermark/c3.py",
+      "public_sha256": "cdba6d51fb0ba314a3d06f3c104113b43a431541ded1c6e1c6e58b826e55d2d1",
+      "release_adaptation": "Removed the frozen hardcoded key default; the caller must supply a key. All non-key source lines match the frozen module."
+    }
+  },
+  "evaluation_note": "Published modules require a caller-provided key. Historical locked/development evaluation used frozen configurations and must not be claimed as reproducible with the public demo key."
+}

@@ -1,0 +1,181 @@
+{
+  "schema_version": 1,
+  "file_count": 35,
+  "files": [
+    {
+      "path": ".gitignore",
+      "size_bytes": 76,
+      "sha256": "b32524de5c7295b557ba75812a0b735c9cc669c20a17e1cf5919f84b9faa5d64"
+    },
+    {
+      "path": "EVIDENCE_SUMMARY.md",
+      "size_bytes": 4280,
+      "sha256": "6c44eb49af57cf981975b538fa14b5abe48159427949ba3ee1f3fca6832a2ae5"
+    },
+    {
+      "path": "LICENSE",
+      "size_bytes": 1085,
+      "sha256": "646676aecb2a69ebb4307f3a32dbd5a1f57da65d570259c2a3f3bdf4d290f5f2"
+    },
+    {
+      "path": "README.md",
+      "size_bytes": 4390,
+      "sha256": "56cd6f9a13bace71e77c3f695a5d35d3e60f5b866d06561c1ea74027e6a7db6c"
+    },
+    {
+      "path": "README_ZH.md",
+      "size_bytes": 3862,
+      "sha256": "8b691f7f0dc9489c6bdc2433d71c20b03fcfc13b0b52ddebd3cff1a35a4e0e3f"
+    },
+    {
+      "path": "SOURCE_PROVENANCE.json",
+      "size_bytes": 1090,
+      "sha256": "9686c8cac669fc7a0fca597d2397c0ad6b1c6f2fcb4c04082c156d12d4bf74d7"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "size_bytes": 1362,
+      "sha256": "a2b4e88f422530ab3ee4c40298e1b9444034e8dccfc2983c191424e303ebc1da"
+    },
+    {
+      "path": "configs/demo.example.json",
+      "size_bytes": 468,
+      "sha256": "e1b519c52d0da50325abfcf470c5c8e02de4baeecc7471ad21354abd0243447a"
+    },
+    {
+      "path": "examples/embed_detect_6s.py",
+      "size_bytes": 4421,
+      "sha256": "2a16d6c3892c3a712a5e55a227450e80906a9f40ba12bffb5176903451743993"
+    },
+    {
+      "path": "examples/embed_detect_72s.py",
+      "size_bytes": 6051,
+      "sha256": "b622b8536084bc535fe9a2324e137ce72c43c30d6e680a54440f6efd9a4216c5"
+    },
+    {
+      "path": "examples/payload_layout.py",
+      "size_bytes": 1055,
+      "sha256": "bac9918443a90a32b18a8143ffc61668c38cafbac32286b80c2def21d8620931"
+    },
+    {
+      "path": "examples/transcode_ffmpeg.py",
+      "size_bytes": 1619,
+      "sha256": "8d525c3f73b14d81c05b7f9e9e5c1237454fc1f425a376d864ad8ca738e9857d"
+    },
+    {
+      "path": "media/robustness_evaluation/robustness_comparison.png",
+      "size_bytes": 206204,
+      "sha256": "3da20661fe6263e7bce0c6816268fe4af94b6f727044f01ce701e8b129d4c83f"
+    },
+    {
+      "path": "media/robustness_evaluation/robustness_comparison.svg",
+      "size_bytes": 102365,
+      "sha256": "fd5c118eb3726cbbd9bf098d3047849174590149af36d1fd88b9b15b8e9d48aa"
+    },
+    {
+      "path": "media/robustness_evaluation/robustness_figure_data.csv",
+      "size_bytes": 509,
+      "sha256": "174346a93d16275bc58303194a77564eafc9002f4e4c57d30f4f2c9de9047bd3"
+    },
+    {
+      "path": "media/selected_c3_16_showcase/Original.wav",
+      "size_bytes": 13824058,
+      "sha256": "b0cb255465857c9c487a481d78390f894edc66d1885bb4be075ac8fe9787e4fb"
+    },
+    {
+      "path": "media/selected_c3_16_showcase/SELECTED_MUSIC.md",
+      "size_bytes": 1715,
+      "sha256": "2a88bcdc3f09426571b29a039b9750baae42155dbc36d3de094026b9631806cf"
+    },
+    {
+      "path": "media/selected_c3_16_showcase/Watermarked.m4a",
+      "size_bytes": 1184230,
+      "sha256": "e3c6fdaea4a6ca7a5c9a609410bca85ca3c5362ff17f3100644cffa23e70e741"
+    },
+    {
+      "path": "media/selected_c3_16_showcase/Watermarked.mp3",
+      "size_bytes": 1152813,
+      "sha256": "f0e7d340fe5b6ee2d84e59f0764f0b425461ba682c3c45b7322f581ff7d3a374"
+    },
+    {
+      "path": "media/selected_c3_16_showcase/Watermarked.wav",
+      "size_bytes": 13824058,
+      "sha256": "7ce8426c1e9e04620adb94ba698bbfaf7f4c9b386302964153550c547e356453"
+    },
+    {
+      "path": "media/selected_c3_16_showcase/detection_data.csv",
+      "size_bytes": 2838,
+      "sha256": "8cb0340d867f01dc7e2a5fa16d552ecdea3b7539d1828921bf80b56b6c7b80a8"
+    },
+    {
+      "path": "media/selected_c3_16_showcase/detection_process.png",
+      "size_bytes": 87099,
+      "sha256": "8f4f8a2ad59cdaaa27534758328e5a587f41247fdb33af95c68914368986bd1f"
+    },
+    {
+      "path": "media/selected_c3_16_showcase/message_192bit.txt",
+      "size_bytes": 97,
+      "sha256": "4af3d5f9df8746a8db9b48049bdab24a51f40c87a454f7d0f571f9f50895ce96"
+    },
+    {
+      "path": "media/selected_c3_16_showcase/signal_comparison.png",
+      "size_bytes": 351630,
+      "sha256": "2f763a7b701c84b245f01b9062544bb389ae0f16fb6961dc3d971dd5dce8ebe2"
+    },
+    {
+      "path": "media/selected_c3_16_showcase/signal_waveforms.csv",
+      "size_bytes": 510280,
+      "sha256": "66847509d2f6f9342be247ed73097f2092538c7db8466a4ea0b3e3ab8bb8f652"
+    },
+    {
+      "path": "media/selected_c3_16_showcase/spectrum_comparison.png",
+      "size_bytes": 181985,
+      "sha256": "cc37eeaca0abcb2041d4fc2d1532d147f7445191874bca0ca60a043374cd258d"
+    },
+    {
+      "path": "media/selected_c3_16_showcase/spectrum_data.csv",
+      "size_bytes": 326623,
+      "sha256": "a4d26a5ca016f0e3e986e3bab594ee2e1813e6f05616488a48d9292c7de103f8"
+    },
+    {
+      "path": "media/selected_c3_16_showcase/trial_results.csv",
+      "size_bytes": 11903,
+      "sha256": "330b830def82fa21f99b2456378b5538e286dade5700ab3e27d0d2d23ad6eaee"
+    },
+    {
+      "path": "pyproject.toml",
+      "size_bytes": 451,
+      "sha256": "8639a965f658a07c66ee7b74e0a4de00d0ecf8e07cef9a9e76c415b471834c95"
+    },
+    {
+      "path": "src/course_watermark/__init__.py",
+      "size_bytes": 81,
+      "sha256": "01204bfc880a4bf268bb7d452d1ed6e9d9a4578b7516aacb6ab7d8c3aa660e42"
+    },
+    {
+      "path": "src/course_watermark/c2.py",
+      "size_bytes": 4328,
+      "sha256": "f3fdc0de848e496067f731e2671a1a89fce0b0ab52a443a8fdf82cd3a60d237e"
+    },
+    {
+      "path": "src/course_watermark/c3.py",
+      "size_bytes": 4502,
+      "sha256": "cdba6d51fb0ba314a3d06f3c104113b43a431541ded1c6e1c6e58b826e55d2d1"
+    },
+    {
+      "path": "tests/test_examples.py",
+      "size_bytes": 1641,
+      "sha256": "a2c9b506462216210ed46c2ef382d99775a762d76973de82b373e14a060a9c83"
+    },
+    {
+      "path": "tests/test_payload_layout.py",
+      "size_bytes": 643,
+      "sha256": "b8c8837e03dae6b83c22975fec5e301f7e8ca6b62f17793c7b260f3bf360d172"
+    },
+    {
+      "path": "tests/test_roundtrip.py",
+      "size_bytes": 1757,
+      "sha256": "c811cf752e5ba61c46ab4df1917482e9624718e6aa6d46359fcf1dd953137edc"
+    }
+  ]
+}

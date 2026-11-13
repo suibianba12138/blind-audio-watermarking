@@ -1,0 +1,18 @@
+{
+  "key": "course-demo-public-v1",
+  "sample_rate_hz": 48000,
+  "block_duration_seconds": 6,
+  "n_fft": 2048,
+  "band_pairs_hz": [
+    [900, 2200, 2200, 3500],
+    [3500, 5000, 5000, 6500],
+    [6500, 8000, 8000, 9500]
+  ],
+  "target_snr_db": 45,
+  "reference_similarity_min": 0.5,
+  "thresholds": {
+    "c2_8bit": 0.6226488835443009,
+    "c3_16bit": 0.7199080718655814
+  },
+  "key_notice": "This public demo key is not the key used for frozen evaluation results."
+}

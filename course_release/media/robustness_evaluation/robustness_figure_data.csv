@@ -1,0 +1,9 @@
+condition,selected_correct,selected_wrong,selected_unknown,selected_exact_full_message,selected_false_accepts,dev_correct,dev_wrong,dev_unknown,dev_full_message_files,dev_files,dev_false_accepts
+Clean,12,0,0,True,0,120,0,0,10,10,0
+MP3,12,0,0,True,0,120,0,0,10,10,0
+AAC,12,0,0,True,0,104,8,8,2,10,1
+MP3→AAC,12,0,0,True,0,111,8,1,6,10,1
+AAC→MP3,11,1,0,False,0,104,7,9,2,10,1
+−6 dB,12,0,0,True,0,120,0,0,10,10,0
++3 dB,12,0,0,True,0,120,0,0,10,10,0
+48→44.1→48 kHz,12,0,0,True,0,120,0,0,10,10,0

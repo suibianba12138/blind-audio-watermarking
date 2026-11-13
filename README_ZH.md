@@ -1,70 +1,129 @@
-# 数字音频水印系统｜DSP 课程设计
+<div align="center">
 
-本项目围绕数字音频的附加信息嵌入与恢复，完成了一套**参考辅助的多频带数字音频水印系统**。主要目标是在尽量保持音乐音质的前提下，让信息经过常见音频处理后仍有机会被恢复，并提供不同容量与可靠性侧重的工作模式。
+# 数字音频水印系统
+### Reference-Assisted Multiband Audio Watermarking
 
-**当前课程最终版：** [C2/C3 源码、示例与音频](course_release/) · [English README](README.md) · [历史版本归档](archive/README.md)
+**让信息留在声音里：真实音乐中的嵌入、信号处理与可靠恢复。**
 
-> **使用条件：** 检测时需要对应的**无水印原音**和密钥，但不向检测器提供预期消息。本方案是**参考辅助（非盲）水印**，适合受控音频分发和课程信号处理演示，不是可直接用于版权取证的安全认证系统。
+<br>
 
-## 项目实现了什么
+![Python](https://img.shields.io/badge/Python-3.10%2B-376a62?logo=python&logoColor=white)
+![DSP](https://img.shields.io/badge/DSP-FFT%20%2B%20Multiband-526a59)
+![Modes](https://img.shields.io/badge/Payload-32--bit%20ID%20%2F%20192--bit-517767)
+![Detector](https://img.shields.io/badge/Detector-Reference--assisted-8d7459)
+![License](https://img.shields.io/badge/Code-MIT-385847)
+
+<br>
+
+**[🌐 项目展示网站](https://shengkaini.com/blind-audio-watermarking/)** &nbsp;·&nbsp;
+**[🎧 真实音乐试听](https://shengkaini.com/blind-audio-watermarking/#listen)** &nbsp;·&nbsp;
+**[📊 信号处理可视化](https://shengkaini.com/blind-audio-watermarking/#processing)** &nbsp;·&nbsp;
+**[English README](README.md)**
+
+</div>
+
+---
+
+## Overview｜项目简介
+
+我们希望在不明显影响正常听音体验的条件下，让一段真实音乐携带额外的数字信息，并尝试在 MP3、AAC、音量变化与重采样后恢复它。
+
+本项目是电子科技大学**数字信号处理课程设计**：基于分帧 FFT、多频带相对能量调制、密钥驱动的跨帧 chip 分配和参考辅助统计检测，实现了两种不同侧重的数字音频水印模式。
+
+> **检测前提：** 接收端需要对应的**无水印原始音频**和密钥，但不会提前获得目标消息。C2/C3 均为**参考辅助、非盲水印**。该系统用于受控分发场景及 DSP 课程演示，并非版权真实性认证工具。
+
+### 两种模式
+
+| | **高可靠身份 · C2** | **高容量消息 · C3-16** |
+| :-- | :-- | :-- |
+| 每 6 秒载荷 | 8 bit | 16 bit |
+| 72 秒布局 | 一个 32-bit ID 拆为 4 字节，重复 3 轮 | 12 个不同的 16-bit 消息块 |
+| **独立信息量** | **32 bit** | **192 bit** |
+| 侧重点 | 通过冗余提高身份恢复可靠性 | 提高连续音频中的信息容量 |
+| 检测条件 | 原音参考 + 密钥 | 原音参考 + 密钥 |
+
+**注意：** C2 的 72 秒共发送 96 bit 编码数据，但独立的身份信息只有 **32 bit**，不能将二者混淆。
+
+## 🎧 真实音乐展示
+
+我们选取了 *Where You Are Now*（Benjamin Orth，featuring Wolf Fly）的连续 **72 秒音乐**，完成水印嵌入、整段真实编解码及检测。仓库公开了原音 WAV、水印 WAV、MP3、AAC 与配套图表。
+
+<div align="center">
+
+<img src="course_release/media/selected_c3_16_showcase/signal_comparison.png" width="880" alt="真实原音与带水印音频的波形和嵌入残差">
+
+*图 1 · 原音、水印音及实际残差。由于改变量较小，残差需要单独显示。*
+
+</div>
+
+**[▶ 试听原音 / 水印音 / MP3 / AAC](https://shengkaini.com/blind-audio-watermarking/#listen)** · **[查看重复转码与重采样图像](https://shengkaini.com/blind-audio-watermarking/#processing)** · **[浏览音频文件](course_release/media/selected_c3_16_showcase/)**
+
+在这首**精选案例**中，C3-16 在 72 秒内嵌入 12 组不同的 16-bit 消息，合计 **192 bit**；Clean WAV、整段 MP3 128 kbps、AAC-LC 128 kbps 均实现 **12/12 块正确恢复**。嵌入 SNR 约 **45.0 dB**，但未进行正式的主观听音实验。
+
+同一份音乐还经过 **MP3→AAC、−6 dB、+3 dB、48→44.1→48 kHz 重采样**，在这些处理下完整消息仍可恢复。这是**精选音源的演示结果**，不代表任意音频均具有同样表现。
+
+## How It Works｜算法实现
 
 ```text
-原始音频 + 数字消息 + 密钥
-          ↓
-分帧 FFT → 密钥控制的 chip 分配 → 多频带相对能量调制
-          ↓
-      带水印音频
-          ↓
-   MP3 / AAC / 音量变化 / 重采样
-          ↓
-接收音频 + 原音参考 + 密钥
-          ↓
-对齐 → 频带差分 → chip 聚合 → 消息判决与存在性检查
-          ↓
-     恢复消息 / UNKNOWN
+                 嵌入端
+        原音 + 数字消息 + 密钥
+                  │
+             分帧 / FFT
+                  │
+         密钥控制的 chip 分配
+                  │
+         三组频带对能量调制
+                  │
+            水印 WAV 音频
+                  │
+     MP3 / AAC / 音量 / 重采样
+                  │
+                  ▼
+                 检测端
+        接收音 + 原音参考 + 密钥
+                  │
+          时间对齐 / 频带差分
+                  │
+          chip 聚合 / bit 判决
+                  │
+          水印存在性统计检查
+                  │
+           恢复消息 / UNKNOWN
 ```
 
-两种工作模式使用相关的频域嵌入与参考辅助检测方法，但信息组织不同：
+关键不在于修改某一个频谱点，而是**通过频带对之间的相对能量传递信息**。不同消息位由密钥分散到多个 FFT 帧；接收端借助原音参考抑制宿主信号影响，并统计聚合多帧信息。
 
-| 工作模式 | 每 6 秒载荷 | 72 秒信息组织 | 独立信息量 |
-| --- | --- | --- | --- |
-| **高可靠身份模式 C2** | 8 bit | 32-bit ID 拆成四个字节，每 24 秒重复一次，共三轮 | **32 bit** |
-| **高容量模式 C3-16** | 16 bit | 12 个不同的 16-bit 消息块 | **192 bit** |
+<div align="center">
 
-**重要区别：** C2 的 72 秒共发送 96 bit 编码数据，但重复身份模式的**独立信息只有 32 bit**。C3-16 的 192 bit 则是 12 块不同消息组成的独立信息。不要将两种口径混用。
+<img src="course_release/media/selected_c3_16_showcase/spectrum_comparison.png" width="840" alt="精选音频的真实频谱对比">
 
-## 真实音乐演示
+*图 2 · 真实音乐的频谱比较：频带调制比直接替换单个 FFT 系数更适合本项目的设计。*
 
-精选曲目为 **Where You Are Now**（Benjamin Orth，featuring Wolf Fly），使用连续 **72 秒**片段。音频采用 [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)，署名和改动说明见 [第三方素材与许可](course_release/THIRD_PARTY_NOTICES.md)。
+<img src="course_release/media/selected_c3_16_showcase/detection_process.png" width="840" alt="72秒音乐逐块恢复真实检测记录">
 
-已发布的 [演示素材](course_release/media/selected_c3_16_showcase/) 包括原音 WAV、水印 WAV、整段 MP3/AAC、实际检测记录、波形和频谱图。
+*图 3 · 精选 72 秒音乐中的 12 个消息块及实际恢复结果。*
 
-在这首精选音乐上，C3-16 的结果为：
+</div>
 
-- **192 bit**：12 个独立 16-bit 消息块，覆盖 72 秒。
-- **Clean WAV / MP3 128 kbps / AAC-LC 128 kbps**：每种条件均 **12/12 块正确**，完整消息一致。
-- **扩展处理**：MP3→AAC、音量 −6 dB、音量 +3 dB、48→44.1→48 kHz 重采样后，完整消息也成功恢复。
-- **音质**：该案例嵌入 SNR 约 **45 dB**；未开展正式主观听音实验。
+## 📊 实验验证
 
-这是为了课堂展示选取的**一个真实成功案例**，不是对任意音乐的总体性能保证。
+不同模式采用不同容量和实验协议，下表中的数值均表示**正确接受的消息数 / 测试数**，不能直接合并为一个总成功率。
 
-## 实验性能与边界
+| 测试 | Clean | MP3 128 kbps | AAC-LC 128 kbps |
+| :-- | --: | --: | --: |
+| **C2** · 60 条独立音源，8-bit / 6 秒 | 60/60 | 59/60 | 57/60 |
+| **C3-16** · 120 条独立音源，16-bit / 6 秒 | 120/120 | 120/120 | 103/120 |
+| **C3-16** · 精选 72 秒音乐，逐块 | 12/12 | 12/12 | 12/12 |
 
-| 测试协议 | Clean | MP3 128 kbps | AAC-LC 128 kbps |
-| --- | ---: | ---: | ---: |
-| C2：60 条独立 6 秒音频（Locked Test） | 60/60 | 59/60 | 57/60 |
-| C3-16：120 条独立 6 秒音频 | 120/120 | 120/120 | 103/120 |
-| C3-16：精选 72 秒音乐（每块） | 12/12 | 12/12 | 12/12 |
+C3-16 的独立 AAC 测试中，另有 **11/120 个错误消息被接受**、6/120 返回 UNKNOWN；在单独的 10 条随机混合 72 秒开发测试里，AAC 完整 192-bit 恢复为 **2/10**，MP3→AAC 为 **6/10**。因此不能把精选音乐的 12/12 描述为普遍的 AAC 鲁棒性。
 
-表格统计的是各协议下**正确接受**的消息/块。C3-16 在独立 AAC 测试中另有 **11/120 错误消息被接受**和 6/120 UNKNOWN；在 10 条 Development 随机混合的 72 秒音频上，AAC 完整消息恢复为 **2/10**，MP3→AAC 为 **6/10**。因此不能把精选案例的成功结果描述为普遍的 AAC 鲁棒性。
+C2 的 **32-bit 重复身份模式**另在 20 条 72 秒随机混合音频上进行验证，Clean、MP3、AAC 各为 **20/20 完整身份恢复**。其信息量和成功标准与 C3 的 192-bit 完整消息不同。
 
-32-bit C2 重复身份模式在另外 **20 条 72 秒随机混合音频**上，Clean、MP3、AAC 三种条件的完整身份融合恢复均为 **20/20**；它使用的是不同的消息容量和评估协议，不能与 192-bit 完整消息成功率直接比较。
+更多测试协议、负样本和误接受细节见 **[冻结实验依据](course_release/EVIDENCE_SUMMARY.md)**。
 
-详细的负例、错误接受和评估条件见 [EVIDENCE_SUMMARY.md](course_release/EVIDENCE_SUMMARY.md)。
+## 🚀 运行课程最终版
 
-## 运行课程最终版
-
-依赖：**Python 3.10+、NumPy、SciPy**；执行 MP3/AAC 转码还需安装 **FFmpeg**。
+**运行环境：** Python ≥ 3.10、NumPy、SciPy；使用 MP3/AAC 实际编解码需另行安装 FFmpeg。
 
 ```bash
 git clone https://github.com/suibianba12138/blind-audio-watermarking.git
@@ -75,7 +134,7 @@ python -m pip install -e '.[test]'
 python -m pytest -q
 ```
 
-以公开演示密钥在真实音乐的前 6 秒嵌入并回读检测 16-bit 消息：
+用公开 Demo Key 在真实音乐的前 6 秒嵌入并检测 16-bit 消息：
 
 ```bash
 python examples/embed_detect_6s.py \
@@ -83,37 +142,30 @@ python examples/embed_detect_6s.py \
   --reference media/selected_c3_16_showcase/Original.wav \
   --message A7C3 \
   --key course-demo-public-v1 \
-  --output /tmp/course-watermarked.wav
+  --output /tmp/c3-marked.wav
 ```
 
-72 秒 32-bit 重复身份、192-bit 消息，以及实际 FFmpeg 编解码示例，请看 [课程发布包中文说明](course_release/README_ZH.md)。
+更多 [72 秒 C2 Long-ID / C3-192 和 FFmpeg 使用示例](course_release/README_ZH.md)。**公开 Demo Key 不同于冻结测试的密钥**，不能拿它直接检测历史水印文件并声称复现原有成绩。
 
-**注意：公开 Demo Key 与冻结实验的密钥不同。** 不能用公开密钥重新检测历史精选水印文件，再把结果称为对冻结实验的复现。
-
-## 仓库结构
+## 📂 仓库导航与历史版本
 
 | 路径 | 内容 |
-| --- | --- |
-| [`course_release/`](course_release/) | **当前主版本**：C2/C3 源码、示例、测试、音频和实验依据 |
-| [`archive/`](archive/) | V2/V3/V4 历史说明与旧 README 快照 |
-| [`src/`](src/)、[`app/`](app/) | **历史 V3** 代码，保留以维持在线演示兼容性 |
-| [`docs/`](docs/) | 原有 V2/V3 文档及尚未更新的 V4 静态网站 |
-| [V4 历史快照分支](https://github.com/suibianba12138/blind-audio-watermarking/tree/archive/v4-studio-20261113) | 独立的神经盲水印 Studio |
+| :-- | :-- |
+| **[`course_release/`](course_release/)** | 当前 C2/C3 最终版源码、示例、测试、授权音乐与图表 |
+| **[`archive/`](archive/)** | V2/V3/V4 历史归档、旧 README 快照及对应代码分支 |
+| [`src/`](src/) / [`app/`](app/) | 历史 V3 代码，保留原路径确保旧演示兼容 |
+| [`docs/`](docs/) | 历史课程文档与旧网站素材 |
 
-## 历史版本归档
+**[V2 · 四身份水印](archive/v2/README.md)** · **[V3 · FFT/QIM 盲水印](archive/v3/README.md)** · **[V4 · SilentCipher 神经盲水印 Studio](archive/v4/README.md)**
 
-项目曾尝试过不同算法，**但它们的检测条件与实验协议并不相同**：
+V4 使用的 Sony SilentCipher 属于**第三方预训练模型**，与最终 C2/C3 参考辅助 DSP 水印不同。现有 [Render 在线演示](https://blind-audio-watermarking-demo.onrender.com/) 属于**历史 V3**；当前 [项目网站](https://shengkaini.com/blind-audio-watermarking/) 为真实音频与已保存实验的交互式展示页，**不会在线运行新的嵌入和检测计算**。
 
-- [**V2**：四身份分类水印](archive/v2/README.md)。历史 32-bit 冗余码字实际只表示 **2 bit 身份信息**。
-- [**V3**：FFT/QIM + Soft-Code 盲水印](archive/v3/README.md)。8-bit 消息，代码保留；[独立快照分支](https://github.com/suibianba12138/blind-audio-watermarking/tree/archive/v3-legacy-20261113)。
-- [**V4**：神经盲水印 Studio](archive/v4/README.md)。40-bit，基于 Sony 第三方预训练 SilentCipher；[独立快照分支](https://github.com/suibianba12138/blind-audio-watermarking/tree/archive/v4-studio-20261113)，[历史 Draft PR #5](https://github.com/suibianba12138/blind-audio-watermarking/pull/5)。
+## 📜 许可与适用边界
 
-**网站状态：** [个人网站上的音频水印项目页](https://shengkaini.com/blind-audio-watermarking/) **仍展示历史 V4 内容**；[Render 在线演示](https://blind-audio-watermarking-demo.onrender.com/) 仍是 **V3**。它们尚不是 C2/C3 的在线处理系统。后续网站更新与部署将单独进行。
+课程源码使用 MIT 许可；演示音乐为单独的 **CC BY 3.0**，并非 MIT。音乐 *Where You Are Now* 由 Benjamin Orth 创作（featuring Wolf Fly），原曲见 [ccMixter](https://www.ccmixter.org/files/Benjamin_Orth/33036)；展示使用的 72 秒片段经过声道混合、重采样、截取、水印嵌入和编码。更多信息见 [第三方素材说明](course_release/THIRD_PARTY_NOTICES.md) 与 [源码溯源](course_release/SOURCE_PROVENANCE.json)。
 
-## 许可与适用范围
+本系统依赖匹配原音参考，不保证任意裁剪、主动去水印攻击、未知歌曲检索或版权真实性的密码学证明。
 
-课程实现代码采用 [MIT 许可](LICENSE)，演示音乐遵循 **CC BY 3.0**（不是 MIT），详见 [第三方声明](course_release/THIRD_PARTY_NOTICES.md) 和 [源码出处说明](course_release/SOURCE_PROVENANCE.json)。
+---
 
-本系统要求匹配的原音参考，更适合已知音源且基本完整的音频。尚未验证任意截取、恶意去水印、大规模原曲检索或版权真实性的密码学证明。
-
-*2026 DSP 课程设计 · 多频带调制 · 参考辅助检测*
+<div align="center"><sub>Digital Audio Watermarking · UESTC DSP Course Project · 2026 · Reference-Assisted Multiband Modulation</sub></div>

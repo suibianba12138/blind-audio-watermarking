@@ -1,77 +1,141 @@
-# Audio Watermarking — DSP Course Project
+<div align="center">
 
-A digital audio watermarking system built for a **Digital Signal Processing course project**. The current implementation focuses on **reference-assisted multiband watermarking**: embedding information in music with limited distortion, then recovering it after ordinary audio processing.
+# Audio Watermarking
+### Reference-Assisted Multiband Watermarking for Digital Audio
 
-**Current course release:** [C2/C3 source, examples, audio and evidence](course_release/) · [中文说明](README_ZH.md) · [Version archive](archive/README.md)
+**Embedding information into music, and recovering it after real-world audio processing.**
 
-> **Detection contract:** the receiver uses the corresponding **unwatermarked original audio** and the selected key. This is **non-blind, reference-assisted detection**. The receiver is **not** given the expected message. It is a classroom prototype for information retention and controlled distribution tracking, not a security or copyright-proof service.
+<br>
 
-## What the system does
+![Python](https://img.shields.io/badge/Python-3.10%2B-376a62?logo=python&logoColor=white)
+![DSP](https://img.shields.io/badge/DSP-FFT%20%2B%20Multiband%20Modulation-526a59)
+![Modes](https://img.shields.io/badge/Payload-32--bit%20ID%20%2F%20192--bit%20Message-517767)
+![Detector](https://img.shields.io/badge/Detection-Reference--assisted-8d7459)
+![License](https://img.shields.io/badge/Code-MIT-385847)
+
+<br>
+
+**[🌐 Interactive Project Website](https://shengkaini.com/blind-audio-watermarking/)** &nbsp;·&nbsp;
+**[🎧 Real Music Listening](https://shengkaini.com/blind-audio-watermarking/#listen)** &nbsp;·&nbsp;
+**[📊 Audio Processing Visuals](https://shengkaini.com/blind-audio-watermarking/#processing)** &nbsp;·&nbsp;
+**[中文说明](README_ZH.md)**
+
+</div>
+
+---
+
+## Overview
+
+Audio watermarking adds a small digital message to a recording while preserving its primary purpose: **it should still sound like the original music**. File formats and metadata can change as audio is redistributed; signal-level information can sometimes survive those transformations.
+
+This Digital Signal Processing course project implements a **reference-assisted, non-blind watermarking pipeline**. The sender distributes a watermarked recording; the receiver uses the matching **unwatermarked original** and a key to detect the hidden message. The detector is **not supplied the expected payload**.
+
+The current course-final release offers two modes built around FFT-based multiband energy modulation and keyed across-frame message allocation:
+
+| | **Robust Identity · C2** | **High Capacity · C3-16** |
+| :-- | :-- | :-- |
+| Six-second message | 8 bits | 16 bits |
+| 72-second organization | Four ID bytes repeated three times | Twelve different 16-bit blocks |
+| **Independent payload** | **32-bit identity** | **192-bit message** |
+| Design priority | Redundant identity recovery | Higher information capacity |
+| Detection | Original reference + key | Original reference + key |
+
+> C2 transmits 96 coded bits across 72 seconds, but repeated copies contain only **32 independent information bits**. Neither C2 nor C3 is a blind detector, cryptographic authentication scheme, or arbitrary-song identification service.
+
+## 🎧 Real Music Showcase
+
+Our selected demonstration is **72 continuous seconds** from *Where You Are Now* by Benjamin Orth, featuring Wolf Fly. The showcase includes the actual original WAV, marked WAV and full-file MP3/AAC exports — not synthetic example sounds.
+
+<div align="center">
+
+<img src="course_release/media/selected_c3_16_showcase/signal_comparison.png" width="880" alt="Measured original and watermarked music waveform and embedding residual">
+
+*Figure 1 · Original music, embedded audio and the measured residual. The difference is shown separately because it is small relative to the host signal.*
+
+</div>
+
+**[▶ Listen: original / watermarked / MP3 / AAC](https://shengkaini.com/blind-audio-watermarking/#listen)** · **[Explore real codec and gain processing figures](https://shengkaini.com/blind-audio-watermarking/#processing)** · **[Browse the actual audio files](course_release/media/selected_c3_16_showcase/)**
+
+In this **curated recording**, C3-16 carried twelve independent 16-bit blocks — **192 bits in 72 seconds** — and all 12 blocks were correctly recovered after Clean WAV readback, whole-file MP3 128 kbps and AAC-LC 128 kbps processing. The measured embedding SNR was **45.0 dB**. No formal listening-panel evaluation was conducted.
+
+Further operations on this same selected audio — **MP3→AAC**, **−6 dB**, **+3 dB** and **48→44.1→48 kHz resampling** — also retained the complete message. These observations do not establish general robustness across every source recording.
+
+## How It Works
 
 ```text
-Original audio + message + key
-           |
- Frame-wise FFT / keyed chip allocation / multiband energy modulation
-           |
-     Watermarked audio
-           |
-    MP3 / AAC / volume / resampling
-           |
- Received audio + original reference + key
-           |
- Alignment / reference spectral difference / chip aggregation / presence check
-           |
-    Recovered message or UNKNOWN
+                  EMBEDDING
+   Original audio + Message + Key
+                  |
+        6 s blocks / FFT frames
+                  |
+      Keyed bit-to-chip allocation
+                  |
+    Paired-band energy modulation
+                  |
+           Watermarked WAV
+                  |
+      MP3 / AAC / gain / resample
+                  |
+                  v
+                  DETECTION
+   Received audio + Reference + Key
+                  |
+   Time alignment / spectral difference
+                  |
+     Chip aggregation / bit decisions
+                  |
+       Presence & consistency gate
+                  |
+      Recovered message / UNKNOWN
 ```
 
-Two operating modes share this signal-processing approach but prioritize different needs:
+The **reference-assisted spectral difference** is the central receiver operation: the detector compares relative band energies of the received recording and matching original, then aggregates the keyed chip contributions to estimate message bits.
 
-| Mode | Six-second payload | How 72 seconds is used | Independent information |
-| --- | --- | --- | --- |
-| **Robust ID — C2** | 8 bits | Four bytes of a 32-bit ID repeated over three 24 s cycles | **32 bits**, repeated for redundancy |
-| **High capacity — C3-16** | 16 bits | Twelve different 16-bit blocks | **192 bits** |
+<div align="center">
 
-The C2 repeated-ID layout occupies twelve eight-bit blocks (96 transmitted bits), **not 96 independent identity bits**. Both modes use an original-audio reference for detection.
+<img src="course_release/media/selected_c3_16_showcase/spectrum_comparison.png" width="840" alt="Actual recorded spectrum comparison after audio watermarking">
 
-## Demonstration: one continuous recording
+*Figure 2 · Measured spectral comparison from the selected music. The algorithm modulates relative energy over three band pairs instead of replacing an isolated FFT coefficient.*
 
-The included curated example uses 72 seconds of **Where You Are Now** by Benjamin Orth (featuring Wolf Fly), distributed under **CC BY 3.0**. The original recording, actual watermarked WAV, full-file MP3 and AAC encodes, plots and sample-level data are in [the selected showcase](course_release/media/selected_c3_16_showcase/). See [attribution and modifications](course_release/THIRD_PARTY_NOTICES.md).
+<img src="course_release/media/selected_c3_16_showcase/detection_process.png" width="840" alt="Real block-level message recovery for the selected 72-second track">
 
-- **C3-16:** twelve independent 16-bit blocks, **192 bits** over 72 seconds.
-- **Selected recording:** Clean WAV, MP3 128 kbps and AAC-LC 128 kbps each recovered **12/12 blocks** and the complete message.
-- **Audio quality:** embedding SNR 45 dB for this prepared example; no formal subjective listening study.
-- **Further processing on this selected recording:** MP3→AAC, −6 dB, +3 dB and 48→44.1→48 kHz also recovered the complete message.
+*Figure 3 · Actual message recovery across the twelve six-second blocks of the 192-bit demonstration.*
 
-This is **one deliberately selected demonstration**, not a measured success rate over arbitrary music.
+</div>
 
-## Evaluation: different sources, different conclusions
+## Experimental Evidence
+
+Results are reported under their **own evaluation protocols**; they should not be merged into a single headline percentage.
 
 | Protocol | Clean | MP3 128 kbps | AAC-LC 128 kbps |
-| --- | ---: | ---: | ---: |
-| C2, 60-source locked evaluation | 60/60 | 59/60 | 57/60 |
-| C3-16, 120-source independent evaluation | 120/120 | 120/120 | 103/120 |
-| C3-16, selected 72 s music (blocks) | 12/12 | 12/12 | 12/12 |
+| :-- | --: | --: | --: |
+| **C2** · 60-source locked test, 8-bit blocks | 60/60 | 59/60 | 57/60 |
+| **C3-16** · 120-source independent test, 16-bit blocks | 120/120 | 120/120 | 103/120 |
+| **C3-16** · one selected 72-second recording, blocks | 12/12 | 12/12 | 12/12 |
 
-Counts denote **correctly accepted messages/blocks** in the stated protocol. In C3-16's independent AAC evaluation, **11/120 incorrect messages were accepted** and 6/120 returned UNKNOWN. In a separate 10-file development set of mixed 72-second recordings, complete C3-16 message recovery was **2/10 for AAC** and **6/10 for MP3→AAC**. These limitations matter: the curated music example does not establish universal AAC robustness.
+The table counts **correctly accepted** messages/blocks. In the C3 independent AAC evaluation, **11/120 wrong messages were accepted** and **6/120 were UNKNOWN**. An additional ten-file, mixed-source development study recovered the entire 192-bit message in **2/10 AAC files** and **6/10 MP3→AAC files**. The selected music should not be read as a general AAC success rate.
 
-The C2 repeated 32-bit ID was correctly fused in **20/20** mixed 72-second recordings under each of Clean, MP3 and AAC, using its own evaluation protocol. Do not compare that directly with the 192-bit full-message criterion.
+The **C2 repeated 32-bit ID** was separately recovered in **20/20** mixed 72-second recordings under each of Clean, MP3 and AAC. This lower-capacity identity task has a different success criterion than recovering 192 independent bits.
 
-For threshold, negative-case and dataset details, see [Evidence Summary](course_release/EVIDENCE_SUMMARY.md).
+For the exact experimental conditions, negative trials and limitations, see **[Frozen Evidence Summary](course_release/EVIDENCE_SUMMARY.md)**.
 
-## Run the current course release locally
+## Reproduce the Course Release
 
-Requirements: **Python ≥ 3.10**, NumPy, SciPy; install **FFmpeg** separately for MP3/AAC.
+The publishable C2/C3 package lives under **[`course_release/`](course_release/)**; legacy code remains in its original locations to avoid disrupting the historical V3 online demonstration.
+
+**Dependencies:** Python ≥3.10, NumPy, SciPy, and separately installed FFmpeg for real MP3/AAC round trips.
 
 ```bash
 git clone https://github.com/suibianba12138/blind-audio-watermarking.git
 cd blind-audio-watermarking/course_release
+
 python -m venv .venv
 source .venv/bin/activate
 python -m pip install -e '.[test]'
 python -m pytest -q
 ```
 
-Example: embed a sixteen-bit message in the first six seconds of the included reference audio, save it and detect from the saved file:
+A 6-second C3-16 run with a **public demo key**:
 
 ```bash
 python examples/embed_detect_6s.py \
@@ -79,35 +143,32 @@ python examples/embed_detect_6s.py \
   --reference media/selected_c3_16_showcase/Original.wav \
   --message A7C3 \
   --key course-demo-public-v1 \
-  --output /tmp/course-watermarked.wav
+  --output /tmp/c3-marked.wav
 ```
 
-The 72-second scripts and real FFmpeg transcode helpers are documented in [course_release/README.md](course_release/README.md). **The public demonstration key is different from the frozen evaluation key**: rerunning a published showcase file with the demo key is not a valid reproduction of its historical detection record.
+The example embeds into a real music block, writes WAV, reads it back and independently detects with a reference. For full 72-second modes, see [C2 Long-ID / C3-192 scripts](course_release/README.md). The **public key is intentionally different** from the frozen evaluation key, so historical showcase scores are **not** reproducible by re-detecting published watermarked files with the public key.
 
-## Project layout
+## Repository & Version History
 
-| Path | Role |
-| --- | --- |
-| [`course_release/`](course_release/) | **Current** C2/C3 implementation, executable examples, tests, evidence, selected audio |
-| [`archive/`](archive/) | Historical version guide and preserved README snapshots |
-| [`src/`](src/), [`app/`](app/) | **Legacy V3** implementation and online-demo code; kept for compatibility |
-| [`docs/`](docs/) | Historical V2/V3 documents and existing V4-oriented static site |
-| [`upgrade/v4-github-prep`](https://github.com/suibianba12138/blind-audio-watermarking/tree/archive/v4-studio-20261113) | Archived V4 neural studio; separate third-party-model approach |
+| Directory | Purpose |
+| :-- | :-- |
+| **[`course_release/`](course_release/)** | **Current course-final C2/C3** source, runnable examples, tests, licensed music, figures |
+| **[`archive/`](archive/)** | Historical version notes, original README snapshots and preserved branch links |
+| [`src/`](src/) / [`app/`](app/) | Historical V3/legacy program, maintained for compatibility |
+| [`docs/`](docs/) | Earlier course documentation and historical static-site material |
 
-## Historical versions and websites
+The development history is preserved, not rewritten:
 
-The project explored several approaches before selecting the course-final C2/C3 system. Prior work remains available, but **does not share the same detection contract or evaluation protocol**:
+**[V2 — four-label identity watermark](archive/v2/README.md)** · **[V3 — blind FFT/QIM + Soft-Code](archive/v3/README.md)** · **[V4 — pretrained neural blind-watermark Studio](archive/v4/README.md)**
 
-- [**V2** — fixed-label identity watermark](archive/v2/README.md): four labels; historical 32-bit redundant codewords carry **2 information bits**.
-- [**V3** — blind FFT/QIM + Soft-Code](archive/v3/README.md): 8-bit payload; [read-only snapshot branch](https://github.com/suibianba12138/blind-audio-watermarking/tree/archive/v3-legacy-20261113).
-- [**V4** — neural blind watermark Studio](archive/v4/README.md): 40-bit Sony SilentCipher-based work (pretrained third-party model); [archived code snapshot](https://github.com/suibianba12138/blind-audio-watermarking/tree/archive/v4-studio-20261113), [historical Draft PR #5](https://github.com/suibianba12138/blind-audio-watermarking/pull/5).
+V4's third-party **Sony SilentCipher** pretrained model is not part of this reference-assisted C2/C3 release. The existing [Render demo](https://blind-audio-watermarking-demo.onrender.com/) is **historical V3**, not a C2/C3 online inference service. The [current showcase website](https://shengkaini.com/blind-audio-watermarking/) is an **interactive visualization with real recorded media**, not a live embedding or detection engine.
 
-**Website/deployment status:** [shengkaini.com/blind-audio-watermarking](https://shengkaini.com/blind-audio-watermarking/) still displays the **historical V4** site, and [the Render demo](https://blind-audio-watermarking-demo.onrender.com/) remains **V3**. Neither is the new C2/C3 online calculator. Their redesign/deployment is a separate step; this GitHub release does not silently update them.
+## License, Attribution & Scope
 
-## Attribution and limitations
+Course code is MIT-licensed; music has separate **CC BY 3.0** attribution. The selected track is *Where You Are Now* by Benjamin Orth (featuring Wolf Fly), [source page](https://www.ccmixter.org/files/Benjamin_Orth/33036); the 72-second version has been downmixed, resampled, cropped, watermarked and encoded. See [third-party notices](course_release/THIRD_PARTY_NOTICES.md) and [source provenance](course_release/SOURCE_PROVENANCE.json).
 
-Original course code: [MIT License](LICENSE); release package also includes [license](course_release/LICENSE), [third-party notices](course_release/THIRD_PARTY_NOTICES.md) and [source provenance](course_release/SOURCE_PROVENANCE.json). The sample music is **CC BY 3.0**, not MIT. Frozen experimental keys, third-party neural weights and private experimental workspaces are not published.
+The detector assumes the matching original reference and substantially aligned material. Arbitrary clipping, deliberate removal/forgery, source discovery and cryptographic proof of copyright have **not** been established.
 
-The design assumes a matching original reference and an aligned, substantially intact recording. It does not establish arbitrary-crop detection, intentional watermark attack resistance, large-scale source identification or cryptographic proof of origin.
+---
 
-*DSP course project · 2026 · Reference-assisted multiband audio watermarking*
+<div align="center"><sub>Audio Watermarking · Digital Signal Processing Course Project · 2026 · Original audio → Watermarked audio → Real processing → Reference-assisted recovery</sub></div>

@@ -4,14 +4,13 @@ V4 explored a different approach: **Sony Research's third-party pretrained Silen
 
 ### Preserved development snapshot
 
-- [Frozen-at-archive code branch](https://github.com/suibianba12138/blind-audio-watermarking/tree/archive/v4-studio-20261113), starting from commit `68830f41`.
-- [Original V4 preparation branch](https://github.com/suibianba12138/blind-audio-watermarking/tree/upgrade/v4-github-prep).
-- [Historical Draft PR #5](https://github.com/suibianba12138/blind-audio-watermarking/pull/5), which was not merged into the course-final `main`.
-- [Legacy English README snapshot](../README_previous_main_2026-11-13.md) and [Chinese snapshot](../README_ZH_previous_main_2026-11-13.md).
-- [Existing personal project site](https://shengkaini.com/blind-audio-watermarking/) currently still shows V4 content; it is not a C2/C3 live engine.
+- [Historical code snapshot](https://github.com/suibianba12138/blind-audio-watermarking/tree/archive/v4-studio-20261113), at commit `68830f41`.
+- [Original V4 working branch](https://github.com/suibianba12138/blind-audio-watermarking/tree/upgrade/v4-github-prep) and [historical Draft PR #5](https://github.com/suibianba12138/blind-audio-watermarking/pull/5).
+- [Historical English README](../README_previous_main_2026-11-13.md) and [Chinese README](../README_ZH_previous_main_2026-11-13.md).
+- The previous V4 project landing page is preserved in the personal homepage repository's [archive branch](https://github.com/suibianba12138/suibianba12138.github.io/tree/archive/audio-watermark-v4-20261113). The **live project website now features C2/C3**.
 
-The V4 local model stage used **40-bit / 12-second** payloads. Historic small-sample P9 results included 24/24 correct accepted in Clean and MP3, and 23/24 in AAC; such results are for a different model, detector and dataset.
+V4 experiments used **40-bit payload / 12-second inputs**. Recorded P9 results over a limited source set were 24/24 correctly accepted for Clean, 24/24 for MP3, and 23/24 for AAC; these cannot be merged with the C2/C3 evaluation protocol.
 
-**Attribution:** SilentCipher is third-party pretrained work, not a model designed or trained by this course team. Model weights and upstream code are not redistributed in the C2/C3 course package. Refer to Sony's official project for licensing and model availability.
+SilentCipher is a **third-party pretrained model**, not a model developed or trained by this course team. Its weights are not bundled in the C2/C3 release.
 
-For the project presented in the final DSP course: [C2/C3 release](../../course_release/).
+For the final course DSP system, see [C2/C3](../../course_release/).

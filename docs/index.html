@@ -1,261 +1,28 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="color-scheme" content="light">
-<meta name="theme-color" content="#fafafa">
-<meta name="description" content="Explore 40-bit watermark recovery after real MP3/AAC compression through an interactive replay of verified V4 experiment results.">
-<meta property="og:title" content="Robust Audio Watermarking | V4 Studio">
-<meta property="og:description" content="40-bit blind audio watermarking · Real MP3/AAC · Reproducible experiments · V3 live demonstration">
-<title>Robust Audio Watermarking | Project Showcase</title>
-<link rel="stylesheet" href="./assets/v4-showcase.css">
-<link rel="stylesheet" href="./assets/v4-experience.css">
-<link rel="stylesheet" href="./assets/v4-listening.css">
-<script src="./assets/v4-showcase.js" defer></script>
-<script src="./assets/v4-experience.js" defer></script>
-<script src="./assets/v4-listening.js" defer></script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light"><meta name="theme-color" content="#f7f6f2">
+<meta name="description" content="数字音频水印系统：基于多频带相对能量调制与参考辅助检测的 DSP 课程设计。真实音乐试听、两种消息模式与信号处理过程。">
+<meta property="og:title" content="Audio Watermarking · 数字音频水印系统">
+<meta property="og:description" content="让信息留在声音里。真实音乐中的信息嵌入、编解码处理与参考辅助恢复。">
+<title>Audio Watermarking · 数字音频水印系统</title>
+<link rel="stylesheet" href="./assets/styles.css"><script src="./assets/app.js" defer></script>
 </head>
 <body>
-<a class="skip" href="#overview">Skip to content</a>
-<header class="topbar">
-  <div class="top-inner">
-    <a href="#top" class="brand"><span class="brand-icon" aria-hidden="true">N</span> Robust Audio Watermarking</a>
-    <nav class="topnav" aria-label="Primary navigation">
-      <a href="#overview">Overview</a>
-      <a href="#lab">V4 Demo</a><a href="#listen">Listen</a><a href="#evidence">Results</a>
-      <a href="#method">System</a>
-      <a href="#versions">Versions</a><a href="./v3/">V3 DSP ↗</a>
-      <a href="https://shengkaini.com/">Home ↗</a>
-      <a href="https://github.com/suibianba12138/blind-audio-watermarking">GitHub ↗</a>
-    </nav>
-  </div>
-</header>
-<main id="top">
-  <section class="wrap v4-intro" aria-labelledby="page-title">
-    <div class="v4-intro-grid">
-      <div class="v4-intro-copy">
-        <div class="eyebrow">SIGNAL PROCESSING / BLIND AUDIO WATERMARKING / 2026</div>
-        <p class="v4-intro-brand">Robust Audio Watermarking Studio <span>V4</span></p>
-        <h1 id="page-title">An invisible message.<br><em>Still there after compression.</em></h1>
-        <p class="v4-intro-lead">Embedding 40 bits into a 12-second recording—and recovering the exact message from independently received MP3 and AAC files.</p>
-        <p class="v4-intro-zh" lang="zh-CN">听不见的信息，看得见的恢复结果。以真实音频压缩与盲检测为核心的音频水印实验。</p>
-        <div class="v4-intro-actions"><a class="pill primary" href="#lab">Explore a real V4 result ↓</a><a class="pill" href="#evidence">Quantitative evidence</a><a class="pill" href="https://blind-audio-watermarking-demo.onrender.com/" target="_blank" rel="noopener noreferrer">Live V3 system ↗</a></div>
-        <div class="v4-inline-metrics"><div><strong>40</strong><span>payload bits</span></div><div><strong>12 s</strong><span>model input</span></div><div><strong>44.1k</strong><span>sample rate (Hz)</span></div></div>
-      </div>
-      <aside class="v4-fingerprint" aria-label="Digital fingerprint of the recorded P4 message">
-        <div class="v4-fingerprint-top"><span>WATERMARK / DIGITAL FINGERPRINT</span><span class="v4-indicator">● VERIFIED INPUT</span></div>
-        <div class="v4-fingerprint-label">The message behind the sound.</div>
-        <div class="v4-fingerprint-hex">A4 <span>D9</span> 7E <span>21</span> 6B</div>
-        <div class="v4-fingerprint-bits" id="fingerprintBits" aria-label="40 bits from message A4D97E216B"></div>
-        <div class="v4-fingerprint-rule"></div>
-        <div class="v4-fingerprint-bottom"><div><small>PAYLOAD</small><strong>5 BYTES / 40 BITS</strong></div><div><small>CHECKED CHANNELS</small><strong>WAV · MP3 · AAC</strong></div></div>
-        <p class="v4-fingerprint-disclaimer">The bars encode the real fixed payload bits—not an audio waveform or a measured spectrogram.</p>
-      </aside>
-    </div>
-  </section>
-
-  <section class="wrap v4-lab section" id="lab">
-    <div class="section-head"><div><div class="kicker">THE WATERMARK FORENSICS DESK</div><h2>Can you find the hidden message?</h2><p>Switch source recordings and real codec outputs. The receiver replays <strong>stored V4 detector responses</strong> from the frozen P4 acceptance, plus a documented P9 failure example. This page does not run new inference.</p></div><span class="badge">REAL FILE TESTS · INTERACTIVE REPLAY</span></div>
-    <div class="v4-lab-layout">
-      <div class="v4-lab-controls">
-        <div class="v4-mini-heading"><span>01</span> CHOOSE A RECORDING</div>
-        <div class="v4-specimens" role="group" aria-label="Recorded V4 source">
-          <button type="button" class="v4-specimen" data-record="music_01" aria-pressed="true"><span class="v4-specimen-icon">♪</span><span><strong>Music / 01</strong><small>FMA · source 44.1 kHz</small></span></button>
-          <button type="button" class="v4-specimen" data-record="music_02" aria-pressed="false"><span class="v4-specimen-icon">♫</span><span><strong>Music / 02</strong><small>FMA · source 44.1 kHz</small></span></button>
-          <button type="button" class="v4-specimen" data-record="speech-librivox-0004" aria-pressed="false"><span class="v4-specimen-icon">≋</span><span><strong>Speech / 01</strong><small>LibriVox · source 16 kHz</small></span></button>
-          <button type="button" class="v4-specimen" data-record="noise-free-sound-0005" aria-pressed="false"><span class="v4-specimen-icon">◌</span><span><strong>Environment / 01</strong><small>FreeSound · source 16 kHz</small></span></button>
-        </div>
-        <div class="v4-mini-heading second"><span>02</span> CHOOSE A CHANNEL</div>
-        <div class="v4-codecs" role="group" aria-label="Received audio condition">
-          <button type="button" data-codec="clean_wav" aria-pressed="false">Clean WAV</button>
-          <button type="button" data-codec="mp3_128k" aria-pressed="false">MP3 · 128k</button>
-          <button type="button" data-codec="aac_lc_m4a_128k" aria-pressed="true">AAC · 128k</button>
-        </div>
-        <button type="button" id="v4-replay-run" class="v4-replay-run">Replay recorded blind detection <span>↗</span></button>
-        <div class="v4-special-cases"><div class="v4-mini-heading"><span>03</span> TEST THE BOUNDARIES</div>
-          <button type="button" data-special="negative" class="v4-special-button">Unwatermarked control <span>UNKNOWN</span></button>
-          <button type="button" data-special="p9" class="v4-special-button">P9 · Correct AAC payload, rejected <span>0.674603</span></button>
-        </div>
-        <p class="v4-control-note">No new model calls occur here. Buttons select archived results; replay motion is an illustration, not measured execution time.</p>
-      </div>
-      <div class="v4-lab-console" aria-label="Recorded blind detector response">
-        <div class="v4-console-top"><span>BLIND DETECTOR / RECORDED RESPONSE</span><span id="v4-record-id">P4 · MUSIC_01 · AAC</span></div>
-        <div class="v4-console-statusline"><span class="v4-live-dot" aria-hidden="true"></span><span id="v4-result-state">IDENTIFIED</span><span class="v4-console-mode">REPLAY / NO LIVE INFERENCE</span></div>
-        <div class="v4-console-payloads">
-          <div><label>EMBEDDED MESSAGE · 5 BYTES</label><div id="v4-tx-payload" class="v4-payload">A4 D9 7E 21 6B</div></div>
-          <div class="v4-copy-indicator" aria-hidden="true">↘</div>
-          <div><label id="v4-rx-label">INDEPENDENTLY RECOVERED MESSAGE</label><div id="v4-rx-payload" class="v4-payload recovered">A4 D9 7E 21 6B</div></div>
-        </div>
-        <div class="v4-console-score"><div><small>DETECTOR SCORE / PROVISIONAL POLICY</small><strong id="v4-confidence">0.984127</strong></div><div class="v4-console-threshold"><span>THRESHOLD</span><b>0.680556</b></div></div>
-        <div class="v4-scale" id="v4-score-scale" aria-label="Detection score compared with the provisional threshold"><span class="v4-scale-track"></span><span class="v4-scale-threshold"></span><span class="v4-scale-marker" id="v4-scale-marker"></span></div>
-        <div class="v4-scale-captions"><span>0.00</span><span>0.50</span><span>1.00</span></div>
-        <div class="v4-console-metrics"><div><small>EXPORTED SNR</small><strong id="v4-snr">48.49 dB</strong></div><div><small>ALIGNED LSD</small><strong id="v4-lsd">3.535 dB</strong></div><div><small>DETECTION TIME</small><strong id="v4-runtime">6.28 s</strong></div></div>
-        <div class="v4-console-explanation" id="v4-result-explanation" role="status">The M4A file was downloaded and re-uploaded independently. The recovered payload exactly matches the fixed message and passed the frozen presence gate.</div>
-        <div class="v4-console-foot"><span id="v4-provenance">SOURCE: P4 ACCEPTANCE · MUSIC_01</span><a id="v4-source-link" href="https://github.com/suibianba12138/blind-audio-watermarking/blob/upgrade/v4-github-prep/experiments/v4_end_to_end_acceptance/results.json" target="_blank" rel="noopener noreferrer">View source record ↗</a></div>
-      </div>
-    </div>
-    <div class="v4-lab-bottom"><div><strong>What this demonstrates</strong><p>Independent blind file recovery of a fixed 40-bit payload. Controls switch real recorded results, not generated success claims.</p></div><div><strong>What it does not demonstrate</strong><p>This static replay cannot process visitors' audio or prove inaudibility. The original/watermarked A/B audio exports exist locally, but have not been published as verified website media.</p></div></div>
-  </section>
-  <section class="wrap v4-listen section" id="listen" aria-labelledby="listen-heading">
-    <div class="section-head">
-      <div><div class="kicker">LISTENING LAB / FROZEN P4 ASSETS</div><h2 id="listen-heading">Hear the watermark—or try to.</h2>
-      <p>Listen to the <strong>same 12-second excerpt</strong> before and after embedding, then compare the actual MP3 and AAC files used for independent blind detection. Pair the listening test with the detector scores below.</p></div>
-      <span class="badge" id="v4-audio-availability">AUDIO · VALIDATION PENDING</span>
-    </div>
-    <div class="v4-audio-layout">
-      <div class="v4-audio-main">
-        <div class="v4-audio-top"><div><small>TRACK SELECTION / CC0 MUSIC</small><h3>Original versus watermarked</h3></div><span class="v4-audio-format">12 s · 44.1 kHz · mono</span></div>
-        <div class="v4-audio-trackset" role="group" aria-label="Choose music sample">
-          <button type="button" data-audio-track="music_01" aria-pressed="true"><span>01</span> Sax &amp; piano</button>
-          <button type="button" data-audio-track="music_02" aria-pressed="false"><span>02</span> Free To Use</button>
-        </div>
-        <div class="v4-audio-ab">
-          <div class="v4-audio-card">
-            <span class="v4-audio-index">A / ORIGINAL</span>
-            <strong>Prepared source</strong>
-            <p>No embedded 40-bit message.</p>
-            <audio id="v4-player-original" controls preload="none" aria-label="Original source audio"></audio>
-          </div>
-          <div class="v4-audio-card">
-            <span class="v4-audio-index">B / WATERMARKED</span>
-            <strong>Watermarked WAV</strong>
-            <p>Actual SilentCipher 40-bit export.</p>
-            <audio id="v4-player-watermarked" controls preload="none" aria-label="Watermarked audio"></audio>
-          </div>
-        </div>
-        <div class="v4-audio-compare">
-          <button type="button" id="v4-ab-toggle" disabled>Switch A ↔ B at playback position</button>
-          <span id="v4-audio-comparison-note">Player files will appear only after verified experiment audio is published.</span>
-        </div>
-        <div class="v4-audio-encoding">
-          <div class="v4-audio-mini-title">SAME WATERMARKED AUDIO / REAL 128 KBPS CODECS</div>
-          <div class="v4-audio-encoded-grid">
-            <div><label for="v4-player-mp3">MP3 · libmp3lame</label><audio id="v4-player-mp3" controls preload="none" aria-label="Real MP3 channel output"></audio><a id="v4-mp3-download" hidden download>Download MP3 ↗</a></div>
-            <div><label for="v4-player-aac">AAC-LC · M4A</label><audio id="v4-player-aac" controls preload="none" aria-label="Real AAC M4A channel output"></audio><a id="v4-aac-download" hidden download>Download M4A ↗</a></div>
-          </div>
-          <p class="v4-audio-playback-hint">M4A playback depends on browser support. Downloads remain available when media are published.</p>
-        </div>
-        <p id="v4-audio-status" class="v4-audio-status" role="status">The listening panel is ready; authentic P4 audio files have not been published yet. No simulated or replacement recording is used.</p>
-      </div>
-      <aside class="v4-audio-evidence">
-        <small>DECODE RECORD / SELECTED MUSIC</small>
-        <h3>Listen. Compress. Recover.</h3>
-        <div class="v4-audio-message"><span>EMBEDDED MESSAGE</span><strong>A4D97E216B</strong></div>
-        <div class="v4-audio-scoreline"><span>Clean WAV</span><b id="v4-listen-clean">1.000000</b><i>IDENTIFIED</i></div>
-        <div class="v4-audio-scoreline"><span>MP3 128 kbps</span><b id="v4-listen-mp3">0.988095</b><i>IDENTIFIED</i></div>
-        <div class="v4-audio-scoreline"><span>AAC/M4A 128 kbps</span><b id="v4-listen-aac">0.984127</b><i>IDENTIFIED</i></div>
-        <div class="v4-audio-quality"><div><span>WATERMARK EXPORT SNR</span><strong id="v4-listen-snr">48.49 dB</strong></div><div><span>ALIGNED LSD</span><strong id="v4-listen-lsd">3.535 dB</strong></div></div>
-        <p>These are <strong>frozen P4 detector responses</strong>, not measurements made in your browser. A successful decode does not prove that the watermark is inaudible.</p>
-        <a class="v4-audio-evidence-link" href="#lab">Inspect the corresponding detector result →</a>
-        <a id="v4-audio-origin" class="v4-audio-origin" href="https://freemusicarchive.org/music/maarten-schellekens/public-domain-1/sax-and-piano-free-track/" target="_blank" rel="noopener noreferrer">Original recording · FMA / CC0 ↗</a>
-      </aside>
-    </div>
-  </section>
-
-  <section class="wrap prose" id="overview">
-    <h2>Abstract</h2>
-    <p>Audio watermarking embeds a compact message into a signal while seeking to preserve the listening experience and enable recovery after signal processing. This project develops a reproducible <strong>40-bit blind audio watermarking workflow</strong> around Sony Research's existing SilentCipher pretrained model. The V4 Studio combines message embedding, actual MP3/AAC-LC codec round trips, independent file-based detection, and waveform/STFT quality inspection.</p>
-    <p>The project also preserves a <strong>traditional 8-bit FFT/QIM + Soft-Code DSP baseline (V3)</strong>. V4 provides the main experimental results; V3 remains accessible as a separate <em>live</em> web application. The V4 model runs locally on CPU and is not served from this static project page.</p>
-  </section>
-
-  <section class="wrap section" id="evidence">
-    <div class="section-head"><div><div class="kicker">QUANTITATIVE EVIDENCE</div><h2>Blind recovery after compression</h2><p>Explore the reported P9 results by channel. These are <strong>recorded evaluations</strong>: 12 source-distinct clips × 2 fixed messages, with the same marked WAV tested over three channel conditions.</p></div><span class="badge">P9 · FROZEN RESULTS</span></div>
-    <div class="data-layout">
-      <section class="card data-main" aria-label="Historical results explorer">
-        <div class="panel-head"><div><small>REPORTED RESULTS / POSITIVE WATERMARKS</small><strong>Channel reliability</strong></div><span class="badge">RECORD DISPLAY</span></div>
-        <div class="tabset" role="tablist" aria-label="Choose recorded codec condition">
-          <button class="tab" type="button" role="tab" id="tab-clean" aria-controls="channel-result" data-condition="clean" aria-selected="false">Clean WAV</button>
-          <button class="tab" type="button" role="tab" id="tab-mp3" aria-controls="channel-result" data-condition="mp3" aria-selected="true">MP3 · 128 kbps</button>
-          <button class="tab" type="button" role="tab" id="tab-aac" aria-controls="channel-result" data-condition="aac" aria-selected="false">AAC/M4A · 128 kbps</button>
-        </div>
-        <div id="channel-result" role="tabpanel" aria-labelledby="tab-mp3" aria-live="polite">
-          <div class="measurement"><div><small>CORRECTLY ACCEPTED / TESTED</small><strong id="successMetric">24 / 24</strong></div><div class="right"><small>RECOVERY RATE IN THIS SET</small><strong id="percentMetric">100%</strong></div></div>
-          <div class="meter" role="img" aria-label="Correct accepted recovery fraction" id="resultMeter"><div id="meterFill" class="meter-fill"></div></div>
-          <div class="stat-row"><span id="conditionLabel">MP3 · 128 kbps</span><span><b id="rawExact">24 / 24</b> raw exact decodes</span></div>
-          <p class="data-note" id="conditionNote">Real libmp3lame CBR encoding and re-decoding; 24/24 correct messages passed the frozen presence threshold.</p>
-        </div>
-      </section>
-      <aside class="card detail-card" aria-label="Evaluation protocol">
-        <div class="tagline">EXPERIMENT CONTRACT</div><h3>What the counts mean</h3>
-        <div class="detail-list"><span>Independent positive sources</span><b>12</b></div>
-        <div class="detail-list"><span>Pre-fixed messages / source</span><b>2</b></div>
-        <div class="detail-list"><span>Payload length</span><b>40 bit</b></div>
-        <div class="detail-list"><span>Recording categories</span><b>Music / Speech / Environment</b></div>
-        <div class="detail-list"><span>Unwatermarked recordings</span><b>24 sources</b></div>
-        <div class="detail-list"><span>Incorrect accepted messages</span><b>0 observed</b></div>
-        <div class="detail-note">The 24 positive trials per codec are <strong>not 24 independent audio sources</strong>. No wrong message was accepted in the evaluated positives; the 24 watermark-free recordings produced 0/24 accepted detections per channel. This is <strong>not</strong> a population-level false-accept-rate estimate.</div>
-      </aside>
-    </div>
-    <div class="section-head" style="margin-top:36px"><div><div class="kicker">END-TO-END FILE VALIDATION</div><h2>Four selected showcase clips</h2><p>A separate P4 acceptance used downloaded files re-uploaded to the blind detector through real Gradio HTTP endpoints. This is a selected demo, not a new independent generalization evaluation.</p></div></div>
-    <div class="case-select" role="group" aria-label="Select a recorded source category">
-      <button type="button" data-case="music" aria-pressed="true">Music × 2</button>
-      <button type="button" data-case="speech" aria-pressed="false">Speech × 1</button>
-      <button type="button" data-case="environment" aria-pressed="false">Environment × 1</button>
-    </div>
-    <div class="case-grid" id="caseGrid" aria-live="polite">
-      <article class="case-card"><small>CLEAN WAV</small><strong>2/2</strong><span>Exact message accepted</span></article>
-      <article class="case-card"><small>MP3 128 KBPS</small><strong>2/2</strong><span>Exact message accepted</span></article>
-      <article class="case-card"><small>AAC/M4A 128 KBPS</small><strong>2/2</strong><span>Exact message accepted</span></article>
-    </div>
-    <p class="small-note" id="caseNote">Music: 2 selected sources, each accepted under all three tested file conditions. A human A/B listening pass and full visual-browser acceptance remain pending.</p>
-  </section>
-
-  <section class="wrap section" id="method">
-    <div class="section-head"><div><div class="kicker">SYSTEM DESIGN</div><h2>From watermark to evidence</h2><p>Four modules implement the actual local Studio workflow. The public web page here is a recorded-evidence showcase, not the V4 production UI or neural-model backend.</p></div></div>
-    <div class="method-flow">
-      <article><small>01 / WATERMARK</small><h3>Message embedding</h3><p>Prepare 12 s of mono 44.1 kHz audio and embed a 5-byte message with the upstream pretrained neural model.</p><p class="micro">SILENTCIPHER · 40 BIT · WAV</p></article>
-      <article><small>02 / CHANNEL LAB</small><h3>Real audio codecs</h3><p>FFmpeg round trips through MP3 CBR 128 kbps or AAC-LC/M4A 128 kbps; separate noise/crop diagnostics are also available locally.</p><p class="micro">FFMPEG · MP3 · AAC-LC</p></article>
-      <article><small>03 / BLIND DETECTION</small><h3>Independent receiver</h3><p>Re-upload downloaded files. The detector sees only the received audio and selected backend, not the source or expected bytes.</p><p class="micro">NO REFERENCE · PROVISIONAL GATE</p></article>
-      <article><small>04 / SIGNAL ANALYSIS</small><h3>Quality inspection</h3><p>Align the reference and modified signals, display waveforms, STFT magnitudes and spectral differences; compute SNR/LSD when alignment is credible.</p><p class="micro">STFT · SNR · LSD</p></article>
-    </div>
-  </section>
-
-  <section class="wrap section" id="versions">
-    <div class="section-head"><div><div class="kicker">PROJECT VERSIONS</div><h2>Neural V4 and classical V3</h2><p>V4 is the featured result. V3 is a genuinely usable online system hosted separately; older versions and repository history are preserved.</p></div></div>
-    <div class="compare">
-      <article class="v4-card">
-        <div class="version-top"><small>PRIMARY SHOWCASE · V4</small><b>RECORDED RESULTS</b></div>
-        <h3 class="version-title">Robust Audio Watermarking Studio</h3>
-        <p class="version-copy">A 40-bit neural blind watermarking system with real codec processing, independent detection and signal analysis. Built on Sony's pretrained SilentCipher model; the model is third-party, not developed here. The full Studio runs locally, while this public page presents its verified results and architecture.</p>
-        <div class="version-spec"><span>40-bit payload</span><span>12 s / 44.1 kHz</span><span>MP3 / AAC</span><span>CPU model</span></div>
-        <div class="version-actions">
-          <a class="pill primary" href="#evidence">V4 results ↑</a>
-          <a class="pill" href="https://github.com/suibianba12138/blind-audio-watermarking/tree/upgrade/v4-github-prep" target="_blank" rel="noopener noreferrer">V4 source & reports ↗</a>
-        </div>
-      </article>
-      <article class="v3-card">
-        <div class="version-top"><small>CLASSIC DSP · V3</small><b>LIVE DEMO</b></div>
-        <h3 class="version-title">FFT / QIM + Soft-Code</h3>
-        <p class="version-copy">An independent classical DSP achievement: an 8-bit message mapped into 32 physical bits using a fixed Soft-Code, REAL_TOP32 spectral QIM, and soft-decision blind decoding. The frozen V3 validation recovered 117/120 messages after MP3 128 kbps. Explore the method in its dedicated study, or run its live online demo.</p>
-        <div class="version-spec"><span>8-bit effective payload</span><span>6 s / 48 kHz</span><span>Classic DSP</span></div>
-        <div class="version-actions">
-          <a class="pill primary" href="./v3/">Explore V3 methodology ↗</a><a class="pill" href="https://blind-audio-watermarking-demo.onrender.com/" target="_blank" rel="noopener noreferrer">Try real V3 demo ↗</a>
-          <a class="pill" href="https://github.com/suibianba12138/blind-audio-watermarking/tree/feat/v3-8bit-integration" target="_blank" rel="noopener noreferrer">V3 frozen code ↗</a>
-        </div>
-        <p class="small-note">Hosted V3 may need an initial cold start. V3 and V4 used different evaluation protocols, so their headline acceptance counts are not a paired benchmark.</p>
-      </article>
-    </div>
-    <div class="section-head" style="margin-top:40px"><div><div class="kicker">VERSION ARCHIVE</div><h2>Development history</h2></div></div>
-    <div class="history">
-      <article><div class="history-head"><small>V2 / COURSE BASELINE</small><span>2026</span></div><h3>Four-identity FFT/QIM</h3><p>Original traditional DSP course prototype: four identities encoded with a redundant 32-position codeword, followed by real MP3 testing.</p><a href="./v2/">Read V2 history ↗</a></article>
-      <article><div class="history-head"><small>V3 / FROZEN CLASSIC</small><span>2026</span></div><h3>8-bit Soft-Code</h3><p>REAL_TOP32 carrier selection, 8-to-32-bit encoding and soft-decision blind detection. 117/120 correctly accepted under source-disjoint MP3 tests.</p><a href="./v3/">Read V3 technical study ↗</a></article>
-      <article><div class="history-head"><small>V4 / CURRENT SHOWCASE</small><span>2026</span></div><h3>40-bit neural Studio</h3><p>New blind watermarking backend, AAC/MP3 verification, instrumented experiments and a local four-tab Studio.</p><a href="https://github.com/suibianba12138/blind-audio-watermarking/pull/5" target="_blank" rel="noopener noreferrer">Inspect V4 integration PR ↗</a></article>
-    </div>
-  </section>
-
-  <section class="wrap limitations" id="limitations">
-    <h2>Limitations & reproducibility</h2>
-    <p><strong>Recorded, not live V4:</strong> The tabs above switch among frozen results; they do not run watermark inference. The official Sony model and weights are not hosted or redistributed through this page. The V4 Studio is a local CPU program; the separately linked V3 service is the only live demo.</p>
-    <p><strong>Scope:</strong> The 12-source P9 trial supports bounded results on the tested music/speech/environment files, not a global robustness or false-accept-rate claim. One AAC candidate recovered the correct message but fell below the provisional presence threshold (23/24 accepted). Time edits and cropping remain unreliable. Some subjective quality checks are pending; objective SNR/LSD cannot establish inaudibility.</p>
-    <p><strong>Attribution:</strong> SilentCipher neural architecture and pretrained weights belong to Sony Research, not this project's authors. Evaluation materials are not redistributed here. Consult the original repository and the model terms before using checkpoints.</p>
-    <div class="references">
-      <a href="https://github.com/suibianba12138/blind-audio-watermarking/tree/upgrade/v4-github-prep/docs/reports/v4" target="_blank" rel="noopener noreferrer">V4 experiment reports ↗</a>
-      <a href="https://github.com/sony/silentcipher" target="_blank" rel="noopener noreferrer">Upstream SilentCipher ↗</a>
-      <a href="https://github.com/suibianba12138/blind-audio-watermarking" target="_blank" rel="noopener noreferrer">Full project repository ↗</a>
-    </div>
-  </section>
-</main>
-<footer class="wrap footer"><span>Robust Audio Watermarking · 2026 · Communication Engineering</span><span>V4 showcase / V3 live demonstration / V2 archive</span><a href="#top">Back to top ↑</a></footer>
+<a class="skip" href="#main">跳转到正文</a>
+<header class="masthead"><div class="nav-inner"><a class="brand" href="https://shengkaini.com/" aria-label="返回个人主页"><span class="brand-mark">K</span><span>PROJECTS<span class="brand-dot"> / </span> DSP</span></a><nav class="nav-menu" aria-label="页面导航"><a href="#system">系统设计</a><a href="#listen">音频试听</a><a href="#method">实现原理</a><a href="#processing">信号处理</a><a href="#results">实验结果</a></nav><a href="https://github.com/suibianba12138/blind-audio-watermarking" class="nav-git" target="_blank" rel="noopener noreferrer">Source ↗</a><button id="menuToggle" class="menu-toggle" type="button" aria-expanded="false" aria-label="展开导航"><span></span><span></span></button></div></header>
+<main id="main">
+<section class="hero wrap" id="top"><div class="hero-topline"><span>电子科技大学 · 数字信号处理课程设计</span><span>2026 / COURSE PROJECT</span></div><div class="hero-grid"><div class="hero-main"><div class="eyebrow"><span class="minor-rule"></span> AUDIO WATERMARKING</div><h1>让信息<br><em>留在声音里。</em></h1><p class="hero-description">在真实音乐中嵌入数字消息，在常见音频处理后尝试恢复。我们实现了一个参考辅助的多频带数字音频水印系统，并为不同的信息需求设计了两种工作模式。</p><div class="hero-actions"><a href="#listen" class="action dark">试听真实音频 <span>↗</span></a><a href="#system" class="action plain">了解系统 <span>↓</span></a></div></div><div class="hero-aside"><div class="eyebrow small">SELECTED RECORDING / 01</div><div class="hero-record"><div class="record-disc" aria-hidden="true"><div class="record-center"></div></div><div class="record-label"><span>72 s · MUSIC</span><strong>Where You Are Now</strong><small>Benjamin Orth · feat. Wolf Fly</small></div></div><div class="hero-audio-stats"><div><span>两种模式</span><strong>32 / 192 <small>bit</small></strong></div><div><span>嵌入音质</span><strong>45.0 <small>dB SNR</small></strong></div></div><p class="hero-aside-foot">一段真实连续音乐，贯穿嵌入、转码与水印恢复的展示。</p></div></div><div class="hero-baseline"><span>01 — 源音频</span><i></i><span>02 — 信息嵌入</span><i></i><span>03 — 音频处理</span><i></i><span>04 — 信息恢复</span></div></section>
+<section class="intro-panel"><div class="wrap intro-grid"><div class="section-count">01 / INTRODUCTION</div><div><h2>信息不仅存在于文件标签，<br>也可以写进音频信号。</h2><p>当同一段音乐被重新编码、导出或分发时，文件名和元数据可能发生变化。数字水印提供了一种内容内的信息载体：让标识与音频信号一起经历处理。</p><p class="soft-note">本系统面向已知原音的受控分发场景。检测需要对应原音作为参考，不宣称任意音乐识别或版权真实性认证。</p></div></div></section>
+<section id="system" class="section wrap"><div class="section-head"><div class="section-count">02 / SYSTEM</div><div><h2>一套方法，两种使用方式。</h2><p>水印通过多频带能量调制写入音乐；接收后结合原音参考，以统计方式恢复消息。</p></div></div><div class="architecture" role="img" aria-label="嵌入端、音频处理与参考辅助检测的系统流程"><div class="architecture-grid"><div class="arch-label">EMBEDDING</div><div class="arch-box"><b>原音 · 消息 · 密钥</b><span>Original / Payload / Key</span></div><div class="arch-arrow">→</div><div class="arch-box active"><b>时频域水印嵌入</b><span>FFT · Chip Mapping · Band Pair</span></div><div class="arch-arrow">→</div><div class="arch-box"><b>水印音频</b><span>Watermarked WAV</span></div><div class="arch-label">CHANNEL</div><div class="arch-channel" colspan="5">有损编码 MP3 / AAC　 ·　 音量调整　 ·　 重采样</div><div class="arch-label">DETECTION</div><div class="arch-box"><b>接收音 · 原音 · 密钥</b><span>Received / Reference / Key</span></div><div class="arch-arrow">→</div><div class="arch-box active"><b>参考差分与统计判决</b><span>Alignment · Band Difference · Chips</span></div><div class="arch-arrow">→</div><div class="arch-box"><b>恢复消息 / UNKNOWN</b><span>Recovered Payload</span></div></div><p class="arch-caption">接收端使用匹配的无水印原音，但不会预先获得待恢复的消息。</p></div>
+<div class="mode-tabs"><div class="mode-intro"><span class="micro-label">MESSAGE LAYOUT</span><h3>信息是如何分配在 72 秒音乐里的？</h3></div><div class="mode-controls" role="group" aria-label="选择水印工作模式"><button type="button" data-mode="robust" aria-pressed="false">高可靠身份</button><button type="button" data-mode="capacity" aria-pressed="true">高容量消息</button></div></div><div class="mode-view"><div class="mode-copy"><div id="modeBadge" class="eyebrow small">HIGH-CAPACITY / C3-16</div><h3 id="modeTitle">16 bit × 12 块</h3><p id="modeDescription">每 6 秒承载一段新的 16-bit 信息。连续 72 秒的 12 个数据块组成 192-bit 独立消息。</p><div class="mode-facts"><span id="modeFactA">192 bit <small>独立信息</small></span><span id="modeFactB">12 × 6 s <small>时间布局</small></span></div></div><div class="mode-visual"><div class="timeline-meta"><span>00:00</span><span>01:12</span></div><div id="timeline" class="timeline" aria-label="12 个六秒水印块"></div><div id="timelineCaption" class="timeline-caption">12 个不同的 16-bit 消息块 · 点击任一块可查看时间位置</div></div></div></section>
+<section id="listen" class="section listen-section"><div class="wrap"><div class="section-head"><div class="section-count">03 / LISTEN</div><div><h2>听起来，变化有多大？</h2><p>同一段 72 秒音乐：原音、带水印 WAV 和真实编码得到的 MP3、AAC。切换后可在相近时间位置对比。</p></div></div><div class="listen-surface"><div class="player-heading"><div><span class="micro-label">LICENSED MUSIC / SELECTED CASE</span><h3>Where You Are Now <i>— 72 seconds</i></h3><p>Benjamin Orth · featuring Wolf Fly · CC BY 3.0</p></div><span class="music-note" aria-hidden="true">♫</span></div><div class="source-switch" role="group" aria-label="选择音频"><button type="button" data-audio="original" aria-pressed="true"><strong>Original</strong><span>原始 WAV</span></button><button type="button" data-audio="marked" aria-pressed="false"><strong>Watermarked</strong><span>嵌入后 WAV</span></button><button type="button" data-audio="mp3" aria-pressed="false"><strong>MP3</strong><span>128 kbps</span></button><button type="button" data-audio="aac" aria-pressed="false"><strong>AAC</strong><span>128 kbps</span></button></div><div class="playback"><button type="button" id="playToggle" class="play-button" aria-label="播放音频"><span id="playIcon">▶</span></button><div class="wave-area"><canvas id="audioWave" height="124" aria-label="实际音乐波形绘制"></canvas><input type="range" min="0" max="72" step="0.1" value="0" id="seek" aria-label="播放进度"><div class="timestamps"><span id="timeNow">00:00</span><span id="timeEnd">01:12</span></div></div><div class="playback-side"><span id="formatLabel">ORIGINAL / WAV</span><a id="audioDownload" target="_blank" rel="noopener noreferrer" href="#">文件 ↗</a></div></div><div class="player-notice" id="playerNotice" role="status">播放器将直接读取 GitHub 上发布的真实音频，不执行新的水印计算。</div><div class="media-bottom"><a href="https://www.ccmixter.org/files/Benjamin_Orth/33036" target="_blank" rel="noopener noreferrer">原曲与署名 ↗</a><span>注：此处仅展示经过验证的 C3-16 精选音频，C2 模式未使用这组音频。</span></div></div></div></section>
+<section id="method" class="section wrap"><div class="section-head"><div class="section-count">04 / METHOD</div><div><h2>数字信息，写在了哪里？</h2><p>不是替换某个频率点，而是将消息按密钥分散到多个 FFT 帧，对成对频带的相对能量作微小调整。</p></div></div><div class="method-grid"><article class="method-article"><div class="step-top"><span>01 / FREQUENCY BANDS</span><strong>频带选择</strong></div><div class="equation">E<sub>A</sub>(t) = <span class="fraction"><small>1</small><small>|A|</small></span> ∑<sub>k∈A</sub>|X<sub>t</sub>[k]|²</div><p>对六段频带分别统计功率，按三个频带对构造相对能量。相位保持不变。</p></article><figure class="method-figure"><img src="./assets/img/F3_01_c3_bands_and_measured_energy.webp" alt="真实 C3-16 频带对和测量能量图" loading="lazy"><figcaption>真实音频 · 24–30 秒 · C3-16 频带对</figcaption></figure></div><div class="method-grid reverse"><figure class="method-figure"><img src="./assets/img/F4_real_bit_embedding_trace.webp" alt="实际一位消息分配到九个 FFT 帧的调制轨迹" loading="lazy"><figcaption>0x7531 中的同一位 · 9 个真实 frame/chip 分配</figcaption></figure><article class="method-article"><div class="step-top"><span>02 / KEYED ALLOCATION</span><strong>跨帧调制</strong></div><div class="equation">q<sub>t</sub> = (2b<sub>i</sub> − 1)c<sub>t</sub></div><p>每一位消息在多个时间帧中重复出现，密钥决定分配位置和 chip 符号；频带对按相反方向调整幅度。</p></article></div><div class="method-grid"><article class="method-article"><div class="step-top"><span>03 / REFERENCE DETECTION</span><strong>参考辅助恢复</strong></div><div class="equation">Δr<sub>t</sub> = r<sub>t</sub>(received) − r<sub>t</sub>(reference)</div><p>接收端比较相对频带能量，再按 chip 符号聚合、判决每个 bit，并进行水印存在性检查。</p><div class="method-footnote">真实案例：同一 bit 经 AAC 后恢复为 1；bit 分数 +0.2008，整块 presence 为 0.8630，两者不是同一指标。</div></article><figure class="method-figure"><img src="./assets/img/F7_reference_chip_bit_recovery.webp" alt="参考差分、chip 聚合和 bit 判决实测图" loading="lazy"><figcaption>原音参考 + 真实 AAC 接收音 · 24–30 秒</figcaption></figure></div></section>
+<section id="processing" class="section processing-section"><div class="wrap"><div class="section-head"><div class="section-count">05 / SIGNAL PROCESSING</div><div><h2>把同一首音乐，交给不同的处理过程。</h2><p>下方展示的是实际音频信号的变化：频谱结构、幅度和重采样残差，而不只是“检测成功”的数字。</p></div></div><div class="processing-nav" role="tablist" aria-label="音频处理方式"><button type="button" role="tab" data-process="codec" aria-selected="true">重复转码 <span>MP3 → AAC</span></button><button type="button" role="tab" data-process="gainDown" aria-selected="false">音量降低 <span>−6 dB</span></button><button type="button" role="tab" data-process="gainUp" aria-selected="false">音量提高 <span>+3 dB</span></button><button type="button" role="tab" data-process="sample" aria-selected="false">重采样 <span>48→44.1→48</span></button></div><div class="processing-body"><div class="processing-image"><img id="processImage" src="./assets/img/A_double_transcoding.webp" alt="重复转码三个阶段的实际时频谱和差异图"></div><div class="processing-details"><span class="micro-label" id="processIndex">PROCESS / 01</span><h3 id="processTitle">一次编码，接着再编码。</h3><p id="processDescription">同一份完整 72 秒水印 WAV 先经 MP3 128 kbps，再由 MP3 转为 AAC-LC 128 kbps。图中对照三个真实阶段的时频谱及其差异。</p><dl><div><dt>比较片段</dt><dd>24–30 s</dd></div><div><dt>信号来源</dt><dd>整段处理后截取</dd></div><div><dt>本案例的水印</dt><dd id="processStatus">完整消息已恢复</dd></div></dl><p class="processing-note">本页图像均来自保存的处理输出和实测数据；展示经过精选的音乐案例，不代表任意音频都能成功。</p></div></div></div></section>
+<section id="results" class="section wrap"><div class="section-head"><div class="section-count">06 / RESULTS</div><div><h2>一种可运行的方法，<br>以及它的适用边界。</h2><p>同一套算法在不同信息容量和音频条件下，并不会得到完全一致的表现。</p></div></div><div class="results-top"><div class="result-number"><strong>12/12</strong><span>精选 72 秒音乐 · 每个块完整恢复<br>Clean / MP3 / AAC</span></div><div class="result-number"><strong>45.0 <i>dB</i></strong><span>同一精选音乐 · 嵌入 SNR<br>客观信号指标，非主观听感结论</span></div><div class="result-number"><strong>20/20</strong><span>C2 重复身份 · 20 条新混合音频<br>Clean / MP3 / AAC 各自完成身份恢复</span></div></div><div class="results-bottom"><div class="test-panel"><h3>独立音源测试 <small>正确接受 / 样本数</small></h3><div class="test-rows"><div><span>测试</span><strong>Clean</strong><strong>MP3</strong><strong>AAC</strong></div><div><span>C2 · 8-bit/6s</span><strong>60/60</strong><strong>59/60</strong><strong>57/60</strong></div><div><span>C3 · 16-bit/6s</span><strong>120/120</strong><strong>120/120</strong><strong>103/120</strong></div></div><p>两组测试使用不同音源规模与协议，不能按同一组配对实验比较。</p></div><div class="result-boundary"><span class="micro-label">BOUNDARIES</span><h3>参考音频是前提，<br>AAC 是已知限制。</h3><p>检测需要与接收信号匹配的无水印原音。高容量 C3 在部分 AAC 音源下存在错误消息接受与拒绝；精选案例的 12/12 并不代表总体成功率。</p><a href="https://github.com/suibianba12138/blind-audio-watermarking/blob/main/course_release/EVIDENCE_SUMMARY.md" target="_blank" rel="noopener noreferrer">查看完整实验口径 ↗</a></div></div></section>
+<section class="outro-section"><div class="wrap outro"><div><span class="micro-label">COURSE PROJECT / 2026</span><h2>一首音乐。<br>一套完整的信号处理链路。</h2><p>从频带能量调制，到真实编解码与消息检测。公开源码、实际音频和实验记录，均可在项目仓库查看。</p></div><div class="outro-actions"><a class="action light" href="https://github.com/suibianba12138/blind-audio-watermarking/tree/main/course_release" target="_blank" rel="noopener noreferrer">浏览课程最终版 ↗</a><a class="action outline" href="https://github.com/suibianba12138/blind-audio-watermarking/tree/main/archive" target="_blank" rel="noopener noreferrer">历史版本归档 ↗</a></div></div></section>
+</main><footer class="footer"><div class="wrap footer-grid"><div><strong>AUDIO WATERMARKING</strong><p>UESTC · Digital Signal Processing Course Project · 2026</p><p>Music: “Where You Are Now”, Benjamin Orth (feat. Wolf Fly), <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener noreferrer">CC BY 3.0</a>. Downmixed, resampled, cropped, watermarked and encoded for demonstration.</p></div><div class="footer-links"><a href="https://shengkaini.com/">← Home</a><a href="https://github.com/suibianba12138/blind-audio-watermarking">GitHub ↗</a><a href="https://www.ccmixter.org/files/Benjamin_Orth/33036">Music source ↗</a></div></div></footer>
+<audio id="liveAudio" preload="none"></audio>
 </body>
 </html>

@@ -151,7 +151,7 @@ figure{margin:0}
 .result-number strong{display:block;font-family:Georgia,serif;font-size:clamp(37px,4.5vw,66px);font-weight:450;color:#3b6846;line-height:1.2}
 .result-number strong i{font-size:23px;font-style:normal}
 .result-number span{display:block;font-size:12px;line-height:1.7;color:#748075;margin-top:12px}
-.results-bottom{display:grid;grid-template-columns:1.45fr 1fr;gap:70px;margin-top:60px}
+.results-bottom{margin-top:42px;max-width:850px}
 .test-panel h3{font-size:21px;font-weight:600;margin:0 0 20px}
 .test-panel h3 small{display:block;font-weight:400;color:var(--muted);font-size:11px}
 .test-rows{font-size:13px}

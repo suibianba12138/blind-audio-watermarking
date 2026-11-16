@@ -3,9 +3,9 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#f7f6f2">
 <meta name="description" content="数字音频水印交互实验台：用真实72秒音频逐帧观察FFT、频带能量调制、信道处理和参考辅助恢复。">
-<title>交互信号实验台 · Audio Watermarking</title>
+<title>实时信号实验台 · Audio Watermarking</title>
 <link rel="stylesheet" href="./lab.css?v=1">
-<script src="./lab.js?v=1" defer></script>
+<script src="./lab-live.js?v=1" defer></script>
 </head><body>
 <a class="skip" href="#workspace">跳转到实验台</a>
 <header class="masthead"><div class="nav">
@@ -14,12 +14,22 @@
 </div></header>
 <main>
 <section class="intro shell">
-<div class="eyebrow">INTERACTIVE SIGNAL LAB <span> / 2026</span></div>
-<h1>从声波到水印，<br><em>每一步都有迹可循。</em></h1>
-<p class="lead">沿着一次真实的 C3-16 水印实验逐帧探索：2048 点 FFT、三组频带对、嵌入后的信号变化，以及 MP3 / AAC 处理与参考辅助检测。所有图表来自公开音频或保存的真实检测记录。</p>
-<div class="intro-bottom"><div class="stats"><span><b>48 kHz</b><small>采样率</small></span><span><b>2048</b><small>FFT 点数</small></span><span><b>12 × 6s</b><small>C3-16 数据块</small></span></div>
-<button id="loadBtn" class="primary" type="button">载入真实实验 <span aria-hidden="true">↗</span></button></div>
-<div class="load-status" role="status" id="loadStatus">尚未读取音频。点击后载入公开的原音与水印 WAV（合计约 28 MB）。移动网络下建议使用 Wi-Fi。</div>
+<div class="eyebrow">LIVE DSP EXPERIMENT <span> / REAL COMPUTATION</span></div>
+<h1>亲手运行一次实验，<br><em>看见每一步的变化。</em></h1>
+<p class="lead">选择示例音频或上传自己的录音。运行真实 C2/C3 嵌入、MP3/AAC 等信道处理和参考辅助检测；下方的帧、频谱和相对能量比全部根据<strong>本次生成的实际音频</strong>计算，而不是历史案例。</p>
+<div class="intro-bottom"><div class="stats"><span><b>48 kHz</b><small>分析采样率</small></span><span><b>2048</b><small>FFT 点数</small></span><span><b>C2 / C3</b><small>真实在线执行</small></span></div><div class="badge-live">LIVE · 当前任务</div></div>
+<div class="execution-form" id="liveControls">
+<div class="field"><label for="liveMode">水印模式</label><select id="liveMode"><option value="c3-16">C3 · 6 秒 / 16 bit</option><option value="c2-8">C2 · 6 秒 / 8 bit</option><option value="c2-long-id">C2 · 72 秒 / 32-bit ID</option><option value="c3-192">C3 · 72 秒 / 192 bit</option></select></div>
+<div class="field"><label for="liveSource">原始音频</label><select id="liveSource"><option value="sample">内置授权音乐</option><option value="upload">上传自己的音频</option></select></div>
+<div class="field upload-field" id="uploadField" hidden><label for="liveFile">音频文件（不少于所选时长）</label><input id="liveFile" type="file" accept="audio/*"></div>
+<div class="field grow"><label for="liveMessage">HEX 消息</label><input id="liveMessage" type="text" value="A7C3" maxlength="4" autocomplete="off" spellcheck="false"></div>
+<div class="field grow"><label for="liveKey">实验密钥</label><input id="liveKey" type="text" value="course-demo-public-v1" autocomplete="off" spellcheck="false"></div>
+<div class="field"><label for="liveChannel">真实信道处理</label><select id="liveChannel"><option value="clean">Clean WAV</option><option value="mp3">MP3 · 128 kbps</option><option value="aac">AAC · 128 kbps</option><option value="mp3_aac">MP3 → AAC</option><option value="gain_minus6">音量 −6 dB</option><option value="gain_plus3">音量 +3 dB</option><option value="resample">重采样 48→44.1→48 kHz</option></select></div>
+</div>
+<div class="live-buttons"><button id="loadBtn" class="primary" type="button">① 嵌入水印 · 真实运行</button><button id="processBtn" class="secondary" type="button" disabled>② 信道处理 + 检测</button><button id="detectBtn" class="secondary" type="button" disabled>③ 仅重新检测</button></div>
+<div class="execution-timeline"><span id="phaseEmbed">① 嵌入 · 未运行</span><span id="phaseChannel">② 信道 · 未运行</span><span id="phaseDetect">③ 检测 · 未运行</span></div>
+<div class="load-status" role="status" aria-live="polite" id="loadStatus">选择当前实验条件并点击“嵌入水印”。首次请求可能需要唤醒在线服务器。</div>
+<div class="audio-results"><div><span>本次水印 WAV</span><audio id="markedPlayer" controls preload="none"></audio><a id="markedDownload" hidden download="watermarked.wav">下载水印音频 ↗</a></div><div><span>本次信道输出</span><audio id="receivedPlayer" controls preload="none"></audio><a id="receivedDownload" hidden>下载处理后音频 ↗</a></div></div>
 </section>
 <section id="workspace" class="shell workspace">
 <aside class="steps" aria-label="信号处理步骤">
@@ -33,25 +43,25 @@
 <button class="step" type="button" data-step="5"><span>06</span><b>参考检测</b><small>Detection statistic</small></button>
 <button class="step" type="button" data-step="6"><span>07</span><b>消息恢复</b><small>Recovered blocks</small></button>
 </div>
-<div class="rail-foot">精选 C3-16 案例<br>只回放真实实验数据，不重新嵌入，也不提供冻结评估密钥。</div>
+<div class="rail-foot">LIVE RUN<br>所有图表绑定当前任务输出；选择参数后原有结果自动失效。</div>
 </aside>
 <div class="right-pane">
 <div class="stage-head">
 <div><span id="stageNumber" class="small-title">01 / FRAME DIVISION</span><h2 id="stageTitle">观察分帧之前的声音</h2><p id="stageDescription">6 秒信号以 2048 个样本为一帧划分，尾帧补零。选择任意位置，观察这一帧真实的时域波形。</p></div>
-<div class="provenance"><span class="dot"></span><span id="sourceLabel">等待真实音频</span></div>
+<div class="provenance"><span class="dot"></span><span id="sourceLabel">尚未执行</span></div>
 </div>
 <div class="toolbar">
-<div class="field"><label for="blockSelect">当前 6 秒块</label><select id="blockSelect"><option value="0">01 · 00–06 秒</option></select></div>
+<div class="field"><label for="blockSelect">当前 6 秒块</label><select id="blockSelect"></select></div>
 <div class="field slider-field"><label for="frameSeek">当前 FFT 帧 <strong id="frameIndex">#001 / 141</strong></label><input id="frameSeek" type="range" min="0" max="140" step="1" value="0"></div>
 <button class="secondary small-btn" id="previousFrame" type="button">← 上一帧</button><button class="secondary small-btn" id="nextFrame" type="button">下一帧 →</button>
 </div>
 <div class="overview-panel">
-<div class="panel-caption"><strong>完整音频 / 72 s</strong><span id="timeReadout">选中 00:00.000 – 00:00.043</span></div>
+<div class="panel-caption"><strong id="overviewTitle">当前输入音频</strong><span id="timeReadout">选中 00:00.000 – 00:00.043</span></div>
 <canvas id="overviewPlot" class="overview-canvas" aria-label="真实音频72秒波形及选中帧"></canvas>
-<div class="scale-labels"><span>00:00</span><span>00:24</span><span>00:48</span><span>01:12</span></div>
+<div class="scale-labels"><span>00:00</span><span id="timeQuarter">00:01.5</span><span id="timeHalf">00:03</span><span id="timeEnd">00:06</span></div>
 </div>
 <div class="special-controls"><div class="field" id="pairField"><label for="pairSelect">检查频带对</label><select id="pairSelect"><option value="0">Pair 1 · 0.9–3.5 kHz</option><option value="1">Pair 2 · 3.5–6.5 kHz</option><option value="2">Pair 3 · 6.5–9.5 kHz</option></select></div>
-<div class="field" id="channelField"><label for="channelSelect">处理后的音频</label><select id="channelSelect"><option value="clean">Clean WAV</option><option value="mp3">MP3 128 kbps</option><option value="aac">AAC 128 kbps</option></select></div>
+<div class="field" id="channelField"><label for="channelSelect">处理后的音频</label><select id="channelSelect"><option value="clean">当前水印 WAV</option><option value="mp3">本次信道输出</option></select></div>
 <span id="stageHint" class="stage-hint">真实数据 · 可选择任意一帧</span></div>
 <div class="plot-grid">
 <article class="plot-card"><div class="panel-caption"><strong id="leftTitle">当前帧时域波形</strong><span id="leftMeta">2048 samples</span></div><canvas id="leftPlot" class="plot-canvas" aria-label="所选帧信号图"></canvas><div id="leftFoot" class="chart-foot">x[n] · 当前帧原始采样</div></article>
@@ -62,6 +72,6 @@
 <div class="next-row"><button id="backBtn" type="button" class="secondary">← 上一步</button><span>拖动波形或帧滑块，所有图表保持同一时间位置。</span><button id="forwardBtn" type="button" class="primary">下一步 →</button></div>
 </div>
 </section>
-<section class="method-note shell"><span class="small-title">ABOUT THIS REPLAY</span><p>这是 <strong>C3-16 精选音乐案例</strong> 的真实数据观察器，不是实时嵌入器。原始 WAV 与水印 WAV 用于逐帧 FFT 和能量测量；MP3、AAC 由浏览器解码用于频谱观察；检测与恢复状态来自已保存的 <code>detection_data.csv</code>。浏览器解码的有损音频可能存在编解码时延，不能把这里的同索引帧直接当作检测器内部已精确对齐的样本。缺少冻结密钥，因此不展示无法核验的逐帧 bit/chip 映射。</p><p class="credits">音乐：<a href="https://www.ccmixter.org/files/Benjamin_Orth/33036" target="_blank" rel="noopener">Where You Are Now · Benjamin Orth (feat. Wolf Fly)</a>，CC BY 3.0。<a href="https://github.com/suibianba12138/blind-audio-watermarking/tree/main/course_release/media/selected_c3_16_showcase" target="_blank" rel="noopener">查看音频及原始 CSV ↗</a></p></section>
-</main><footer class="footer shell"><span>DIGITAL AUDIO WATERMARKING / DSP LAB 2026</span><a href="./">← 返回项目展示</a></footer>
+<section class="method-note shell"><span class="small-title">ABOUT LIVE COMPUTATION</span><p>本页调用当前在线 C2/C3 后端执行实际嵌入、真实 FFmpeg 信道处理及参考辅助检测。图表来自本次运行的原音、水印 WAV 和信道输出，由浏览器重新解码计算 FFT；浏览器解码的音频与服务器 FFT 参考数据可能因预处理细节存在微小差异。服务器在请求结束后返回文件或检测结果，<strong>阶段状态代表请求真实完成，不代表逐帧流式进度</strong>。检测阶段依赖匹配原音和密钥，服务不会接收待恢复的目标消息。</p><p class="credits">示例音乐：<a href="https://www.ccmixter.org/files/Benjamin_Orth/33036" target="_blank" rel="noopener">Where You Are Now · Benjamin Orth (feat. Wolf Fly)</a>，CC BY 3.0。<a href="./lab-replay.html">查看历史精选案例回放 ↗</a></p></section>
+</main><footer class="footer shell"><span>LIVE COMPUTATION / DSP LAB 2026</span><a href="./">← 返回项目展示</a></footer>
 </body></html>

@@ -36,8 +36,11 @@ for(const id of ['markedPlayer','receivedPlayer']){$(id).pause();$(id).removeAtt
 $('markedDownload').hidden=true;$('receivedDownload').hidden=true;for(const u of state.urls)URL.revokeObjectURL(u);state.urls=[];render()}
 function populateBlocks(){const sel=$('blockSelect');sel.textContent='';for(let i=0;i<state.seconds/6;i++){let o=document.createElement('option');o.value=i;o.textContent=String(i+1).padStart(2,'0')+' · '+String(i*6).padStart(2,'0')+'–'+String((i+1)*6).padStart(2,'0')+' 秒';sel.appendChild(o)}}
 async function embed(){if(state.busy)return;let s;try{s=selected()}catch(e){status(e.message,'error');return}reset();state.busy=true;$('loadBtn').disabled=true;state.seconds=s.seconds;populateBlocks();phases('phaseEmbed','running');status('正在真实执行当前音频的水印嵌入。服务器返回后生成频谱与波形，不使用历史数据。');
-try{const d=form(s);d.append('message',s.message);const response=await call('embed',d);state.markedBlob=await response.blob();
-const [original,marked]=await Promise.all([originalSamples(s),decodedBlob(state.markedBlob)]);state.original=original;state.marked=marked;state.env=envelope(original);state.source=s;player('markedPlayer','markedDownload',state.markedBlob,'watermarked-'+s.mode+'.wav');
+try{
+state.original=await originalSamples(s);state.env=envelope(state.original);state.step=1;render();
+status('本次原音已读取：现在可以观察真实分帧和 FFT。正在提交同一输入到后端进行水印嵌入…');
+const d=form(s);d.append('message',s.message);const response=await call('embed',d);state.markedBlob=await response.blob();
+state.marked=await decodedBlob(state.markedBlob);state.source=s;player('markedPlayer','markedDownload',state.markedBlob,'watermarked-'+s.mode+'.wav');
 $('processBtn').disabled=false;$('detectBtn').disabled=false;phases('phaseEmbed','done');state.step=2;status('本次嵌入已完成：FFT 与频带变化来自刚生成的水印 WAV。点击“信道处理 + 检测”继续。','good');render()}
 catch(e){phases('phaseEmbed','failed');status('嵌入失败：'+e.message,'error')}
 finally{state.busy=false;$('loadBtn').disabled=false}}
@@ -69,7 +72,7 @@ for(let s of series){c.strokeStyle=s.color;c.lineWidth=1.5;c.beginPath();for(let
 c.font='10px sans-serif';c.fillStyle='#8a948a';c.fillText('0',left,h-15);c.textAlign='right';c.fillText(type==='freq'?'10 kHz':'2048',right,h-15);c.textAlign='left'}
 function blockBars(id,stat=false){const{c,w,h}=ctx(id);grid(c,w,h,stat?'presence statistic':'6 s · 141 frames');const left=32,right=w-12,base=h-30;
 if(!stat){for(let i=0;i<F;i++){let x=left+i/F*(right-left);c.fillStyle=i===state.frame?'#3d6c4b':'#d8e3d8';c.fillRect(x,24,Math.max(1,(right-left)/F),base-24)}return}
-const rows=state.report?.blocks||[],thr=Number(state.report?.threshold)||0.7;c.setLineDash([4,4]);c.strokeStyle='#c58d65';let yy=base-thr*(base-28);c.beginPath();c.moveTo(left,yy);c.lineTo(right,yy);c.stroke();c.setLineDash([]);
+const rows=state.report?.blocks||[];if(!state.report)return;const thr=Number(state.report.threshold)||0.7;c.setLineDash([4,4]);c.strokeStyle='#c58d65';let yy=base-thr*(base-28);c.beginPath();c.moveTo(left,yy);c.lineTo(right,yy);c.stroke();c.setLineDash([]);
 for(let i=0;i<state.seconds/6;i++){let v=Number(rows[i]?.presence_stat)||0,bw=(right-left)/(state.seconds/6),x=left+i*bw+3;c.fillStyle=i===state.block?'#326e47':'#91b49a';c.fillRect(x,base-Math.min(1,Math.max(0,v))*(base-28),Math.max(3,bw-6),Math.min(1,Math.max(0,v))*(base-28))}}
 function overview(){const{c,w,h}=ctx('overviewPlot');c.strokeStyle='#e5e9e1';c.beginPath();c.moveTo(0,h/2);c.lineTo(w,h/2);c.stroke();if(!state.env){c.font='12px sans-serif';c.fillStyle='#899889';c.fillText('运行嵌入后显示本次原音波形',16,h/2);return}
 c.fillStyle='rgba(60,103,73,.10)';let blocks=state.seconds/6;c.fillRect(state.block/blocks*w,0,w/blocks,h);
@@ -86,7 +89,12 @@ $('backBtn').disabled=stage===0;$('forwardBtn').disabled=stage===6;$('blockSelec
 set('frameIndex','#'+String(state.frame+1).padStart(3,'0')+' / 141');set('overviewTitle','本次音频 / '+state.seconds+' 秒');set('timeQuarter',fmt(state.seconds/3));set('timeHalf',fmt(state.seconds*2/3));set('timeEnd',fmt(state.seconds));set('timeReadout',fmt(start/SR)+' – '+fmt((start+N)/SR));set('sourceLabel',state.marked?'本次执行 · 真实输出':'尚未执行');
 $('pairField').style.display=stage===2?'flex':'none';$('channelField').style.display='none';$('pairSelect').value=state.pair;
 set('stageHint',state.marked?'本次真实音频 · 浏览器分析图表':'尚未执行 · 不展示历史数据');
-overview();resultGrid();if(!state.original||!state.marked){for(const id of ['leftPlot','rightPlot']){const{c,w,h}=ctx(id);grid(c,w,h,'waiting for current run')}textLabels('等待嵌入','等待本次音频');set('insightTitle','请先执行水印嵌入');set('insightText','不会使用预先绘制的曲线或历史结果冒充当前实验。');measure([]);return}
+overview();resultGrid();
+if(state.original&&!state.marked&&stage<=1){
+const raw=frame(state.original,start);if(stage===0){textLabels('本次原音 · 当前帧','原音的 141 帧位置','2048 samples','6-second block');draw('leftPlot',[{data:raw,color:'#437b55'}],'wave');blockBars('rightPlot')}
+else{textLabels('本次原音 · 时域','本次原音 · FFT','2048 samples','0–10 kHz');draw('leftPlot',[{data:raw,color:'#437b55'}],'wave');draw('rightPlot',[{data:fft(raw).amplitude,color:'#437b55'}],'freq')}
+set('insightTitle','正在运行本次嵌入');set('insightText','这些图来自当前输入原音；等待后端返回本次生成的水印 WAV 后可进一步比较频带变化。');measure([['2048','FFT 点数'],['141','每个 6 秒块的帧数']]);return}
+if(!state.original||!state.marked){for(const id of ['leftPlot','rightPlot']){const{c,w,h}=ctx(id);grid(c,w,h,'waiting for current run')}textLabels('等待当前任务','尚未生成');set('insightTitle','等待执行当前任务');set('insightText','此处不会使用预先绘制的波形或历史检测结果。');measure([]);return}
 const x=frame(state.original,start),y=frame(state.marked,start),fx=fft(x),fy=fft(y),g='#437b55',b='#71879a';
 if(stage===0){textLabels('本次原音 · 当前帧波形','当前帧在 6 秒中的位置','2048 samples','141 frames');draw('leftPlot',[{data:x,color:g}],'wave');blockBars('rightPlot');set('insightTitle','同一次实验的连续帧');set('insightText','48 kHz 下 2048 点约 42.67 ms；每个 6 秒块共有 141 帧，尾帧用零补足。');measure([['2048','样本 / 帧'],['141','帧 / 6 秒']])}
 if(stage===1){textLabels('当前原音帧 · 时域','当前原音帧 · FFT','2048 samples','0–10 kHz');draw('leftPlot',[{data:x,color:g}],'wave');draw('rightPlot',[{data:fx.amplitude,color:g}],'freq');set('insightTitle','选中帧的实际 FFT');set('insightText','与课程算法相同的 2048 点无窗 rFFT，频谱随当前帧指针同步改变。');measure([['23.4375 Hz','频率分辨率'],['1025','单边 FFT bins']])}
@@ -100,7 +108,7 @@ function invalidated(){if(!state.busy){reset();status('输入条件已改变。�
 $('liveMode').addEventListener('change',()=>{$('liveMessage').value=defaultMessages[$('liveMode').value];$('liveMessage').maxLength=defaultMessages[$('liveMode').value].length;state.seconds=$('liveMode').value.includes('long')||$('liveMode').value==='c3-192'?72:6;populateBlocks();invalidated()});
 $('liveSource').addEventListener('change',()=>{$('uploadField').hidden=$('liveSource').value!=='upload';invalidated()});
 for(const id of ['liveFile','liveMessage','liveKey'])$(id).addEventListener('change',invalidated);
-$('liveChannel').addEventListener('change',()=>{if(!state.busy){state.received=null;state.receivedBlob=null;state.report=null;phases('phaseChannel','');phases('phaseDetect','');status('信道条件改变，请重新运行信道处理和检测。');render()}});
+$('liveChannel').addEventListener('change',()=>{if(!state.busy){state.received=null;state.receivedBlob=null;state.report=null;$('receivedPlayer').pause();$('receivedPlayer').removeAttribute('src');$('receivedPlayer').load();$('receivedDownload').hidden=true;phases('phaseChannel','');phases('phaseDetect','');status('信道条件改变，请重新运行信道处理和检测。');render()}});
 $('loadBtn').addEventListener('click',embed);$('processBtn').addEventListener('click',processRun);$('detectBtn').addEventListener('click',detectRun);
 document.querySelectorAll('[data-step]').forEach(el=>el.addEventListener('click',()=>goStep(+el.dataset.step)));
 $('backBtn').addEventListener('click',()=>goStep(state.step-1));$('forwardBtn').addEventListener('click',()=>goStep(state.step+1));

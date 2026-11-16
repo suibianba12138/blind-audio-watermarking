@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f7f6f2">
+<meta name="description" content="数字音频水印交互实验台：用真实72秒音频逐帧观察FFT、频带能量调制、信道处理和参考辅助恢复。">
+<title>历史实验回放 · · Audio Watermarking</title>
+<link rel="stylesheet" href="./lab.css?v=1">
+<script src="./lab-replay.js?v=1" defer></script>
+</head><body>
+<a class="skip" href="#workspace">跳转到实验台</a>
+<header class="masthead"><div class="nav">
+<a class="brand" href="https://shengkaini.com/"><span class="logo">K</span><span>PROJECTS <span class="dim">/</span> DSP</span></a>
+<div class="toplinks"><a href="./">项目概览</a><a href="https://github.com/suibianba12138/blind-audio-watermarking/tree/main/course_release" target="_blank" rel="noopener">实验源码 ↗</a></div>
+</div></header>
+<main>
+<section class="intro shell">
+<div class="eyebrow">INTERACTIVE SIGNAL LAB <span> / 2026</span></div>
+<h1>从声波到水印，<br><em>每一步都有迹可循。</em></h1>
+<p class="lead">沿着一次真实的 C3-16 水印实验逐帧探索：2048 点 FFT、三组频带对、嵌入后的信号变化，以及 MP3 / AAC 处理与参考辅助检测。所有图表来自公开音频或保存的真实检测记录。</p>
+<div class="intro-bottom"><div class="stats"><span><b>48 kHz</b><small>采样率</small></span><span><b>2048</b><small>FFT 点数</small></span><span><b>12 × 6s</b><small>C3-16 数据块</small></span></div>
+<button id="loadBtn" class="primary" type="button">载入真实实验 <span aria-hidden="true">↗</span></button></div>
+<div class="load-status" role="status" id="loadStatus">尚未读取音频。点击后载入公开的原音与水印 WAV（合计约 28 MB）。移动网络下建议使用 Wi-Fi。</div>
+</section>
+<section id="workspace" class="shell workspace">
+<aside class="steps" aria-label="信号处理步骤">
+<div class="small-title">EXECUTION PIPELINE</div>
+<div class="steps-list" id="stepsList">
+<button class="step active" type="button" data-step="0"><span>01</span><b>分帧</b><small>Frame division</small></button>
+<button class="step" type="button" data-step="1"><span>02</span><b>FFT</b><small>Frequency analysis</small></button>
+<button class="step" type="button" data-step="2"><span>03</span><b>水印嵌入</b><small>Band-pair modulation</small></button>
+<button class="step" type="button" data-step="3"><span>04</span><b>音频重构</b><small>Watermarked signal</small></button>
+<button class="step" type="button" data-step="4"><span>05</span><b>信道处理</b><small>Channel effects</small></button>
+<button class="step" type="button" data-step="5"><span>06</span><b>参考检测</b><small>Detection statistic</small></button>
+<button class="step" type="button" data-step="6"><span>07</span><b>消息恢复</b><small>Recovered blocks</small></button>
+</div>
+<div class="rail-foot">精选 C3-16 案例<br>只回放真实实验数据，不重新嵌入，也不提供冻结评估密钥。</div>
+</aside>
+<div class="right-pane">
+<div class="stage-head">
+<div><span id="stageNumber" class="small-title">01 / FRAME DIVISION</span><h2 id="stageTitle">观察分帧之前的声音</h2><p id="stageDescription">6 秒信号以 2048 个样本为一帧划分，尾帧补零。选择任意位置，观察这一帧真实的时域波形。</p></div>
+<div class="provenance"><span class="dot"></span><span id="sourceLabel">等待真实音频</span></div>
+</div>
+<div class="toolbar">
+<div class="field"><label for="blockSelect">当前 6 秒块</label><select id="blockSelect"><option value="0">01 · 00–06 秒</option></select></div>
+<div class="field slider-field"><label for="frameSeek">当前 FFT 帧 <strong id="frameIndex">#001 / 141</strong></label><input id="frameSeek" type="range" min="0" max="140" step="1" value="0"></div>
+<button class="secondary small-btn" id="previousFrame" type="button">← 上一帧</button><button class="secondary small-btn" id="nextFrame" type="button">下一帧 →</button>
+</div>
+<div class="overview-panel">
+<div class="panel-caption"><strong>完整音频 / 72 s</strong><span id="timeReadout">选中 00:00.000 – 00:00.043</span></div>
+<canvas id="overviewPlot" class="overview-canvas" aria-label="真实音频72秒波形及选中帧"></canvas>
+<div class="scale-labels"><span>00:00</span><span>00:24</span><span>00:48</span><span>01:12</span></div>
+</div>
+<div class="special-controls"><div class="field" id="pairField"><label for="pairSelect">检查频带对</label><select id="pairSelect"><option value="0">Pair 1 · 0.9–3.5 kHz</option><option value="1">Pair 2 · 3.5–6.5 kHz</option><option value="2">Pair 3 · 6.5–9.5 kHz</option></select></div>
+<div class="field" id="channelField"><label for="channelSelect">处理后的音频</label><select id="channelSelect"><option value="clean">Clean WAV</option><option value="mp3">MP3 128 kbps</option><option value="aac">AAC 128 kbps</option></select></div>
+<span id="stageHint" class="stage-hint">真实数据 · 可选择任意一帧</span></div>
+<div class="plot-grid">
+<article class="plot-card"><div class="panel-caption"><strong id="leftTitle">当前帧时域波形</strong><span id="leftMeta">2048 samples</span></div><canvas id="leftPlot" class="plot-canvas" aria-label="所选帧信号图"></canvas><div id="leftFoot" class="chart-foot">x[n] · 当前帧原始采样</div></article>
+<article class="plot-card"><div class="panel-caption"><strong id="rightTitle">帧的位置</strong><span id="rightMeta">6 s block</span></div><canvas id="rightPlot" class="plot-canvas" aria-label="所选帧信号图"></canvas><div id="rightFoot" class="chart-foot">一个 6 秒块内 141 个分析帧</div></article>
+</div>
+<div class="insight-panel"><div><span class="small-title">MEASURED / OBSERVED</span><h3 id="insightTitle">实际数据说明</h3><p id="insightText">载入音频后，显示选中帧的真实分析结果。</p></div><div id="metrics" class="metrics"></div></div>
+<div class="recovered-wrap" id="recoveredWrap" hidden><div class="panel-caption"><strong>12 个六秒块</strong><span>实际检测记录 · 已接受 / UNKNOWN</span></div><div id="recoveredGrid" class="recovered-grid"></div></div>
+<div class="next-row"><button id="backBtn" type="button" class="secondary">← 上一步</button><span>拖动波形或帧滑块，所有图表保持同一时间位置。</span><button id="forwardBtn" type="button" class="primary">下一步 →</button></div>
+</div>
+</section>
+<section class="method-note shell"><span class="small-title">ABOUT THIS REPLAY</span><p>这是 <strong>C3-16 精选音乐案例</strong> 的真实数据观察器，不是实时嵌入器。原始 WAV 与水印 WAV 用于逐帧 FFT 和能量测量；MP3、AAC 由浏览器解码用于频谱观察；检测与恢复状态来自已保存的 <code>detection_data.csv</code>。浏览器解码的有损音频可能存在编解码时延，不能把这里的同索引帧直接当作检测器内部已精确对齐的样本。缺少冻结密钥，因此不展示无法核验的逐帧 bit/chip 映射。</p><p class="credits">音乐：<a href="https://www.ccmixter.org/files/Benjamin_Orth/33036" target="_blank" rel="noopener">Where You Are Now · Benjamin Orth (feat. Wolf Fly)</a>，CC BY 3.0。<a href="https://github.com/suibianba12138/blind-audio-watermarking/tree/main/course_release/media/selected_c3_16_showcase" target="_blank" rel="noopener">查看音频及原始 CSV ↗</a></p></section>
+</main><footer class="footer shell"><span>DIGITAL AUDIO WATERMARKING / DSP LAB 2026</span><a href="./">← 返回项目展示</a></footer>
+</body></html>

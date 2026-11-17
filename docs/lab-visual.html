@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light"><meta name="theme-color" content="#f7f6f2">
+<meta name="description" content="交互式 DSP 音频水印实验：亲自运行 C2/C3，沿着波形、分帧、FFT、频带能量、信道和检测看清每一步。">
+<title>可视化 DSP 实验台 | Audio Watermarking</title>
+<link rel="stylesheet" href="./lab-visual.css?v=3">
+<script src="./lab-visual.js?v=3" defer></script>
+</head><body>
+<a class="skip" href="#lab">跳转到实验台</a>
+<header class="header"><div class="shell topbar">
+<a class="wordmark" href="https://shengkaini.com/"><span class="mark">K</span><span>PROJECTS <i>/</i> DSP</span></a>
+<nav aria-label="导航"><a href="./">← 项目介绍</a><a href="https://github.com/suibianba12138/blind-audio-watermarking/tree/main/course_release" target="_blank" rel="noopener noreferrer">项目源码 ↗</a></nav>
+</div></header>
+<main>
+<section class="shell opening">
+<div class="eyebrow"><span class="spot"></span> INTERACTIVE DSP LAB <span class="eyebrow-muted">/ REAL COMPUTATION</span></div>
+<div class="opening-grid"><div><h1>一段声音，<br><em>怎样藏进一条消息？</em></h1>
+<p>不只看最终成功与否。亲自运行一次音频水印实验，跟着信号从原始波形走到 FFT、频带调制，再走到真实转码和消息恢复。</p></div>
+<div class="opening-stats"><div><strong>01</strong><span>真实嵌入</span></div><div><strong>07</strong><span>可探索阶段</span></div><div><strong>2048</strong><span>每帧 FFT 点数</span></div></div>
+</div></section>
+<section class="shell config" aria-labelledby="configure-title"><div class="block-head"><div><span class="eyebrow">EXPERIMENT SETUP</span><h2 id="configure-title">01 · 选择一段声音和一条消息</h2><p>默认设置可以直接运行。也可以上传自己的音频，观察不同输入的真实差异。</p></div><span class="tag">在线真实计算</span></div>
+<div class="config-grid">
+<label>水印模式<select id="mode"><option value="c3-16">C3 · 6 秒 / 16 bit</option><option value="c2-8">C2 · 6 秒 / 8 bit</option><option value="c2-long-id">C2 · 72 秒 / 重复 32-bit 身份</option><option value="c3-192">C3 · 72 秒 / 192 bit</option></select></label>
+<label>音频来源<select id="source"><option value="sample">内置授权音乐</option><option value="upload">上传自己的音频</option></select></label>
+<label id="uploadWrap" hidden>选择文件<input type="file" id="upload" accept="audio/*"></label>
+<label>发送的十六进制消息<input id="payload" type="text" autocomplete="off" spellcheck="false" value="A7C3" maxlength="4"></label>
+<label>实验密钥<input id="key" type="text" value="course-demo-public-v1" autocomplete="off" spellcheck="false"></label>
+<label>信道处理<select id="channel"><option value="clean">不处理 · Clean WAV</option><option value="mp3">MP3 · 128 kbps</option><option value="aac">AAC-LC · 128 kbps</option><option value="mp3_aac">MP3 → AAC</option><option value="gain_minus6">音量 −6 dB</option><option value="gain_plus3">音量 +3 dB</option><option value="resample">重采样 48 → 44.1 → 48 kHz</option></select></label>
+</div>
+<div class="config-action"><button type="button" class="button primary" id="run">运行完整实验 <span>→</span></button><div class="run-lines"><span id="state-prep">读取原音 · 未开始</span><span id="state-embed">水印嵌入 · 未开始</span><span id="state-process">信道处理 · 未开始</span><span id="state-detect">消息检测 · 未开始</span></div></div>
+<div class="status" role="status" aria-live="polite" id="status">点击运行。计算完成后，会用这一次生成的真实数据引导你观察每个处理阶段。</div>
+</section>
+<section class="shell lab" id="lab" aria-label="信号实验可视化">
+<div class="lab-top"><div><span class="eyebrow">SIGNAL JOURNEY</span><h2>02 · 跟着信号，一步步看懂算法</h2><p>默认采用讲解模式：每一步只讲一件事。可打开探索模式，查看任意一帧的细节。</p></div><div class="mode-switch" role="group" aria-label="浏览模式"><button id="guidedMode" class="selected" type="button" aria-pressed="true">引导演示</button><button id="exploreMode" type="button" aria-pressed="false">自由探索</button></div></div>
+<nav class="journey-nav" id="journeyNav" aria-label="信号处理七个阶段">
+<button type="button" class="journey-step current" data-step="0"><span>01</span>原始声音</button>
+<button type="button" class="journey-step" data-step="1"><span>02</span>分帧</button>
+<button type="button" class="journey-step" data-step="2"><span>03</span>FFT</button>
+<button type="button" class="journey-step" data-step="3"><span>04</span>频带调制</button>
+<button type="button" class="journey-step" data-step="4"><span>05</span>水印生成</button>
+<button type="button" class="journey-step" data-step="5"><span>06</span>信道处理</button>
+<button type="button" class="journey-step" data-step="6"><span>07</span>信息恢复</button>
+</nav>
+<div class="stage">
+<div class="stage-explainer"><div><span class="step-number" id="stageIndex">STEP 01 / 07</span><h3 id="stageTitle">从整段原始音频开始</h3><p id="stageExplain">这是尚未嵌入消息的声音。先选出其中一小段，下一步再观察这段音频怎样被分成 FFT 分析帧。</p></div><div class="question"><span>这一页重点看什么？</span><strong id="stageQuestion">原始音频是怎样随时间变化的？</strong></div></div>
+<div class="visual"><div class="visual-head"><div><span class="live-dot"></span><strong id="plotHeading">原始音频 · 时间波形</strong></div><span id="plotTag">等待本次实验</span></div>
+<canvas id="heroPlot" class="hero-plot" aria-label="真实音频信号主图"></canvas>
+<div class="plot-legend" id="plotLegend"><span class="legend"><i class="green"></i>当前信号</span><span class="legend">拖动或点击波形以选择时间</span></div>
+</div>
+<div id="spectrumStrip" class="transform" hidden><div class="mini-chart"><div class="mini-title">① 选中的 2048 个采样点</div><canvas id="miniWave"></canvas></div><div class="transform-arrow"><span>FFT</span><small>2048 points</small><b>→</b></div><div class="mini-chart"><div class="mini-title">② 同一帧的频率分布</div><canvas id="miniSpectrum"></canvas></div></div>
+<div id="comparison" class="comparison" hidden><div class="pair-heading"><span>频带 A / B · 相对能量对比</span><label>频带对 <select id="band"><option value="0">Pair 1 · 0.9–3.5 kHz</option><option value="1">Pair 2 · 3.5–6.5 kHz</option><option value="2">Pair 3 · 6.5–9.5 kHz</option></select></label></div><div class="ratio-grid"><div><span>嵌入前</span><strong id="ratioBefore">—</strong><small>A 与 B 的能量比</small></div><div class="ratio-arrow">→</div><div><span>嵌入后</span><strong id="ratioAfter">—</strong><small>同一帧，实际测量</small></div><div class="delta-card"><span>变化量 · 放大显示</span><strong id="ratioDelta">—</strong><small id="deltaNote">微小变化需要用数值观察</small></div></div><div class="pair-hint">颜色高亮的是本算法真实使用的频带，数值取自本次音频；变化量使用更敏感的刻度，不代表实际声音被放大。</div></div>
+<div id="recovery" class="recovery" hidden><div class="recover-head"><div><span>真实服务端检测</span><strong id="recoverHeadline">尚未检测</strong></div><div id="recoverTotals">—</div></div><div id="blockGrid" class="block-grid"></div></div>
+<div class="now"><span class="eyebrow">KEY INSIGHT</span><p id="takeaway">运行后，我们从一段真实声音开始，一步步追踪它的变化。</p></div>
+<div class="explore-panel" id="explorePanel" hidden><div class="explore-head"><div><strong>详细探索</strong><span>按 6 秒块、逐帧检查；不是额外的算法运行</span></div><span id="frameTime">—</span></div><div class="explore-controls"><label>6 秒数据块<select id="block"></select></label><label class="range-label">当前 FFT 帧 <b id="frameCount">1 / 141</b><input type="range" id="frame" min="0" max="140" value="0"></label><button class="text-btn" id="prevFrame" type="button">← 前一帧</button><button class="text-btn" id="nextFrame" type="button">后一帧 →</button></div></div>
+<div class="stage-footer"><div class="navigation"><button class="button subtle" id="prevStep" type="button">← 上一步</button><button class="button primary" id="nextStep" type="button">下一步，看看发生了什么 →</button></div><div class="play-controls"><button id="autoPlay" class="text-btn" type="button">▶ 自动讲解</button><span id="playState">可暂停、回退或手动跳转</span></div></div>
+</div></section>
+<section class="shell listen"><div><span class="eyebrow">LISTEN & COMPARE</span><h2>听一听，真实音频改变了多少</h2><p>试听和下载的均是本次运行实际生成的文件。两段音频播放器相互独立。</p></div><div class="listen-grid"><div><b>本次水印 WAV</b><audio controls id="markedAudio" preload="none"></audio><a id="markedLink" hidden>下载本次水印音频 ↗</a></div><div><b>本次信道处理输出</b><audio controls id="channelAudio" preload="none"></audio><a id="channelLink" hidden>下载本次处理音频 ↗</a></div></div></section>
+<section class="shell note"><span class="eyebrow">HOW TO READ THIS DEMO</span><p>本实验实际调用 C2/C3 参考辅助水印嵌入、FFmpeg 信道处理和参考辅助检测。FFT 和图表由浏览器对<strong>当前任务产生的音频文件</strong>计算；完成后播放的是可视化讲解，不是假装实时逐帧运行。上传音频的可视化预处理采用浏览器解码，与后端 FFmpeg 转单声道/重采样可能有微小差异。MP3/AAC 可能带有解码时延，信道前后叠加图不作为严格样本对齐的检测残差。检测结果来自本次后端响应，不使用历史 CSV。</p><p>示例音乐：<a href="https://www.ccmixter.org/files/Benjamin_Orth/33036" rel="noopener noreferrer" target="_blank">Where You Are Now · Benjamin Orth (feat. Wolf Fly)</a>，CC BY 3.0。当前在线执行使用公开 Demo Key，与冻结论文/课程实验不同。</p></section>
+</main><footer class="shell footer"><span>UESTC / DIGITAL SIGNAL PROCESSING · 2026</span><a href="./">← 返回项目主页</a></footer>
+</body></html>

@@ -123,7 +123,7 @@ if(current===6){setText('plotHeading','⑦ 真实检测 presence 与判定阈值
 }
 function stopAuto(){s.auto=false;clearTimeout(s.timer);s.timer=null;$('autoPlay').textContent='▶ 自动讲解';setText('playState','可暂停、回退或手动跳转')}
 function startAuto(){stopAuto();s.auto=true;$('autoPlay').textContent='Ⅱ 暂停讲解';setText('playState','按顺序展示已计算的真实结果');scheduleNext()}
-function scheduleNext(){clearTimeout(s.timer);if(!s.auto)return;s.timer=setTimeout(()=>{if(s.step>=6){stopAuto();return}setStage(s.step+1);scheduleNext()},4300)}
+function scheduleNext(){clearTimeout(s.timer);if(!s.auto)return;s.timer=setTimeout(()=>{if(s.step>=6){stopAuto();return}setStage(s.step+1);scheduleNext()},6800)}
 function inputChanged(){if(s.busy)return;clear();status('实验参数已改变。旧图表已清空，请重新运行当前输入。')}
 $('mode').addEventListener('change',()=>{$('payload').value=MESSAGES[$('mode').value];$('payload').maxLength=MESSAGES[$('mode').value].length;s.seconds=['c2-long-id','c3-192'].includes($('mode').value)?72:6;fillBlocks();inputChanged()});
 $('source').addEventListener('change',()=>{$('uploadWrap').hidden=$('source').value!=='upload';inputChanged()});
@@ -140,7 +140,7 @@ $('block').addEventListener('change',()=>{stopAuto();s.block=+$('block').value;r
 $('frame').addEventListener('input',()=>{stopAuto();s.frame=+$('frame').value;render()});
 $('prevFrame').addEventListener('click',()=>{stopAuto();if(s.frame===0&&s.block>0){s.block--;s.frame=COUNT-1}else s.frame=Math.max(0,s.frame-1);render()});
 $('nextFrame').addEventListener('click',()=>{stopAuto();if(s.frame===COUNT-1&&s.block<s.seconds/6-1){s.block++;s.frame=0}else s.frame=Math.min(COUNT-1,s.frame+1);render()});
-$('heroPlot').addEventListener('pointerdown',e=>{if(!s.original||s.step>1)return;stopAuto();const bounds=e.currentTarget.getBoundingClientRect(),portion=clamp((e.clientX-bounds.left)/bounds.width,0,.999999);let t=portion*s.seconds;s.block=Math.floor(t/6);s.frame=clamp(Math.floor((t%6)*FS/N),0,COUNT-1);render()});
+$('heroPlot').addEventListener('pointerdown',e=>{if(!s.original||s.step!==0)return;stopAuto();const bounds=e.currentTarget.getBoundingClientRect(),portion=clamp((e.clientX-bounds.left)/bounds.width,0,.999999);let t=portion*s.seconds;s.block=Math.floor(t/6);s.frame=clamp(Math.floor((t%6)*FS/N),0,COUNT-1);render()});
 let timer;window.addEventListener('resize',()=>{clearTimeout(timer);timer=setTimeout(render,110)});
 fillBlocks();render();
 })();
